@@ -380,38 +380,47 @@ function renderPage(container, contacts) {
       [data-theme="dark"] #menu-panel td.today { background: rgba(255,255,255,.03); }
       #menu-panel tr:last-child td { border-bottom: none; }
 
-      /* Staff grid */
-      .res-staff-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-        gap: var(--space-4);
-      }
-      .res-staff-card {
-        background: var(--bg-elevated);
-        border: 1px solid var(--border-subtle);
-        border-radius: var(--radius-lg);
-        padding: var(--space-5) var(--space-6);
-      }
-      .res-staff-cat {
-        font-size: 10px;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: .1em;
-        color: var(--text-tertiary);
+      /* Contact directory */
+      .res-dir { display: flex; flex-direction: column; }
+      .res-dir-group { margin-bottom: var(--space-8); }
+      .res-dir-cat {
+        font-size: 10px; font-weight: 700; text-transform: uppercase;
+        letter-spacing: .12em; color: var(--text-tertiary);
+        padding-bottom: var(--space-3);
+        border-bottom: 1px solid var(--border-subtle);
         margin-bottom: var(--space-4);
       }
-      .res-staff-entry { margin-bottom: var(--space-4); }
-      .res-staff-entry:last-child { margin-bottom: 0; }
-      .res-staff-name {
-        font-size: var(--text-sm);
-        font-weight: 600;
-        color: var(--text-primary);
+      .res-dir-row {
+        display: flex; align-items: baseline;
+        justify-content: space-between; flex-wrap: wrap;
+        gap: var(--space-2) var(--space-6);
+        padding: var(--space-4) 0;
+        border-bottom: 1px solid var(--border-subtle);
       }
-      .res-staff-meta {
-        font-size: var(--text-xs);
-        color: var(--text-tertiary);
+      .res-dir-row:last-child { border-bottom: none; }
+      .res-dir-name {
+        font-size: var(--text-sm); font-weight: 600;
+        color: var(--text-primary); flex-shrink: 0;
+      }
+      .res-dir-note {
+        font-size: var(--text-xs); color: var(--text-tertiary);
         margin-top: 2px;
       }
+      .res-dir-contacts {
+        display: flex; align-items: center; gap: var(--space-4);
+        flex-shrink: 0; flex-wrap: wrap;
+      }
+      .res-dir-phone {
+        font-size: var(--text-xs); font-family: var(--font-mono);
+        font-weight: 600; color: var(--text-primary);
+        text-decoration: none; white-space: nowrap;
+      }
+      .res-dir-phone:hover { opacity: .65; }
+      .res-dir-email {
+        font-size: var(--text-xs); color: var(--text-tertiary);
+        text-decoration: none; white-space: nowrap;
+      }
+      .res-dir-email:hover { color: var(--text-primary); }
 
       @media (max-width: 768px) {
         .res-big-grid { grid-template-columns: 1fr !important; }
@@ -478,24 +487,35 @@ function bigCard(title, bodyHTML) {
 }
 
 function renderContactsHTML(contacts) {
-  const CAT_LABEL = { Plumber:'Plumber', Electrician:'Electrician', WiFi:'Wi-Fi / IT', Authority:'Authority', Other:'Other' };
+  const ORDER = ['Authority','Electrician','Plumber','WiFi','Other'];
+  const CAT_LABEL = {
+    Authority:    'Authority',
+    Electrician:  'Electrician',
+    Plumber:      'Plumber',
+    WiFi:         'Wi-Fi / IT',
+    Other:        'Other',
+  };
   const grouped = {};
   contacts.forEach(r => { (grouped[r.category] = grouped[r.category] || []).push(r); });
 
-  return `
-    <div class="res-staff-grid">
-      ${Object.entries(grouped).map(([cat, items]) => `
-        <div class="res-staff-card">
-          <div class="res-staff-cat">${CAT_LABEL[cat] || cat}</div>
-          ${items.map(r => `
-            <div class="res-staff-entry">
-              <div class="res-staff-name">${r.name}</div>
-              ${r.phone ? `<a href="tel:${r.phone}" style="display:block;font-size:var(--text-xs);font-family:var(--font-mono);font-weight:600;color:var(--text-primary);text-decoration:none;margin-top:2px;">${r.phone}</a>` : ''}
-              ${r.notes ? `<div class="res-staff-meta">${r.notes}</div>` : ''}
-            </div>
-          `).join('')}
+  const cats = [...ORDER.filter(c => grouped[c]), ...Object.keys(grouped).filter(c => !ORDER.includes(c))];
+
+  return `<div class="res-dir">${cats.map(cat => `
+    <div class="res-dir-group">
+      <div class="res-dir-cat">${CAT_LABEL[cat] || cat}</div>
+      ${grouped[cat].map(r => `
+        <div class="res-dir-row">
+          <div>
+            <div class="res-dir-name">${r.name}</div>
+            ${r.notes ? `<div class="res-dir-note">${r.notes}</div>` : ''}
+          </div>
+          <div class="res-dir-contacts">
+            ${r.phone ? `<a class="res-dir-phone" href="tel:${r.phone}">${r.phone}</a>` : ''}
+            ${r.email ? `<a class="res-dir-email" href="mailto:${r.email}">${r.email}</a>` : ''}
+          </div>
         </div>
       `).join('')}
     </div>
-  `;
+  `).join('')}</div>`;
 }
+
