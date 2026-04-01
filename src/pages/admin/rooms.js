@@ -56,23 +56,58 @@ function renderPage(container, data, reloadFn) {
 
   container.innerHTML = `
     <style>
-      .room-grid { display:grid; grid-template-columns:repeat(10,1fr); gap:6px; margin-bottom:var(--space-6); }
-      .room-cell {
-        aspect-ratio:1; border-radius:6px; display:flex; flex-direction:column;
-        align-items:center; justify-content:center; cursor:default;
-        font-size:10px; font-weight:600; line-height:1.2; text-align:center;
-        border:1px solid transparent; transition:transform .15s;
-        padding:4px;
+      /* ── Room corridor layout ── */
+      .floor-corridor {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        margin-bottom: var(--space-5);
       }
-      .room-cell:hover { transform:scale(1.06); z-index:1; }
-      .room-cell.vacant  { background:color-mix(in srgb,var(--accent-green) 18%,transparent); border-color:color-mix(in srgb,var(--accent-green) 35%,transparent); color:var(--accent-green); }
-      .room-cell.partial { background:color-mix(in srgb,var(--accent-amber) 18%,transparent); border-color:color-mix(in srgb,var(--accent-amber) 35%,transparent); color:var(--accent-amber); }
-      .room-cell.full    { background:color-mix(in srgb,var(--accent-red)   18%,transparent); border-color:color-mix(in srgb,var(--accent-red)   35%,transparent); color:var(--accent-red); }
-      .room-cell .rc-id  { font-family:var(--font-mono); font-size:9px; }
-      .room-cell .rc-occ { font-size:9px; opacity:.7; }
-      .floor-label { font-size:var(--text-xs); font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--text-tertiary); margin:var(--space-4) 0 var(--space-2); }
-      .legend-dot { width:10px; height:10px; border-radius:50%; display:inline-block; }
-      .alloc-tab-badge { background:var(--accent-amber); color:#000; border-radius:999px; font-size:10px; font-weight:700; padding:1px 6px; margin-left:6px; }
+      .corridor-row {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 5px;
+      }
+      .corridor-strip {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 3px 0;
+      }
+      .corridor-strip-line { flex:1; height:1px; background:var(--border-subtle); }
+      .corridor-strip-label { font-size:9px; letter-spacing:.1em; color:var(--text-tertiary); text-transform:uppercase; white-space:nowrap; }
+      /* ── Room cells ── */
+      .room-cell {
+        border-radius:8px; display:flex; flex-direction:column;
+        align-items:center; justify-content:center;
+        padding: 10px 4px 8px;
+        font-size:10px; font-weight:600; line-height:1.3; text-align:center;
+        border:1px solid transparent; transition:transform .12s, box-shadow .12s;
+        cursor:default;
+      }
+      .room-cell:hover { transform:translateY(-2px); box-shadow:0 4px 12px rgba(0,0,0,.3); z-index:1; }
+      .room-cell.vacant  { background:color-mix(in srgb,var(--accent-green) 10%,transparent); border-color:color-mix(in srgb,var(--accent-green) 25%,transparent); color:var(--accent-green); }
+      .room-cell.partial { background:color-mix(in srgb,var(--accent-amber) 10%,transparent); border-color:color-mix(in srgb,var(--accent-amber) 25%,transparent); color:var(--accent-amber); }
+      .room-cell.full    { background:color-mix(in srgb,var(--accent-red)   10%,transparent); border-color:color-mix(in srgb,var(--accent-red)   25%,transparent); color:var(--accent-red); opacity:.7; }
+      .rc-id  { font-family:var(--font-mono); font-size:9px; opacity:.75; }
+      /* ── Minimal tabs ── */
+      #room-tabs .cat-tab {
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        border-radius: 0;
+        padding: 8px 4px;
+        font-size: var(--text-sm);
+        color: var(--text-tertiary);
+        cursor: pointer;
+        transition: color .15s, border-color .15s;
+        font-weight: 500;
+      }
+      #room-tabs .cat-tab:hover  { color: var(--text-primary); }
+      #room-tabs .cat-tab.active { color: var(--text-primary); border-bottom-color: var(--text-primary); }
+      .floor-label { font-size:var(--text-xs); font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--text-tertiary); margin:var(--space-5) 0 var(--space-3); }
+      .legend-dot { width:8px; height:8px; border-radius:50%; display:inline-block; }
+      .alloc-tab-badge { background:var(--accent-amber); color:#000; border-radius:999px; font-size:10px; font-weight:700; padding:1px 6px; margin-left:4px; }
     </style>
 
     <div class="page-enter" id="admin-rooms-page">
@@ -92,18 +127,14 @@ function renderPage(container, data, reloadFn) {
       </div>
 
       <!-- Tabs -->
-      <div class="cat-tabs" id="room-tabs" style="margin-bottom:var(--space-6); flex-wrap:wrap; gap:var(--space-2);">
+      <div id="room-tabs" style="display:flex; gap:var(--space-5); margin-bottom:var(--space-6); border-bottom:1px solid var(--border-subtle); flex-wrap:wrap;">
         <button class="cat-tab active" data-tab="rooms">Room Grid</button>
         <button class="cat-tab" data-tab="add-student">Add Student</button>
         <button class="cat-tab" data-tab="students">Students (${students.length})</button>
         <button class="cat-tab" data-tab="allocate">Direct Allocate</button>
-        <button class="cat-tab" data-tab="requests">
-          Booking Requests${pendingReqs > 0 ? `<span class="alloc-tab-badge">${pendingReqs}</span>` : ''}
-        </button>
-        <button class="cat-tab" data-tab="changes">
-          Room Changes${pendingChanges > 0 ? `<span class="alloc-tab-badge">${pendingChanges}</span>` : ''}
-        </button>
-        <button class="cat-tab" data-tab="allocs">All Allocations</button>
+        <button class="cat-tab" data-tab="requests">Booking Requests${pendingReqs > 0 ? `<span class="alloc-tab-badge">${pendingReqs}</span>` : ''}</button>
+        <button class="cat-tab" data-tab="changes">Room Changes${pendingChanges > 0 ? `<span class="alloc-tab-badge">${pendingChanges}</span>` : ''}</button>
+        <button class="cat-tab" data-tab="allocs">Allocations</button>
       </div>
 
       <!-- Panels -->
@@ -136,30 +167,39 @@ function renderPage(container, data, reloadFn) {
     const full    = filtered.filter(r => r.current_occupancy >= r.capacity).length;
 
     let html = `
-      <div style="display:flex; align-items:center; gap:var(--space-6); margin-bottom:var(--space-5); flex-wrap:wrap;">
-        <div style="display:flex; align-items:center; gap:8px;"><span class="legend-dot" style="background:var(--accent-green);"></span><span style="font-size:var(--text-xs); color:var(--text-secondary);">Vacant (${vacant})</span></div>
-        <div style="display:flex; align-items:center; gap:8px;"><span class="legend-dot" style="background:var(--accent-amber);"></span><span style="font-size:var(--text-xs); color:var(--text-secondary);">Partial (${partial})</span></div>
-        <div style="display:flex; align-items:center; gap:8px;"><span class="legend-dot" style="background:var(--accent-red);"></span><span style="font-size:var(--text-xs); color:var(--text-secondary);">Full (${full})</span></div>
-        <span style="font-size:var(--text-xs); color:var(--text-tertiary); margin-left:auto;">Each row = 1 floor · 10 rooms</span>
+      <div style="display:flex; align-items:center; gap:var(--space-5); margin-bottom:var(--space-5);">
+        <span style="display:flex; align-items:center; gap:6px; font-size:var(--text-xs); color:var(--text-secondary);"><span class="legend-dot" style="background:var(--accent-green);"></span>Vacant (${vacant})</span>
+        <span style="display:flex; align-items:center; gap:6px; font-size:var(--text-xs); color:var(--text-secondary);"><span class="legend-dot" style="background:var(--accent-amber);"></span>Partial (${partial})</span>
+        <span style="display:flex; align-items:center; gap:6px; font-size:var(--text-xs); color:var(--text-secondary);"><span class="legend-dot" style="background:var(--accent-red);"></span>Full (${full})</span>
       </div>
     `;
 
     for (const hostel of Object.keys(byHostel).sort()) {
-      html += `<div style="font-size:var(--text-sm); font-weight:600; color:var(--text-primary); margin:var(--space-5) 0 var(--space-3); padding-bottom:var(--space-2); border-bottom:1px solid var(--border-subtle);">${hostel}</div>`;
+      html += `<div style="font-size:var(--text-sm); font-weight:600; color:var(--text-primary); margin:var(--space-6) 0 var(--space-3); padding-bottom:var(--space-2); border-bottom:1px solid var(--border-subtle);">${hostel}</div>`;
       for (const floor of Object.keys(byHostel[hostel]).sort((a,b) => +a - +b)) {
         const floorRooms = byHostel[hostel][floor].sort((a,b) => a.room_id.localeCompare(b.room_id));
-        html += `<div class="floor-label">Floor ${floor}</div><div class="room-grid">`;
-        floorRooms.forEach(r => {
+        // Split into two rows of 5 — facing each other across a corridor
+        const sideA = floorRooms.slice(0, 5);  // rooms 01-05 top row
+        const sideB = floorRooms.slice(5, 10); // rooms 06-10 bottom row (facing top)
+        const roomCell = r => {
           const pct   = r.capacity > 0 ? r.current_occupancy / r.capacity : 0;
           const state = pct === 0 ? 'vacant' : pct < 1 ? 'partial' : 'full';
-          const typeTag = r.type === 'Single' ? 'S' : r.type === 'Double' ? 'D' : 'T';
-          html += `
-            <div class="room-cell ${state}" title="${r.room_id} — ${r.type} (${r.current_occupancy}/${r.capacity})">
-              <div class="rc-id">${r.room_id}</div>
-              <div style="font-size:9px; opacity:.6;">${typeTag} ${r.current_occupancy}/${r.capacity}</div>
-            </div>`;
-        });
-        html += `</div>`;
+          return `<div class="room-cell ${state}" title="${r.room_id} — ${r.type} (${r.current_occupancy}/${r.capacity})">
+            <div class="rc-id">${r.room_id}</div>
+            <div style="font-size:9px; opacity:.55;">${r.current_occupancy}/${r.capacity}</div>
+          </div>`;
+        };
+        html += `
+          <div class="floor-label">Floor ${floor}</div>
+          <div class="floor-corridor">
+            <div class="corridor-row">${sideA.map(roomCell).join('')}</div>
+            <div class="corridor-strip">
+              <div class="corridor-strip-line"></div>
+              <div class="corridor-strip-label">corridor</div>
+              <div class="corridor-strip-line"></div>
+            </div>
+            <div class="corridor-row">${sideB.map(roomCell).join('')}</div>
+          </div>`;
       }
     }
     if (!Object.keys(byHostel).length) {
@@ -341,7 +381,9 @@ function renderPage(container, data, reloadFn) {
   // ════════════════════════════════
   function renderDirectAllocate() {
     const unallocated = students.filter(s => !s.alloc_room);
-    const vacantRooms = rooms.filter(r => r.current_occupancy < r.capacity)
+    // Filter rooms by active hostel filter so only relevant rooms appear
+    const vacantRooms = rooms
+      .filter(r => r.current_occupancy < r.capacity && (!filterHostel || r.hostel === filterHostel))
       .sort((a,b) => a.hostel.localeCompare(b.hostel) || a.floor - b.floor || a.room_id.localeCompare(b.room_id));
 
     document.getElementById('panel-allocate').innerHTML = `
