@@ -74,8 +74,10 @@ function renderPage(container, initial) {
         <div class="table-toolbar">
           <div class="table-toolbar-title">Contact Directory</div>
           <div style="display:flex; gap:var(--space-2); flex-wrap:wrap;">
-            <button class="filter-chip active" data-cat="">All</button>
-            ${CATEGORIES.map(c => `<button class="filter-chip" data-cat="${c}">${CAT_ICONS[c]} ${c}</button>`).join('')}
+            <select class="form-select" id="cat-filter-select" style="width:auto; padding:6px 28px 6px 12px; font-size:var(--text-sm);">
+              <option value="">All Categories</option>
+              ${CATEGORIES.map(c => `<option value="${c}">${CAT_ICONS[c]} ${c}</option>`).join('')}
+            </select>
           </div>
         </div>
         <div id="resources-body"></div>
@@ -158,14 +160,10 @@ function renderPage(container, initial) {
     });
   }
 
-  // Filter chips
-  container.querySelectorAll('[data-cat]').forEach(chip => {
-    chip.addEventListener('click', () => {
-      container.querySelectorAll('[data-cat]').forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-      filterCat = chip.dataset.cat;
-      renderDirectory();
-    });
+  // Category dropdown filter
+  document.getElementById('cat-filter-select').addEventListener('change', e => {
+    filterCat = e.target.value;
+    renderDirectory();
   });
 
   // Cancel edit
