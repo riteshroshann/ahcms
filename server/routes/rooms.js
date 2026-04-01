@@ -202,4 +202,192 @@ router.patch('/booking-requests/:id', requireAuth, requireRole('admin'), (req, r
   res.json(updated);
 });
 
+// ── POST /api/rooms/direct-allocate ─────────────────────────────
+// Admin directly assigns a student to a room (no request needed).
+// Validates: student exists, no active allocation, room has capacity.
+// Transaction: create ALLOCATION + update current_occupancy.
+router.post('/direct-allocate', requireAuth, requireRole('admin'), (req, res) => {
+  const { student_id, room_id, from_date, to_date, note } = req.body;
+  if (!student_id || !room_id) {
+    return res.status(400).json({ error: 'student_id and room_id are required.' });
+  }
+
+  const student = db.prepare('SELECT * FROM STUDENT WHERE student_id = ?').get(student_id);
+  if (!student) return res.status(404).json({ error: 'Student not found.' });
+
+  const activeAlloc = db.prepare(
+    "SELECT * FROM ALLOCATION WHERE student_id = ? AND status = 'active'"
+  ).get(student_id);
+  if (activeAlloc) {
+    return res.status(409).json({ error: `Student already has an active allocation in room ${activeAlloc.room_id}.` });
+  }
+
+  const room = db.prepare('SELECT * FROM ROOM WHERE room_id = ?').get(room_id);
+  if (!room) return res.status(404).json({ error: 'Room not found.' });
+  if (room.current_occupancy >= room.capacity) {
+    return res.status(409).json({ error: `Room ${room_id} is at full capacity.` });
+  }
+
+  const today     = from_date || new Date().toISOString().split('T')[0];
+  const endDate   = to_date   || `${new Date().getFullYear() + 1}-05-31`;
+  const allocId   = `AL${Date.now()}`;
+
+  const allocate = db.transaction(() => {
+    db.prepare(
+      "INSERT INTO ALLOCATION (allocation_id, student_id, room_id, from_date, to_date, status) VALUES (?, ?, ?, ?, ?, 'active')"
+    ).run(allocId, student_id, room_id, today, endDate);
+    db.prepare('UPDATE ROOM SET current_occupancy = current_occupancy + 1 WHERE room_id = ?').run(room_id);
+    // Update student hostel to match room hostel
+    db.prepare('UPDATE STUDENT SET hostel = ? WHERE student_id = ?').run(room.hostel, student_id);
+  });
+  allocate();
+
+  res.status(201).json({ allocation_id: allocId, student_id, room_id, from_date: today, to_date: endDate, status: 'active' });
+});
+
+// ── DELETE /api/rooms/allocations/:id ───────────────────────────
+// Admin revokes (ends) an active allocation
+router.delete('/allocations/:id', requireAuth, requireRole('admin'), (req, res) => {
+  const alloc = db.prepare('SELECT * FROM ALLOCATION WHERE allocation_id = ?').get(req.params.id);
+  if (!alloc) return res.status(404).json({ error: 'Allocation not found.' });
+  if (alloc.status !== 'active') return res.status(409).json({ error: 'Allocation is not active.' });
+
+  db.transaction(() => {
+    db.prepare("UPDATE ALLOCATION SET status = 'expired' WHERE allocation_id = ?").run(req.params.id);
+    db.prepare('UPDATE ROOM SET current_occupancy = MAX(0, current_occupancy - 1) WHERE room_id = ?').run(alloc.room_id);
+  })();
+
+  res.json({ success: true });
+});
+
+// ── GET /api/rooms/change-requests ──────────────────────────────
+// Admin: all change requests; Student: their own
+router.get('/change-requests', requireAuth, (req, res) => {
+  if (req.user.role === 'admin') {
+    const rows = db.prepare(`
+      SELECT cr.*,
+        s.name AS student_name, s.roll_no, s.year, s.course,
+        rf.hostel AS from_hostel, rf.floor AS from_floor, rf.type AS from_type,
+        rt.hostel AS to_hostel,   rt.floor AS to_floor,   rt.type AS to_type,
+        rt.current_occupancy AS to_occupancy, rt.capacity AS to_capacity
+      FROM ROOM_CHANGE_REQUEST cr
+      JOIN STUDENT s  ON cr.student_id  = s.student_id
+      JOIN ROOM rf    ON cr.from_room_id = rf.room_id
+      JOIN ROOM rt    ON cr.to_room_id   = rt.room_id
+      ORDER BY cr.created_at DESC
+    `).all();
+    return res.json(rows);
+  }
+  // Student: own requests only
+  const rows = db.prepare(`
+    SELECT cr.*,
+      rf.hostel AS from_hostel, rf.floor AS from_floor, rf.type AS from_type,
+      rt.hostel AS to_hostel,   rt.floor AS to_floor,   rt.type AS to_type
+    FROM ROOM_CHANGE_REQUEST cr
+    JOIN ROOM rf ON cr.from_room_id = rf.room_id
+    JOIN ROOM rt ON cr.to_room_id   = rt.room_id
+    WHERE cr.student_id = ?
+    ORDER BY cr.created_at DESC
+  `).all(req.user.id);
+  res.json(rows);
+});
+
+// ── POST /api/rooms/change-requests ──────────────────────────────
+// Student submits a room change request
+router.post('/change-requests', requireAuth, requireRole('student'), (req, res) => {
+  const { to_room_id, reason } = req.body;
+  if (!to_room_id || !reason?.trim()) {
+    return res.status(400).json({ error: 'Target room and reason are required.' });
+  }
+
+  // Must have active allocation
+  const currentAlloc = db.prepare(
+    "SELECT * FROM ALLOCATION WHERE student_id = ? AND status = 'active'"
+  ).get(req.user.id);
+  if (!currentAlloc) {
+    return res.status(400).json({ error: 'You do not have an active room allocation.' });
+  }
+  if (currentAlloc.room_id === to_room_id) {
+    return res.status(400).json({ error: 'Target room is the same as your current room.' });
+  }
+
+  // No pending change request already
+  const pendingChange = db.prepare(
+    "SELECT * FROM ROOM_CHANGE_REQUEST WHERE student_id = ? AND status = 'pending'"
+  ).get(req.user.id);
+  if (pendingChange) {
+    return res.status(409).json({ error: 'You already have a pending room change request.' });
+  }
+
+  // Target room must exist and have space
+  const toRoom = db.prepare('SELECT * FROM ROOM WHERE room_id = ?').get(to_room_id);
+  if (!toRoom) return res.status(404).json({ error: 'Target room not found.' });
+  if (toRoom.current_occupancy >= toRoom.capacity) {
+    return res.status(409).json({ error: 'Target room is at full capacity.' });
+  }
+
+  const result = db.prepare(`
+    INSERT INTO ROOM_CHANGE_REQUEST (student_id, from_room_id, to_room_id, reason)
+    VALUES (?, ?, ?, ?)
+  `).run(req.user.id, currentAlloc.room_id, to_room_id, reason.trim());
+
+  res.status(201).json(db.prepare('SELECT * FROM ROOM_CHANGE_REQUEST WHERE change_id = ?').get(result.lastInsertRowid));
+});
+
+// ── PATCH /api/rooms/change-requests/:id ─────────────────────────
+// Admin approves or rejects a room change request
+router.patch('/change-requests/:id', requireAuth, requireRole('admin'), (req, res) => {
+  const { status, admin_note } = req.body;
+  if (!['approved', 'rejected'].includes(status)) {
+    return res.status(400).json({ error: 'Status must be approved or rejected.' });
+  }
+
+  const cr = db.prepare('SELECT * FROM ROOM_CHANGE_REQUEST WHERE change_id = ?').get(req.params.id);
+  if (!cr) return res.status(404).json({ error: 'Change request not found.' });
+  if (cr.status !== 'pending') {
+    return res.status(409).json({ error: 'Request has already been actioned.' });
+  }
+
+  if (status === 'approved') {
+    const toRoom = db.prepare('SELECT * FROM ROOM WHERE room_id = ?').get(cr.to_room_id);
+    if (toRoom.current_occupancy >= toRoom.capacity) {
+      return res.status(409).json({ error: 'Target room is now at full capacity.' });
+    }
+
+    db.transaction(() => {
+      const today   = new Date().toISOString().split('T')[0];
+      const endDate = `${new Date().getFullYear() + 1}-05-31`;
+      const newId   = `AL${Date.now()}`;
+
+      // Expire old allocation & decrement old room
+      db.prepare("UPDATE ALLOCATION SET status = 'expired' WHERE student_id = ? AND status = 'active'").run(cr.student_id);
+      db.prepare('UPDATE ROOM SET current_occupancy = MAX(0, current_occupancy - 1) WHERE room_id = ?').run(cr.from_room_id);
+
+      // Create new allocation & increment new room
+      db.prepare(
+        "INSERT INTO ALLOCATION (allocation_id, student_id, room_id, from_date, to_date, status) VALUES (?, ?, ?, ?, ?, 'active')"
+      ).run(newId, cr.student_id, cr.to_room_id, today, endDate);
+      db.prepare('UPDATE ROOM SET current_occupancy = current_occupancy + 1 WHERE room_id = ?').run(cr.to_room_id);
+
+      // Update student hostel
+      db.prepare('UPDATE STUDENT SET hostel = ? WHERE student_id = ?').run(toRoom.hostel, cr.student_id);
+
+      // Close request
+      db.prepare(`
+        UPDATE ROOM_CHANGE_REQUEST
+        SET status = 'approved', admin_note = ?, updated_at = datetime('now')
+        WHERE change_id = ?
+      `).run(admin_note || null, req.params.id);
+    })();
+  } else {
+    db.prepare(`
+      UPDATE ROOM_CHANGE_REQUEST
+      SET status = 'rejected', admin_note = ?, updated_at = datetime('now')
+      WHERE change_id = ?
+    `).run(admin_note || null, req.params.id);
+  }
+
+  res.json(db.prepare('SELECT * FROM ROOM_CHANGE_REQUEST WHERE change_id = ?').get(req.params.id));
+});
+
 export default router;

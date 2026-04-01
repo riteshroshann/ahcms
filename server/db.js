@@ -66,30 +66,39 @@ async function seed() {
   const insertStudents = db.transaction((rows) => rows.forEach(r => stuInsert.run(...r)));
   insertStudents(students);
 
-  // Rooms
   const roomInsert = db.prepare(
-    'INSERT INTO ROOM (room_id, hostel, floor, type, capacity, current_occupancy) VALUES (?, ?, ?, ?, ?, ?)'
+    'INSERT INTO ROOM (room_id, hostel, floor, type, capacity, current_occupancy) VALUES (?, ?, ?, ?, ?, 0)'
   );
-  const rooms = [
-    // Senior MBBS boys (Floors 8, 9)
-    ['SmB-801','Senior MBBS boys hostel',8,'Double',2,2], ['SmB-802','Senior MBBS boys hostel',8,'Double',2,1],
-    ['SmB-803','Senior MBBS boys hostel',8,'Single',1,0], ['SmB-901','Senior MBBS boys hostel',9,'Double',2,1],
-    ['SmB-902','Senior MBBS boys hostel',9,'Double',2,0],
-    
-    // Senior MBBS girls (Floors 7, 8)
-    ['SmG-701','Senior MBBS girls hostel',7,'Double',2,2], ['SmG-702','Senior MBBS girls hostel',7,'Double',2,1],
-    ['SmG-801','Senior MBBS girls hostel',8,'Double',2,0], ['SmG-802','Senior MBBS girls hostel',8,'Single',1,1],
 
-    // Sardha Block A (Girls, Floors 1, 2)
-    ['ShA-101','Sardha building : Block A (girls)',1,'Double',2,2], ['ShA-102','Sardha building : Block A (girls)',1,'Double',2,0],
-    ['ShA-201','Sardha building : Block A (girls)',2,'Single',1,1], ['ShA-202','Sardha building : Block A (girls)',2,'Double',2,0],
+  // Helper: generate 10 rooms for a floor
+  // rooms 01–07 = Double (cap 2), rooms 08–10 = Single (cap 1)
+  function floorRooms(hostel, prefix, floor) {
+    const rows = [];
+    for (let i = 1; i <= 7; i++) {
+      rows.push([`${prefix}-${floor}${String(i).padStart(2,'0')}`, hostel, floor, 'Double', 2]);
+    }
+    for (let i = 8; i <= 10; i++) {
+      rows.push([`${prefix}-${floor}${String(i).padStart(2,'0')}`, hostel, floor, 'Single', 1]);
+    }
+    return rows;
+  }
 
-    // Sardha Block B (Boys, Floors 1, 2)
-    ['ShB-101','Sardha building : Block B (boys)',1,'Double',2,2], ['ShB-102','Sardha building : Block B (boys)',1,'Double',2,1],
-    ['ShB-201','Sardha building : Block B (boys)',2,'Double',2,1],
+  const allRooms = [
+    // Senior MBBS Boys — floors 8, 9
+    ...floorRooms('Senior MBBS boys hostel',         'SmB', 8),
+    ...floorRooms('Senior MBBS boys hostel',         'SmB', 9),
+    // Senior MBBS Girls — floors 7, 8
+    ...floorRooms('Senior MBBS girls hostel',        'SmG', 7),
+    ...floorRooms('Senior MBBS girls hostel',        'SmG', 8),
+    // Sardha Block A (Girls) — floors 1, 2
+    ...floorRooms('Sardha building : Block A (girls)','ShA', 1),
+    ...floorRooms('Sardha building : Block A (girls)','ShA', 2),
+    // Sardha Block B (Boys) — floors 1, 2
+    ...floorRooms('Sardha building : Block B (boys)', 'ShB', 1),
+    ...floorRooms('Sardha building : Block B (boys)', 'ShB', 2),
   ];
   const insertRooms = db.transaction((rows) => rows.forEach(r => roomInsert.run(...r)));
-  insertRooms(rooms);
+  insertRooms(allRooms);
 
   // Allocations
   const allocInsert = db.prepare(
@@ -100,7 +109,7 @@ async function seed() {
     ['AL002','STU003','SmB-801','2025-08-01','2026-05-31','active'],
     ['AL003','STU005','SmB-802','2025-08-01','2026-05-31','active'],
     ['AL004','STU011','SmB-901','2025-08-01','2026-05-31','active'],
-    
+
     ['AL005','STU002','SmG-701','2025-08-01','2026-05-31','active'],
     ['AL006','STU004','SmG-701','2025-08-01','2026-05-31','active'],
     ['AL007','STU006','SmG-702','2025-08-01','2026-05-31','active'],
@@ -117,6 +126,15 @@ async function seed() {
   ];
   const insertAllocs = db.transaction((rows) => rows.forEach(r => allocInsert.run(...r)));
   insertAllocs(allocations);
+
+  // Sync room occupancy counts from active allocations
+  db.prepare(`
+    UPDATE ROOM SET current_occupancy = (
+      SELECT COUNT(*) FROM ALLOCATION
+      WHERE ALLOCATION.room_id = ROOM.room_id AND ALLOCATION.status = 'active'
+    )
+  `).run();
+
 
   // Complaints
   const cmpInsert = db.prepare(`

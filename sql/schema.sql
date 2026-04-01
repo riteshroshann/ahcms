@@ -127,3 +127,19 @@ CREATE TABLE IF NOT EXISTS RESOURCE (
     notes        TEXT,
     created_at   TEXT NOT NULL DEFAULT (datetime('now'))
 );
+
+-- ── Room Change Requests ─────────────────────────────────────────
+-- Students request a transfer from their current room to a new one.
+-- Admin approves (transaction: end old alloc, create new alloc, fix occupancies)
+-- or rejects with a note.
+CREATE TABLE IF NOT EXISTS ROOM_CHANGE_REQUEST (
+    change_id      INTEGER PRIMARY KEY AUTOINCREMENT,
+    student_id     TEXT NOT NULL REFERENCES STUDENT(student_id),
+    from_room_id   TEXT NOT NULL REFERENCES ROOM(room_id),
+    to_room_id     TEXT NOT NULL REFERENCES ROOM(room_id),
+    reason         TEXT NOT NULL,
+    status         TEXT CHECK (status IN ('pending','approved','rejected')) DEFAULT 'pending',
+    admin_note     TEXT,
+    created_at     TEXT NOT NULL DEFAULT (datetime('now')),
+    updated_at     TEXT NOT NULL DEFAULT (datetime('now'))
+);

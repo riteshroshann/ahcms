@@ -10,6 +10,7 @@ import roomsRoutes      from './routes/rooms.js';
 import forumRoutes      from './routes/forum.js';
 import wardensRoutes    from './routes/wardens.js';
 import resourcesRoutes  from './routes/resources.js';
+import studentsRoutes   from './routes/students.js';
 
 const app  = express();
 const PORT = process.env.PORT || 3001;
@@ -33,6 +34,7 @@ app.use('/api/rooms',      roomsRoutes);
 app.use('/api/forum',      forumRoutes);
 app.use('/api/wardens',    wardensRoutes);
 app.use('/api/resources',  resourcesRoutes);
+app.use('/api/students',   studentsRoutes);
 
 // ── 404 ───────────────────────────────────────────────────────
 app.use((req, res) => {
