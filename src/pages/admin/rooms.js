@@ -380,8 +380,8 @@ function renderPage(container, data, reloadFn) {
   // ══════════════════════════════════════════════
   function renderPending() {
     const el = document.getElementById('rm-panel-pending');
-    const pendingBook   = bookReqs.filter(r => r.status === 'pending' && (!filterHostel || r.room_hostel === filterHostel || r.hostel === filterHostel));
-    const pendingChange = changeReqs.filter(r => r.status === 'pending' && (!filterHostel || r.from_hostel === filterHostel || r.to_hostel === filterHostel));
+    const pendingBook   = bookReqs.filter(r => r.status === 'pending');
+    const pendingChange = changeReqs.filter(r => r.status === 'pending');
 
     if (!pendingBook.length && !pendingChange.length) {
       el.innerHTML = `<p style="padding:var(--space-10);text-align:center;color:var(--text-tertiary);">No pending requests. All clear.</p>`;
