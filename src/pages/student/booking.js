@@ -96,9 +96,11 @@ function renderPage(container, allRooms, allocation, bookingReqs, changeReqs) {
                   <select class="form-select" id="change-target-room" name="to_room_id" required>
                     <option value="">— select a different room —</option>
                     ${allRooms
-                      .filter(r => r.room_id !== allocation.room_id && r.current_occupancy < r.capacity)
-                      .sort((a,b) => a.hostel.localeCompare(b.hostel) || a.floor - b.floor || a.room_id.localeCompare(b.room_id))
-                      .map(r => `<option value="${r.room_id}">[${r.type[0]}] ${r.room_id} · ${r.hostel} · Fl ${r.floor} · ${r.current_occupancy}/${r.capacity}</option>`)
+                      .filter(r => r.room_id !== allocation.room_id
+                             && r.current_occupancy < r.capacity
+                             && r.hostel === allocation.hostel)
+                      .sort((a,b) => a.floor - b.floor || a.room_id.localeCompare(b.room_id))
+                      .map(r => `<option value="${r.room_id}">${r.room_id} · Fl ${r.floor} · ${r.type} · ${r.current_occupancy}/${r.capacity}</option>`)
                       .join('')
                     }
                   </select>
@@ -172,15 +174,15 @@ function renderPage(container, allRooms, allocation, bookingReqs, changeReqs) {
               <thead><tr><th>Room</th><th>Hostel</th><th>Floor</th><th>Type</th><th>Status</th><th>Note</th><th>Date</th></tr></thead>
               <tbody>
                 ${bookingReqs.map(r => `
-                  <tr>
-                    <td class="cell-mono">${r.room_id}</td>
-                    <td style="font-size:var(--text-xs);">${r.hostel}</td>
-                    <td>${r.floor}</td>
-                    <td>${r.type}</td>
-                    <td><span class="badge badge-${r.status}">${r.status}</span></td>
-                    <td style="color:var(--text-tertiary); font-size:var(--text-xs);">${r.admin_note || '—'}</td>
-                    <td class="cell-mono">${r.created_at?.slice(0,10)}</td>
-                  </tr>
+                    <tr>
+                      <td class="cell-mono">${r.room_id}</td>
+                      <td style="font-size:var(--text-xs);">${r.hostel}</td>
+                      <td>${r.floor}</td>
+                      <td>${r.type}</td>
+                      <td><span class="badge badge-${r.status === 'pending' ? 'open' : r.status === 'approved' ? 'in-progress' : 'resolved'}">${r.status}</span></td>
+                      <td style="color:var(--text-tertiary); font-size:var(--text-xs);">${r.admin_note || '—'}</td>
+                      <td class="cell-mono">${r.created_at?.slice(0,10)}</td>
+                    </tr>
                 `).join('')}
               </tbody>
             </table>`
