@@ -375,7 +375,6 @@
           <span class="legend-item"><span class="legend-dot vacant"></span> Vacant</span>
           <span class="legend-item"><span class="legend-dot partial"></span> Partially occupied</span>
           <span class="legend-item"><span class="legend-dot full"></span> Full</span>
-          <span class="legend-item"><span class="legend-dot selected"></span> Selected</span>
         </div>
       </div>
 
