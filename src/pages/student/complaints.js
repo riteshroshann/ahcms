@@ -7,7 +7,16 @@ import { api } from '../../api.js';
 import { toast } from '../../components/toast.js';
 
 const CATEGORIES = ['Plumbing','Electricity','WiFi','Cleanliness','Carpentry','Other'];
-const CAT_ICONS  = { Plumbing:'🔧', Electricity:'⚡', WiFi:'📶', Cleanliness:'🧹', Carpentry:'🔨', Other:'📋' };
+// Minimal stroke SVGs — 14×14, currentColor
+const _s = p => `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.6;vertical-align:middle;">${p}</svg>`;
+const CAT_ICONS = {
+  Plumbing:    _s(`<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>`),
+  Electricity: _s(`<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>`),
+  WiFi:        _s(`<path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/>`),
+  Cleanliness: _s(`<polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>`),
+  Carpentry:   _s(`<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>`),
+  Other:       _s(`<line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>`),
+};
 const STATUSES   = ['open','in-progress','resolved'];
 
 export async function renderStudentComplaints(container) {
@@ -43,7 +52,7 @@ function renderPage(container, initial) {
               <label class="form-label" for="cmp-category">Category <span style="color:var(--danger)">*</span></label>
               <select class="form-select" id="cmp-category" required>
                 <option value="">Select category…</option>
-                ${CATEGORIES.map(c => `<option value="${c}">${CAT_ICONS[c]} ${c}</option>`).join('')}
+                ${CATEGORIES.map(c => `<option value="${c}">${c}</option>`).join('')}
               </select>
               <div class="form-error" id="err-cmp-cat">Category is required</div>
             </div>
@@ -74,7 +83,7 @@ function renderPage(container, initial) {
         <label class="form-label" for="cat-filter-select">Filter by Category</label>
         <select class="form-select cat-filter-select" id="cat-filter-select">
           <option value="">All Categories</option>
-          ${CATEGORIES.map(c => `<option value="${c}">${CAT_ICONS[c]} ${c}</option>`).join('')}
+          ${CATEGORIES.map(c => `<option value="${c}">${c}</option>`).join('')}
         </select>
       </div>
 
@@ -113,7 +122,7 @@ function renderPage(container, initial) {
           ${items.map(c => `
             <tr>
               <td class="cell-mono">${c.complaint_id}</td>
-              <td>${CAT_ICONS[c.category] || ''} ${c.category}</td>
+              <td><span style="display:inline-flex;align-items:center;gap:5px;">${CAT_ICONS[c.category] || ''} ${c.category}</span></td>
               <td style="max-width:220px; overflow:hidden; text-overflow:ellipsis;" title="${c.description}">${c.description.slice(0,50)}${c.description.length > 50 ? '…' : ''}</td>
               <td class="cell-mono">${c.date}</td>
               <td><span class="badge badge-${c.status}">${c.status}</span></td>

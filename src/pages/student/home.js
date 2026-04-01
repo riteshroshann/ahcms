@@ -22,7 +22,7 @@ function renderPage(container, student, allocation, complaints, wardens, wardenO
   container.innerHTML = `
     <div class="page-enter" id="student-home">
       <div class="page-header">
-        <h2>Welcome, ${student?.name?.split(' ')[0] || 'Student'} 👋</h2>
+        <h2>Welcome, ${student?.name?.split(' ')[0] || 'Student'}</h2>
         <p>${student?.course || ''} · ${student?.hostel || ''} · Year ${student?.year || ''}</p>
       </div>
 

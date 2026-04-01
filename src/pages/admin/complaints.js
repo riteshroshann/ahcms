@@ -7,7 +7,16 @@ import { api } from '../../api.js';
 import { toast } from '../../components/toast.js';
 import { getHostel, onHostelChange } from '../../components/hostelStore.js';
 
-const CAT_ICONS  = { Plumbing:'🔧', Electricity:'⚡', WiFi:'📶', Cleanliness:'🧹', Carpentry:'🔨', Other:'📋' };
+// Minimal stroke SVGs — 14×14, currentColor, opacity .65
+const _s = p => `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.6;vertical-align:middle;">${p}</svg>`;
+const CAT_ICONS = {
+  Plumbing:    _s(`<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>`),
+  Electricity: _s(`<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>`),
+  WiFi:        _s(`<path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/>`),
+  Cleanliness: _s(`<polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>`),
+  Carpentry:   _s(`<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>`),
+  Other:       _s(`<line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>`),
+};
 const STATUSES   = ['open','in-progress','resolved'];
 const CATEGORIES = ['Plumbing','Electricity','WiFi','Cleanliness','Carpentry','Other'];
 
@@ -62,7 +71,7 @@ function renderPage(container, initial, reloadFn) {
           <div style="display:flex; gap: var(--space-2); flex-wrap: wrap; align-items: center;">
             <select class="form-select" id="cat-filter" style="width: auto; padding: 4px 28px 4px 10px; font-size: var(--text-xs);">
               <option value="">All Categories</option>
-              ${CATEGORIES.map(c => `<option value="${c}">${CAT_ICONS[c]} ${c}</option>`).join('')}
+              ${CATEGORIES.map(c => `<option value="${c}">${c}</option>`).join('')}
             </select>
             <button class="filter-chip active" data-status="all">All</button>
             ${STATUSES.map(s => `<button class="filter-chip" data-status="${s}">${s}</button>`).join('')}
@@ -103,7 +112,7 @@ function renderPage(container, initial, reloadFn) {
               <td class="cell-mono">${c.complaint_id}</td>
               <td><div>${c.student_name || c.student_id}</div><div style="font-size:var(--text-xs); color:var(--text-tertiary);">${c.roll_no || ''}</div></td>
               <td class="cell-mono">${c.room_id || '—'}</td>
-              <td>${CAT_ICONS[c.category] || ''} ${c.category}</td>
+              <td><span style="display:inline-flex;align-items:center;gap:5px;">${CAT_ICONS[c.category] || ''} ${c.category}</span></td>
               <td style="max-width:180px; overflow:hidden; text-overflow:ellipsis;" title="${c.description}">${c.description.slice(0,45)}${c.description.length > 45 ? '…' : ''}</td>
               <td class="cell-mono">
                 <div>${c.date}</div>

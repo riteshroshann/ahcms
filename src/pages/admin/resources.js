@@ -7,7 +7,21 @@ import { api } from '../../api.js';
 import { toast } from '../../components/toast.js';
 
 const CATEGORIES = ['Plumber','Electrician','WiFi','Authority','Other'];
-const CAT_ICONS  = { Plumber:'🔧', Electrician:'⚡', WiFi:'📶', Authority:'🏛️', Other:'📋' };
+
+// Minimal, stroke-only SVG icons — 14×14, currentColor
+const SVG = (path, extra = '') =>
+  `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.65;" ${extra}>${path}</svg>`;
+
+const CAT_ICONS = {
+  Plumber:     SVG(`<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>`),
+  Electrician: SVG(`<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>`),
+  WiFi:        SVG(`<path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/>`),
+  Authority:   SVG(`<line x1="3" y1="22" x2="21" y2="22"/><rect x="2" y="11" width="20" height="11" rx="1"/><polygon points="12 2 2 7 22 7"/><line x1="12" y1="7" x2="12" y2="11"/><rect x="9" y="15" width="6" height="7" rx="1"/>`),
+  Other:       SVG(`<line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>`),
+};
+
+const PHONE_ICON = SVG(`<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6.29 6.29l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>`);
+const EMAIL_ICON = SVG(`<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>`);
 
 export async function renderResources(container) {
   container.innerHTML = `<div class="page-loading">Loading…</div>`;
@@ -40,7 +54,7 @@ function renderPage(container, initial) {
               <label class="form-label" for="res-cat">Category</label>
               <select class="form-select" id="res-cat" required>
                 <option value="">Select…</option>
-                ${CATEGORIES.map(c => `<option value="${c}">${CAT_ICONS[c]} ${c}</option>`).join('')}
+                ${CATEGORIES.map(c => `<option value="${c}">${c}</option>`).join('')}
               </select>
               <div class="form-error" id="err-res-cat">Required</div>
             </div>
@@ -76,7 +90,7 @@ function renderPage(container, initial) {
           <div style="display:flex; gap:var(--space-2); flex-wrap:wrap;">
             <select class="form-select" id="cat-filter-select" style="width:auto; padding:6px 28px 6px 12px; font-size:var(--text-sm);">
               <option value="">All Categories</option>
-              ${CATEGORIES.map(c => `<option value="${c}">${CAT_ICONS[c]} ${c}</option>`).join('')}
+              ${CATEGORIES.map(c => `<option value="${c}">${c}</option>`).join('')}
             </select>
           </div>
         </div>
@@ -100,7 +114,7 @@ function renderPage(container, initial) {
     });
     el.innerHTML = Object.entries(grouped).map(([cat, items]) => `
       <div style="padding: var(--space-4) var(--space-6);">
-        <div style="font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--text-tertiary); margin-bottom: var(--space-3);">
+        <div style="display:flex; align-items:center; gap:6px; font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--text-tertiary); margin-bottom: var(--space-3);">
           ${CAT_ICONS[cat] || ''} ${cat}
         </div>
         ${items.map(r => `
@@ -108,9 +122,9 @@ function renderPage(container, initial) {
             <div class="contact-avatar">${r.name[0].toUpperCase()}</div>
             <div class="contact-info" style="flex:1;">
               <div class="contact-name">${r.name}</div>
-              <div class="contact-meta">
-                ${r.phone ? `📞 <a href="tel:${r.phone}" style="color:inherit;">${r.phone}</a>` : ''}
-                ${r.email ? ` · 📧 <a href="mailto:${r.email}" style="color:inherit;">${r.email}</a>` : ''}
+              <div class="contact-meta" style="display:flex; flex-wrap:wrap; align-items:center; gap:var(--space-4);">
+                ${r.phone ? `<span style="display:inline-flex;align-items:center;gap:4px;">${PHONE_ICON}<a href="tel:${r.phone}" style="color:inherit;">${r.phone}</a></span>` : ''}
+                ${r.email ? `<span style="display:inline-flex;align-items:center;gap:4px;">${EMAIL_ICON}<a href="mailto:${r.email}" style="color:inherit;">${r.email}</a></span>` : ''}
               </div>
               ${r.notes ? `<div style="font-size:var(--text-xs); color:var(--text-tertiary); margin-top:2px;">${r.notes}</div>` : ''}
             </div>
