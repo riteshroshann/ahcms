@@ -34,29 +34,21 @@ function renderPage(container, initial) {
         <p>Lodge a complaint by category or track your existing ones.</p>
       </div>
 
-      <!-- Category Tabs -->
-      <div class="cat-tabs">
-        <button class="cat-tab active" data-cat="">All</button>
-        ${CATEGORIES.map(c => `
-          <button class="cat-tab" data-cat="${c}">${CAT_ICONS[c]} ${c}</button>
-        `).join('')}
-      </div>
-
       <!-- Lodge Form -->
       <div class="form-section" style="margin-bottom: var(--space-8); max-width: none;">
         <div class="form-section-title">Lodge a Complaint</div>
         <form id="complaint-form" novalidate>
           <div class="form-grid">
             <div class="form-group">
-              <label class="form-label" for="cmp-category">Category</label>
+              <label class="form-label" for="cmp-category">Category <span style="color:var(--danger)">*</span></label>
               <select class="form-select" id="cmp-category" required>
                 <option value="">Select category…</option>
                 ${CATEGORIES.map(c => `<option value="${c}">${CAT_ICONS[c]} ${c}</option>`).join('')}
               </select>
               <div class="form-error" id="err-cmp-cat">Category is required</div>
             </div>
-            <div class="form-group" id="cmp-other-group" style="display: none; grid-column: 1 / -1;">
-              <label class="form-label" for="cmp-other-type">Please Specify Category</label>
+            <div class="form-group full-width" id="cmp-other-group" style="display: none;">
+              <label class="form-label" for="cmp-other-type">Please Specify Category <span style="color:var(--danger)">*</span></label>
               <input type="text" class="form-input" id="cmp-other-type" placeholder="e.g. Pest Control, Room Allocation..." />
               <div class="form-error" id="err-cmp-other">Please specify what the complaint is about.</div>
             </div>
@@ -65,7 +57,7 @@ function renderPage(container, initial) {
               <input type="file" class="form-input" id="cmp-photo" accept="image/*" />
             </div>
             <div class="form-group full-width">
-              <label class="form-label" for="cmp-desc">Description</label>
+              <label class="form-label" for="cmp-desc">Description <span style="color:var(--danger)">*</span></label>
               <textarea class="form-textarea" id="cmp-desc" rows="3" placeholder="Describe the issue in detail…" required></textarea>
               <div class="form-error" id="err-cmp-desc">Description is required</div>
             </div>
@@ -75,6 +67,14 @@ function renderPage(container, initial) {
             <button type="reset" class="btn btn-secondary">Clear</button>
           </div>
         </form>
+      </div>
+
+      <!-- Category Tabs -->
+      <div class="cat-tabs">
+        <button class="cat-tab active" data-cat="">All</button>
+        ${CATEGORIES.map(c => `
+          <button class="cat-tab" data-cat="${c}">${CAT_ICONS[c]} ${c}</button>
+        `).join('')}
       </div>
 
       <!-- My Complaints Table -->
@@ -149,7 +149,7 @@ function renderPage(container, initial) {
   const otherGroup = document.getElementById('cmp-other-group');
   catSelect.addEventListener('change', (e) => {
     if (e.target.value === 'Other') {
-      otherGroup.style.display = 'block';
+      otherGroup.style.display = '';
     } else {
       otherGroup.style.display = 'none';
       document.getElementById('cmp-other-type').value = '';
