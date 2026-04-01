@@ -1,4 +1,4 @@
-(function(){const a=document.createElement("link").relList;if(a&&a.supports&&a.supports("modulepreload"))return;for(const s of document.querySelectorAll('link[rel="modulepreload"]'))c(s);new MutationObserver(s=>{for(const i of s)if(i.type==="childList")for(const p of i.addedNodes)p.tagName==="LINK"&&p.rel==="modulepreload"&&c(p)}).observe(document,{childList:!0,subtree:!0});function r(s){const i={};return s.integrity&&(i.integrity=s.integrity),s.referrerPolicy&&(i.referrerPolicy=s.referrerPolicy),s.crossOrigin==="use-credentials"?i.credentials="include":s.crossOrigin==="anonymous"?i.credentials="omit":i.credentials="same-origin",i}function c(s){if(s.ep)return;s.ep=!0;const i=r(s);fetch(s.href,i)}})();const D="ahcms_token",j="ahcms_user";(function(){const a=localStorage.getItem("cw_hostel_token"),r=localStorage.getItem("cw_hostel_user");a&&(localStorage.setItem(D,a),localStorage.removeItem("cw_hostel_token")),r&&(localStorage.setItem(j,r),localStorage.removeItem("cw_hostel_user"))})();function Q(t,a){localStorage.setItem(D,t),localStorage.setItem(j,JSON.stringify(a))}function le(){return localStorage.getItem(D)}function W(){try{return JSON.parse(localStorage.getItem(j))}catch{return null}}function Y(){var t;return((t=W())==null?void 0:t.role)||null}function ve(){const t=le();if(!t)return!1;try{return JSON.parse(atob(t.split(".")[1])).exp*1e3>Date.now()}catch{return!1}}function de(){localStorage.removeItem(D),localStorage.removeItem(j)}const _={home:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',complaints:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="15" r="0.5" fill="currentColor"/></svg>',booking:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>',forum:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2v4l-4-4H9a2 2 0 0 1-2-2v-1"/><path d="M15 3H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2v4l4-4h4a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/></svg>',rooms:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>',resources:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',logout:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>',theme:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>',menu:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>',close:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'},ue=[{id:"home",label:"Home",icon:_.home},{id:"complaints",label:"Complaint",icon:_.complaints},{id:"booking",label:"Room Booking",icon:_.booking},{id:"forum",label:"Community Forum",icon:_.forum},{id:"resources",label:"Resources",icon:_.resources}],ge=[{id:"home",label:"Home",icon:_.home},{id:"complaints",label:"Complaints",icon:_.complaints},{id:"rooms",label:"Room Details",icon:_.rooms},{id:"forum",label:"Community Forum",icon:_.forum},{id:"resources",label:"Resources",icon:_.resources}];function ye(t,a,r){var l,n;const c=Y(),s=W(),i=c==="admin"?ge:ue,p=c==="admin"?"Admin Panel":"Student Portal";t.innerHTML=`
+(function(){const a=document.createElement("link").relList;if(a&&a.supports&&a.supports("modulepreload"))return;for(const s of document.querySelectorAll('link[rel="modulepreload"]'))c(s);new MutationObserver(s=>{for(const i of s)if(i.type==="childList")for(const p of i.addedNodes)p.tagName==="LINK"&&p.rel==="modulepreload"&&c(p)}).observe(document,{childList:!0,subtree:!0});function o(s){const i={};return s.integrity&&(i.integrity=s.integrity),s.referrerPolicy&&(i.referrerPolicy=s.referrerPolicy),s.crossOrigin==="use-credentials"?i.credentials="include":s.crossOrigin==="anonymous"?i.credentials="omit":i.credentials="same-origin",i}function c(s){if(s.ep)return;s.ep=!0;const i=o(s);fetch(s.href,i)}})();const F="ahcms_token",D="ahcms_user";(function(){const a=localStorage.getItem("cw_hostel_token"),o=localStorage.getItem("cw_hostel_user");a&&(localStorage.setItem(F,a),localStorage.removeItem("cw_hostel_token")),o&&(localStorage.setItem(D,o),localStorage.removeItem("cw_hostel_user"))})();function Q(t,a){localStorage.setItem(F,t),localStorage.setItem(D,JSON.stringify(a))}function le(){return localStorage.getItem(F)}function W(){try{return JSON.parse(localStorage.getItem(D))}catch{return null}}function Y(){var t;return((t=W())==null?void 0:t.role)||null}function ve(){const t=le();if(!t)return!1;try{return JSON.parse(atob(t.split(".")[1])).exp*1e3>Date.now()}catch{return!1}}function de(){localStorage.removeItem(F),localStorage.removeItem(D)}const I={home:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',complaints:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="15" r="0.5" fill="currentColor"/></svg>',booking:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>',forum:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2v4l-4-4H9a2 2 0 0 1-2-2v-1"/><path d="M15 3H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2v4l4-4h4a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/></svg>',rooms:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>',resources:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',logout:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>',theme:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>',menu:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>',close:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'},ue=[{id:"home",label:"Home",icon:I.home},{id:"complaints",label:"Complaint",icon:I.complaints},{id:"booking",label:"Room Booking",icon:I.booking},{id:"forum",label:"Community Forum",icon:I.forum},{id:"resources",label:"Resources",icon:I.resources}],ge=[{id:"home",label:"Home",icon:I.home},{id:"complaints",label:"Complaints",icon:I.complaints},{id:"rooms",label:"Room Details",icon:I.rooms},{id:"forum",label:"Community Forum",icon:I.forum},{id:"resources",label:"Resources",icon:I.resources}];function ye(t,a,o){var l,n;const c=Y(),s=W(),i=c==="admin"?ge:ue,p=c==="admin"?"Admin Panel":"Student Portal";t.innerHTML=`
     <div class="sidebar-brand">
       <h1>AHCMS</h1>
       <span>${p}</span>
@@ -28,16 +28,16 @@
 
     <div class="sidebar-footer">
       <button class="nav-item logout-btn" id="nav-theme" style="margin-bottom: var(--space-2); color: var(--text-secondary);">
-        ${_.theme}
+        ${I.theme}
         Toggle Theme
       </button>
       <button class="nav-item logout-btn" id="nav-logout">
-        ${_.logout}
+        ${I.logout}
         Sign Out
       </button>
       <p>v2.0 · 2026</p>
     </div>
-  `,t.querySelectorAll(".nav-item[data-page]").forEach(e=>{e.addEventListener("click",()=>r(e.dataset.page)),e.addEventListener("keydown",m=>{(m.key==="Enter"||m.key===" ")&&(m.preventDefault(),e.click())})}),(l=document.getElementById("nav-logout"))==null||l.addEventListener("click",()=>{de(),window.location.reload()}),(n=document.getElementById("nav-theme"))==null||n.addEventListener("click",()=>{const m=(document.documentElement.getAttribute("data-theme")||"light")==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",m),localStorage.setItem("ahcms_theme",m)})}function fe(){const t=document.createElement("button");t.className="sidebar-toggle",t.id="sidebar-toggle",t.innerHTML=_.menu,t.setAttribute("aria-label","Toggle navigation");const a=document.createElement("div");a.className="sidebar-overlay",a.id="sidebar-overlay",document.body.appendChild(t),document.body.appendChild(a);const r=document.getElementById("sidebar");function c(){r.classList.add("open"),a.classList.add("show"),t.innerHTML=_.close}function s(){r.classList.remove("open"),a.classList.remove("show"),t.innerHTML=_.menu}return t.addEventListener("click",()=>r.classList.contains("open")?s():c()),a.addEventListener("click",s),{close:s}}const be="/api";async function T(t,a,r){const c=le(),s={"Content-Type":"application/json"};c&&(s.Authorization=`Bearer ${c}`);const i=new AbortController,p=setTimeout(()=>i.abort(),1e4);try{const l=await fetch(`${be}${a}`,{method:t,headers:s,body:r!==void 0?JSON.stringify(r):void 0,signal:i.signal});if(l.status===401){de(),window.location.reload();return}const n=await l.json().catch(()=>({}));if(!l.ok)throw new Error(n.error||`Request failed (${l.status})`);return n}catch(l){throw l.name==="AbortError"?new Error("Request timed out — is the server running?"):l}finally{clearTimeout(p)}}const h={get:t=>T("GET",t),post:(t,a)=>T("POST",t,a),patch:(t,a)=>T("PATCH",t,a),put:(t,a)=>T("PUT",t,a),delete:t=>T("DELETE",t)};let z=null;function he(){z||(z=document.createElement("div"),z.className="toast-container",document.body.appendChild(z))}function k(t,a="info",r=3500){he();const c=document.createElement("div");c.className=`toast toast-${a}`,c.textContent=t,z.appendChild(c),requestAnimationFrame(()=>{requestAnimationFrame(()=>{c.classList.add("show")})}),setTimeout(()=>{c.classList.remove("show"),setTimeout(()=>c.remove(),300)},r)}function xe(t){var c;document.body.innerHTML=`
+  `,t.querySelectorAll(".nav-item[data-page]").forEach(e=>{e.addEventListener("click",()=>o(e.dataset.page)),e.addEventListener("keydown",m=>{(m.key==="Enter"||m.key===" ")&&(m.preventDefault(),e.click())})}),(l=document.getElementById("nav-logout"))==null||l.addEventListener("click",()=>{de(),window.location.reload()}),(n=document.getElementById("nav-theme"))==null||n.addEventListener("click",()=>{const m=(document.documentElement.getAttribute("data-theme")||"light")==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",m),localStorage.setItem("ahcms_theme",m)})}function fe(){const t=document.createElement("button");t.className="sidebar-toggle",t.id="sidebar-toggle",t.innerHTML=I.menu,t.setAttribute("aria-label","Toggle navigation");const a=document.createElement("div");a.className="sidebar-overlay",a.id="sidebar-overlay",document.body.appendChild(t),document.body.appendChild(a);const o=document.getElementById("sidebar");function c(){o.classList.add("open"),a.classList.add("show"),t.innerHTML=I.close}function s(){o.classList.remove("open"),a.classList.remove("show"),t.innerHTML=I.menu}return t.addEventListener("click",()=>o.classList.contains("open")?s():c()),a.addEventListener("click",s),{close:s}}const be="/api";async function T(t,a,o){const c=le(),s={"Content-Type":"application/json"};c&&(s.Authorization=`Bearer ${c}`);const i=new AbortController,p=setTimeout(()=>i.abort(),1e4);try{const l=await fetch(`${be}${a}`,{method:t,headers:s,body:o!==void 0?JSON.stringify(o):void 0,signal:i.signal});if(l.status===401){de(),window.location.reload();return}const n=await l.json().catch(()=>({}));if(!l.ok)throw new Error(n.error||`Request failed (${l.status})`);return n}catch(l){throw l.name==="AbortError"?new Error("Request timed out — is the server running?"):l}finally{clearTimeout(p)}}const x={get:t=>T("GET",t),post:(t,a)=>T("POST",t,a),patch:(t,a)=>T("PATCH",t,a),put:(t,a)=>T("PUT",t,a),delete:t=>T("DELETE",t)};let z=null;function he(){z||(z=document.createElement("div"),z.className="toast-container",document.body.appendChild(z))}function C(t,a="info",o=3500){he();const c=document.createElement("div");c.className=`toast toast-${a}`,c.textContent=t,z.appendChild(c),requestAnimationFrame(()=>{requestAnimationFrame(()=>{c.classList.add("show")})}),setTimeout(()=>{c.classList.remove("show"),setTimeout(()=>c.remove(),300)},o)}function xe(t){var c;document.body.innerHTML=`
     <div class="login-page">
       <div class="login-panel" style="position: relative;">
 
@@ -126,7 +126,7 @@
         </div>
       </div>
     </div>
-  `,(c=document.getElementById("login-theme"))==null||c.addEventListener("click",()=>{const i=(document.documentElement.getAttribute("data-theme")||"dark")==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",i),localStorage.setItem("ahcms_theme",i)});let a="student";document.querySelectorAll(".login-tab").forEach(s=>{s.addEventListener("click",()=>{a=s.dataset.tab,document.querySelectorAll(".login-tab").forEach(i=>i.classList.remove("active")),s.classList.add("active"),document.getElementById("form-student").classList.toggle("hidden",a!=="student"),document.getElementById("form-admin").classList.toggle("hidden",a!=="admin"),document.getElementById("form-register").classList.add("hidden")})}),document.getElementById("btn-show-register").addEventListener("click",()=>{document.getElementById("form-admin").classList.add("hidden"),document.getElementById("form-register").classList.remove("hidden")}),document.getElementById("btn-back-login").addEventListener("click",()=>{document.getElementById("form-register").classList.add("hidden"),document.getElementById("form-admin").classList.remove("hidden")});function r(s,i){const p=document.getElementById(s);p.disabled=i,p.textContent=i?"Signing in…":"Sign In"}document.getElementById("form-student").addEventListener("submit",async s=>{s.preventDefault();const i=document.getElementById("s-roll").value.trim(),p=document.getElementById("s-pass").value,l=document.getElementById("err-student");if(l.textContent="",!i||!p){l.textContent="All fields required.";return}r("btn-student-login",!0);try{const{token:n,user:e}=await h.post("/auth/student/login",{roll_no:i,password:p});Q(n,e),t()}catch(n){l.textContent=n.message}finally{r("btn-student-login",!1)}}),document.getElementById("form-admin").addEventListener("submit",async s=>{s.preventDefault();const i=document.getElementById("a-email").value.trim(),p=document.getElementById("a-pass").value,l=document.getElementById("err-admin");if(l.textContent="",!i||!p){l.textContent="All fields required.";return}r("btn-admin-login",!0);try{const{token:n,user:e}=await h.post("/auth/admin/login",{email:i,password:p});Q(n,e),t()}catch(n){l.textContent=n.message}finally{r("btn-admin-login",!1)}}),document.getElementById("form-register").addEventListener("submit",async s=>{s.preventDefault();const i=document.getElementById("r-name").value.trim(),p=document.getElementById("r-email").value.trim(),l=document.getElementById("r-pass").value,n=document.getElementById("err-register");if(n.textContent="",!i||!p||!l){n.textContent="All fields required.";return}if(l.length<8){n.textContent="Password must be at least 8 characters.";return}const e=document.getElementById("btn-register");e.disabled=!0,e.textContent="Creating…";try{await h.post("/auth/admin/register",{name:i,email:p,password:l}),k("Account created! Please sign in.","success"),document.getElementById("btn-back-login").click(),document.getElementById("a-email").value=p}catch(m){n.textContent=m.message}finally{e.disabled=!1,e.textContent="Create Account"}})}async function $e(t){t.innerHTML='<div class="page-loading">Loading…</div>';try{const{student:a,allocation:r,complaints:c,wardens:s,wardenOfficePhone:i}=await h.get("/dashboard/student");we(t,a,r,c,s,i)}catch(a){t.innerHTML=`<div class="page-error">Failed to load dashboard: ${a.message}</div>`}}function we(t,a,r,c,s,i){var n;const p=s.filter(e=>e.role==="Warden"),l=s.filter(e=>e.role==="Guard");t.innerHTML=`
+  `,(c=document.getElementById("login-theme"))==null||c.addEventListener("click",()=>{const i=(document.documentElement.getAttribute("data-theme")||"dark")==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",i),localStorage.setItem("ahcms_theme",i)});let a="student";document.querySelectorAll(".login-tab").forEach(s=>{s.addEventListener("click",()=>{a=s.dataset.tab,document.querySelectorAll(".login-tab").forEach(i=>i.classList.remove("active")),s.classList.add("active"),document.getElementById("form-student").classList.toggle("hidden",a!=="student"),document.getElementById("form-admin").classList.toggle("hidden",a!=="admin"),document.getElementById("form-register").classList.add("hidden")})}),document.getElementById("btn-show-register").addEventListener("click",()=>{document.getElementById("form-admin").classList.add("hidden"),document.getElementById("form-register").classList.remove("hidden")}),document.getElementById("btn-back-login").addEventListener("click",()=>{document.getElementById("form-register").classList.add("hidden"),document.getElementById("form-admin").classList.remove("hidden")});function o(s,i){const p=document.getElementById(s);p.disabled=i,p.textContent=i?"Signing in…":"Sign In"}document.getElementById("form-student").addEventListener("submit",async s=>{s.preventDefault();const i=document.getElementById("s-roll").value.trim(),p=document.getElementById("s-pass").value,l=document.getElementById("err-student");if(l.textContent="",!i||!p){l.textContent="All fields required.";return}o("btn-student-login",!0);try{const{token:n,user:e}=await x.post("/auth/student/login",{roll_no:i,password:p});Q(n,e),t()}catch(n){l.textContent=n.message}finally{o("btn-student-login",!1)}}),document.getElementById("form-admin").addEventListener("submit",async s=>{s.preventDefault();const i=document.getElementById("a-email").value.trim(),p=document.getElementById("a-pass").value,l=document.getElementById("err-admin");if(l.textContent="",!i||!p){l.textContent="All fields required.";return}o("btn-admin-login",!0);try{const{token:n,user:e}=await x.post("/auth/admin/login",{email:i,password:p});Q(n,e),t()}catch(n){l.textContent=n.message}finally{o("btn-admin-login",!1)}}),document.getElementById("form-register").addEventListener("submit",async s=>{s.preventDefault();const i=document.getElementById("r-name").value.trim(),p=document.getElementById("r-email").value.trim(),l=document.getElementById("r-pass").value,n=document.getElementById("err-register");if(n.textContent="",!i||!p||!l){n.textContent="All fields required.";return}if(l.length<8){n.textContent="Password must be at least 8 characters.";return}const e=document.getElementById("btn-register");e.disabled=!0,e.textContent="Creating…";try{await x.post("/auth/admin/register",{name:i,email:p,password:l}),C("Account created! Please sign in.","success"),document.getElementById("btn-back-login").click(),document.getElementById("a-email").value=p}catch(m){n.textContent=m.message}finally{e.disabled=!1,e.textContent="Create Account"}})}async function $e(t){t.innerHTML='<div class="page-loading">Loading…</div>';try{const{student:a,allocation:o,complaints:c,wardens:s,wardenOfficePhone:i}=await x.get("/dashboard/student");we(t,a,o,c,s,i)}catch(a){t.innerHTML=`<div class="page-error">Failed to load dashboard: ${a.message}</div>`}}function we(t,a,o,c,s,i){var n;const p=s.filter(e=>e.role==="Warden"),l=s.filter(e=>e.role==="Guard");t.innerHTML=`
     <div class="page-enter" id="student-home">
       <div class="page-header">
         <h2>Welcome, ${((n=a==null?void 0:a.name)==null?void 0:n.split(" ")[0])||"Student"} 👋</h2>
@@ -150,10 +150,10 @@
       <div class="card-grid">
         <div class="card card-accent-blue" style="grid-column: span 2;">
           <div class="card-label">Your Room</div>
-          ${r?`<div class="card-value">${r.room_id}</div>
-               <div class="card-sub">${r.hostel} · Floor ${r.floor} · ${r.type} · ${r.status}</div>
+          ${o?`<div class="card-value">${o.room_id}</div>
+               <div class="card-sub">${o.hostel} · Floor ${o.floor} · ${o.type} · ${o.status}</div>
                <div style="margin-top: var(--space-2); font-size: var(--text-xs); color: var(--text-tertiary);">
-                 ${r.from_date} → ${r.to_date}
+                 ${o.from_date} → ${o.to_date}
                </div>`:`<div style="color: var(--text-tertiary); font-size: var(--text-sm); padding: var(--space-2) 0;">
                  No active room allocation. <a class="link-accent" href="#booking">Book a room →</a>
                </div>`}
@@ -250,7 +250,7 @@
 
 
     </div>
-  `,t.querySelectorAll('a.link-accent[href^="#"]').forEach(e=>{e.addEventListener("click",m=>{m.preventDefault(),window.location.hash=e.getAttribute("href").slice(1)})}),requestAnimationFrame(()=>{var e;return(e=document.getElementById("student-home"))==null?void 0:e.classList.replace("page-enter","page-active")})}const X=["Plumbing","Electricity","WiFi","Cleanliness","Carpentry","Other"],F={Plumbing:"🔧",Electricity:"⚡",WiFi:"📶",Cleanliness:"🧹",Carpentry:"🔨",Other:"📋"},Ee=["open","in-progress","resolved"];async function ke(t){t.innerHTML='<div class="page-loading">Loading…</div>';let a=[];try{a=await h.get("/complaints")}catch(r){t.innerHTML=`<div class="page-error">Failed to load: ${r.message}</div>`;return}Ce(t,a)}function Ce(t,a){let r=a,c="all",s="";t.innerHTML=`
+  `,t.querySelectorAll('a.link-accent[href^="#"]').forEach(e=>{e.addEventListener("click",m=>{m.preventDefault(),window.location.hash=e.getAttribute("href").slice(1)})}),requestAnimationFrame(()=>{var e;return(e=document.getElementById("student-home"))==null?void 0:e.classList.replace("page-enter","page-active")})}const X=["Plumbing","Electricity","WiFi","Cleanliness","Carpentry","Other"],j={Plumbing:"🔧",Electricity:"⚡",WiFi:"📶",Cleanliness:"🧹",Carpentry:"🔨",Other:"📋"},Ee=["open","in-progress","resolved"];async function ke(t){t.innerHTML='<div class="page-loading">Loading…</div>';let a=[];try{a=await x.get("/complaints")}catch(o){t.innerHTML=`<div class="page-error">Failed to load: ${o.message}</div>`;return}Ce(t,a)}function Ce(t,a){let o=a,c="all",s="";t.innerHTML=`
     <div class="page-enter" id="complaints-page">
       <div class="page-header">
         <h2>Complaints</h2>
@@ -266,7 +266,7 @@
               <label class="form-label" for="cmp-category">Category <span style="color:var(--danger)">*</span></label>
               <select class="form-select" id="cmp-category" required>
                 <option value="">Select category…</option>
-                ${X.map(e=>`<option value="${e}">${F[e]} ${e}</option>`).join("")}
+                ${X.map(e=>`<option value="${e}">${j[e]} ${e}</option>`).join("")}
               </select>
               <div class="form-error" id="err-cmp-cat">Category is required</div>
             </div>
@@ -297,7 +297,7 @@
         <label class="form-label" for="cat-filter-select">Filter by Category</label>
         <select class="form-select cat-filter-select" id="cat-filter-select">
           <option value="">All Categories</option>
-          ${X.map(e=>`<option value="${e}">${F[e]} ${e}</option>`).join("")}
+          ${X.map(e=>`<option value="${e}">${j[e]} ${e}</option>`).join("")}
         </select>
       </div>
 
@@ -313,7 +313,7 @@
         <div id="complaints-list"></div>
       </div>
     </div>
-  `;function i(){let e=r;s&&(e=e.filter(o=>o.category===s)),c!=="all"&&(e=e.filter(o=>o.status===c));const m=document.getElementById("complaints-list");if(e.length===0){m.innerHTML='<p style="padding: var(--space-8); text-align:center; color: var(--text-tertiary);">No complaints found.</p>';return}m.innerHTML=`
+  `;function i(){let e=o;s&&(e=e.filter(r=>r.category===s)),c!=="all"&&(e=e.filter(r=>r.status===c));const m=document.getElementById("complaints-list");if(e.length===0){m.innerHTML='<p style="padding: var(--space-8); text-align:center; color: var(--text-tertiary);">No complaints found.</p>';return}m.innerHTML=`
       <table>
         <thead>
           <tr>
@@ -321,19 +321,19 @@
           </tr>
         </thead>
         <tbody>
-          ${e.map(o=>`
+          ${e.map(r=>`
             <tr>
-              <td class="cell-mono">${o.complaint_id}</td>
-              <td>${F[o.category]||""} ${o.category}</td>
-              <td style="max-width:220px; overflow:hidden; text-overflow:ellipsis;" title="${o.description}">${o.description.slice(0,50)}${o.description.length>50?"…":""}</td>
-              <td class="cell-mono">${o.date}</td>
-              <td><span class="badge badge-${o.status}">${o.status}</span></td>
-              <td style="color: var(--text-tertiary); font-size: var(--text-xs);">${o.admin_note||"—"}</td>
+              <td class="cell-mono">${r.complaint_id}</td>
+              <td>${j[r.category]||""} ${r.category}</td>
+              <td style="max-width:220px; overflow:hidden; text-overflow:ellipsis;" title="${r.description}">${r.description.slice(0,50)}${r.description.length>50?"…":""}</td>
+              <td class="cell-mono">${r.date}</td>
+              <td><span class="badge badge-${r.status}">${r.status}</span></td>
+              <td style="color: var(--text-tertiary); font-size: var(--text-xs);">${r.admin_note||"—"}</td>
             </tr>
           `).join("")}
         </tbody>
       </table>
-    `}document.getElementById("cat-filter-select").addEventListener("change",e=>{s=e.target.value,i()}),t.querySelectorAll("[data-status]").forEach(e=>{e.addEventListener("click",()=>{t.querySelectorAll("[data-status]").forEach(m=>m.classList.remove("active")),e.classList.add("active"),c=e.dataset.status,i()})});const p=document.getElementById("cmp-category"),l=document.getElementById("cmp-other-group");p.addEventListener("change",e=>{e.target.value==="Other"?l.style.display="":(l.style.display="none",document.getElementById("cmp-other-type").value="",document.getElementById("err-cmp-other").classList.remove("visible"))});const n=document.getElementById("complaint-form");n.addEventListener("submit",async e=>{e.preventDefault();let m=!0;t.querySelectorAll(".form-error").forEach(x=>x.classList.remove("visible"));const o=document.getElementById("cmp-category").value,f=document.getElementById("cmp-other-type").value.trim(),$=document.getElementById("cmp-desc").value.trim(),u=document.getElementById("cmp-photo").files[0];if(o||(document.getElementById("err-cmp-cat").classList.add("visible"),m=!1),o==="Other"&&!f&&(document.getElementById("err-cmp-other").classList.add("visible"),m=!1),$||(document.getElementById("err-cmp-desc").classList.add("visible"),m=!1),!m){k("Fill in all required fields.","error");return}const y=document.getElementById("cmp-submit");y.disabled=!0,y.textContent="Submitting…";try{let x=null;u&&(x=await new Promise((d,w)=>{const v=new FileReader;v.onload=()=>d(v.result),v.onerror=w,v.readAsDataURL(u)}));const b=o==="Other"&&f?`[Other: ${f}] ${$}`:$,B=await h.post("/complaints",{category:o,description:b,photo_base64:x});r=[B,...r],k(`Complaint #${B.complaint_id} submitted.`,"success"),n.reset(),i()}catch(x){k(x.message,"error")}finally{y.disabled=!1,y.textContent="Submit Complaint"}}),n.addEventListener("reset",()=>{t.querySelectorAll(".form-error").forEach(e=>e.classList.remove("visible")),document.getElementById("cmp-other-group").style.display="none"}),i(),requestAnimationFrame(()=>{var e;return(e=document.getElementById("complaints-page"))==null?void 0:e.classList.replace("page-enter","page-active")})}async function O(t){t.innerHTML='<div class="page-loading">Loading rooms…</div>';try{const[a,{allocation:r},c,s]=await Promise.all([h.get("/rooms"),h.get("/rooms/my-allocation"),h.get("/rooms/booking-requests"),h.get("/rooms/change-requests")]);Be(t,a,r,c,s)}catch(a){t.innerHTML=`<div class="page-error">Failed to load: ${a.message}</div>`}}function Be(t,a,r,c,s){var u,y,x,b,B,d,w;const i=W(),p=a.filter(v=>v.hostel===((i==null?void 0:i.hostel)||"")),l=[...new Set(p.map(v=>v.floor))].sort((v,g)=>v-g);let n=l[0]||1,e=null;const m=c.find(v=>v.status==="pending"),o=s.find(v=>v.status==="pending");if(t.innerHTML=`
+    `}document.getElementById("cat-filter-select").addEventListener("change",e=>{s=e.target.value,i()}),t.querySelectorAll("[data-status]").forEach(e=>{e.addEventListener("click",()=>{t.querySelectorAll("[data-status]").forEach(m=>m.classList.remove("active")),e.classList.add("active"),c=e.dataset.status,i()})});const p=document.getElementById("cmp-category"),l=document.getElementById("cmp-other-group");p.addEventListener("change",e=>{e.target.value==="Other"?l.style.display="":(l.style.display="none",document.getElementById("cmp-other-type").value="",document.getElementById("err-cmp-other").classList.remove("visible"))});const n=document.getElementById("complaint-form");n.addEventListener("submit",async e=>{e.preventDefault();let m=!0;t.querySelectorAll(".form-error").forEach($=>$.classList.remove("visible"));const r=document.getElementById("cmp-category").value,f=document.getElementById("cmp-other-type").value.trim(),E=document.getElementById("cmp-desc").value.trim(),v=document.getElementById("cmp-photo").files[0];if(r||(document.getElementById("err-cmp-cat").classList.add("visible"),m=!1),r==="Other"&&!f&&(document.getElementById("err-cmp-other").classList.add("visible"),m=!1),E||(document.getElementById("err-cmp-desc").classList.add("visible"),m=!1),!m){C("Fill in all required fields.","error");return}const y=document.getElementById("cmp-submit");y.disabled=!0,y.textContent="Submitting…";try{let $=null;v&&($=await new Promise((d,k)=>{const u=new FileReader;u.onload=()=>d(u.result),u.onerror=k,u.readAsDataURL(v)}));const b=r==="Other"&&f?`[Other: ${f}] ${E}`:E,L=await x.post("/complaints",{category:r,description:b,photo_base64:$});o=[L,...o],C(`Complaint #${L.complaint_id} submitted.`,"success"),n.reset(),i()}catch($){C($.message,"error")}finally{y.disabled=!1,y.textContent="Submit Complaint"}}),n.addEventListener("reset",()=>{t.querySelectorAll(".form-error").forEach(e=>e.classList.remove("visible")),document.getElementById("cmp-other-group").style.display="none"}),i(),requestAnimationFrame(()=>{var e;return(e=document.getElementById("complaints-page"))==null?void 0:e.classList.replace("page-enter","page-active")})}async function O(t){t.innerHTML='<div class="page-loading">Loading rooms…</div>';try{const[a,{allocation:o},c,s]=await Promise.all([x.get("/rooms"),x.get("/rooms/my-allocation"),x.get("/rooms/booking-requests"),x.get("/rooms/change-requests")]);Be(t,a,o,c,s)}catch(a){t.innerHTML=`<div class="page-error">Failed to load: ${a.message}</div>`}}function Be(t,a,o,c,s){var v,y,$,b,L,d,k;const i=W(),p=a.filter(u=>u.hostel===((i==null?void 0:i.hostel)||"")),l=[...new Set(p.map(u=>u.floor))].sort((u,g)=>u-g);let n=l[0]||1,e=null;const m=c.find(u=>u.status==="pending"),r=s.find(u=>u.status==="pending");if(t.innerHTML=`
     <style>
       .alloc-card {
         background: var(--bg-elevated);
@@ -357,40 +357,50 @@
       </div>
 
       <!-- ① Allocated: room card + change request -->
-      ${r?`
+      ${o?`
         <div class="alloc-card">
           <div style="display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; gap:var(--space-4);">
             <div>
               <div style="font-size:var(--text-xs); font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--text-tertiary); margin-bottom:var(--space-2);">Your Room</div>
-              <div class="alloc-room-num">${r.room_id}</div>
-              <div class="alloc-meta">${r.hostel}</div>
-              <div class="alloc-meta">Floor ${r.floor} · ${r.type} · ${r.current_occupancy}/${r.capacity} occupied</div>
-              <div class="alloc-meta" style="margin-top:var(--space-2);">Since ${r.from_date} · Until ${r.to_date}</div>
+              <div class="alloc-room-num">${o.room_id}</div>
+              <div class="alloc-meta">${o.hostel}</div>
+              <div class="alloc-meta">Floor ${o.floor} · ${o.type} · ${o.current_occupancy}/${o.capacity} occupied</div>
+              <div class="alloc-meta" style="margin-top:var(--space-2);">Since ${o.from_date} · Until ${o.to_date}</div>
             </div>
             <div style="display:flex; flex-direction:column; gap:var(--space-2); align-items:flex-end;">
               <span class="badge badge-in-progress" style="font-size:13px; padding:6px 14px;">Active</span>
-              ${o?'<div style="font-size:var(--text-xs); color:var(--accent-amber); margin-top:var(--space-2);">Room change pending review</div>':'<button class="btn btn-secondary" id="btn-show-change" style="margin-top:var(--space-2);">Request Room Change</button>'}
+              ${r?'<div style="font-size:var(--text-xs); color:var(--accent-amber); margin-top:var(--space-2);">Room change pending review</div>':'<button class="btn btn-secondary" id="btn-show-change" style="margin-top:var(--space-2);">Request Room Change</button>'}
             </div>
           </div>
 
           <!-- Room change request form (hidden until button click) -->
-          <div class="change-req-form" id="change-req-section" style="display:${o?"block":"none"};">
-            ${o?`
+                <div id="change-req-section" class="change-req-form" style="display:${r?"block":"none"}">
+            ${r?`
               <div style="font-size:var(--text-sm); font-weight:600; color:var(--accent-amber); margin-bottom:var(--space-3);">Pending Room Change Request</div>
               <div style="font-size:var(--text-sm); color:var(--text-secondary);">
-                You have requested to move to <strong>${o.to_room_id}</strong> (${o.to_hostel}, Floor ${o.to_floor}).
-                Submitted on ${(u=o.created_at)==null?void 0:u.slice(0,10)}. Awaiting warden approval.
+                You have requested to move to <strong>${r.to_room_id}</strong> (${r.to_hostel}, Floor ${r.to_floor}).
+                Submitted on ${(v=r.created_at)==null?void 0:v.slice(0,10)}. Awaiting warden approval.
               </div>
-            `:`
+            `:(()=>{const u=a.filter(h=>h.hostel===o.hostel&&h.floor===o.floor&&h.room_id!==o.room_id&&h.current_occupancy<h.capacity).sort((h,_)=>h.room_id.localeCompare(_.room_id)),g=u.length===0,w=g?a.filter(h=>h.hostel===o.hostel&&h.room_id!==o.room_id&&h.current_occupancy<h.capacity).sort((h,_)=>h.floor-_.floor||h.room_id.localeCompare(_.room_id)):u;return`
               <div style="font-size:var(--text-sm); font-weight:600; margin-bottom:var(--space-4);">Request a Room Change</div>
+              ${g?`
+                <div style="font-size:var(--text-xs); background:color-mix(in srgb,var(--accent-amber) 10%,transparent); border:1px solid color-mix(in srgb,var(--accent-amber) 25%,transparent); border-radius:8px; padding:var(--space-3) var(--space-4); color:var(--accent-amber); margin-bottom:var(--space-4);">
+                  All rooms on your floor (Floor ${o.floor}) are currently full. You may request a transfer to another floor.
+                </div>
+              `:`
+                <div style="font-size:var(--text-xs); color:var(--text-tertiary); margin-bottom:var(--space-4);">
+                  Only rooms on your current floor (Floor ${o.floor}) are shown. Cross-floor transfers are only allowed when your floor has no available rooms.
+                </div>
+              `}
               <div id="change-msg"></div>
               <form id="change-req-form">
                 <div class="form-group">
                   <label class="form-label">Target Room *</label>
                   <select class="form-select" id="change-target-room" name="to_room_id" required>
-                    <option value="">— select a different room —</option>
-                    ${a.filter(v=>v.room_id!==r.room_id&&v.current_occupancy<v.capacity&&v.hostel===r.hostel).sort((v,g)=>v.floor-g.floor||v.room_id.localeCompare(g.room_id)).map(v=>`<option value="${v.room_id}">${v.room_id} · Fl ${v.floor} · ${v.type} · ${v.current_occupancy}/${v.capacity}</option>`).join("")}
+                    <option value="">— select a room —</option>
+                    ${w.map(h=>`<option value="${h.room_id}">${h.room_id} · Fl ${h.floor} · ${h.type} · ${h.current_occupancy}/${h.capacity}</option>`).join("")}
                   </select>
+                  ${w.length===0?'<div style="font-size:var(--text-xs); color:var(--accent-red); margin-top:4px;">No available rooms in your hostel.</div>':""}
                 </div>
                 <div class="form-group">
                   <label class="form-label">Reason for Change *</label>
@@ -400,8 +410,7 @@
                   <button type="submit" class="btn btn-primary" id="btn-submit-change">Submit Request</button>
                   <button type="button" class="btn btn-secondary" id="btn-cancel-change">Cancel</button>
                 </div>
-              </form>
-            `}
+              </form>`})()}
           </div>
         </div>
       `:m?`
@@ -414,12 +423,12 @@
       `:""}
 
       <!-- ③ Floor Plan (only shown if not yet allocated) -->
-      ${r?"":`
+      ${o?"":`
         <div style="display:flex; align-items:center; gap:var(--space-4); margin-bottom:var(--space-5);">
           <span style="font-size:var(--text-sm); color:var(--text-secondary); font-weight:500;">Floor:</span>
           <div class="cat-tabs" style="margin:0;">
-            ${l.map(v=>`
-              <button class="cat-tab${v===n?" active":""}" data-floor="${v}">Floor ${v}</button>
+            ${l.map(u=>`
+              <button class="cat-tab${u===n?" active":""}" data-floor="${u}">Floor ${u}</button>
             `).join("")}
           </div>
         </div>
@@ -458,15 +467,15 @@
         ${c.length===0?'<p style="padding:var(--space-6); text-align:center; color:var(--text-tertiary);">No booking requests yet.</p>':`<table>
               <thead><tr><th>Room</th><th>Hostel</th><th>Floor</th><th>Type</th><th>Status</th><th>Note</th><th>Date</th></tr></thead>
               <tbody>
-                ${c.map(v=>{var g;return`
+                ${c.map(u=>{var g;return`
                     <tr>
-                      <td class="cell-mono">${v.room_id}</td>
-                      <td style="font-size:var(--text-xs);">${v.hostel}</td>
-                      <td>${v.floor}</td>
-                      <td>${v.type}</td>
-                      <td><span class="badge badge-${v.status==="pending"?"open":v.status==="approved"?"in-progress":"resolved"}">${v.status}</span></td>
-                      <td style="color:var(--text-tertiary); font-size:var(--text-xs);">${v.admin_note||"—"}</td>
-                      <td class="cell-mono">${(g=v.created_at)==null?void 0:g.slice(0,10)}</td>
+                      <td class="cell-mono">${u.room_id}</td>
+                      <td style="font-size:var(--text-xs);">${u.hostel}</td>
+                      <td>${u.floor}</td>
+                      <td>${u.type}</td>
+                      <td><span class="badge badge-${u.status==="pending"?"open":u.status==="approved"?"in-progress":"resolved"}">${u.status}</span></td>
+                      <td style="color:var(--text-tertiary); font-size:var(--text-xs);">${u.admin_note||"—"}</td>
+                      <td class="cell-mono">${(g=u.created_at)==null?void 0:g.slice(0,10)}</td>
                     </tr>
                 `}).join("")}
               </tbody>
@@ -479,15 +488,15 @@
         <table>
           <thead><tr><th>From</th><th>To</th><th>To Hostel</th><th>Reason</th><th>Status</th><th>Note</th><th>Date</th></tr></thead>
           <tbody>
-            ${s.map(v=>{var g;return`
+            ${s.map(u=>{var g;return`
               <tr>
-                <td class="cell-mono">${v.from_room_id}</td>
-                <td class="cell-mono">${v.to_room_id}</td>
-                <td style="font-size:var(--text-xs);">${v.to_hostel}</td>
-                <td style="max-width:160px; font-size:var(--text-xs);" title="${v.reason}">${v.reason.slice(0,50)}${v.reason.length>50?"…":""}</td>
-                <td><span class="badge badge-${v.status==="pending"?"open":v.status==="approved"?"in-progress":"resolved"}">${v.status}</span></td>
-                <td style="color:var(--text-tertiary); font-size:var(--text-xs);">${v.admin_note||"—"}</td>
-                <td class="cell-mono">${(g=v.created_at)==null?void 0:g.slice(0,10)}</td>
+                <td class="cell-mono">${u.from_room_id}</td>
+                <td class="cell-mono">${u.to_room_id}</td>
+                <td style="font-size:var(--text-xs);">${u.to_hostel}</td>
+                <td style="max-width:160px; font-size:var(--text-xs);" title="${u.reason}">${u.reason.slice(0,50)}${u.reason.length>50?"…":""}</td>
+                <td><span class="badge badge-${u.status==="pending"?"open":u.status==="approved"?"in-progress":"resolved"}">${u.status}</span></td>
+                <td style="color:var(--text-tertiary); font-size:var(--text-xs);">${u.admin_note||"—"}</td>
+                <td class="cell-mono">${(g=u.created_at)==null?void 0:g.slice(0,10)}</td>
               </tr>
             `}).join("")}
           </tbody>
@@ -495,29 +504,29 @@
       </div>
       `:""}
     </div>
-  `,!r){let v=function(E){const L=p.filter(C=>C.floor===E);document.getElementById("floor-plan-title").textContent=`Floor ${E} — ${(i==null?void 0:i.hostel)||""}`;const I=document.getElementById("floor-plan");if(!L.length){I.innerHTML='<p style="color:var(--text-tertiary); padding:var(--space-4);">No rooms on this floor.</p>';return}I.innerHTML=L.sort((C,A)=>C.room_id.localeCompare(A.room_id)).map(C=>{const A=C.capacity>0?C.current_occupancy/C.capacity:0,R=A===0?"vacant":A<1?"partial":"full",me=(e==null?void 0:e.room_id)===C.room_id;return`
+  `,!o){let u=function(w){const h=p.filter(B=>B.floor===w);document.getElementById("floor-plan-title").textContent=`Floor ${w} — ${(i==null?void 0:i.hostel)||""}`;const _=document.getElementById("floor-plan");if(!h.length){_.innerHTML='<p style="color:var(--text-tertiary); padding:var(--space-4);">No rooms on this floor.</p>';return}_.innerHTML=h.sort((B,A)=>B.room_id.localeCompare(A.room_id)).map(B=>{const A=B.capacity>0?B.current_occupancy/B.capacity:0,R=A===0?"vacant":A<1?"partial":"full",me=(e==null?void 0:e.room_id)===B.room_id;return`
             <button class="room-cell ${R}${me?" selected":""}"
-                    data-room="${C.room_id}"
+                    data-room="${B.room_id}"
                     ${R==="full"?"disabled":""}
-                    title="${C.room_id} · ${C.type} · ${C.current_occupancy}/${C.capacity}">
-              <span class="room-cell-id">${C.room_id}</span>
-              <span class="room-cell-type">${C.type[0]}</span>
-              <span class="room-cell-occ">${C.current_occupancy}/${C.capacity}</span>
-            </button>`}).join(""),I.querySelectorAll(".room-cell:not([disabled])").forEach(C=>{C.addEventListener("click",()=>{e=p.find(A=>A.room_id===C.dataset.room),v(E),g(e)})})},g=function(E){const L=document.getElementById("room-detail-panel");document.getElementById("room-detail-title").textContent=`Room ${E.room_id}`,document.getElementById("room-detail-body").innerHTML=`
+                    title="${B.room_id} · ${B.type} · ${B.current_occupancy}/${B.capacity}">
+              <span class="room-cell-id">${B.room_id}</span>
+              <span class="room-cell-type">${B.type[0]}</span>
+              <span class="room-cell-occ">${B.current_occupancy}/${B.capacity}</span>
+            </button>`}).join(""),_.querySelectorAll(".room-cell:not([disabled])").forEach(B=>{B.addEventListener("click",()=>{e=p.find(A=>A.room_id===B.dataset.room),u(w),g(e)})})},g=function(w){const h=document.getElementById("room-detail-panel");document.getElementById("room-detail-title").textContent=`Room ${w.room_id}`,document.getElementById("room-detail-body").innerHTML=`
         <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:var(--space-4);">
-          ${[["Hostel",E.hostel],["Floor",E.floor],["Type",E.type],["Capacity",`${E.capacity} beds`],["Occupied",`${E.current_occupancy}/${E.capacity}`],["Available",`${E.available_slots} slot(s)`]].map(([I,C])=>`<div>
-              <div style="font-size:var(--text-xs); color:var(--text-tertiary); text-transform:uppercase; letter-spacing:.06em;">${I}</div>
-              <div style="font-size:var(--text-sm); margin-top:4px;">${C}</div>
+          ${[["Hostel",w.hostel],["Floor",w.floor],["Type",w.type],["Capacity",`${w.capacity} beds`],["Occupied",`${w.current_occupancy}/${w.capacity}`],["Available",`${w.available_slots} slot(s)`]].map(([_,B])=>`<div>
+              <div style="font-size:var(--text-xs); color:var(--text-tertiary); text-transform:uppercase; letter-spacing:.06em;">${_}</div>
+              <div style="font-size:var(--text-sm); margin-top:4px;">${B}</div>
             </div>`).join("")}
         </div>
-      `,L.style.display=m?"none":"block"};var f=v,$=g;t.querySelectorAll(".cat-tab[data-floor]").forEach(E=>{E.addEventListener("click",()=>{t.querySelectorAll(".cat-tab[data-floor]").forEach(L=>L.classList.remove("active")),E.classList.add("active"),n=+E.dataset.floor,e=null,document.getElementById("room-detail-panel").style.display="none",v(n)})}),(x=document.getElementById("btn-cancel-room"))==null||x.addEventListener("click",()=>{e=null,document.getElementById("room-detail-panel").style.display="none",v(n)}),(b=document.getElementById("booking-form"))==null||b.addEventListener("submit",async E=>{if(E.preventDefault(),!e)return;const L=document.getElementById("btn-book");L.disabled=!0,L.textContent="Submitting…";try{await h.post("/rooms/book",{room_id:e.room_id,preferences:document.getElementById("booking-pref").value.trim()}),k(`Booking request for ${e.room_id} submitted!`,"success"),O(t)}catch(I){k(I.message,"error"),L.disabled=!1,L.textContent="Request This Room"}}),v(n)}r&&!o&&((B=document.getElementById("btn-show-change"))==null||B.addEventListener("click",()=>{document.getElementById("change-req-section").style.display="block",document.getElementById("btn-show-change").style.display="none"}),(d=document.getElementById("btn-cancel-change"))==null||d.addEventListener("click",()=>{document.getElementById("change-req-section").style.display="none",document.getElementById("btn-show-change").style.display=""}),(w=document.getElementById("change-req-form"))==null||w.addEventListener("submit",async v=>{v.preventDefault();const g=new FormData(v.target),E=document.getElementById("btn-submit-change"),L=document.getElementById("change-msg");E.disabled=!0,E.textContent="Submitting…",L.innerHTML="";try{await h.post("/rooms/change-requests",Object.fromEntries(g.entries())),k("Room change request submitted. Awaiting warden approval.","success"),O(t)}catch(I){L.innerHTML=`<div style="color:var(--accent-red); font-size:var(--text-sm); margin-bottom:var(--space-3); padding:var(--space-3); background:color-mix(in srgb,var(--accent-red) 10%,transparent); border-radius:8px;">${I.message}</div>`,E.disabled=!1,E.textContent="Submit Request"}})),requestAnimationFrame(()=>{var v;return(v=document.getElementById("booking-page"))==null?void 0:v.classList.replace("page-enter","page-active")})}async function ce(t){t.innerHTML='<div class="page-loading">Loading forum…</div>';try{const a=await h.get("/forum");Le(t,a)}catch(a){t.innerHTML=`<div class="page-error">Failed to load forum: ${a.message}</div>`}}function Le(t,a){const r=Y()==="admin";let c=a;t.innerHTML=`
+      `,h.style.display=m?"none":"block"};var f=u,E=g;t.querySelectorAll(".cat-tab[data-floor]").forEach(w=>{w.addEventListener("click",()=>{t.querySelectorAll(".cat-tab[data-floor]").forEach(h=>h.classList.remove("active")),w.classList.add("active"),n=+w.dataset.floor,e=null,document.getElementById("room-detail-panel").style.display="none",u(n)})}),($=document.getElementById("btn-cancel-room"))==null||$.addEventListener("click",()=>{e=null,document.getElementById("room-detail-panel").style.display="none",u(n)}),(b=document.getElementById("booking-form"))==null||b.addEventListener("submit",async w=>{if(w.preventDefault(),!e)return;const h=document.getElementById("btn-book");h.disabled=!0,h.textContent="Submitting…";try{await x.post("/rooms/book",{room_id:e.room_id,preferences:document.getElementById("booking-pref").value.trim()}),C(`Booking request for ${e.room_id} submitted!`,"success"),O(t)}catch(_){C(_.message,"error"),h.disabled=!1,h.textContent="Request This Room"}}),u(n)}o&&!r&&((L=document.getElementById("btn-show-change"))==null||L.addEventListener("click",()=>{document.getElementById("change-req-section").style.display="block",document.getElementById("btn-show-change").style.display="none"}),(d=document.getElementById("btn-cancel-change"))==null||d.addEventListener("click",()=>{document.getElementById("change-req-section").style.display="none",document.getElementById("btn-show-change").style.display=""}),(k=document.getElementById("change-req-form"))==null||k.addEventListener("submit",async u=>{u.preventDefault();const g=new FormData(u.target),w=document.getElementById("btn-submit-change"),h=document.getElementById("change-msg");w.disabled=!0,w.textContent="Submitting…",h.innerHTML="";try{await x.post("/rooms/change-requests",Object.fromEntries(g.entries())),C("Room change request submitted. Awaiting warden approval.","success"),O(t)}catch(_){h.innerHTML=`<div style="color:var(--accent-red); font-size:var(--text-sm); margin-bottom:var(--space-3); padding:var(--space-3); background:color-mix(in srgb,var(--accent-red) 10%,transparent); border-radius:8px;">${_.message}</div>`,w.disabled=!1,w.textContent="Submit Request"}})),requestAnimationFrame(()=>{var u;return(u=document.getElementById("booking-page"))==null?void 0:u.classList.replace("page-enter","page-active")})}async function ce(t){t.innerHTML='<div class="page-loading">Loading forum…</div>';try{const a=await x.get("/forum");Le(t,a)}catch(a){t.innerHTML=`<div class="page-error">Failed to load forum: ${a.message}</div>`}}function Le(t,a){const o=Y()==="admin";let c=a;t.innerHTML=`
     <div class="page-enter" id="forum-page">
       <div class="page-header">
         <h2>Community Forum</h2>
-        <p>${r?"Read all campus posts — posting is disabled for admins.":"Share thoughts anonymously with your campus community."}</p>
+        <p>${o?"Read all campus posts — posting is disabled for admins.":"Share thoughts anonymously with your campus community."}</p>
       </div>
 
-      ${r?`
+      ${o?`
         <div class="alert-banner alert-blue" style="margin-bottom: var(--space-6);">
           Viewing as Admin — posts are read-only. Student identities are never stored.
         </div>
@@ -566,7 +575,7 @@
             <div style="width:1px; background:var(--border-subtle);"></div>
             <button class="vote-btn" data-type="post" data-id="${n.post_id}" data-dir="down" style="background:transparent; border:none; padding:4px 8px; cursor:pointer; color:var(--text-secondary);">⇩ ${n.downvotes||0}</button>
           </div>
-          ${r?"":`<button class="reply-toggle-btn" data-post-id="${n.post_id}" style="background:transparent; border:none; color:var(--text-tertiary); font-size:var(--text-xs); cursor:pointer; display:flex; gap:4px; align-items:center;">💬 Reply</button>`}
+          ${o?"":`<button class="reply-toggle-btn" data-post-id="${n.post_id}" style="background:transparent; border:none; color:var(--text-tertiary); font-size:var(--text-xs); cursor:pointer; display:flex; gap:4px; align-items:center;">💬 Reply</button>`}
         </div>
 
         <!-- Replies -->
@@ -592,7 +601,7 @@
         `:""}
 
         <!-- Reply Form Content -->
-        ${r?"":`
+        ${o?"":`
           <div id="reply-form-${n.post_id}" style="display:none; margin-left:var(--space-10); margin-top:var(--space-4);">
             <textarea id="reply-input-${n.post_id}" class="form-textarea" rows="2" placeholder="Write an anonymous reply..." style="padding:var(--space-2); min-height:60px;"></textarea>
             <div style="margin-top:var(--space-2); display:flex; gap:var(--space-2);">
@@ -602,7 +611,7 @@
           </div>
         `}
       </div>
-    `).join("")}if(document.getElementById("forum-feed").addEventListener("click",async p=>{const l=p.target.closest(".vote-btn");if(l&&!l.disabled){const m=l.dataset.type,o=l.dataset.id,f=l.dataset.dir;l.disabled=!0;try{const $=await h.patch("/forum/vote",{type:m,id:parseInt(o,10),dir:f});if(m==="post"){const u=c.find(y=>y.post_id===parseInt(o,10));u&&(u.upvotes=$.upvotes,u.downvotes=$.downvotes)}else for(const u of c)if(u.replies){const y=u.replies.find(x=>x.reply_id===parseInt(o,10));if(y){y.upvotes=$.upvotes,y.downvotes=$.downvotes;break}}s()}catch($){k($.message,"error"),l.disabled=!1}return}const n=p.target.closest(".reply-toggle-btn");if(n){const m=n.dataset.postId,o=document.getElementById(`reply-form-${m}`);o&&(o.style.display=o.style.display==="none"?"block":"none");return}const e=p.target.closest(".reply-submit-btn");if(e){const m=e.dataset.postId,o=document.getElementById(`reply-input-${m}`),f=o==null?void 0:o.value.trim();if(!f){k("Reply content cannot be empty","error");return}e.disabled=!0,e.textContent="...";try{const $=await h.post(`/forum/${m}/reply`,{content:f}),u=c.find(y=>y.post_id===parseInt(m,10));u&&(u.replies||(u.replies=[]),u.replies.push($)),k("Reply posted","success"),s()}catch($){k($.message,"error"),e.disabled=!1,e.textContent="Submit Reply"}return}}),!r){const p=document.getElementById("forum-form");p.addEventListener("submit",async l=>{l.preventDefault();let n=!0;t.querySelectorAll(".form-error").forEach(f=>f.classList.remove("visible"));const e=document.getElementById("f-title").value.trim(),m=document.getElementById("f-content").value.trim();if(e||(document.getElementById("err-f-title").classList.add("visible"),n=!1),m||(document.getElementById("err-f-content").classList.add("visible"),n=!1),!n)return;const o=document.getElementById("btn-post");o.disabled=!0,o.textContent="Posting…";try{c=[await h.post("/forum",{title:e,content:m}),...c],k("Posted anonymously!","success"),p.reset(),s()}catch(f){k(f.message,"error")}finally{o.disabled=!1,o.textContent="Post Anonymously"}}),p.addEventListener("reset",()=>t.querySelectorAll(".form-error").forEach(l=>l.classList.remove("visible")))}s(),requestAnimationFrame(()=>{var p;return(p=document.getElementById("forum-page"))==null?void 0:p.classList.replace("page-enter","page-active")})}function q(t){return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}function Z(t){try{return new Date(t).toLocaleString("en-IN",{day:"numeric",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"})}catch{return t}}const ee=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],_e={breakfast:[["Poori Chole","Matter Kulcha","Kachori Bhaji","Dosa Sambar","Pav Bhaji","Macaroni","Aloo Paratha"],["Chacos","Idli Sambar","Daliya","Chana Chaat","Corn Flakes","Idli Sambar","Cut Fruits"],["Egg","Banana","Egg","—","Egg","—","—"],["Tea / Coffee","Tea / Coffee","Tea / Coffee","Tea / Coffee","Tea / Coffee","Tea / Coffee","Tea / Coffee"],["Bread & Jam","Bread & Jam","Bread & Jam","Bread & Jam","Bread & Jam","Bread & Jam","Bread & Jam"]],lunch:[["Green Salad","Green Salad","Green Salad","Green Salad","Green Salad","Green Salad","Green Salad"],["Boondi Raita","Mix Veg Raita","Lauki Raita","Mix Veg Raita","Boondi Raita","Mix Veg Raita","Mint Raita"],["A / P / C","A / P / C","A / P / C","A / P / C","A / P / C","A / P / C","A / P / C"],["Mix Dal Tadka","Chole Masala","Kadi Pakora","Lobhiya / Masoor Dal","Rajma Masala","Dal Makhani","Dal Tadka"],["Matar Paneer","Aloo Nutrela","Mixed Vegetable","Paneer Do Pyaza","Handi Kofta Curry","Aloo Gobhi Masala","Chap Masala"],["Aloo Palak","Boiled Rice","Soya Chap Gravy","Boiled Rice","Boiled Rice","Boiled Rice","Veg Biryani"],["Boiled Rice","Chapathi","Jeera Rice","Cut Fruits","Chapathi","Chapathi","Chapathi"],["Chapathi","Ice Cream","Chapathi","Chapathi","—","Besan Barfi","Fruit Custard"]],hitea:[["Tea / Coffee","Tea / Coffee","Tea / Coffee","Tea / Coffee","Tea / Coffee","Tea / Coffee","Tea / Coffee"],["Veg Hakka Noodles","Bhaji Pakora","Veg Sandwich","Bread Pakora","Cake Slice","Potato Wedges","Aloo Sandwich"]],dinner:[["Green Salad","Green Salad","Green Salad","Green Salad","Green Salad","Green Salad","Green Salad"],["Dal Bukhara","Curd","Rajma Masala","Curd","Dal Palak","Khichdi","Curd"],["Veg Jalfrezi","Arhar Dal Fry","Palak Paneer","Mix Dal Tadka","Soya Matar Masala","Mix Vegetable","Dal Dhaba"],["Jeera Pulao","Crispy Veg Sweet Chilly","Onion Pulao","Aloo Chole","Tomato Rice","Chapati","Paneer Lababdar"],["Chapathi","Aloo Jeera","Chapathi","Masala Rice","Chapathi","Hot Milk","Jeera Pulao"],["Milk","Soya Biryani","Milk","Chapathi","Milk","—","Chapathi"],["Rice Kheer","Chapathi","Fruit Custard","Milk","Boondi","—","Milk"]]},Ie=[{key:"breakfast",label:"Breakfast",time:"7:30 – 9:30 AM"},{key:"lunch",label:"Lunch",time:"12:30 – 2:30 PM"},{key:"hitea",label:"Evening Hi-Tea",time:"5:00 – 6:30 PM"},{key:"dinner",label:"Dinner",time:"7:30 – 9:30 PM"}];function Se(){const t=new Date().getDay();return t===0?6:t-1}function Ae(){const t=new Date().getHours();return t<10?"breakfast":t<15?"lunch":t<19?"hitea":"dinner"}async function Me(t){t.innerHTML='<div class="page-loading">Loading…</div>';let a=[];try{a=await h.get("/resources")}catch{}Te(t,a)}function Te(t,a){const r=Se();let c=Ae(),s=r;if(t.innerHTML=`
+    `).join("")}if(document.getElementById("forum-feed").addEventListener("click",async p=>{const l=p.target.closest(".vote-btn");if(l&&!l.disabled){const m=l.dataset.type,r=l.dataset.id,f=l.dataset.dir;l.disabled=!0;try{const E=await x.patch("/forum/vote",{type:m,id:parseInt(r,10),dir:f});if(m==="post"){const v=c.find(y=>y.post_id===parseInt(r,10));v&&(v.upvotes=E.upvotes,v.downvotes=E.downvotes)}else for(const v of c)if(v.replies){const y=v.replies.find($=>$.reply_id===parseInt(r,10));if(y){y.upvotes=E.upvotes,y.downvotes=E.downvotes;break}}s()}catch(E){C(E.message,"error"),l.disabled=!1}return}const n=p.target.closest(".reply-toggle-btn");if(n){const m=n.dataset.postId,r=document.getElementById(`reply-form-${m}`);r&&(r.style.display=r.style.display==="none"?"block":"none");return}const e=p.target.closest(".reply-submit-btn");if(e){const m=e.dataset.postId,r=document.getElementById(`reply-input-${m}`),f=r==null?void 0:r.value.trim();if(!f){C("Reply content cannot be empty","error");return}e.disabled=!0,e.textContent="...";try{const E=await x.post(`/forum/${m}/reply`,{content:f}),v=c.find(y=>y.post_id===parseInt(m,10));v&&(v.replies||(v.replies=[]),v.replies.push(E)),C("Reply posted","success"),s()}catch(E){C(E.message,"error"),e.disabled=!1,e.textContent="Submit Reply"}return}}),!o){const p=document.getElementById("forum-form");p.addEventListener("submit",async l=>{l.preventDefault();let n=!0;t.querySelectorAll(".form-error").forEach(f=>f.classList.remove("visible"));const e=document.getElementById("f-title").value.trim(),m=document.getElementById("f-content").value.trim();if(e||(document.getElementById("err-f-title").classList.add("visible"),n=!1),m||(document.getElementById("err-f-content").classList.add("visible"),n=!1),!n)return;const r=document.getElementById("btn-post");r.disabled=!0,r.textContent="Posting…";try{c=[await x.post("/forum",{title:e,content:m}),...c],C("Posted anonymously!","success"),p.reset(),s()}catch(f){C(f.message,"error")}finally{r.disabled=!1,r.textContent="Post Anonymously"}}),p.addEventListener("reset",()=>t.querySelectorAll(".form-error").forEach(l=>l.classList.remove("visible")))}s(),requestAnimationFrame(()=>{var p;return(p=document.getElementById("forum-page"))==null?void 0:p.classList.replace("page-enter","page-active")})}function q(t){return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}function Z(t){try{return new Date(t).toLocaleString("en-IN",{day:"numeric",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"})}catch{return t}}const ee=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],_e={breakfast:[["Poori Chole","Matter Kulcha","Kachori Bhaji","Dosa Sambar","Pav Bhaji","Macaroni","Aloo Paratha"],["Chacos","Idli Sambar","Daliya","Chana Chaat","Corn Flakes","Idli Sambar","Cut Fruits"],["Egg","Banana","Egg","—","Egg","—","—"],["Tea / Coffee","Tea / Coffee","Tea / Coffee","Tea / Coffee","Tea / Coffee","Tea / Coffee","Tea / Coffee"],["Bread & Jam","Bread & Jam","Bread & Jam","Bread & Jam","Bread & Jam","Bread & Jam","Bread & Jam"]],lunch:[["Green Salad","Green Salad","Green Salad","Green Salad","Green Salad","Green Salad","Green Salad"],["Boondi Raita","Mix Veg Raita","Lauki Raita","Mix Veg Raita","Boondi Raita","Mix Veg Raita","Mint Raita"],["A / P / C","A / P / C","A / P / C","A / P / C","A / P / C","A / P / C","A / P / C"],["Mix Dal Tadka","Chole Masala","Kadi Pakora","Lobhiya / Masoor Dal","Rajma Masala","Dal Makhani","Dal Tadka"],["Matar Paneer","Aloo Nutrela","Mixed Vegetable","Paneer Do Pyaza","Handi Kofta Curry","Aloo Gobhi Masala","Chap Masala"],["Aloo Palak","Boiled Rice","Soya Chap Gravy","Boiled Rice","Boiled Rice","Boiled Rice","Veg Biryani"],["Boiled Rice","Chapathi","Jeera Rice","Cut Fruits","Chapathi","Chapathi","Chapathi"],["Chapathi","Ice Cream","Chapathi","Chapathi","—","Besan Barfi","Fruit Custard"]],hitea:[["Tea / Coffee","Tea / Coffee","Tea / Coffee","Tea / Coffee","Tea / Coffee","Tea / Coffee","Tea / Coffee"],["Veg Hakka Noodles","Bhaji Pakora","Veg Sandwich","Bread Pakora","Cake Slice","Potato Wedges","Aloo Sandwich"]],dinner:[["Green Salad","Green Salad","Green Salad","Green Salad","Green Salad","Green Salad","Green Salad"],["Dal Bukhara","Curd","Rajma Masala","Curd","Dal Palak","Khichdi","Curd"],["Veg Jalfrezi","Arhar Dal Fry","Palak Paneer","Mix Dal Tadka","Soya Matar Masala","Mix Vegetable","Dal Dhaba"],["Jeera Pulao","Crispy Veg Sweet Chilly","Onion Pulao","Aloo Chole","Tomato Rice","Chapati","Paneer Lababdar"],["Chapathi","Aloo Jeera","Chapathi","Masala Rice","Chapathi","Hot Milk","Jeera Pulao"],["Milk","Soya Biryani","Milk","Chapathi","Milk","—","Chapathi"],["Rice Kheer","Chapathi","Fruit Custard","Milk","Boondi","—","Milk"]]},Ie=[{key:"breakfast",label:"Breakfast",time:"7:30 – 9:30 AM"},{key:"lunch",label:"Lunch",time:"12:30 – 2:30 PM"},{key:"hitea",label:"Evening Hi-Tea",time:"5:00 – 6:30 PM"},{key:"dinner",label:"Dinner",time:"7:30 – 9:30 PM"}];function Se(){const t=new Date().getDay();return t===0?6:t-1}function Ae(){const t=new Date().getHours();return t<10?"breakfast":t<15?"lunch":t<19?"hitea":"dinner"}async function Me(t){t.innerHTML='<div class="page-loading">Loading…</div>';let a=[];try{a=await x.get("/resources")}catch{}Te(t,a)}function Te(t,a){const o=Se();let c=Ae(),s=o;if(t.innerHTML=`
     <div class="page-enter" id="res-page" style="max-width:1200px;">
 
       <!-- Header -->
@@ -631,7 +640,7 @@
         <div style="display:flex; gap:var(--space-2); margin-bottom:var(--space-5); flex-wrap:wrap;" id="day-tabs">
           ${ee.map((p,l)=>`
             <button class="res-day-tab${l===s?" active":""}" data-day="${l}">
-              ${p.slice(0,3)}${l===r?" ·":""}
+              ${p.slice(0,3)}${l===o?" ·":""}
             </button>
           `).join("")}
         </div>
@@ -957,9 +966,9 @@
       <div class="res-card-title">${t}</div>
       ${a}
     </div>
-  `}function qe(t){const a={Plumber:"Plumber",Electrician:"Electrician",WiFi:"Wi-Fi / IT",Authority:"Authority",Other:"Other"},r={};return t.forEach(c=>{(r[c.category]=r[c.category]||[]).push(c)}),`
+  `}function qe(t){const a={Plumber:"Plumber",Electrician:"Electrician",WiFi:"Wi-Fi / IT",Authority:"Authority",Other:"Other"},o={};return t.forEach(c=>{(o[c.category]=o[c.category]||[]).push(c)}),`
     <div class="res-staff-grid">
-      ${Object.entries(r).map(([c,s])=>`
+      ${Object.entries(o).map(([c,s])=>`
         <div class="res-staff-card">
           <div class="res-staff-cat">${a[c]||c}</div>
           ${s.map(i=>`
@@ -972,7 +981,7 @@
         </div>
       `).join("")}
     </div>
-  `}const G="ahcms_hostel_filter";function J(){return localStorage.getItem(G)||""}function pe(t){t?localStorage.setItem(G,t):localStorage.removeItem(G),window.dispatchEvent(new CustomEvent("hostel-change",{detail:t}))}function K(t){window.addEventListener("hostel-change",a=>t(a.detail))}async function ze(t){let a=[];async function r(){t.innerHTML='<div class="page-loading">Loading</div>';try{const s=J(),i=s?`?hostel=${encodeURIComponent(s)}`:"",[p,l]=await Promise.all([h.get(`/dashboard/admin${i}`),h.get("/rooms")]);a=[...new Set(l.map(n=>n.hostel))].sort(),c(t,p,a,s)}catch(s){t.innerHTML=`<div class="page-error">Failed to load: ${s.message}</div>`}}K(()=>r()),await r();function c(s,{stats:i,recentComplaints:p,wardens:l,wardenOfficePhone:n},e,m){const o=l.filter(u=>u.role==="Warden"),f=l.filter(u=>u.role==="Guard"),$=i.totalCapacity>0?Math.round(i.totalOccupied/i.totalCapacity*100):0;s.innerHTML=`
+  `}const G="ahcms_hostel_filter";function J(){return localStorage.getItem(G)||""}function pe(t){t?localStorage.setItem(G,t):localStorage.removeItem(G),window.dispatchEvent(new CustomEvent("hostel-change",{detail:t}))}function K(t){window.addEventListener("hostel-change",a=>t(a.detail))}async function ze(t){let a=[];async function o(){t.innerHTML='<div class="page-loading">Loading</div>';try{const s=J(),i=s?`?hostel=${encodeURIComponent(s)}`:"",[p,l]=await Promise.all([x.get(`/dashboard/admin${i}`),x.get("/rooms")]);a=[...new Set(l.map(n=>n.hostel))].sort(),c(t,p,a,s)}catch(s){t.innerHTML=`<div class="page-error">Failed to load: ${s.message}</div>`}}K(()=>o()),await o();function c(s,{stats:i,recentComplaints:p,wardens:l,wardenOfficePhone:n},e,m){const r=l.filter(v=>v.role==="Warden"),f=l.filter(v=>v.role==="Guard"),E=i.totalCapacity>0?Math.round(i.totalOccupied/i.totalCapacity*100):0;s.innerHTML=`
       <div class="page-enter" id="admin-home">
         <div class="page-header" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:var(--space-4);">
           <div>
@@ -983,7 +992,7 @@
             <label class="hostel-filter-label">Hostel</label>
             <select class="hostel-filter-select" id="hostel-filter">
               <option value="">All Hostels</option>
-              ${e.map(u=>`<option value="${u}" ${u===m?"selected":""}>${Re(u)}</option>`).join("")}
+              ${e.map(v=>`<option value="${v}" ${v===m?"selected":""}>${Re(v)}</option>`).join("")}
             </select>
           </div>
         </div>
@@ -993,7 +1002,7 @@
           <div class="card card-accent-blue">
             <div class="card-label">Total Rooms</div>
             <div class="card-value">${i.totalRooms}</div>
-            <div class="card-sub">${i.vacantRooms} vacant · ${$}% utilized</div>
+            <div class="card-sub">${i.vacantRooms} vacant · ${E}% utilized</div>
           </div>
           <div class="card card-accent-amber">
             <div class="card-label">Open Complaints</div>
@@ -1029,32 +1038,32 @@
                   Office: ${n}
                 </a>`:""}
             </div>
-            ${o.length===0?'<p class="empty-msg">No warden data available.</p>':o.map(u=>`
+            ${r.length===0?'<p class="empty-msg">No warden data available.</p>':r.map(v=>`
               <div class="contact-row" style="align-items:flex-start;">
-                <div class="contact-avatar">${u.name[0]}</div>
+                <div class="contact-avatar">${v.name[0]}</div>
                 <div class="contact-info" style="flex:1;">
                   <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:2px;">
-                    <div class="contact-name">${u.name}</div>
-                    <a href="tel:${u.phone}" class="contact-phone" style="margin-left:auto;">${u.phone||""}</a>
+                    <div class="contact-name">${v.name}</div>
+                    <a href="tel:${v.phone}" class="contact-phone" style="margin-left:auto;">${v.phone||""}</a>
                   </div>
-                  <div class="contact-meta">${u.hostel} · ${u.email||""}</div>
+                  <div class="contact-meta">${v.hostel} · ${v.email||""}</div>
                   <div style="display:flex; flex-wrap:wrap; gap:12px; font-size:11px; margin-top:8px; padding-top:8px; border-top:1px solid var(--border-subtle); color:var(--text-secondary);">
-                    <span><span style="font-weight:600; color:var(--text-tertiary);">Last:</span> ${u.previous?u.previous.name:"Unknown"}</span>
+                    <span><span style="font-weight:600; color:var(--text-tertiary);">Last:</span> ${v.previous?v.previous.name:"Unknown"}</span>
                     <span style="color:var(--accent-green);"><span style="font-weight:600;">Current:</span> Active</span>
-                    <span><span style="font-weight:600; color:var(--text-tertiary);">Next:</span> ${u.next?u.next.name:"Unknown"}</span>
+                    <span><span style="font-weight:600; color:var(--text-tertiary);">Next:</span> ${v.next?v.next.name:"Unknown"}</span>
                   </div>
                 </div>
               </div>
             `).join("")}
             <div class="form-section-title" style="margin-top:var(--space-5);">On-Duty Guards</div>
-            ${f.length===0?'<p class="empty-msg">No guard data.</p>':f.map(u=>`
+            ${f.length===0?'<p class="empty-msg">No guard data.</p>':f.map(v=>`
               <div class="contact-row">
-                <div class="contact-avatar guard">${u.name[0]}</div>
+                <div class="contact-avatar guard">${v.name[0]}</div>
                 <div class="contact-info">
-                  <div class="contact-name">${u.name}</div>
-                  <div class="contact-meta">${u.hostel} · ${u.shift} shift</div>
+                  <div class="contact-name">${v.name}</div>
+                  <div class="contact-meta">${v.hostel} · ${v.shift} shift</div>
                 </div>
-                <a href="tel:${u.phone}" class="contact-phone">${u.phone||""}</a>
+                <a href="tel:${v.phone}" class="contact-phone">${v.phone||""}</a>
               </div>
             `).join("")}
           </div>
@@ -1064,15 +1073,15 @@
             <div class="form-section-title">Recent Complaints</div>
             ${p.length===0?'<p class="empty-msg">No recent complaints.</p>':`
             <div class="activity-list">
-              ${p.map(u=>`
+              ${p.map(v=>`
                   <div class="activity-item">
-                    <div class="activity-dot" style="background:${u.status==="open"?"var(--accent-amber)":u.status==="in-progress"?"var(--accent-blue)":"var(--accent-green)"}"></div>
+                    <div class="activity-dot" style="background:${v.status==="open"?"var(--accent-amber)":v.status==="in-progress"?"var(--accent-blue)":"var(--accent-green)"}"></div>
                     <div class="activity-content">
                       <div class="activity-text">
-                        <strong>${u.student_name||u.student_id}</strong> · ${u.category}
-                        <span class="badge badge-${u.status}">${u.status}</span>
+                        <strong>${v.student_name||v.student_id}</strong> · ${v.category}
+                        <span class="badge badge-${v.status}">${v.status}</span>
                       </div>
-                      <div class="activity-time">${u.date} · ${u.room_id||""}</div>
+                      <div class="activity-time">${v.date} · ${v.room_id||""}</div>
                     </div>
                   </div>
                 `).join("")}
@@ -1087,9 +1096,9 @@
           <div class="form-section-title">Occupancy Overview</div>
           <div class="occ-overview">
             <div class="occ-track-outer">
-              <div class="occ-track-inner" style="width:${$}%"></div>
+              <div class="occ-track-inner" style="width:${E}%"></div>
             </div>
-            <span style="font-size:var(--text-sm); color:var(--text-secondary);">${i.totalOccupied} / ${i.totalCapacity} beds · ${$}%</span>
+            <span style="font-size:var(--text-sm); color:var(--text-secondary);">${i.totalOccupied} / ${i.totalCapacity} beds · ${E}%</span>
           </div>
           <div class="card-grid" style="margin-top:var(--space-4); margin-bottom:0;">
             <div class="card" style="text-align:center;">
@@ -1107,7 +1116,7 @@
           </div>
         </div>
       </div>
-    `,document.getElementById("hostel-filter").addEventListener("change",u=>{pe(u.target.value),r()}),s.querySelectorAll('a.link-accent[href^="#"]').forEach(u=>{u.addEventListener("click",y=>{y.preventDefault(),window.location.hash=u.getAttribute("href").slice(1)})}),requestAnimationFrame(()=>{var u;return(u=document.getElementById("admin-home"))==null?void 0:u.classList.replace("page-enter","page-active")})}}function Re(t){return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}const te={Plumbing:"🔧",Electricity:"⚡",WiFi:"📶",Cleanliness:"🧹",Carpentry:"🔨",Other:"📋"},ae=["open","in-progress","resolved"],Pe=["Plumbing","Electricity","WiFi","Cleanliness","Carpentry","Other"];async function He(t){async function a(){t.innerHTML='<div class="page-loading">Loading…</div>';try{const r=J(),c=r?`?hostel=${encodeURIComponent(r)}`:"",s=await h.get(`/complaints${c}`);De(t,s,a)}catch(r){t.innerHTML=`<div class="page-error">Failed to load: ${r.message}</div>`}}K(()=>a()),await a()}function De(t,a,r){let c=a,s="all",i="",p=null;t.innerHTML=`
+    `,document.getElementById("hostel-filter").addEventListener("change",v=>{pe(v.target.value),o()}),s.querySelectorAll('a.link-accent[href^="#"]').forEach(v=>{v.addEventListener("click",y=>{y.preventDefault(),window.location.hash=v.getAttribute("href").slice(1)})}),requestAnimationFrame(()=>{var v;return(v=document.getElementById("admin-home"))==null?void 0:v.classList.replace("page-enter","page-active")})}}function Re(t){return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}const te={Plumbing:"🔧",Electricity:"⚡",WiFi:"📶",Cleanliness:"🧹",Carpentry:"🔨",Other:"📋"},ae=["open","in-progress","resolved"],Pe=["Plumbing","Electricity","WiFi","Cleanliness","Carpentry","Other"];async function He(t){async function a(){t.innerHTML='<div class="page-loading">Loading…</div>';try{const o=J(),c=o?`?hostel=${encodeURIComponent(o)}`:"",s=await x.get(`/complaints${c}`);Fe(t,s,a)}catch(o){t.innerHTML=`<div class="page-error">Failed to load: ${o.message}</div>`}}K(()=>a()),await a()}function Fe(t,a,o){let c=a,s="all",i="",p=null;t.innerHTML=`
     <div class="page-enter" id="admin-complaints-page">
       <div class="page-header">
         <h2>Complaints Management</h2>
@@ -1150,39 +1159,39 @@
           </tr>
         </thead>
         <tbody id="cmp-tbody">
-          ${e.map(o=>`
-            <tr class="cmp-row${p===o.complaint_id?" expanded-row":""}" data-id="${o.complaint_id}">
-              <td class="cell-mono">${o.complaint_id}</td>
-              <td><div>${o.student_name||o.student_id}</div><div style="font-size:var(--text-xs); color:var(--text-tertiary);">${o.roll_no||""}</div></td>
-              <td class="cell-mono">${o.room_id||"—"}</td>
-              <td>${te[o.category]||""} ${o.category}</td>
-              <td style="max-width:180px; overflow:hidden; text-overflow:ellipsis;" title="${o.description}">${o.description.slice(0,45)}${o.description.length>45?"…":""}</td>
+          ${e.map(r=>`
+            <tr class="cmp-row${p===r.complaint_id?" expanded-row":""}" data-id="${r.complaint_id}">
+              <td class="cell-mono">${r.complaint_id}</td>
+              <td><div>${r.student_name||r.student_id}</div><div style="font-size:var(--text-xs); color:var(--text-tertiary);">${r.roll_no||""}</div></td>
+              <td class="cell-mono">${r.room_id||"—"}</td>
+              <td>${te[r.category]||""} ${r.category}</td>
+              <td style="max-width:180px; overflow:hidden; text-overflow:ellipsis;" title="${r.description}">${r.description.slice(0,45)}${r.description.length>45?"…":""}</td>
               <td class="cell-mono">
-                <div>${o.date}</div>
-                ${o.resolved_date?`<div style="font-size:10px; color:var(--accent-green); margin-top:2px;">Res: ${o.resolved_date}</div>`:""}
+                <div>${r.date}</div>
+                ${r.resolved_date?`<div style="font-size:10px; color:var(--accent-green); margin-top:2px;">Res: ${r.resolved_date}</div>`:""}
               </td>
-              <td><span class="badge badge-${o.status}">${o.status}</span></td>
+              <td><span class="badge badge-${r.status}">${r.status}</span></td>
               <td>
-                ${o.status!=="resolved"?`
+                ${r.status!=="resolved"?`
                   <div style="display:flex; gap:4px;">
-                    ${o.status==="open"?`<button class="btn btn-sm btn-secondary" data-action="in-progress" data-id="${o.complaint_id}">Start</button>`:""}
-                    <button class="btn btn-sm btn-primary" data-action="resolved" data-id="${o.complaint_id}">Resolve</button>
+                    ${r.status==="open"?`<button class="btn btn-sm btn-secondary" data-action="in-progress" data-id="${r.complaint_id}">Start</button>`:""}
+                    <button class="btn btn-sm btn-primary" data-action="resolved" data-id="${r.complaint_id}">Resolve</button>
                   </div>
                 `:'<span style="color:var(--text-tertiary); font-size:var(--text-xs);">Done</span>'}
               </td>
             </tr>
-            ${o.photo_base64?`
-              <tr class="photo-row" data-for="${o.complaint_id}" style="${p===o.complaint_id?"":"display:none"}">
+            ${r.photo_base64?`
+              <tr class="photo-row" data-for="${r.complaint_id}" style="${p===r.complaint_id?"":"display:none"}">
                 <td colspan="8" style="padding: var(--space-3) var(--space-6); background: var(--bg-elevated);">
-                  <img src="${o.photo_base64}" alt="Complaint photo" style="max-width:280px; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);" />
-                  ${o.admin_note?`<p style="font-size:var(--text-xs); color:var(--text-secondary); margin-top: var(--space-2);">Note: ${o.admin_note}</p>`:""}
+                  <img src="${r.photo_base64}" alt="Complaint photo" style="max-width:280px; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);" />
+                  ${r.admin_note?`<p style="font-size:var(--text-xs); color:var(--text-secondary); margin-top: var(--space-2);">Note: ${r.admin_note}</p>`:""}
                 </td>
               </tr>
             `:""}
           `).join("")}
         </tbody>
       </table>
-    `,m.querySelectorAll("[data-action]").forEach(o=>{o.addEventListener("click",async()=>{const f=+o.dataset.id,$=o.dataset.action;o.disabled=!0;try{const u=await h.patch(`/complaints/${f}/status`,{status:$});c=c.map(y=>y.complaint_id===f?{...y,...u}:y),k(`Complaint #${f} → ${$}`,"success"),n()}catch(u){k(u.message,"error"),o.disabled=!1}})}),m.querySelectorAll(".cmp-row").forEach(o=>{o.addEventListener("click",()=>{const f=+o.dataset.id;p=p===f?null:f,n()})})}t.querySelectorAll("[data-status]").forEach(e=>{e.addEventListener("click",()=>{t.querySelectorAll("[data-status]").forEach(m=>m.classList.remove("active")),e.classList.add("active"),s=e.dataset.status,n()})}),t.querySelectorAll("[data-quick]").forEach(e=>{e.addEventListener("click",()=>{var m;s=e.dataset.quick,t.querySelectorAll("[data-status]").forEach(o=>o.classList.remove("active")),(m=t.querySelector(`[data-status="${s}"]`))==null||m.classList.add("active"),n()})}),document.getElementById("cat-filter").addEventListener("change",e=>{i=e.target.value,n()}),n(),requestAnimationFrame(()=>{var e;return(e=document.getElementById("admin-complaints-page"))==null?void 0:e.classList.replace("page-enter","page-active")})}const S=t=>String(t??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"),je=["Senior MBBS boys hostel","Senior MBBS girls hostel"],Fe=t=>t==="M"?"boys":t==="F"?"girls":"";function oe(t,a){const r=Fe(a);return t.filter(c=>c.current_occupancy<c.capacity&&(r?c.hostel.toLowerCase().includes(r):!0)).sort((c,s)=>c.floor-s.floor||c.room_id.localeCompare(s.room_id))}function re(t){return`<option value="${t.room_id}">${t.room_id} · Floor ${t.floor} · ${t.type} · ${t.current_occupancy}/${t.capacity}</option>`}async function Ne(t){async function a(){t.innerHTML='<div class="page-loading">Loading…</div>';try{const[r,c,s,i,p]=await Promise.all([h.get("/rooms"),h.get("/rooms/booking-requests"),h.get("/rooms/change-requests"),h.get("/rooms/allocations"),h.get("/students")]);Oe(t,{rooms:r,bookReqs:c,changeReqs:s,allocs:i,students:p},a)}catch(r){t.innerHTML=`<div class="page-error">Failed to load: ${r.message}</div>`}}K(()=>a()),await a()}function Oe(t,a,r){const{rooms:c,bookReqs:s,changeReqs:i,students:p}=a;let l="grid",n=J();const e=s.filter(y=>y.status==="pending").length+i.filter(y=>y.status==="pending").length;t.innerHTML=`
+    `,m.querySelectorAll("[data-action]").forEach(r=>{r.addEventListener("click",async()=>{const f=+r.dataset.id,E=r.dataset.action;r.disabled=!0;try{const v=await x.patch(`/complaints/${f}/status`,{status:E});c=c.map(y=>y.complaint_id===f?{...y,...v}:y),C(`Complaint #${f} → ${E}`,"success"),n()}catch(v){C(v.message,"error"),r.disabled=!1}})}),m.querySelectorAll(".cmp-row").forEach(r=>{r.addEventListener("click",()=>{const f=+r.dataset.id;p=p===f?null:f,n()})})}t.querySelectorAll("[data-status]").forEach(e=>{e.addEventListener("click",()=>{t.querySelectorAll("[data-status]").forEach(m=>m.classList.remove("active")),e.classList.add("active"),s=e.dataset.status,n()})}),t.querySelectorAll("[data-quick]").forEach(e=>{e.addEventListener("click",()=>{var m;s=e.dataset.quick,t.querySelectorAll("[data-status]").forEach(r=>r.classList.remove("active")),(m=t.querySelector(`[data-status="${s}"]`))==null||m.classList.add("active"),n()})}),document.getElementById("cat-filter").addEventListener("change",e=>{i=e.target.value,n()}),n(),requestAnimationFrame(()=>{var e;return(e=document.getElementById("admin-complaints-page"))==null?void 0:e.classList.replace("page-enter","page-active")})}const S=t=>String(t??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"),De=["Senior MBBS boys hostel","Senior MBBS girls hostel"],je=t=>t==="M"?"boys":t==="F"?"girls":"";function oe(t,a){const o=je(a);return t.filter(c=>c.current_occupancy<c.capacity&&(o?c.hostel.toLowerCase().includes(o):!0)).sort((c,s)=>c.floor-s.floor||c.room_id.localeCompare(s.room_id))}function re(t){return`<option value="${t.room_id}">${t.room_id} · Floor ${t.floor} · ${t.type} · ${t.current_occupancy}/${t.capacity}</option>`}async function Ne(t){async function a(){t.innerHTML='<div class="page-loading">Loading…</div>';try{const[o,c,s,i,p]=await Promise.all([x.get("/rooms"),x.get("/rooms/booking-requests"),x.get("/rooms/change-requests"),x.get("/rooms/allocations"),x.get("/students")]);Oe(t,{rooms:o,bookReqs:c,changeReqs:s,allocs:i,students:p},a)}catch(o){t.innerHTML=`<div class="page-error">Failed to load: ${o.message}</div>`}}K(()=>a()),await a()}function Oe(t,a,o){const{rooms:c,bookReqs:s,changeReqs:i,students:p}=a;let l="grid",n=J();const e=s.filter(y=>y.status==="pending").length+i.filter(y=>y.status==="pending").length;t.innerHTML=`
     <style>
       /* corridor layout */
       .floor-corridor { display:flex; flex-direction:column; gap:3px; margin-bottom:var(--space-5); }
@@ -1226,7 +1235,7 @@
           <label class="hostel-filter-label">Hostel</label>
           <select class="hostel-filter-select" id="rm-hostel-filter">
             <option value="">All</option>
-            ${je.map(y=>`<option value="${y}" ${y===n?"selected":""}>${y}</option>`).join("")}
+            ${De.map(y=>`<option value="${y}" ${y===n?"selected":""}>${y}</option>`).join("")}
           </select>
         </div>
       </div>
@@ -1243,19 +1252,19 @@
       <div id="rm-panel-pending" style="display:none;"></div>
       <div id="rm-panel-history" style="display:none;"></div>
     </div>
-  `,document.getElementById("rm-hostel-filter").addEventListener("change",y=>{n=y.target.value,pe(n),m()}),document.querySelectorAll("#rm-tabs button").forEach(y=>{y.addEventListener("click",()=>{l=y.dataset.tab,document.querySelectorAll("#rm-tabs button").forEach(x=>x.classList.toggle("active",x.dataset.tab===l)),["grid","student","pending","history"].forEach(x=>{document.getElementById(`rm-panel-${x}`).style.display=x===l?"":"none"}),m()})});function m(){l==="grid"&&o(),l==="student"&&f(),l==="pending"&&$(),l==="history"&&u()}function o(){const y=n?c.filter(g=>g.hostel===n):c,x={};y.forEach(g=>{(x[g.hostel]=x[g.hostel]||{})[g.floor]=(x[g.hostel][g.floor]||[]).concat(g)});const b=y.filter(g=>g.current_occupancy===0).length,B=y.filter(g=>g.current_occupancy>0&&g.current_occupancy<g.capacity).length,d=y.filter(g=>g.current_occupancy>=g.capacity).length,w=g=>{const E=g.capacity>0?g.current_occupancy/g.capacity:0;return`<div class="room-cell ${E===0?"vacant":E<1?"partial":"full"}" title="${g.room_id} — ${g.type} ${g.current_occupancy}/${g.capacity}">
+  `,document.getElementById("rm-hostel-filter").addEventListener("change",y=>{n=y.target.value,pe(n),m()}),document.querySelectorAll("#rm-tabs button").forEach(y=>{y.addEventListener("click",()=>{l=y.dataset.tab,document.querySelectorAll("#rm-tabs button").forEach($=>$.classList.toggle("active",$.dataset.tab===l)),["grid","student","pending","history"].forEach($=>{document.getElementById(`rm-panel-${$}`).style.display=$===l?"":"none"}),m()})});function m(){l==="grid"&&r(),l==="student"&&f(),l==="pending"&&E(),l==="history"&&v()}function r(){const y=n?c.filter(g=>g.hostel===n):c,$={};y.forEach(g=>{($[g.hostel]=$[g.hostel]||{})[g.floor]=($[g.hostel][g.floor]||[]).concat(g)});const b=y.filter(g=>g.current_occupancy===0).length,L=y.filter(g=>g.current_occupancy>0&&g.current_occupancy<g.capacity).length,d=y.filter(g=>g.current_occupancy>=g.capacity).length,k=g=>{const w=g.capacity>0?g.current_occupancy/g.capacity:0;return`<div class="room-cell ${w===0?"vacant":w<1?"partial":"full"}" title="${g.room_id} — ${g.type} ${g.current_occupancy}/${g.capacity}">
         <div class="rc-id">${g.room_id}</div>
         <div style="font-size:9px;opacity:.5;">${g.current_occupancy}/${g.capacity}</div>
-      </div>`};let v=`<div style="display:flex;gap:var(--space-5);margin-bottom:var(--space-5);">
+      </div>`};let u=`<div style="display:flex;gap:var(--space-5);margin-bottom:var(--space-5);">
       <span style="display:flex;align-items:center;gap:6px;font-size:var(--text-xs);color:var(--text-secondary);"><span class="legend-dot" style="background:var(--accent-green);"></span>Vacant (${b})</span>
-      <span style="display:flex;align-items:center;gap:6px;font-size:var(--text-xs);color:var(--text-secondary);"><span class="legend-dot" style="background:var(--accent-amber);"></span>Partial (${B})</span>
+      <span style="display:flex;align-items:center;gap:6px;font-size:var(--text-xs);color:var(--text-secondary);"><span class="legend-dot" style="background:var(--accent-amber);"></span>Partial (${L})</span>
       <span style="display:flex;align-items:center;gap:6px;font-size:var(--text-xs);color:var(--text-secondary);"><span class="legend-dot" style="background:var(--accent-red);"></span>Full (${d})</span>
-    </div>`;for(const g of Object.keys(x).sort()){v+=`<div style="font-size:var(--text-sm);font-weight:600;margin:var(--space-6) 0 var(--space-3);padding-bottom:var(--space-2);border-bottom:1px solid var(--border-subtle);">${g}</div>`;for(const E of Object.keys(x[g]).sort((L,I)=>+L-+I)){const L=x[g][E].sort((A,R)=>A.room_id.localeCompare(R.room_id)),I=L.slice(0,5),C=L.slice(5,10);v+=`<div class="floor-label">Floor ${E}</div>
+    </div>`;for(const g of Object.keys($).sort()){u+=`<div style="font-size:var(--text-sm);font-weight:600;margin:var(--space-6) 0 var(--space-3);padding-bottom:var(--space-2);border-bottom:1px solid var(--border-subtle);">${g}</div>`;for(const w of Object.keys($[g]).sort((h,_)=>+h-+_)){const h=$[g][w].sort((A,R)=>A.room_id.localeCompare(R.room_id)),_=h.slice(0,5),B=h.slice(5,10);u+=`<div class="floor-label">Floor ${w}</div>
           <div class="floor-corridor">
-            <div class="corridor-row">${I.map(w).join("")}</div>
+            <div class="corridor-row">${_.map(k).join("")}</div>
             <div class="corridor-strip"><div class="corridor-strip-line"></div><div class="corridor-strip-label">corridor</div><div class="corridor-strip-line"></div></div>
-            <div class="corridor-row">${C.map(w).join("")}</div>
-          </div>`}}y.length||(v+='<p style="padding:var(--space-8);text-align:center;color:var(--text-tertiary);">No rooms.</p>'),document.getElementById("rm-panel-grid").innerHTML=v}function f(){const y=document.getElementById("rm-panel-student");y.innerHTML=`
+            <div class="corridor-row">${B.map(k).join("")}</div>
+          </div>`}}y.length||(u+='<p style="padding:var(--space-8);text-align:center;color:var(--text-tertiary);">No rooms.</p>'),document.getElementById("rm-panel-grid").innerHTML=u}function f(){const y=document.getElementById("rm-panel-student");y.innerHTML=`
       <div style="display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); gap:var(--space-8); align-items:start;">
 
         <!-- LEFT: Register form -->
@@ -1354,53 +1363,53 @@
           </div>
         </div>
       </div>
-    `,document.getElementById("also-alloc").addEventListener("change",b=>{document.getElementById("alloc-room-wrap").style.display=b.target.checked?"":"none",x()}),document.getElementById("add-gender").addEventListener("change",x);function x(){const b=document.getElementById("add-gender").value,B=oe(c,b),d=document.getElementById("alloc-room-select");d.innerHTML=B.length?`<option value="">— pick a room —</option>${B.map(re).join("")}`:'<option value="">No vacant rooms for this gender</option>'}y.querySelectorAll("[data-assign]").forEach(b=>{b.addEventListener("click",async()=>{const B=b.dataset.assign,d=document.getElementById(`qs-room-${B}`),w=d==null?void 0:d.value;if(!w){k("Select a room first.","error");return}b.disabled=!0,b.textContent="…";try{await h.post("/rooms/direct-allocate",{student_id:B,room_id:w}),k("Room assigned!","success"),await r()}catch(v){k(v.message,"error"),b.disabled=!1,b.textContent="Assign"}})}),document.getElementById("add-form").addEventListener("submit",async b=>{b.preventDefault();const B=new FormData(b.target),d=Object.fromEntries(B.entries());d.hostel=d.gender==="M"?"Senior MBBS boys hostel":d.gender==="F"?"Senior MBBS girls hostel":"";const w=document.getElementById("add-btn"),v=document.getElementById("add-msg");w.disabled=!0,w.textContent="Registering…",v.innerHTML="";try{const g=await h.post("/students",d);document.getElementById("also-alloc").checked&&d.alloc_room&&await h.post("/rooms/direct-allocate",{student_id:g.student_id,room_id:d.alloc_room}),v.innerHTML=`<div style="background:color-mix(in srgb,var(--accent-green) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent-green) 25%,transparent);border-radius:8px;padding:var(--space-3) var(--space-4);font-size:var(--text-sm);color:var(--accent-green);margin-bottom:var(--space-4);">
+    `,document.getElementById("also-alloc").addEventListener("change",b=>{document.getElementById("alloc-room-wrap").style.display=b.target.checked?"":"none",$()}),document.getElementById("add-gender").addEventListener("change",$);function $(){const b=document.getElementById("add-gender").value,L=oe(c,b),d=document.getElementById("alloc-room-select");d.innerHTML=L.length?`<option value="">— pick a room —</option>${L.map(re).join("")}`:'<option value="">No vacant rooms for this gender</option>'}y.querySelectorAll("[data-assign]").forEach(b=>{b.addEventListener("click",async()=>{const L=b.dataset.assign,d=document.getElementById(`qs-room-${L}`),k=d==null?void 0:d.value;if(!k){C("Select a room first.","error");return}b.disabled=!0,b.textContent="…";try{await x.post("/rooms/direct-allocate",{student_id:L,room_id:k}),C("Room assigned!","success"),await o()}catch(u){C(u.message,"error"),b.disabled=!1,b.textContent="Assign"}})}),document.getElementById("add-form").addEventListener("submit",async b=>{b.preventDefault();const L=new FormData(b.target),d=Object.fromEntries(L.entries());d.hostel=d.gender==="M"?"Senior MBBS boys hostel":d.gender==="F"?"Senior MBBS girls hostel":"";const k=document.getElementById("add-btn"),u=document.getElementById("add-msg");k.disabled=!0,k.textContent="Registering…",u.innerHTML="";try{const g=await x.post("/students",d);document.getElementById("also-alloc").checked&&d.alloc_room&&await x.post("/rooms/direct-allocate",{student_id:g.student_id,room_id:d.alloc_room}),u.innerHTML=`<div style="background:color-mix(in srgb,var(--accent-green) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent-green) 25%,transparent);border-radius:8px;padding:var(--space-3) var(--space-4);font-size:var(--text-sm);color:var(--accent-green);margin-bottom:var(--space-4);">
           ✓ ${g.name} registered. ID: <strong>${g.student_id}</strong> · Login: <strong>${g.default_password}</strong>
-        </div>`,b.target.reset(),document.getElementById("alloc-room-wrap").style.display="none",await r()}catch(g){v.innerHTML=`<div style="background:color-mix(in srgb,var(--accent-red) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent-red) 25%,transparent);border-radius:8px;padding:var(--space-3) var(--space-4);font-size:var(--text-sm);color:var(--accent-red);margin-bottom:var(--space-4);">${g.message}</div>`,w.disabled=!1,w.textContent="Register Student"}})}function $(){const y=document.getElementById("rm-panel-pending"),x=s.filter(d=>d.status==="pending"),b=i.filter(d=>d.status==="pending");if(!x.length&&!b.length){y.innerHTML='<p style="padding:var(--space-10);text-align:center;color:var(--text-tertiary);">No pending requests. All clear.</p>';return}let B="";x.length&&(B+=`<div style="font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-tertiary);margin-bottom:var(--space-4);">Booking Requests (${x.length})</div>
+        </div>`,b.target.reset(),document.getElementById("alloc-room-wrap").style.display="none",await o()}catch(g){u.innerHTML=`<div style="background:color-mix(in srgb,var(--accent-red) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent-red) 25%,transparent);border-radius:8px;padding:var(--space-3) var(--space-4);font-size:var(--text-sm);color:var(--accent-red);margin-bottom:var(--space-4);">${g.message}</div>`,k.disabled=!1,k.textContent="Register Student"}})}function E(){const y=document.getElementById("rm-panel-pending"),$=s.filter(d=>d.status==="pending"),b=i.filter(d=>d.status==="pending");if(!$.length&&!b.length){y.innerHTML='<p style="padding:var(--space-10);text-align:center;color:var(--text-tertiary);">No pending requests. All clear.</p>';return}let L="";$.length&&(L+=`<div style="font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-tertiary);margin-bottom:var(--space-4);">Booking Requests (${$.length})</div>
       <div style="display:flex;flex-direction:column;gap:var(--space-3);margin-bottom:var(--space-8);">
-        ${x.map(d=>{var w;return`
+        ${$.map(d=>{var k;return`
           <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-3);padding:var(--space-4) var(--space-5);background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:var(--radius-md);">
             <div>
               <div style="font-weight:500;font-size:var(--text-sm);">${S(d.student_name)} <span style="font-size:var(--text-xs);color:var(--text-tertiary);font-weight:400;">· ${d.roll_no}</span></div>
               <div style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:2px;">Room <strong style="color:var(--text-secondary);">${d.room_id}</strong> · ${S(d.room_hostel||d.hostel)} · Floor ${d.floor} · ${d.type} · ${d.current_occupancy}/${d.capacity}</div>
               ${d.preferences?`<div style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:2px;">Pref: ${S(d.preferences)}</div>`:""}
-              <div style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:2px;">${(w=d.created_at)==null?void 0:w.slice(0,10)}</div>
+              <div style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:2px;">${(k=d.created_at)==null?void 0:k.slice(0,10)}</div>
             </div>
             <div style="display:flex;gap:var(--space-2);">
               <button class="btn btn-sm btn-primary" data-breq="${d.request_id}" data-action="approved">Approve</button>
               <button class="btn btn-sm btn-secondary" style="color:var(--accent-red);" data-breq="${d.request_id}" data-action="rejected">Reject</button>
             </div>
           </div>`}).join("")}
-      </div>`),b.length&&(B+=`<div style="font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-tertiary);margin-bottom:var(--space-4);">Room Change Requests (${b.length})</div>
+      </div>`),b.length&&(L+=`<div style="font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-tertiary);margin-bottom:var(--space-4);">Room Change Requests (${b.length})</div>
       <div style="display:flex;flex-direction:column;gap:var(--space-3);">
-        ${b.map(d=>{var w;return`
+        ${b.map(d=>{var k;return`
           <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-3);padding:var(--space-4) var(--space-5);background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:var(--radius-md);">
             <div>
               <div style="font-weight:500;font-size:var(--text-sm);">${S(d.student_name)} <span style="font-size:var(--text-xs);color:var(--text-tertiary);font-weight:400;">· ${d.roll_no}</span></div>
               <div style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:2px;"><strong style="color:var(--text-secondary);">${d.from_room_id}</strong> → <strong style="color:var(--text-secondary);">${d.to_room_id}</strong> · ${S(d.to_hostel)} · Fl ${d.to_floor} · ${d.to_occupancy}/${d.to_capacity}</div>
               <div style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:2px;">Reason: ${S(d.reason)}</div>
-              <div style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:2px;">${(w=d.created_at)==null?void 0:w.slice(0,10)}</div>
+              <div style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:2px;">${(k=d.created_at)==null?void 0:k.slice(0,10)}</div>
             </div>
             <div style="display:flex;gap:var(--space-2);">
               <button class="btn btn-sm btn-primary" data-creq="${d.change_id}" data-action="approved">Approve</button>
               <button class="btn btn-sm btn-secondary" style="color:var(--accent-red);" data-creq="${d.change_id}" data-action="rejected">Reject</button>
             </div>
           </div>`}).join("")}
-      </div>`),y.innerHTML=B,y.querySelectorAll("[data-breq]").forEach(d=>{d.addEventListener("click",async()=>{d.disabled=!0;try{await h.patch(`/rooms/booking-requests/${d.dataset.breq}`,{status:d.dataset.action}),k(`Request ${d.dataset.action}.`,"success"),await r()}catch(w){k(w.message,"error"),d.disabled=!1}})}),y.querySelectorAll("[data-creq]").forEach(d=>{d.addEventListener("click",async()=>{d.disabled=!0;try{await h.patch(`/rooms/change-requests/${d.dataset.creq}`,{status:d.dataset.action}),k(`Room change ${d.dataset.action}.`,"success"),await r()}catch(w){k(w.message,"error"),d.disabled=!1}})})}function u(){const y=document.getElementById("rm-panel-history"),x=n?s.filter(d=>d.room_hostel===n||d.hostel===n):s,b=n?i.filter(d=>d.from_hostel===n||d.to_hostel===n):i,B=[...x.map(d=>({type:"booking",...d})),...b.map(d=>({type:"change",...d}))].sort((d,w)=>(w.created_at||"").localeCompare(d.created_at||""));if(!B.length){y.innerHTML='<p style="padding:var(--space-10);text-align:center;color:var(--text-tertiary);">No requests yet.</p>';return}y.innerHTML=`
+      </div>`),y.innerHTML=L,y.querySelectorAll("[data-breq]").forEach(d=>{d.addEventListener("click",async()=>{d.disabled=!0;try{await x.patch(`/rooms/booking-requests/${d.dataset.breq}`,{status:d.dataset.action}),C(`Request ${d.dataset.action}.`,"success"),await o()}catch(k){C(k.message,"error"),d.disabled=!1}})}),y.querySelectorAll("[data-creq]").forEach(d=>{d.addEventListener("click",async()=>{d.disabled=!0;try{await x.patch(`/rooms/change-requests/${d.dataset.creq}`,{status:d.dataset.action}),C(`Room change ${d.dataset.action}.`,"success"),await o()}catch(k){C(k.message,"error"),d.disabled=!1}})})}function v(){const y=document.getElementById("rm-panel-history"),$=n?s.filter(d=>d.room_hostel===n||d.hostel===n):s,b=n?i.filter(d=>d.from_hostel===n||d.to_hostel===n):i,L=[...$.map(d=>({type:"booking",...d})),...b.map(d=>({type:"change",...d}))].sort((d,k)=>(k.created_at||"").localeCompare(d.created_at||""));if(!L.length){y.innerHTML='<p style="padding:var(--space-10);text-align:center;color:var(--text-tertiary);">No requests yet.</p>';return}y.innerHTML=`
       <div class="table-container">
         <table>
           <thead><tr><th>Type</th><th>Student</th><th>Details</th><th>Status</th><th>Date</th></tr></thead>
           <tbody>
-            ${B.map(d=>{var g;const w=d.type==="booking"?`Room ${d.room_id} · ${S(d.room_hostel||d.hostel)} · Fl ${d.floor}`:`${d.from_room_id} → ${d.to_room_id} · ${S(d.to_hostel)}`,v=d.status==="pending"?"open":d.status==="approved"?"in-progress":"resolved";return`<tr>
+            ${L.map(d=>{var g;const k=d.type==="booking"?`Room ${d.room_id} · ${S(d.room_hostel||d.hostel)} · Fl ${d.floor}`:`${d.from_room_id} → ${d.to_room_id} · ${S(d.to_hostel)}`,u=d.status==="pending"?"open":d.status==="approved"?"in-progress":"resolved";return`<tr>
                 <td style="font-size:var(--text-xs);color:var(--text-tertiary);">${d.type==="booking"?"Booking":"Transfer"}</td>
                 <td><div style="font-weight:500;font-size:var(--text-sm);">${S(d.student_name)}</div><div style="font-size:var(--text-xs);color:var(--text-tertiary);">${d.roll_no}</div></td>
-                <td style="font-size:var(--text-xs);">${w}</td>
-                <td><span class="badge badge-${v}">${d.status}</span></td>
+                <td style="font-size:var(--text-xs);">${k}</td>
+                <td><span class="badge badge-${u}">${d.status}</span></td>
                 <td class="cell-mono">${(g=d.created_at)==null?void 0:g.slice(0,10)}</td>
               </tr>`}).join("")}
           </tbody>
         </table>
-      </div>`}o(),requestAnimationFrame(()=>{var y;return(y=document.getElementById("admin-rooms-page"))==null?void 0:y.classList.replace("page-enter","page-active")})}const se=["Plumber","Electrician","WiFi","Authority","Other"],N={Plumber:"🔧",Electrician:"⚡",WiFi:"📶",Authority:"🏛️",Other:"📋"};async function Ge(t){t.innerHTML='<div class="page-loading">Loading…</div>';try{const a=await h.get("/resources");Ue(t,a)}catch(a){t.innerHTML=`<div class="page-error">Failed to load: ${a.message}</div>`}}function Ue(t,a){let r=a,c="",s=null;t.innerHTML=`
+      </div>`}r(),requestAnimationFrame(()=>{var y;return(y=document.getElementById("admin-rooms-page"))==null?void 0:y.classList.replace("page-enter","page-active")})}const se=["Plumber","Electrician","WiFi","Authority","Other"],N={Plumber:"🔧",Electrician:"⚡",WiFi:"📶",Authority:"🏛️",Other:"📋"};async function Ge(t){t.innerHTML='<div class="page-loading">Loading…</div>';try{const a=await x.get("/resources");Ue(t,a)}catch(a){t.innerHTML=`<div class="page-error">Failed to load: ${a.message}</div>`}}function Ue(t,a){let o=a,c="",s=null;t.innerHTML=`
     <div class="page-enter" id="resources-page">
       <div class="page-header">
         <h2>Resources &amp; Contacts</h2>
@@ -1459,12 +1468,12 @@
         <div id="resources-body"></div>
       </div>
     </div>
-  `;function i(){const l=c?r.filter(m=>m.category===c):r,n=document.getElementById("resources-body");if(l.length===0){n.innerHTML='<p style="padding:var(--space-8); text-align:center; color:var(--text-tertiary);">No contacts in this category.</p>';return}const e={};l.forEach(m=>{e[m.category]||(e[m.category]=[]),e[m.category].push(m)}),n.innerHTML=Object.entries(e).map(([m,o])=>`
+  `;function i(){const l=c?o.filter(m=>m.category===c):o,n=document.getElementById("resources-body");if(l.length===0){n.innerHTML='<p style="padding:var(--space-8); text-align:center; color:var(--text-tertiary);">No contacts in this category.</p>';return}const e={};l.forEach(m=>{e[m.category]||(e[m.category]=[]),e[m.category].push(m)}),n.innerHTML=Object.entries(e).map(([m,r])=>`
       <div style="padding: var(--space-4) var(--space-6);">
         <div style="font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--text-tertiary); margin-bottom: var(--space-3);">
           ${N[m]||""} ${m}
         </div>
-        ${o.map(f=>`
+        ${r.map(f=>`
           <div class="contact-row" style="margin-bottom: var(--space-2);">
             <div class="contact-avatar">${f.name[0].toUpperCase()}</div>
             <div class="contact-info" style="flex:1;">
@@ -1483,9 +1492,9 @@
         `).join("")}
         <hr style="border:none; border-top: 1px solid var(--border-subtle); margin: var(--space-3) 0;" />
       </div>
-    `).join(""),n.querySelectorAll("[data-edit]").forEach(m=>{m.addEventListener("click",()=>{const o=r.find(f=>f.resource_id===+m.dataset.edit);o&&(s=o.resource_id,document.getElementById("res-cat").value=o.category,document.getElementById("res-name").value=o.name,document.getElementById("res-phone").value=o.phone||"",document.getElementById("res-email").value=o.email||"",document.getElementById("res-notes").value=o.notes||"",document.getElementById("resource-form-title").textContent="Edit Contact",document.getElementById("btn-res-submit").textContent="Save Changes",document.getElementById("btn-res-cancel").style.display="",document.getElementById("resource-form").scrollIntoView({behavior:"smooth"}))})}),n.querySelectorAll("[data-delete]").forEach(m=>{m.addEventListener("click",async()=>{if(confirm("Delete this contact?")){m.disabled=!0;try{await h.delete(`/resources/${m.dataset.delete}`),r=r.filter(o=>o.resource_id!==+m.dataset.delete),k("Contact deleted.","success"),i()}catch(o){k(o.message,"error"),m.disabled=!1}}})})}document.getElementById("cat-filter-select").addEventListener("change",l=>{c=l.target.value,i()}),document.getElementById("btn-res-cancel").addEventListener("click",()=>{s=null,document.getElementById("resource-form").reset(),document.getElementById("resource-form-title").textContent="Add New Contact",document.getElementById("btn-res-submit").textContent="Add Contact",document.getElementById("btn-res-cancel").style.display="none"});const p=document.getElementById("resource-form");p.addEventListener("submit",async l=>{l.preventDefault(),t.querySelectorAll(".form-error").forEach($=>$.classList.remove("visible"));let n=!0;const e=document.getElementById("res-cat").value,m=document.getElementById("res-name").value.trim();if(e||(document.getElementById("err-res-cat").classList.add("visible"),n=!1),m||(document.getElementById("err-res-name").classList.add("visible"),n=!1),!n)return;const o={category:e,name:m,phone:document.getElementById("res-phone").value.trim()||null,email:document.getElementById("res-email").value.trim()||null,notes:document.getElementById("res-notes").value.trim()||null},f=document.getElementById("btn-res-submit");f.disabled=!0;try{if(s){const $=await h.put(`/resources/${s}`,o);r=r.map(u=>u.resource_id===s?$:u),k("Contact updated.","success"),document.getElementById("btn-res-cancel").click()}else r=[await h.post("/resources",o),...r],k("Contact added.","success"),p.reset();i()}catch($){k($.message,"error")}finally{f.disabled=!1}}),i(),requestAnimationFrame(()=>{var l;return(l=document.getElementById("resources-page"))==null?void 0:l.classList.replace("page-enter","page-active")})}const Ve={home:$e,complaints:ke,booking:O,forum:ce,resources:Me},We={home:ze,complaints:He,rooms:Ne,forum:ce,resources:Ge};let M="home",U=null;function V(){return Y()==="admin"?We:Ve}function H(t){const a=V();a[t]||(t="home"),M=t,window.location.hash=t;const r=document.getElementById("sidebar"),c=document.getElementById("main-content");ye(r,M,H),a[t](c,()=>H(M)),U&&U.close()}function ie(){document.body.innerHTML=`
+    `).join(""),n.querySelectorAll("[data-edit]").forEach(m=>{m.addEventListener("click",()=>{const r=o.find(f=>f.resource_id===+m.dataset.edit);r&&(s=r.resource_id,document.getElementById("res-cat").value=r.category,document.getElementById("res-name").value=r.name,document.getElementById("res-phone").value=r.phone||"",document.getElementById("res-email").value=r.email||"",document.getElementById("res-notes").value=r.notes||"",document.getElementById("resource-form-title").textContent="Edit Contact",document.getElementById("btn-res-submit").textContent="Save Changes",document.getElementById("btn-res-cancel").style.display="",document.getElementById("resource-form").scrollIntoView({behavior:"smooth"}))})}),n.querySelectorAll("[data-delete]").forEach(m=>{m.addEventListener("click",async()=>{if(confirm("Delete this contact?")){m.disabled=!0;try{await x.delete(`/resources/${m.dataset.delete}`),o=o.filter(r=>r.resource_id!==+m.dataset.delete),C("Contact deleted.","success"),i()}catch(r){C(r.message,"error"),m.disabled=!1}}})})}document.getElementById("cat-filter-select").addEventListener("change",l=>{c=l.target.value,i()}),document.getElementById("btn-res-cancel").addEventListener("click",()=>{s=null,document.getElementById("resource-form").reset(),document.getElementById("resource-form-title").textContent="Add New Contact",document.getElementById("btn-res-submit").textContent="Add Contact",document.getElementById("btn-res-cancel").style.display="none"});const p=document.getElementById("resource-form");p.addEventListener("submit",async l=>{l.preventDefault(),t.querySelectorAll(".form-error").forEach(E=>E.classList.remove("visible"));let n=!0;const e=document.getElementById("res-cat").value,m=document.getElementById("res-name").value.trim();if(e||(document.getElementById("err-res-cat").classList.add("visible"),n=!1),m||(document.getElementById("err-res-name").classList.add("visible"),n=!1),!n)return;const r={category:e,name:m,phone:document.getElementById("res-phone").value.trim()||null,email:document.getElementById("res-email").value.trim()||null,notes:document.getElementById("res-notes").value.trim()||null},f=document.getElementById("btn-res-submit");f.disabled=!0;try{if(s){const E=await x.put(`/resources/${s}`,r);o=o.map(v=>v.resource_id===s?E:v),C("Contact updated.","success"),document.getElementById("btn-res-cancel").click()}else o=[await x.post("/resources",r),...o],C("Contact added.","success"),p.reset();i()}catch(E){C(E.message,"error")}finally{f.disabled=!1}}),i(),requestAnimationFrame(()=>{var l;return(l=document.getElementById("resources-page"))==null?void 0:l.classList.replace("page-enter","page-active")})}const Ve={home:$e,complaints:ke,booking:O,forum:ce,resources:Me},We={home:ze,complaints:He,rooms:Ne,forum:ce,resources:Ge};let M="home",U=null;function V(){return Y()==="admin"?We:Ve}function H(t){const a=V();a[t]||(t="home"),M=t,window.location.hash=t;const o=document.getElementById("sidebar"),c=document.getElementById("main-content");ye(o,M,H),a[t](c,()=>H(M)),U&&U.close()}function ie(){document.body.innerHTML=`
     <div id="app">
       <aside id="sidebar" class="sidebar"></aside>
       <main id="main-content" class="main"></main>
     </div>
-  `}function Ye(){if(!ve()){xe(()=>{ie(),ne()});return}ie(),ne()}function ne(){U=fe();const t=window.location.hash.replace("#","");M=V()[t]?t:"home",H(M),window.addEventListener("hashchange",()=>{const r=window.location.hash.replace("#","");V()[r]&&r!==M&&H(r)})}(function(){const t=localStorage.getItem("ahcms_theme")||"light";document.documentElement.setAttribute("data-theme",t)})();Ye();
+  `}function Ye(){if(!ve()){xe(()=>{ie(),ne()});return}ie(),ne()}function ne(){U=fe();const t=window.location.hash.replace("#","");M=V()[t]?t:"home",H(M),window.addEventListener("hashchange",()=>{const o=window.location.hash.replace("#","");V()[o]&&o!==M&&H(o)})}(function(){const t=localStorage.getItem("ahcms_theme")||"light";document.documentElement.setAttribute("data-theme",t)})();Ye();
