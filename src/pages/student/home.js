@@ -113,9 +113,9 @@ function renderPage(container, student, allocation, complaints, wardens, wardenO
                   </div>
                   <div class="contact-meta">${w.hostel} Hostel</div>
                   <div style="display: flex; flex-wrap: wrap; gap: 12px; font-size: 11px; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border-color); color: var(--text-secondary);">
-                    <span><span style="font-weight:600; color:var(--text-tertiary);">Last:</span> Yesterday (${w.shift})</span>
+                    <span><span style="font-weight:600; color:var(--text-tertiary);">Last:</span> ${w.previous ? w.previous.name : 'Unknown'}</span>
                     <span style="color:var(--accent-green);"><span style="font-weight:600;">Current:</span> Active</span>
-                    <span><span style="font-weight:600; color:var(--text-tertiary);">Next:</span> Tomorrow (${w.shift})</span>
+                    <span><span style="font-weight:600; color:var(--text-tertiary);">Next:</span> ${w.next ? w.next.name : 'Unknown'}</span>
                   </div>
                 </div>
               </div>

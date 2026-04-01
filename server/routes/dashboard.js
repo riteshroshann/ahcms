@@ -28,11 +28,20 @@ router.get('/student', requireAuth, requireRole('student'), (req, res) => {
     ORDER BY date DESC, complaint_id DESC LIMIT 5
   `).all(studentId);
 
-  // On-duty wardens for student's hostel
-  const wardens = db.prepare(`
-    SELECT * FROM WARDEN WHERE on_duty = 1 AND hostel = ?
-    ORDER BY role
+  // Wardens and Guards for student's hostel
+  const allStaff = db.prepare(`
+    SELECT * FROM WARDEN WHERE hostel = ?
   `).all(student?.hostel || '');
+
+  const guards = allStaff.filter(w => w.role === 'Guard' && w.on_duty === 1);
+  const allWardens = allStaff.filter(w => w.role === 'Warden');
+  const offDutyWardens = allWardens.filter(w => w.on_duty === 0);
+
+  const wardens = allWardens.filter(w => w.on_duty === 1).map(w => ({
+    ...w,
+    previous: offDutyWardens[0] || null,
+    next: offDutyWardens[1] || null
+  })).concat(guards);
 
   // Chief Warden Office contact number
   const officeRow = db.prepare(`
@@ -63,7 +72,18 @@ router.get('/admin', requireAuth, requireRole('admin'), (req, res) => {
     LIMIT 6
   `).all();
 
-  const wardens = db.prepare('SELECT * FROM WARDEN WHERE on_duty = 1 ORDER BY role, hostel').all();
+  const allStaff = db.prepare('SELECT * FROM WARDEN ORDER BY role, hostel').all();
+  const guards = allStaff.filter(w => w.role === 'Guard' && w.on_duty === 1);
+  const allWardens = allStaff.filter(w => w.role === 'Warden');
+
+  const wardens = allWardens.filter(w => w.on_duty === 1).map(w => {
+    const offDuty = allWardens.filter(ow => ow.hostel === w.hostel && ow.on_duty === 0);
+    return {
+      ...w,
+      previous: offDuty[0] || null,
+      next: offDuty[1] || null
+    };
+  }).concat(guards);
 
   const officeRow = db.prepare(`
     SELECT phone FROM RESOURCE WHERE category = 'Authority' AND name LIKE '%Warden Office%' LIMIT 1

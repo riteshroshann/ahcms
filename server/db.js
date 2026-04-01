@@ -129,15 +129,27 @@ async function seed() {
   const insertCmps = db.transaction((rows) => rows.forEach(r => cmpInsert.run(...r)));
   insertCmps(complaints);
 
-  // Wardens
   const wardInsert = db.prepare(
     'INSERT INTO WARDEN (name, role, phone, email, hostel, shift, on_duty) VALUES (?, ?, ?, ?, ?, ?, ?)'
   );
   const wardens = [
+    // Aryabhatta
     ['Dr. Ramesh Kulkarni','Warden','9876543210','r.kulkarni@ahcms.edu.in','Aryabhatta','All-day',1],
+    ['Prof. Anil Desai',   'Warden','9876543240','a.desai@ahcms.edu.in',   'Aryabhatta','All-day',0],
+    ['Mr. Vinod Kumar',    'Warden','9876543241','v.kumar@ahcms.edu.in',   'Aryabhatta','All-day',0],
+    // Gargi
     ['Mrs. Sunita Sharma', 'Warden','9876543211','s.sharma@ahcms.edu.in', 'Gargi',      'All-day',1],
+    ['Dr. Meena Iyer',     'Warden','9876543242','m.iyer@ahcms.edu.in',   'Gargi',      'All-day',0],
+    ['Ms. Kavita Das',     'Warden','9876543243','k.das@ahcms.edu.in',    'Gargi',      'All-day',0],
+    // Ramanujan
     ['Mr. Aditi Verma',    'Warden','9876543212','a.verma@ahcms.edu.in',  'Ramanujan',  'All-day',1],
+    ['Dr. Suresh Patil',   'Warden','9876543244','s.patil@ahcms.edu.in',  'Ramanujan',  'All-day',0],
+    ['Mr. Ravi Menon',     'Warden','9876543245','r.menon@ahcms.edu.in',  'Ramanujan',  'All-day',0],
+    // Maitreyi
     ['Mr. Prakash Nair',   'Warden','9876543213','p.nair@ahcms.edu.in',   'Maitreyi',   'All-day',1],
+    ['Dr. Anita Rao',      'Warden','9876543246','a.rao@ahcms.edu.in',    'Maitreyi',   'All-day',0],
+    ['Mrs. Neha Singh',    'Warden','9876543247','n.singh@ahcms.edu.in',  'Maitreyi',   'All-day',0],
+    // Guards (unchanged)
     ['Suresh Kumar',       'Guard', '9876543220','',                'Aryabhatta', 'Morning',1],
     ['Mahesh Yadav',       'Guard', '9876543221','',                'Aryabhatta', 'Night',  1],
     ['Ravi Shankar',       'Guard', '9876543222','',                'Gargi',      'Morning',1],
