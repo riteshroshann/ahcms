@@ -134,10 +134,10 @@ async function seed() {
     'INSERT INTO WARDEN (name, role, phone, email, hostel, shift, on_duty) VALUES (?, ?, ?, ?, ?, ?, ?)'
   );
   const wardens = [
-    ['Dr. Ramesh Kulkarni','Warden','9876543210','r.kulkarni@cw.edu','Aryabhatta','All-day',1],
-    ['Mrs. Sunita Sharma', 'Warden','9876543211','s.sharma@cw.edu', 'Gargi',      'All-day',1],
-    ['Mr. Aditi Verma',    'Warden','9876543212','a.verma@cw.edu',  'Ramanujan',  'All-day',1],
-    ['Mr. Prakash Nair',   'Warden','9876543213','p.nair@cw.edu',   'Maitreyi',   'All-day',1],
+    ['Dr. Ramesh Kulkarni','Warden','9876543210','r.kulkarni@ahcms.edu.in','Aryabhatta','All-day',1],
+    ['Mrs. Sunita Sharma', 'Warden','9876543211','s.sharma@ahcms.edu.in', 'Gargi',      'All-day',1],
+    ['Mr. Aditi Verma',    'Warden','9876543212','a.verma@ahcms.edu.in',  'Ramanujan',  'All-day',1],
+    ['Mr. Prakash Nair',   'Warden','9876543213','p.nair@ahcms.edu.in',   'Maitreyi',   'All-day',1],
     ['Suresh Kumar',       'Guard', '9876543220','',                'Aryabhatta', 'Morning',1],
     ['Mahesh Yadav',       'Guard', '9876543221','',                'Aryabhatta', 'Night',  1],
     ['Ravi Shankar',       'Guard', '9876543222','',                'Gargi',      'Morning',1],
@@ -169,10 +169,10 @@ async function seed() {
   const resources = [
     ['Plumber',      'Ramakant Plumbing Services', '9988776655','ramakant@plumb.com',  'Available 8am-8pm, emergency: 24/7'],
     ['Electrician',  'Vijay Electricals',          '9988776600','vijay@elec.com',      'Licensed electrician, handles all wiring'],
-    ['WiFi',         'CW Network Team',            '9988776611','wifi@cw.edu',         'Internal IT support ticket: helpdesk.cw.edu'],
-    ['Authority',    'Chief Warden Office',        '9876543210','chiefwarden@cw.edu',  'Office hours: Mon-Sat 10am-5pm'],
-    ['Authority',    'Dean of Students',           '9876543200','dean.students@cw.edu','For escalations requiring institutional intervention'],
-    ['Other',        'Hostel Maintenance Desk',   '9876543230','maintenance@cw.edu',  'Log minor repairs and follow up'],
+    ['WiFi',         'AHCMS Network Team',            '9988776611','wifi@ahcms.edu.in',         'Internal IT support ticket: helpdesk.ahcms.edu.in'],
+    ['Authority',    'Chief Warden Office',        '9876543210','chiefwarden@ahcms.edu.in',  'Office hours: Mon-Sat 10am-5pm'],
+    ['Authority',    'Dean of Students',           '9876543200','dean.students@ahcms.edu.in','For escalations requiring institutional intervention'],
+    ['Other',        'Hostel Maintenance Desk',   '9876543230','maintenance@ahcms.edu.in',  'Log minor repairs and follow up'],
   ];
   const insertRes = db.transaction((rows) => rows.forEach(r => resInsert.run(...r)));
   insertRes(resources);

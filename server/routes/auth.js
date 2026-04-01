@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import db from '../db.js';
 
 const router = Router();
-const JWT_SECRET = process.env.JWT_SECRET || 'cw-hostel-dev-secret';
+const JWT_SECRET = process.env.JWT_SECRET || 'ahcms-dev-secret';
 const JWT_EXPIRES = '7d';
 
 // ── Student Login ─────────────────────────────────────────────

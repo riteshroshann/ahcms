@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'cw-hostel-dev-secret';
+const JWT_SECRET = process.env.JWT_SECRET || 'ahcms-dev-secret';
 
 export function requireAuth(req, res, next) {
   const header = req.headers.authorization;
