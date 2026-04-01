@@ -80,30 +80,52 @@ function renderPage(container, allRooms, allocation, bookingReqs, changeReqs) {
           </div>
 
           <!-- Room change request form (hidden until button click) -->
-          <div class="change-req-form" id="change-req-section" style="display:${pendingChange ? 'block' : 'none'};">
+                <div id="change-req-section" class="change-req-form" style="display:${pendingChange ? 'block' : 'none'}">
             ${pendingChange ? `
               <div style="font-size:var(--text-sm); font-weight:600; color:var(--accent-amber); margin-bottom:var(--space-3);">Pending Room Change Request</div>
               <div style="font-size:var(--text-sm); color:var(--text-secondary);">
                 You have requested to move to <strong>${pendingChange.to_room_id}</strong> (${pendingChange.to_hostel}, Floor ${pendingChange.to_floor}).
                 Submitted on ${pendingChange.created_at?.slice(0,10)}. Awaiting warden approval.
               </div>
-            ` : `
+            ` : (() => {
+              // Same-floor available rooms
+              const sameFloor = allRooms.filter(r =>
+                r.hostel === allocation.hostel &&
+                r.floor  === allocation.floor  &&
+                r.room_id !== allocation.room_id &&
+                r.current_occupancy < r.capacity
+              ).sort((a,b) => a.room_id.localeCompare(b.room_id));
+
+              // If entire floor is full, fall back to all rooms in hostel
+              const floorFull  = sameFloor.length === 0;
+              const targetList = floorFull
+                ? allRooms.filter(r =>
+                    r.hostel === allocation.hostel &&
+                    r.room_id !== allocation.room_id &&
+                    r.current_occupancy < r.capacity
+                  ).sort((a,b) => a.floor - b.floor || a.room_id.localeCompare(b.room_id))
+                : sameFloor;
+
+              return `
               <div style="font-size:var(--text-sm); font-weight:600; margin-bottom:var(--space-4);">Request a Room Change</div>
+              ${floorFull ? `
+                <div style="font-size:var(--text-xs); background:color-mix(in srgb,var(--accent-amber) 10%,transparent); border:1px solid color-mix(in srgb,var(--accent-amber) 25%,transparent); border-radius:8px; padding:var(--space-3) var(--space-4); color:var(--accent-amber); margin-bottom:var(--space-4);">
+                  All rooms on your floor (Floor ${allocation.floor}) are currently full. You may request a transfer to another floor.
+                </div>
+              ` : `
+                <div style="font-size:var(--text-xs); color:var(--text-tertiary); margin-bottom:var(--space-4);">
+                  Only rooms on your current floor (Floor ${allocation.floor}) are shown. Cross-floor transfers are only allowed when your floor has no available rooms.
+                </div>
+              `}
               <div id="change-msg"></div>
               <form id="change-req-form">
                 <div class="form-group">
                   <label class="form-label">Target Room *</label>
                   <select class="form-select" id="change-target-room" name="to_room_id" required>
-                    <option value="">— select a different room —</option>
-                    ${allRooms
-                      .filter(r => r.room_id !== allocation.room_id
-                             && r.current_occupancy < r.capacity
-                             && r.hostel === allocation.hostel)
-                      .sort((a,b) => a.floor - b.floor || a.room_id.localeCompare(b.room_id))
-                      .map(r => `<option value="${r.room_id}">${r.room_id} · Fl ${r.floor} · ${r.type} · ${r.current_occupancy}/${r.capacity}</option>`)
-                      .join('')
-                    }
+                    <option value="">— select a room —</option>
+                    ${targetList.map(r => `<option value="${r.room_id}">${r.room_id} · Fl ${r.floor} · ${r.type} · ${r.current_occupancy}/${r.capacity}</option>`).join('')}
                   </select>
+                  ${targetList.length === 0 ? `<div style="font-size:var(--text-xs); color:var(--accent-red); margin-top:4px;">No available rooms in your hostel.</div>` : ''}
                 </div>
                 <div class="form-group">
                   <label class="form-label">Reason for Change *</label>
@@ -113,8 +135,9 @@ function renderPage(container, allRooms, allocation, bookingReqs, changeReqs) {
                   <button type="submit" class="btn btn-primary" id="btn-submit-change">Submit Request</button>
                   <button type="button" class="btn btn-secondary" id="btn-cancel-change">Cancel</button>
                 </div>
-              </form>
-            `}
+              </form>`;
+            })()
+            }
           </div>
         </div>
       ` : pendingBooking ? `

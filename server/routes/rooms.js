@@ -326,6 +326,34 @@ router.post('/change-requests', requireAuth, requireRole('student'), (req, res) 
     return res.status(409).json({ error: 'Target room is at full capacity.' });
   }
 
+  // ── Same-floor rule ──────────────────────────────────────────────
+  // Look up current room's floor
+  const fromRoom   = db.prepare('SELECT * FROM ROOM WHERE room_id = ?').get(currentAlloc.room_id);
+  const sameFloor  = toRoom.floor === fromRoom.floor;
+
+  if (!sameFloor) {
+    // Exception: allow cross-floor ONLY if no room on the current floor
+    // has any remaining capacity (excluding the student's own room)
+    const floorVacancy = db.prepare(`
+      SELECT COUNT(*) AS cnt
+      FROM ROOM
+      WHERE hostel = ? AND floor = ? AND room_id != ? AND current_occupancy < capacity
+    `).get(fromRoom.hostel, fromRoom.floor, currentAlloc.room_id);
+
+    if (floorVacancy.cnt > 0) {
+      return res.status(400).json({
+        error: `Room changes are restricted to your current floor (Floor ${fromRoom.floor}). ` +
+               `There are still ${floorVacancy.cnt} room(s) with available space on your floor.`
+      });
+    }
+    // All other rooms on this floor are full — cross-floor allowed
+    // but must still be within the same hostel
+    if (toRoom.hostel !== fromRoom.hostel) {
+      return res.status(400).json({ error: 'Cross-hostel room transfers are not permitted.' });
+    }
+  }
+  // ────────────────────────────────────────────────────────────────
+
   const result = db.prepare(`
     INSERT INTO ROOM_CHANGE_REQUEST (student_id, from_room_id, to_room_id, reason)
     VALUES (?, ?, ?, ?)
