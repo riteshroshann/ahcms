@@ -104,13 +104,20 @@ function renderPage(container, student, allocation, complaints, wardens, wardenO
           ${warden_list.length === 0
             ? `<p class="empty-msg">No warden data available.</p>`
             : warden_list.map(w => `
-              <div class="contact-row">
+              <div class="contact-row" style="align-items: flex-start;">
                 <div class="contact-avatar">${w.name[0]}</div>
-                <div class="contact-info">
-                  <div class="contact-name">${w.name}</div>
-                  <div class="contact-meta">${w.hostel} Hostel · ${w.shift}</div>
+                <div class="contact-info" style="flex: 1;">
+                  <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2px;">
+                    <div class="contact-name">${w.name}</div>
+                    <a href="tel:${w.phone}" class="contact-phone" style="margin-left: auto;">${w.phone || '—'}</a>
+                  </div>
+                  <div class="contact-meta">${w.hostel} Hostel</div>
+                  <div style="display: flex; flex-wrap: wrap; gap: 12px; font-size: 11px; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border-color); color: var(--text-secondary);">
+                    <span><span style="font-weight:600; color:var(--text-tertiary);">Last:</span> Yesterday (${w.shift})</span>
+                    <span style="color:var(--accent-green);"><span style="font-weight:600;">Current:</span> Active</span>
+                    <span><span style="font-weight:600; color:var(--text-tertiary);">Next:</span> Tomorrow (${w.shift})</span>
+                  </div>
                 </div>
-                <a href="tel:${w.phone}" class="contact-phone">${w.phone || '—'}</a>
               </div>
             `).join('')}
 
