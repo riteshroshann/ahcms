@@ -1,20 +1,20 @@
-(function(){const o=document.createElement("link").relList;if(o&&o.supports&&o.supports("modulepreload"))return;for(const i of document.querySelectorAll('link[rel="modulepreload"]'))c(i);new MutationObserver(i=>{for(const n of i)if(n.type==="childList")for(const v of n.addedNodes)v.tagName==="LINK"&&v.rel==="modulepreload"&&c(v)}).observe(document,{childList:!0,subtree:!0});function l(i){const n={};return i.integrity&&(n.integrity=i.integrity),i.referrerPolicy&&(n.referrerPolicy=i.referrerPolicy),i.crossOrigin==="use-credentials"?n.credentials="include":i.crossOrigin==="anonymous"?n.credentials="omit":n.credentials="same-origin",n}function c(i){if(i.ep)return;i.ep=!0;const n=l(i);fetch(i.href,n)}})();const S="ahcms_token",_="ahcms_user";(function(){const o=localStorage.getItem("cw_hostel_token"),l=localStorage.getItem("cw_hostel_user");o&&(localStorage.setItem(S,o),localStorage.removeItem("cw_hostel_token")),l&&(localStorage.setItem(_,l),localStorage.removeItem("cw_hostel_user"))})();function F(a,o){localStorage.setItem(S,a),localStorage.setItem(_,JSON.stringify(o))}function V(){return localStorage.getItem(S)}function H(){try{return JSON.parse(localStorage.getItem(_))}catch{return null}}function z(){var a;return((a=H())==null?void 0:a.role)||null}function Q(){const a=V();if(!a)return!1;try{return JSON.parse(atob(a.split(".")[1])).exp*1e3>Date.now()}catch{return!1}}function G(){localStorage.removeItem(S),localStorage.removeItem(_)}const $={home:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',complaints:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="15" r="0.5" fill="currentColor"/></svg>',booking:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>',forum:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2v4l-4-4H9a2 2 0 0 1-2-2v-1"/><path d="M15 3H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2v4l4-4h4a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/></svg>',rooms:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>',resources:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',logout:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>',theme:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>',menu:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>',close:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'},X=[{id:"home",label:"Home",icon:$.home},{id:"complaints",label:"Complaint",icon:$.complaints},{id:"booking",label:"Room Booking",icon:$.booking},{id:"forum",label:"Community Forum",icon:$.forum}],Z=[{id:"home",label:"Home",icon:$.home},{id:"complaints",label:"Complaints",icon:$.complaints},{id:"rooms",label:"Room Details",icon:$.rooms},{id:"forum",label:"Community Forum",icon:$.forum},{id:"resources",label:"Resources",icon:$.resources}];function ee(a,o,l){var d,s;const c=z(),i=H(),n=c==="admin"?Z:X,v=c==="admin"?"Admin Panel":"Student Portal";a.innerHTML=`
+(function(){const o=document.createElement("link").relList;if(o&&o.supports&&o.supports("modulepreload"))return;for(const r of document.querySelectorAll('link[rel="modulepreload"]'))c(r);new MutationObserver(r=>{for(const l of r)if(l.type==="childList")for(const p of l.addedNodes)p.tagName==="LINK"&&p.rel==="modulepreload"&&c(p)}).observe(document,{childList:!0,subtree:!0});function d(r){const l={};return r.integrity&&(l.integrity=r.integrity),r.referrerPolicy&&(l.referrerPolicy=r.referrerPolicy),r.crossOrigin==="use-credentials"?l.credentials="include":r.crossOrigin==="anonymous"?l.credentials="omit":l.credentials="same-origin",l}function c(r){if(r.ep)return;r.ep=!0;const l=d(r);fetch(r.href,l)}})();const S="ahcms_token",_="ahcms_user";(function(){const o=localStorage.getItem("cw_hostel_token"),d=localStorage.getItem("cw_hostel_user");o&&(localStorage.setItem(S,o),localStorage.removeItem("cw_hostel_token")),d&&(localStorage.setItem(_,d),localStorage.removeItem("cw_hostel_user"))})();function z(t,o){localStorage.setItem(S,t),localStorage.setItem(_,JSON.stringify(o))}function G(){return localStorage.getItem(S)}function H(){try{return JSON.parse(localStorage.getItem(_))}catch{return null}}function F(){var t;return((t=H())==null?void 0:t.role)||null}function X(){const t=G();if(!t)return!1;try{return JSON.parse(atob(t.split(".")[1])).exp*1e3>Date.now()}catch{return!1}}function Y(){localStorage.removeItem(S),localStorage.removeItem(_)}const $={home:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',complaints:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="15" r="0.5" fill="currentColor"/></svg>',booking:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>',forum:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2v4l-4-4H9a2 2 0 0 1-2-2v-1"/><path d="M15 3H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2v4l4-4h4a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/></svg>',rooms:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>',resources:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',logout:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>',theme:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>',menu:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>',close:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'},Z=[{id:"home",label:"Home",icon:$.home},{id:"complaints",label:"Complaint",icon:$.complaints},{id:"booking",label:"Room Booking",icon:$.booking},{id:"forum",label:"Community Forum",icon:$.forum},{id:"resources",label:"Resources",icon:$.resources}],ee=[{id:"home",label:"Home",icon:$.home},{id:"complaints",label:"Complaints",icon:$.complaints},{id:"rooms",label:"Room Details",icon:$.rooms},{id:"forum",label:"Community Forum",icon:$.forum},{id:"resources",label:"Resources",icon:$.resources}];function te(t,o,d){var i,s;const c=F(),r=H(),l=c==="admin"?ee:Z,p=c==="admin"?"Admin Panel":"Student Portal";t.innerHTML=`
     <div class="sidebar-brand">
       <h1>AHCMS</h1>
-      <span>${v}</span>
+      <span>${p}</span>
     </div>
 
     <div class="sidebar-user">
-      <div class="sidebar-user-avatar">${((i==null?void 0:i.name)||"U")[0].toUpperCase()}</div>
+      <div class="sidebar-user-avatar">${((r==null?void 0:r.name)||"U")[0].toUpperCase()}</div>
       <div class="sidebar-user-info">
-        <div class="sidebar-user-name">${(i==null?void 0:i.name)||"User"}</div>
-        <div class="sidebar-user-role">${c==="admin"?"Administrator":(i==null?void 0:i.roll_no)||"Student"}</div>
+        <div class="sidebar-user-name">${(r==null?void 0:r.name)||"User"}</div>
+        <div class="sidebar-user-role">${c==="admin"?"Administrator":(r==null?void 0:r.roll_no)||"Student"}</div>
       </div>
     </div>
 
     <div class="sidebar-section">
       <div class="sidebar-section-label">Navigation</div>
-      ${n.map(e=>`
+      ${l.map(e=>`
         <a class="nav-item${e.id===o?" active":""}"
            data-page="${e.id}"
            id="nav-${e.id}"
@@ -37,7 +37,7 @@
       </button>
       <p>v2.0 · 2026</p>
     </div>
-  `,a.querySelectorAll(".nav-item[data-page]").forEach(e=>{e.addEventListener("click",()=>l(e.dataset.page)),e.addEventListener("keydown",t=>{(t.key==="Enter"||t.key===" ")&&(t.preventDefault(),e.click())})}),(d=document.getElementById("nav-logout"))==null||d.addEventListener("click",()=>{G(),window.location.reload()}),(s=document.getElementById("nav-theme"))==null||s.addEventListener("click",()=>{const t=(document.documentElement.getAttribute("data-theme")||"light")==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",t),localStorage.setItem("ahcms_theme",t)})}function te(){const a=document.createElement("button");a.className="sidebar-toggle",a.id="sidebar-toggle",a.innerHTML=$.menu,a.setAttribute("aria-label","Toggle navigation");const o=document.createElement("div");o.className="sidebar-overlay",o.id="sidebar-overlay",document.body.appendChild(a),document.body.appendChild(o);const l=document.getElementById("sidebar");function c(){l.classList.add("open"),o.classList.add("show"),a.innerHTML=$.close}function i(){l.classList.remove("open"),o.classList.remove("show"),a.innerHTML=$.menu}return a.addEventListener("click",()=>l.classList.contains("open")?i():c()),o.addEventListener("click",i),{close:i}}const ae="/api";async function I(a,o,l){const c=V(),i={"Content-Type":"application/json"};c&&(i.Authorization=`Bearer ${c}`);const n=new AbortController,v=setTimeout(()=>n.abort(),1e4);try{const d=await fetch(`${ae}${o}`,{method:a,headers:i,body:l!==void 0?JSON.stringify(l):void 0,signal:n.signal});if(d.status===401){G(),window.location.reload();return}const s=await d.json().catch(()=>({}));if(!d.ok)throw new Error(s.error||`Request failed (${d.status})`);return s}catch(d){throw d.name==="AbortError"?new Error("Request timed out — is the server running?"):d}finally{clearTimeout(v)}}const f={get:a=>I("GET",a),post:(a,o)=>I("POST",a,o),patch:(a,o)=>I("PATCH",a,o),put:(a,o)=>I("PUT",a,o),delete:a=>I("DELETE",a)};let B=null;function oe(){B||(B=document.createElement("div"),B.className="toast-container",document.body.appendChild(B))}function h(a,o="info",l=3500){oe();const c=document.createElement("div");c.className=`toast toast-${o}`,c.textContent=a,B.appendChild(c),requestAnimationFrame(()=>{requestAnimationFrame(()=>{c.classList.add("show")})}),setTimeout(()=>{c.classList.remove("show"),setTimeout(()=>c.remove(),300)},l)}function se(a){var c;document.body.innerHTML=`
+  `,t.querySelectorAll(".nav-item[data-page]").forEach(e=>{e.addEventListener("click",()=>d(e.dataset.page)),e.addEventListener("keydown",a=>{(a.key==="Enter"||a.key===" ")&&(a.preventDefault(),e.click())})}),(i=document.getElementById("nav-logout"))==null||i.addEventListener("click",()=>{Y(),window.location.reload()}),(s=document.getElementById("nav-theme"))==null||s.addEventListener("click",()=>{const a=(document.documentElement.getAttribute("data-theme")||"light")==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",a),localStorage.setItem("ahcms_theme",a)})}function ae(){const t=document.createElement("button");t.className="sidebar-toggle",t.id="sidebar-toggle",t.innerHTML=$.menu,t.setAttribute("aria-label","Toggle navigation");const o=document.createElement("div");o.className="sidebar-overlay",o.id="sidebar-overlay",document.body.appendChild(t),document.body.appendChild(o);const d=document.getElementById("sidebar");function c(){d.classList.add("open"),o.classList.add("show"),t.innerHTML=$.close}function r(){d.classList.remove("open"),o.classList.remove("show"),t.innerHTML=$.menu}return t.addEventListener("click",()=>d.classList.contains("open")?r():c()),o.addEventListener("click",r),{close:r}}const oe="/api";async function I(t,o,d){const c=G(),r={"Content-Type":"application/json"};c&&(r.Authorization=`Bearer ${c}`);const l=new AbortController,p=setTimeout(()=>l.abort(),1e4);try{const i=await fetch(`${oe}${o}`,{method:t,headers:r,body:d!==void 0?JSON.stringify(d):void 0,signal:l.signal});if(i.status===401){Y(),window.location.reload();return}const s=await i.json().catch(()=>({}));if(!i.ok)throw new Error(s.error||`Request failed (${i.status})`);return s}catch(i){throw i.name==="AbortError"?new Error("Request timed out — is the server running?"):i}finally{clearTimeout(p)}}const f={get:t=>I("GET",t),post:(t,o)=>I("POST",t,o),patch:(t,o)=>I("PATCH",t,o),put:(t,o)=>I("PUT",t,o),delete:t=>I("DELETE",t)};let A=null;function se(){A||(A=document.createElement("div"),A.className="toast-container",document.body.appendChild(A))}function h(t,o="info",d=3500){se();const c=document.createElement("div");c.className=`toast toast-${o}`,c.textContent=t,A.appendChild(c),requestAnimationFrame(()=>{requestAnimationFrame(()=>{c.classList.add("show")})}),setTimeout(()=>{c.classList.remove("show"),setTimeout(()=>c.remove(),300)},d)}function re(t){var c;document.body.innerHTML=`
     <div class="login-page">
       <div class="login-panel" style="position: relative;">
 
@@ -126,7 +126,7 @@
         </div>
       </div>
     </div>
-  `,(c=document.getElementById("login-theme"))==null||c.addEventListener("click",()=>{const n=(document.documentElement.getAttribute("data-theme")||"dark")==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n),localStorage.setItem("ahcms_theme",n)});let o="student";document.querySelectorAll(".login-tab").forEach(i=>{i.addEventListener("click",()=>{o=i.dataset.tab,document.querySelectorAll(".login-tab").forEach(n=>n.classList.remove("active")),i.classList.add("active"),document.getElementById("form-student").classList.toggle("hidden",o!=="student"),document.getElementById("form-admin").classList.toggle("hidden",o!=="admin"),document.getElementById("form-register").classList.add("hidden")})}),document.getElementById("btn-show-register").addEventListener("click",()=>{document.getElementById("form-admin").classList.add("hidden"),document.getElementById("form-register").classList.remove("hidden")}),document.getElementById("btn-back-login").addEventListener("click",()=>{document.getElementById("form-register").classList.add("hidden"),document.getElementById("form-admin").classList.remove("hidden")});function l(i,n){const v=document.getElementById(i);v.disabled=n,v.textContent=n?"Signing in…":"Sign In"}document.getElementById("form-student").addEventListener("submit",async i=>{i.preventDefault();const n=document.getElementById("s-roll").value.trim(),v=document.getElementById("s-pass").value,d=document.getElementById("err-student");if(d.textContent="",!n||!v){d.textContent="All fields required.";return}l("btn-student-login",!0);try{const{token:s,user:e}=await f.post("/auth/student/login",{roll_no:n,password:v});F(s,e),a()}catch(s){d.textContent=s.message}finally{l("btn-student-login",!1)}}),document.getElementById("form-admin").addEventListener("submit",async i=>{i.preventDefault();const n=document.getElementById("a-email").value.trim(),v=document.getElementById("a-pass").value,d=document.getElementById("err-admin");if(d.textContent="",!n||!v){d.textContent="All fields required.";return}l("btn-admin-login",!0);try{const{token:s,user:e}=await f.post("/auth/admin/login",{email:n,password:v});F(s,e),a()}catch(s){d.textContent=s.message}finally{l("btn-admin-login",!1)}}),document.getElementById("form-register").addEventListener("submit",async i=>{i.preventDefault();const n=document.getElementById("r-name").value.trim(),v=document.getElementById("r-email").value.trim(),d=document.getElementById("r-pass").value,s=document.getElementById("err-register");if(s.textContent="",!n||!v||!d){s.textContent="All fields required.";return}if(d.length<8){s.textContent="Password must be at least 8 characters.";return}const e=document.getElementById("btn-register");e.disabled=!0,e.textContent="Creating…";try{await f.post("/auth/admin/register",{name:n,email:v,password:d}),h("Account created! Please sign in.","success"),document.getElementById("btn-back-login").click(),document.getElementById("a-email").value=v}catch(t){s.textContent=t.message}finally{e.disabled=!1,e.textContent="Create Account"}})}async function ie(a){a.innerHTML='<div class="page-loading">Loading…</div>';try{const{student:o,allocation:l,complaints:c,wardens:i,wardenOfficePhone:n}=await f.get("/dashboard/student");re(a,o,l,c,i,n)}catch(o){a.innerHTML=`<div class="page-error">Failed to load dashboard: ${o.message}</div>`}}function re(a,o,l,c,i,n){var s;const v=i.filter(e=>e.role==="Warden"),d=i.filter(e=>e.role==="Guard");a.innerHTML=`
+  `,(c=document.getElementById("login-theme"))==null||c.addEventListener("click",()=>{const l=(document.documentElement.getAttribute("data-theme")||"dark")==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",l),localStorage.setItem("ahcms_theme",l)});let o="student";document.querySelectorAll(".login-tab").forEach(r=>{r.addEventListener("click",()=>{o=r.dataset.tab,document.querySelectorAll(".login-tab").forEach(l=>l.classList.remove("active")),r.classList.add("active"),document.getElementById("form-student").classList.toggle("hidden",o!=="student"),document.getElementById("form-admin").classList.toggle("hidden",o!=="admin"),document.getElementById("form-register").classList.add("hidden")})}),document.getElementById("btn-show-register").addEventListener("click",()=>{document.getElementById("form-admin").classList.add("hidden"),document.getElementById("form-register").classList.remove("hidden")}),document.getElementById("btn-back-login").addEventListener("click",()=>{document.getElementById("form-register").classList.add("hidden"),document.getElementById("form-admin").classList.remove("hidden")});function d(r,l){const p=document.getElementById(r);p.disabled=l,p.textContent=l?"Signing in…":"Sign In"}document.getElementById("form-student").addEventListener("submit",async r=>{r.preventDefault();const l=document.getElementById("s-roll").value.trim(),p=document.getElementById("s-pass").value,i=document.getElementById("err-student");if(i.textContent="",!l||!p){i.textContent="All fields required.";return}d("btn-student-login",!0);try{const{token:s,user:e}=await f.post("/auth/student/login",{roll_no:l,password:p});z(s,e),t()}catch(s){i.textContent=s.message}finally{d("btn-student-login",!1)}}),document.getElementById("form-admin").addEventListener("submit",async r=>{r.preventDefault();const l=document.getElementById("a-email").value.trim(),p=document.getElementById("a-pass").value,i=document.getElementById("err-admin");if(i.textContent="",!l||!p){i.textContent="All fields required.";return}d("btn-admin-login",!0);try{const{token:s,user:e}=await f.post("/auth/admin/login",{email:l,password:p});z(s,e),t()}catch(s){i.textContent=s.message}finally{d("btn-admin-login",!1)}}),document.getElementById("form-register").addEventListener("submit",async r=>{r.preventDefault();const l=document.getElementById("r-name").value.trim(),p=document.getElementById("r-email").value.trim(),i=document.getElementById("r-pass").value,s=document.getElementById("err-register");if(s.textContent="",!l||!p||!i){s.textContent="All fields required.";return}if(i.length<8){s.textContent="Password must be at least 8 characters.";return}const e=document.getElementById("btn-register");e.disabled=!0,e.textContent="Creating…";try{await f.post("/auth/admin/register",{name:l,email:p,password:i}),h("Account created! Please sign in.","success"),document.getElementById("btn-back-login").click(),document.getElementById("a-email").value=p}catch(a){s.textContent=a.message}finally{e.disabled=!1,e.textContent="Create Account"}})}async function ie(t){t.innerHTML='<div class="page-loading">Loading…</div>';try{const{student:o,allocation:d,complaints:c,wardens:r,wardenOfficePhone:l}=await f.get("/dashboard/student");ne(t,o,d,c,r,l)}catch(o){t.innerHTML=`<div class="page-error">Failed to load dashboard: ${o.message}</div>`}}function ne(t,o,d,c,r,l){var s;const p=r.filter(e=>e.role==="Warden"),i=r.filter(e=>e.role==="Guard");t.innerHTML=`
     <div class="page-enter" id="student-home">
       <div class="page-header">
         <h2>Welcome, ${((s=o==null?void 0:o.name)==null?void 0:s.split(" ")[0])||"Student"} 👋</h2>
@@ -137,10 +137,10 @@
       <div class="form-section" style="max-width: none; margin-bottom: var(--space-10);">
         <div class="form-section-title">Your Profile</div>
         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--space-4);">
-          ${[["Roll No",o==null?void 0:o.roll_no],["Course",o==null?void 0:o.course],["Admission",o==null?void 0:o.adm_year],["Passing Year",o==null?void 0:o.pass_year],["Gender",(o==null?void 0:o.gender)==="M"?"Male":(o==null?void 0:o.gender)==="F"?"Female":o==null?void 0:o.gender],["Address",(o==null?void 0:o.address)||"—"]].map(([e,t])=>`
+          ${[["Roll No",o==null?void 0:o.roll_no],["Course",o==null?void 0:o.course],["Admission",o==null?void 0:o.adm_year],["Passing Year",o==null?void 0:o.pass_year],["Gender",(o==null?void 0:o.gender)==="M"?"Male":(o==null?void 0:o.gender)==="F"?"Female":o==null?void 0:o.gender],["Address",(o==null?void 0:o.address)||"—"]].map(([e,a])=>`
             <div>
               <div style="font-size: var(--text-xs); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: .06em;">${e}</div>
-              <div style="font-size: var(--text-sm); color: var(--text-primary); margin-top: 4px;">${t||"—"}</div>
+              <div style="font-size: var(--text-sm); color: var(--text-primary); margin-top: 4px;">${a||"—"}</div>
             </div>
           `).join("")}
         </div>
@@ -150,10 +150,10 @@
       <div class="card-grid">
         <div class="card card-accent-blue" style="grid-column: span 2;">
           <div class="card-label">Your Room</div>
-          ${l?`<div class="card-value">${l.room_id}</div>
-               <div class="card-sub">${l.hostel} · Floor ${l.floor} · ${l.type} · ${l.status}</div>
+          ${d?`<div class="card-value">${d.room_id}</div>
+               <div class="card-sub">${d.hostel} · Floor ${d.floor} · ${d.type} · ${d.status}</div>
                <div style="margin-top: var(--space-2); font-size: var(--text-xs); color: var(--text-tertiary);">
-                 ${l.from_date} → ${l.to_date}
+                 ${d.from_date} → ${d.to_date}
                </div>`:`<div style="color: var(--text-tertiary); font-size: var(--text-sm); padding: var(--space-2) 0;">
                  No active room allocation. <a class="link-accent" href="#booking">Book a room →</a>
                </div>`}
@@ -177,8 +177,8 @@
         <div class="form-section" style="max-width: none;">
           <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:var(--space-2); margin-bottom:var(--space-4);">
             <div class="form-section-title" style="margin-bottom:0;">On-Duty Wardens</div>
-            ${n?`
-              <a href="tel:${n}" style="
+            ${l?`
+              <a href="tel:${l}" style="
                 display: inline-flex; align-items: center; gap: 6px;
                 background: color-mix(in srgb, var(--accent-green) 12%, transparent);
                 border: 1px solid color-mix(in srgb, var(--accent-green) 30%, transparent);
@@ -195,10 +195,10 @@
               onmouseout="this.style.background='color-mix(in srgb,var(--accent-green) 12%,transparent)'; this.style.transform='scale(1)'"
               >
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6.29 6.29l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                Office: ${n}
+                Office: ${l}
               </a>`:""}
           </div>
-          ${v.length===0?'<p class="empty-msg">No warden data available.</p>':v.map(e=>`
+          ${p.length===0?'<p class="empty-msg">No warden data available.</p>':p.map(e=>`
               <div class="contact-row" style="align-items: flex-start;">
                 <div class="contact-avatar">${e.name[0]}</div>
                 <div class="contact-info" style="flex: 1;">
@@ -217,7 +217,7 @@
             `).join("")}
 
           <div class="form-section-title" style="margin-top: var(--space-6);">On-Duty Guards</div>
-          ${d.length===0?'<p class="empty-msg">No guard data.</p>':d.map(e=>`
+          ${i.length===0?'<p class="empty-msg">No guard data.</p>':i.map(e=>`
               <div class="contact-row">
                 <div class="contact-avatar guard">${e.name[0]}</div>
                 <div class="contact-info">
@@ -250,7 +250,7 @@
 
 
     </div>
-  `,a.querySelectorAll('a.link-accent[href^="#"]').forEach(e=>{e.addEventListener("click",t=>{t.preventDefault(),window.location.hash=e.getAttribute("href").slice(1)})}),requestAnimationFrame(()=>{var e;return(e=document.getElementById("student-home"))==null?void 0:e.classList.replace("page-enter","page-active")})}const P=["Plumbing","Electricity","WiFi","Cleanliness","Carpentry","Other"],q={Plumbing:"🔧",Electricity:"⚡",WiFi:"📶",Cleanliness:"🧹",Carpentry:"🔨",Other:"📋"},ne=["open","in-progress","resolved"];async function le(a){a.innerHTML='<div class="page-loading">Loading…</div>';let o=[];try{o=await f.get("/complaints")}catch(l){a.innerHTML=`<div class="page-error">Failed to load: ${l.message}</div>`;return}de(a,o)}function de(a,o){let l=o,c="all",i="";a.innerHTML=`
+  `,t.querySelectorAll('a.link-accent[href^="#"]').forEach(e=>{e.addEventListener("click",a=>{a.preventDefault(),window.location.hash=e.getAttribute("href").slice(1)})}),requestAnimationFrame(()=>{var e;return(e=document.getElementById("student-home"))==null?void 0:e.classList.replace("page-enter","page-active")})}const P=["Plumbing","Electricity","WiFi","Cleanliness","Carpentry","Other"],T={Plumbing:"🔧",Electricity:"⚡",WiFi:"📶",Cleanliness:"🧹",Carpentry:"🔨",Other:"📋"},le=["open","in-progress","resolved"];async function de(t){t.innerHTML='<div class="page-loading">Loading…</div>';let o=[];try{o=await f.get("/complaints")}catch(d){t.innerHTML=`<div class="page-error">Failed to load: ${d.message}</div>`;return}ce(t,o)}function ce(t,o){let d=o,c="all",r="";t.innerHTML=`
     <div class="page-enter" id="complaints-page">
       <div class="page-header">
         <h2>Complaints</h2>
@@ -266,7 +266,7 @@
               <label class="form-label" for="cmp-category">Category <span style="color:var(--danger)">*</span></label>
               <select class="form-select" id="cmp-category" required>
                 <option value="">Select category…</option>
-                ${P.map(e=>`<option value="${e}">${q[e]} ${e}</option>`).join("")}
+                ${P.map(e=>`<option value="${e}">${T[e]} ${e}</option>`).join("")}
               </select>
               <div class="form-error" id="err-cmp-cat">Category is required</div>
             </div>
@@ -297,7 +297,7 @@
         <label class="form-label" for="cat-filter-select">Filter by Category</label>
         <select class="form-select cat-filter-select" id="cat-filter-select">
           <option value="">All Categories</option>
-          ${P.map(e=>`<option value="${e}">${q[e]} ${e}</option>`).join("")}
+          ${P.map(e=>`<option value="${e}">${T[e]} ${e}</option>`).join("")}
         </select>
       </div>
 
@@ -307,13 +307,13 @@
           <div class="table-toolbar-title">My Complaints</div>
           <div style="display:flex; gap: var(--space-2); flex-wrap: wrap;">
             <button class="filter-chip active" data-status="all">All</button>
-            ${ne.map(e=>`<button class="filter-chip" data-status="${e}">${e}</button>`).join("")}
+            ${le.map(e=>`<button class="filter-chip" data-status="${e}">${e}</button>`).join("")}
           </div>
         </div>
         <div id="complaints-list"></div>
       </div>
     </div>
-  `;function n(){let e=l;i&&(e=e.filter(r=>r.category===i)),c!=="all"&&(e=e.filter(r=>r.status===c));const t=document.getElementById("complaints-list");if(e.length===0){t.innerHTML='<p style="padding: var(--space-8); text-align:center; color: var(--text-tertiary);">No complaints found.</p>';return}t.innerHTML=`
+  `;function l(){let e=d;r&&(e=e.filter(n=>n.category===r)),c!=="all"&&(e=e.filter(n=>n.status===c));const a=document.getElementById("complaints-list");if(e.length===0){a.innerHTML='<p style="padding: var(--space-8); text-align:center; color: var(--text-tertiary);">No complaints found.</p>';return}a.innerHTML=`
       <table>
         <thead>
           <tr>
@@ -321,39 +321,39 @@
           </tr>
         </thead>
         <tbody>
-          ${e.map(r=>`
+          ${e.map(n=>`
             <tr>
-              <td class="cell-mono">${r.complaint_id}</td>
-              <td>${q[r.category]||""} ${r.category}</td>
-              <td style="max-width:220px; overflow:hidden; text-overflow:ellipsis;" title="${r.description}">${r.description.slice(0,50)}${r.description.length>50?"…":""}</td>
-              <td class="cell-mono">${r.date}</td>
-              <td><span class="badge badge-${r.status}">${r.status}</span></td>
-              <td style="color: var(--text-tertiary); font-size: var(--text-xs);">${r.admin_note||"—"}</td>
+              <td class="cell-mono">${n.complaint_id}</td>
+              <td>${T[n.category]||""} ${n.category}</td>
+              <td style="max-width:220px; overflow:hidden; text-overflow:ellipsis;" title="${n.description}">${n.description.slice(0,50)}${n.description.length>50?"…":""}</td>
+              <td class="cell-mono">${n.date}</td>
+              <td><span class="badge badge-${n.status}">${n.status}</span></td>
+              <td style="color: var(--text-tertiary); font-size: var(--text-xs);">${n.admin_note||"—"}</td>
             </tr>
           `).join("")}
         </tbody>
       </table>
-    `}document.getElementById("cat-filter-select").addEventListener("change",e=>{i=e.target.value,n()}),a.querySelectorAll("[data-status]").forEach(e=>{e.addEventListener("click",()=>{a.querySelectorAll("[data-status]").forEach(t=>t.classList.remove("active")),e.classList.add("active"),c=e.dataset.status,n()})});const v=document.getElementById("cmp-category"),d=document.getElementById("cmp-other-group");v.addEventListener("change",e=>{e.target.value==="Other"?d.style.display="":(d.style.display="none",document.getElementById("cmp-other-type").value="",document.getElementById("err-cmp-other").classList.remove("visible"))});const s=document.getElementById("complaint-form");s.addEventListener("submit",async e=>{e.preventDefault();let t=!0;a.querySelectorAll(".form-error").forEach(p=>p.classList.remove("visible"));const r=document.getElementById("cmp-category").value,u=document.getElementById("cmp-other-type").value.trim(),g=document.getElementById("cmp-desc").value.trim(),y=document.getElementById("cmp-photo").files[0];if(r||(document.getElementById("err-cmp-cat").classList.add("visible"),t=!1),r==="Other"&&!u&&(document.getElementById("err-cmp-other").classList.add("visible"),t=!1),g||(document.getElementById("err-cmp-desc").classList.add("visible"),t=!1),!t){h("Fill in all required fields.","error");return}const m=document.getElementById("cmp-submit");m.disabled=!0,m.textContent="Submitting…";try{let p=null;y&&(p=await new Promise((b,w)=>{const k=new FileReader;k.onload=()=>b(k.result),k.onerror=w,k.readAsDataURL(y)}));const x=r==="Other"&&u?`[Other: ${u}] ${g}`:g,E=await f.post("/complaints",{category:r,description:x,photo_base64:p});l=[E,...l],h(`Complaint #${E.complaint_id} submitted.`,"success"),s.reset(),n()}catch(p){h(p.message,"error")}finally{m.disabled=!1,m.textContent="Submit Complaint"}}),s.addEventListener("reset",()=>{a.querySelectorAll(".form-error").forEach(e=>e.classList.remove("visible")),document.getElementById("cmp-other-group").style.display="none"}),n(),requestAnimationFrame(()=>{var e;return(e=document.getElementById("complaints-page"))==null?void 0:e.classList.replace("page-enter","page-active")})}async function Y(a){a.innerHTML='<div class="page-loading">Loading rooms…</div>';try{const[o,{allocation:l},c]=await Promise.all([f.get("/rooms"),f.get("/rooms/my-allocation"),f.get("/rooms/booking-requests")]);ce(a,o,l,c)}catch(o){a.innerHTML=`<div class="page-error">Failed to load: ${o.message}</div>`}}function ce(a,o,l,c){var g,y,m;const i=H(),n=o.filter(p=>p.hostel===((i==null?void 0:i.hostel)||"")),v=[...new Set(n.map(p=>p.floor))].sort((p,x)=>p-x);let s=v[0]||1,e=null;const t=c.find(p=>p.status==="pending");a.innerHTML=`
+    `}document.getElementById("cat-filter-select").addEventListener("change",e=>{r=e.target.value,l()}),t.querySelectorAll("[data-status]").forEach(e=>{e.addEventListener("click",()=>{t.querySelectorAll("[data-status]").forEach(a=>a.classList.remove("active")),e.classList.add("active"),c=e.dataset.status,l()})});const p=document.getElementById("cmp-category"),i=document.getElementById("cmp-other-group");p.addEventListener("change",e=>{e.target.value==="Other"?i.style.display="":(i.style.display="none",document.getElementById("cmp-other-type").value="",document.getElementById("err-cmp-other").classList.remove("visible"))});const s=document.getElementById("complaint-form");s.addEventListener("submit",async e=>{e.preventDefault();let a=!0;t.querySelectorAll(".form-error").forEach(v=>v.classList.remove("visible"));const n=document.getElementById("cmp-category").value,u=document.getElementById("cmp-other-type").value.trim(),g=document.getElementById("cmp-desc").value.trim(),y=document.getElementById("cmp-photo").files[0];if(n||(document.getElementById("err-cmp-cat").classList.add("visible"),a=!1),n==="Other"&&!u&&(document.getElementById("err-cmp-other").classList.add("visible"),a=!1),g||(document.getElementById("err-cmp-desc").classList.add("visible"),a=!1),!a){h("Fill in all required fields.","error");return}const m=document.getElementById("cmp-submit");m.disabled=!0,m.textContent="Submitting…";try{let v=null;y&&(v=await new Promise((b,w)=>{const k=new FileReader;k.onload=()=>b(k.result),k.onerror=w,k.readAsDataURL(y)}));const x=n==="Other"&&u?`[Other: ${u}] ${g}`:g,E=await f.post("/complaints",{category:n,description:x,photo_base64:v});d=[E,...d],h(`Complaint #${E.complaint_id} submitted.`,"success"),s.reset(),l()}catch(v){h(v.message,"error")}finally{m.disabled=!1,m.textContent="Submit Complaint"}}),s.addEventListener("reset",()=>{t.querySelectorAll(".form-error").forEach(e=>e.classList.remove("visible")),document.getElementById("cmp-other-group").style.display="none"}),l(),requestAnimationFrame(()=>{var e;return(e=document.getElementById("complaints-page"))==null?void 0:e.classList.replace("page-enter","page-active")})}async function K(t){t.innerHTML='<div class="page-loading">Loading rooms…</div>';try{const[o,{allocation:d},c]=await Promise.all([f.get("/rooms"),f.get("/rooms/my-allocation"),f.get("/rooms/booking-requests")]);me(t,o,d,c)}catch(o){t.innerHTML=`<div class="page-error">Failed to load: ${o.message}</div>`}}function me(t,o,d,c){var g,y,m;const r=H(),l=o.filter(v=>v.hostel===((r==null?void 0:r.hostel)||"")),p=[...new Set(l.map(v=>v.floor))].sort((v,x)=>v-x);let s=p[0]||1,e=null;const a=c.find(v=>v.status==="pending");t.innerHTML=`
     <div class="page-enter" id="booking-page">
       <div class="page-header">
         <h2>Room Booking</h2>
         <p>Select a room from the floor plan to submit a booking request.</p>
       </div>
 
-      ${l?`
+      ${d?`
         <div style="background:var(--bg-elevated); padding:var(--space-6); border-radius:var(--radius-lg); border:1px solid rgba(52,211,153,.3); margin-bottom:var(--space-6);">
           <div style="color:var(--text-secondary); font-size:var(--text-xs); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:var(--space-2);">Current Room Assignment</div>
           <div style="display:flex; align-items:center; gap:var(--space-3);">
-            <div style="font-size:32px; font-weight:700; color:var(--accent-green); line-height:1;">${l.room_id}</div>
+            <div style="font-size:32px; font-weight:700; color:var(--accent-green); line-height:1;">${d.room_id}</div>
             <div style="border-left:1px solid var(--border-subtle); padding-left:var(--space-3);">
-              <div style="font-weight:500;">${l.hostel}</div>
-              <div style="font-size:var(--text-sm); color:var(--text-secondary);">Floor ${l.floor} • Management Allocated</div>
+              <div style="font-weight:500;">${d.hostel}</div>
+              <div style="font-size:var(--text-sm); color:var(--text-secondary);">Floor ${d.floor} • Management Allocated</div>
             </div>
           </div>
         </div>
-      `:t?`
+      `:a?`
         <div class="alert-banner alert-amber" style="margin-bottom:var(--space-6);">
-          <strong>Pending request:</strong> Room ${t.room_id} submitted on ${(g=t.created_at)==null?void 0:g.slice(0,10)}. Waiting for admin approval.
+          <strong>Pending request:</strong> Room ${a.room_id} submitted on ${(g=a.created_at)==null?void 0:g.slice(0,10)}. Waiting for admin approval.
         </div>
       `:""}
 
@@ -361,15 +361,15 @@
       <div style="display:flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-6);">
         <span style="font-size: var(--text-sm); color: var(--text-secondary);">Floor:</span>
         <div class="cat-tabs" style="margin:0;">
-          ${v.map(p=>`
-            <button class="cat-tab${p===s?" active":""}" data-floor="${p}">Floor ${p}</button>
+          ${p.map(v=>`
+            <button class="cat-tab${v===s?" active":""}" data-floor="${v}">Floor ${v}</button>
           `).join("")}
         </div>
       </div>
 
       <!-- Floor Plan -->
       <div class="form-section" style="max-width: none; margin-bottom: var(--space-6);" id="floor-plan-section">
-        <div class="form-section-title" id="floor-plan-title">Floor ${s} — ${(i==null?void 0:i.hostel)||""}</div>
+        <div class="form-section-title" id="floor-plan-title">Floor ${s} — ${(r==null?void 0:r.hostel)||""}</div>
         <div class="floor-plan" id="floor-plan"></div>
         <div class="floor-legend">
           <span class="legend-item"><span class="legend-dot vacant"></span> Vacant</span>
@@ -402,23 +402,23 @@
         ${c.length===0?'<p style="padding: var(--space-6); text-align:center; color:var(--text-tertiary);">No booking requests yet.</p>':`<table>
               <thead><tr><th>Room</th><th>Hostel</th><th>Floor</th><th>Type</th><th>Status</th><th>Note</th><th>Date</th></tr></thead>
               <tbody>
-                ${c.map(p=>{var x;return`
+                ${c.map(v=>{var x;return`
                   <tr>
-                    <td class="cell-mono">${p.room_id}</td>
-                    <td>${p.hostel}</td>
-                    <td>${p.floor}</td>
-                    <td>${p.type}</td>
-                    <td><span class="badge badge-${p.status}">${p.status}</span></td>
-                    <td style="color:var(--text-tertiary); font-size:var(--text-xs);">${p.admin_note||"—"}</td>
-                    <td class="cell-mono">${(x=p.created_at)==null?void 0:x.slice(0,10)}</td>
+                    <td class="cell-mono">${v.room_id}</td>
+                    <td>${v.hostel}</td>
+                    <td>${v.floor}</td>
+                    <td>${v.type}</td>
+                    <td><span class="badge badge-${v.status}">${v.status}</span></td>
+                    <td style="color:var(--text-tertiary); font-size:var(--text-xs);">${v.admin_note||"—"}</td>
+                    <td class="cell-mono">${(x=v.created_at)==null?void 0:x.slice(0,10)}</td>
                   </tr>
                 `}).join("")}
               </tbody>
             </table>`}
       </div>
     </div>
-  `;function r(p){const x=n.filter(b=>b.floor===p);document.getElementById("floor-plan-title").textContent=`Floor ${p} — ${(i==null?void 0:i.hostel)||""}`;const E=document.getElementById("floor-plan");if(x.length===0){E.innerHTML='<p style="color:var(--text-tertiary); padding: var(--space-4);">No rooms on this floor.</p>';return}E.innerHTML=x.map(b=>{const w=b.capacity>0?b.current_occupancy/b.capacity:0,k=w===0?"vacant":w<1?"partial":"full",J=(e==null?void 0:e.room_id)===b.room_id;return`
-        <button class="room-cell ${k}${J?" selected":""}"
+  `;function n(v){const x=l.filter(b=>b.floor===v);document.getElementById("floor-plan-title").textContent=`Floor ${v} — ${(r==null?void 0:r.hostel)||""}`;const E=document.getElementById("floor-plan");if(x.length===0){E.innerHTML='<p style="color:var(--text-tertiary); padding: var(--space-4);">No rooms on this floor.</p>';return}E.innerHTML=x.map(b=>{const w=b.capacity>0?b.current_occupancy/b.capacity:0,k=w===0?"vacant":w<1?"partial":"full",Q=(e==null?void 0:e.room_id)===b.room_id;return`
+        <button class="room-cell ${k}${Q?" selected":""}"
                 data-room="${b.room_id}"
                 ${k==="full"?"disabled":""}
                 title="${b.room_id} · ${b.type} · ${b.current_occupancy}/${b.capacity}">
@@ -426,23 +426,23 @@
           <span class="room-cell-type">${b.type[0]}</span>
           <span class="room-cell-occ">${b.current_occupancy}/${b.capacity}</span>
         </button>
-      `}).join(""),E.querySelectorAll(".room-cell:not([disabled])").forEach(b=>{b.addEventListener("click",()=>{e=n.find(w=>w.room_id===b.dataset.room),r(p),u(e)})})}function u(p){const x=document.getElementById("room-detail-panel"),E=document.getElementById("room-detail-body");document.getElementById("room-detail-title").textContent=`Room ${p.room_id}`,E.innerHTML=`
+      `}).join(""),E.querySelectorAll(".room-cell:not([disabled])").forEach(b=>{b.addEventListener("click",()=>{e=l.find(w=>w.room_id===b.dataset.room),n(v),u(e)})})}function u(v){const x=document.getElementById("room-detail-panel"),E=document.getElementById("room-detail-body");document.getElementById("room-detail-title").textContent=`Room ${v.room_id}`,E.innerHTML=`
       <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: var(--space-4);">
-        ${[["Hostel",p.hostel],["Floor",p.floor],["Type",p.type],["Capacity",`${p.capacity} beds`],["Occupied",`${p.current_occupancy} / ${p.capacity}`],["Available",`${p.available_slots} slot(s)`]].map(([b,w])=>`
+        ${[["Hostel",v.hostel],["Floor",v.floor],["Type",v.type],["Capacity",`${v.capacity} beds`],["Occupied",`${v.current_occupancy} / ${v.capacity}`],["Available",`${v.available_slots} slot(s)`]].map(([b,w])=>`
           <div>
             <div style="font-size:var(--text-xs); color:var(--text-tertiary); text-transform:uppercase; letter-spacing:.06em;">${b}</div>
             <div style="font-size:var(--text-sm); margin-top:4px; color:var(--text-primary);">${w}</div>
           </div>
         `).join("")}
       </div>
-    `,x.style.display=l||t?"none":"block",(l||t)&&(x.style.display="none")}a.querySelectorAll(".cat-tab[data-floor]").forEach(p=>{p.addEventListener("click",()=>{a.querySelectorAll(".cat-tab[data-floor]").forEach(x=>x.classList.remove("active")),p.classList.add("active"),s=+p.dataset.floor,e=null,document.getElementById("room-detail-panel").style.display="none",r(s)})}),(y=document.getElementById("btn-cancel-room"))==null||y.addEventListener("click",()=>{e=null,document.getElementById("room-detail-panel").style.display="none",r(s)}),(m=document.getElementById("booking-form"))==null||m.addEventListener("submit",async p=>{if(p.preventDefault(),!e)return;const x=document.getElementById("booking-pref").value.trim(),E=document.getElementById("btn-book");E.disabled=!0,E.textContent="Submitting…";try{await f.post("/rooms/book",{room_id:e.room_id,preferences:x}),h(`Booking request for ${e.room_id} submitted!`,"success"),Y(a)}catch(b){h(b.message,"error"),E.disabled=!1,E.textContent="Request This Room"}}),r(s),requestAnimationFrame(()=>{var p;return(p=document.getElementById("booking-page"))==null?void 0:p.classList.replace("page-enter","page-active")})}async function K(a){a.innerHTML='<div class="page-loading">Loading forum…</div>';try{const o=await f.get("/forum");me(a,o)}catch(o){a.innerHTML=`<div class="page-error">Failed to load forum: ${o.message}</div>`}}function me(a,o){const l=z()==="admin";let c=o;a.innerHTML=`
+    `,x.style.display=d||a?"none":"block",(d||a)&&(x.style.display="none")}t.querySelectorAll(".cat-tab[data-floor]").forEach(v=>{v.addEventListener("click",()=>{t.querySelectorAll(".cat-tab[data-floor]").forEach(x=>x.classList.remove("active")),v.classList.add("active"),s=+v.dataset.floor,e=null,document.getElementById("room-detail-panel").style.display="none",n(s)})}),(y=document.getElementById("btn-cancel-room"))==null||y.addEventListener("click",()=>{e=null,document.getElementById("room-detail-panel").style.display="none",n(s)}),(m=document.getElementById("booking-form"))==null||m.addEventListener("submit",async v=>{if(v.preventDefault(),!e)return;const x=document.getElementById("booking-pref").value.trim(),E=document.getElementById("btn-book");E.disabled=!0,E.textContent="Submitting…";try{await f.post("/rooms/book",{room_id:e.room_id,preferences:x}),h(`Booking request for ${e.room_id} submitted!`,"success"),K(t)}catch(b){h(b.message,"error"),E.disabled=!1,E.textContent="Request This Room"}}),n(s),requestAnimationFrame(()=>{var v;return(v=document.getElementById("booking-page"))==null?void 0:v.classList.replace("page-enter","page-active")})}async function J(t){t.innerHTML='<div class="page-loading">Loading forum…</div>';try{const o=await f.get("/forum");pe(t,o)}catch(o){t.innerHTML=`<div class="page-error">Failed to load forum: ${o.message}</div>`}}function pe(t,o){const d=F()==="admin";let c=o;t.innerHTML=`
     <div class="page-enter" id="forum-page">
       <div class="page-header">
         <h2>Community Forum</h2>
-        <p>${l?"Read all campus posts — posting is disabled for admins.":"Share thoughts anonymously with your campus community."}</p>
+        <p>${d?"Read all campus posts — posting is disabled for admins.":"Share thoughts anonymously with your campus community."}</p>
       </div>
 
-      ${l?`
+      ${d?`
         <div class="alert-banner alert-blue" style="margin-bottom: var(--space-6);">
           Viewing as Admin — posts are read-only. Student identities are never stored.
         </div>
@@ -474,13 +474,13 @@
         No posts yet. Be the first to share!
       </div>
     </div>
-  `;function i(){const v=document.getElementById("forum-feed"),d=document.getElementById("forum-empty");if(c.length===0){v.innerHTML="",d.style.display="block";return}d.style.display="none",v.innerHTML=c.map(s=>`
+  `;function r(){const p=document.getElementById("forum-feed"),i=document.getElementById("forum-empty");if(c.length===0){p.innerHTML="",i.style.display="block";return}i.style.display="none",p.innerHTML=c.map(s=>`
       <div class="forum-post card" style="background:var(--bg-primary); padding:var(--space-4); margin-bottom:var(--space-4); border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
         <div class="forum-post-header" style="display:flex; align-items:center; gap:var(--space-3); margin-bottom:var(--space-2);">
           <div class="forum-avatar" style="font-size:24px; background:transparent; border:none;">${s.avatar_icon||"👤"}</div>
           <div>
             <div class="forum-post-title" style="font-weight:600; color:var(--text-primary);">${C(s.title)}</div>
-            <div class="forum-post-meta" style="font-size:var(--text-xs); color:var(--text-tertiary);">${C(s.avatar_name||"Anonymous")} · ${N(s.created_at)}</div>
+            <div class="forum-post-meta" style="font-size:var(--text-xs); color:var(--text-tertiary);">${C(s.avatar_name||"Anonymous")} · ${j(s.created_at)}</div>
           </div>
         </div>
         <div class="forum-post-body" style="font-size:var(--text-sm); color:var(--text-secondary); line-height:1.6; margin-left:var(--space-10); margin-bottom:var(--space-3);">${C(s.content)}</div>
@@ -491,7 +491,7 @@
             <div style="width:1px; background:var(--border-subtle);"></div>
             <button class="vote-btn" data-type="post" data-id="${s.post_id}" data-dir="down" style="background:transparent; border:none; padding:4px 8px; cursor:pointer; color:var(--text-secondary);">⇩ ${s.downvotes||0}</button>
           </div>
-          ${l?"":`<button class="reply-toggle-btn" data-post-id="${s.post_id}" style="background:transparent; border:none; color:var(--text-tertiary); font-size:var(--text-xs); cursor:pointer; display:flex; gap:4px; align-items:center;">💬 Reply</button>`}
+          ${d?"":`<button class="reply-toggle-btn" data-post-id="${s.post_id}" style="background:transparent; border:none; color:var(--text-tertiary); font-size:var(--text-xs); cursor:pointer; display:flex; gap:4px; align-items:center;">💬 Reply</button>`}
         </div>
 
         <!-- Replies -->
@@ -501,7 +501,7 @@
               <div class="forum-reply">
                 <div class="forum-post-header" style="display:flex; align-items:center; gap:var(--space-2); margin-bottom:4px;">
                   <div class="forum-avatar" style="font-size:16px; background:transparent; border:none; width:auto; height:auto;">${e.avatar_icon||"👤"}</div>
-                  <div class="forum-post-meta" style="font-size:var(--text-xs); color:var(--text-tertiary);">${C(e.avatar_name||"Anonymous")} · ${N(e.created_at)}</div>
+                  <div class="forum-post-meta" style="font-size:var(--text-xs); color:var(--text-tertiary);">${C(e.avatar_name||"Anonymous")} · ${j(e.created_at)}</div>
                 </div>
                 <div class="forum-post-body" style="font-size:var(--text-sm); line-height:1.5; color:var(--text-secondary); margin-left:var(--space-6);">${C(e.content)}</div>
                 <div class="forum-post-actions" style="margin-left:var(--space-6); display:flex; gap:var(--space-3); margin-top:4px;">
@@ -517,7 +517,7 @@
         `:""}
 
         <!-- Reply Form Content -->
-        ${l?"":`
+        ${d?"":`
           <div id="reply-form-${s.post_id}" style="display:none; margin-left:var(--space-10); margin-top:var(--space-4);">
             <textarea id="reply-input-${s.post_id}" class="form-textarea" rows="2" placeholder="Write an anonymous reply..." style="padding:var(--space-2); min-height:60px;"></textarea>
             <div style="margin-top:var(--space-2); display:flex; gap:var(--space-2);">
@@ -527,7 +527,45 @@
           </div>
         `}
       </div>
-    `).join("")}if(document.getElementById("forum-feed").addEventListener("click",async v=>{const d=v.target.closest(".vote-btn");if(d&&!d.disabled){const t=d.dataset.type,r=d.dataset.id,u=d.dataset.dir;d.disabled=!0;try{const g=await f.patch("/forum/vote",{type:t,id:parseInt(r,10),dir:u});if(t==="post"){const y=c.find(m=>m.post_id===parseInt(r,10));y&&(y.upvotes=g.upvotes,y.downvotes=g.downvotes)}else for(const y of c)if(y.replies){const m=y.replies.find(p=>p.reply_id===parseInt(r,10));if(m){m.upvotes=g.upvotes,m.downvotes=g.downvotes;break}}i()}catch(g){h(g.message,"error"),d.disabled=!1}return}const s=v.target.closest(".reply-toggle-btn");if(s){const t=s.dataset.postId,r=document.getElementById(`reply-form-${t}`);r&&(r.style.display=r.style.display==="none"?"block":"none");return}const e=v.target.closest(".reply-submit-btn");if(e){const t=e.dataset.postId,r=document.getElementById(`reply-input-${t}`),u=r==null?void 0:r.value.trim();if(!u){h("Reply content cannot be empty","error");return}e.disabled=!0,e.textContent="...";try{const g=await f.post(`/forum/${t}/reply`,{content:u}),y=c.find(m=>m.post_id===parseInt(t,10));y&&(y.replies||(y.replies=[]),y.replies.push(g)),h("Reply posted","success"),i()}catch(g){h(g.message,"error"),e.disabled=!1,e.textContent="Submit Reply"}return}}),!l){const v=document.getElementById("forum-form");v.addEventListener("submit",async d=>{d.preventDefault();let s=!0;a.querySelectorAll(".form-error").forEach(u=>u.classList.remove("visible"));const e=document.getElementById("f-title").value.trim(),t=document.getElementById("f-content").value.trim();if(e||(document.getElementById("err-f-title").classList.add("visible"),s=!1),t||(document.getElementById("err-f-content").classList.add("visible"),s=!1),!s)return;const r=document.getElementById("btn-post");r.disabled=!0,r.textContent="Posting…";try{c=[await f.post("/forum",{title:e,content:t}),...c],h("Posted anonymously!","success"),v.reset(),i()}catch(u){h(u.message,"error")}finally{r.disabled=!1,r.textContent="Post Anonymously"}}),v.addEventListener("reset",()=>a.querySelectorAll(".form-error").forEach(d=>d.classList.remove("visible")))}i(),requestAnimationFrame(()=>{var v;return(v=document.getElementById("forum-page"))==null?void 0:v.classList.replace("page-enter","page-active")})}function C(a){return String(a).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}function N(a){try{return new Date(a).toLocaleString("en-IN",{day:"numeric",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"})}catch{return a}}async function pe(a){let o="";async function l(){a.innerHTML='<div class="page-loading">Loading</div>';try{const i=o?`?hostel=${encodeURIComponent(o)}`:"",[n,v]=await Promise.all([f.get(`/dashboard/admin${i}`),f.get("/rooms")]),d=[...new Set(v.map(s=>s.hostel))].sort();c(a,n,d,o,l)}catch(i){a.innerHTML=`<div class="page-error">Failed to load: ${i.message}</div>`}}await l();function c(i,{stats:n,recentComplaints:v,wardens:d,wardenOfficePhone:s},e,t,r){const u=d.filter(m=>m.role==="Warden"),g=d.filter(m=>m.role==="Guard"),y=n.totalCapacity>0?Math.round(n.totalOccupied/n.totalCapacity*100):0;i.innerHTML=`
+    `).join("")}if(document.getElementById("forum-feed").addEventListener("click",async p=>{const i=p.target.closest(".vote-btn");if(i&&!i.disabled){const a=i.dataset.type,n=i.dataset.id,u=i.dataset.dir;i.disabled=!0;try{const g=await f.patch("/forum/vote",{type:a,id:parseInt(n,10),dir:u});if(a==="post"){const y=c.find(m=>m.post_id===parseInt(n,10));y&&(y.upvotes=g.upvotes,y.downvotes=g.downvotes)}else for(const y of c)if(y.replies){const m=y.replies.find(v=>v.reply_id===parseInt(n,10));if(m){m.upvotes=g.upvotes,m.downvotes=g.downvotes;break}}r()}catch(g){h(g.message,"error"),i.disabled=!1}return}const s=p.target.closest(".reply-toggle-btn");if(s){const a=s.dataset.postId,n=document.getElementById(`reply-form-${a}`);n&&(n.style.display=n.style.display==="none"?"block":"none");return}const e=p.target.closest(".reply-submit-btn");if(e){const a=e.dataset.postId,n=document.getElementById(`reply-input-${a}`),u=n==null?void 0:n.value.trim();if(!u){h("Reply content cannot be empty","error");return}e.disabled=!0,e.textContent="...";try{const g=await f.post(`/forum/${a}/reply`,{content:u}),y=c.find(m=>m.post_id===parseInt(a,10));y&&(y.replies||(y.replies=[]),y.replies.push(g)),h("Reply posted","success"),r()}catch(g){h(g.message,"error"),e.disabled=!1,e.textContent="Submit Reply"}return}}),!d){const p=document.getElementById("forum-form");p.addEventListener("submit",async i=>{i.preventDefault();let s=!0;t.querySelectorAll(".form-error").forEach(u=>u.classList.remove("visible"));const e=document.getElementById("f-title").value.trim(),a=document.getElementById("f-content").value.trim();if(e||(document.getElementById("err-f-title").classList.add("visible"),s=!1),a||(document.getElementById("err-f-content").classList.add("visible"),s=!1),!s)return;const n=document.getElementById("btn-post");n.disabled=!0,n.textContent="Posting…";try{c=[await f.post("/forum",{title:e,content:a}),...c],h("Posted anonymously!","success"),p.reset(),r()}catch(u){h(u.message,"error")}finally{n.disabled=!1,n.textContent="Post Anonymously"}}),p.addEventListener("reset",()=>t.querySelectorAll(".form-error").forEach(i=>i.classList.remove("visible")))}r(),requestAnimationFrame(()=>{var p;return(p=document.getElementById("forum-page"))==null?void 0:p.classList.replace("page-enter","page-active")})}function C(t){return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}function j(t){try{return new Date(t).toLocaleString("en-IN",{day:"numeric",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"})}catch{return t}}const N={Plumber:"🔧",Electrician:"⚡",WiFi:"📶",Authority:"🏛️",Other:"📋"},ve=["Plumber","Electrician","WiFi","Authority","Other"];async function ue(t){t.innerHTML='<div class="page-loading">Loading resources…</div>';try{const o=await f.get("/resources");ge(t,o)}catch(o){t.innerHTML=`<div class="page-error">Failed to load: ${o.message}</div>`}}function ge(t,o){let d="";t.innerHTML=`
+    <div class="page-enter" id="student-resources-page">
+      <div class="page-header">
+        <h2>Resources &amp; Contacts</h2>
+        <p>Emergency contacts, maintenance staff, and hostel authorities.</p>
+      </div>
+
+      <div class="table-container">
+        <div class="table-toolbar">
+          <div class="table-toolbar-title">Contact Directory</div>
+          <div style="display:flex; gap:var(--space-2); flex-wrap:wrap;">
+            <button class="filter-chip active" data-cat="">All</button>
+            ${ve.map(r=>`<button class="filter-chip" data-cat="${r}">${N[r]} ${r}</button>`).join("")}
+          </div>
+        </div>
+        <div id="student-resources-body"></div>
+      </div>
+    </div>
+  `;function c(){const r=d?o.filter(i=>i.category===d):o,l=document.getElementById("student-resources-body");if(r.length===0){l.innerHTML='<p style="padding:var(--space-8); text-align:center; color:var(--text-tertiary);">No contacts in this category.</p>';return}const p={};r.forEach(i=>{p[i.category]||(p[i.category]=[]),p[i.category].push(i)}),l.innerHTML=Object.entries(p).map(([i,s])=>`
+      <div style="padding: var(--space-4) var(--space-6);">
+        <div style="font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--text-tertiary); margin-bottom: var(--space-3);">
+          ${N[i]||""} ${i}
+        </div>
+        ${s.map(e=>`
+          <div class="contact-row" style="margin-bottom: var(--space-2);">
+            <div class="contact-avatar">${e.name[0].toUpperCase()}</div>
+            <div class="contact-info" style="flex:1;">
+              <div class="contact-name">${e.name}</div>
+              <div class="contact-meta">
+                ${e.phone?`📞 <a href="tel:${e.phone}" style="color:inherit;">${e.phone}</a>`:""}
+                ${e.email?` · 📧 <a href="mailto:${e.email}" style="color:inherit;">${e.email}</a>`:""}
+              </div>
+              ${e.notes?`<div style="font-size:var(--text-xs); color:var(--text-tertiary); margin-top:2px;">${e.notes}</div>`:""}
+            </div>
+          </div>
+        `).join("")}
+        <hr style="border:none; border-top: 1px solid var(--border-subtle); margin: var(--space-3) 0;" />
+      </div>
+    `).join("")}t.querySelectorAll("[data-cat]").forEach(r=>{r.addEventListener("click",()=>{t.querySelectorAll("[data-cat]").forEach(l=>l.classList.remove("active")),r.classList.add("active"),d=r.dataset.cat,c()})}),c(),requestAnimationFrame(()=>{var r;return(r=document.getElementById("student-resources-page"))==null?void 0:r.classList.replace("page-enter","page-active")})}async function ye(t){let o="";async function d(){t.innerHTML='<div class="page-loading">Loading</div>';try{const r=o?`?hostel=${encodeURIComponent(o)}`:"",[l,p]=await Promise.all([f.get(`/dashboard/admin${r}`),f.get("/rooms")]),i=[...new Set(p.map(s=>s.hostel))].sort();c(t,l,i,o,d)}catch(r){t.innerHTML=`<div class="page-error">Failed to load: ${r.message}</div>`}}await d();function c(r,{stats:l,recentComplaints:p,wardens:i,wardenOfficePhone:s},e,a,n){const u=i.filter(m=>m.role==="Warden"),g=i.filter(m=>m.role==="Guard"),y=l.totalCapacity>0?Math.round(l.totalOccupied/l.totalCapacity*100):0;r.innerHTML=`
       <div class="page-enter" id="admin-home">
         <div class="page-header" style="display: flex; justify-content: space-between; align-items: flex-end;">
           <div>
@@ -538,7 +576,7 @@
             <label style="font-size: var(--text-sm); color: var(--text-secondary);">Filter by Hostel:</label>
             <select class="form-input" id="hostel-filter" style="width: auto; min-width: 250px; padding: var(--space-2); height: auto;">
               <option value="">All Hostels</option>
-              ${e.map(m=>`<option value="${m}" ${m===t?"selected":""}>${ve(m)}</option>`).join("")}
+              ${e.map(m=>`<option value="${m}" ${m===a?"selected":""}>${fe(m)}</option>`).join("")}
             </select>
           </div>
         </div>
@@ -547,23 +585,23 @@
         <div class="card-grid">
           <div class="card card-accent-blue">
             <div class="card-label">Total Rooms</div>
-            <div class="card-value">${n.totalRooms}</div>
-            <div class="card-sub">${n.vacantRooms} vacant  ${y}% utilized</div>
+            <div class="card-value">${l.totalRooms}</div>
+            <div class="card-sub">${l.vacantRooms} vacant  ${y}% utilized</div>
           </div>
           <div class="card card-accent-amber">
             <div class="card-label">Open Complaints</div>
-            <div class="card-value">${n.openComplaints}</div>
-            <div class="card-sub">${n.inProgressComplaints} in progress</div>
+            <div class="card-value">${l.openComplaints}</div>
+            <div class="card-sub">${l.inProgressComplaints} in progress</div>
           </div>
           <div class="card card-accent-green">
             <div class="card-label">Resolved</div>
-            <div class="card-value">${n.resolvedComplaints}</div>
+            <div class="card-value">${l.resolvedComplaints}</div>
             <div class="card-sub">complaints closed</div>
           </div>
           <div class="card card-accent-purple">
             <div class="card-label">Students</div>
-            <div class="card-value">${n.totalStudents}</div>
-            <div class="card-sub">${n.pendingBookings} pending bookings</div>
+            <div class="card-value">${l.totalStudents}</div>
+            <div class="card-sub">${l.pendingBookings} pending bookings</div>
           </div>
         </div>
 
@@ -626,9 +664,9 @@
           <!-- Recent Complaints -->
           <div class="form-section" style="max-width: none;">
             <div class="form-section-title">Recent Complaints</div>
-            ${v.length===0?'<p class="empty-msg">No recent complaints.</p>':`
+            ${p.length===0?'<p class="empty-msg">No recent complaints.</p>':`
             <div class="activity-list">
-              ${v.map(m=>`
+              ${p.map(m=>`
                   <div class="activity-item">
                     <div class="activity-dot" style="background:${m.status==="open"?"var(--accent-amber)":m.status==="in-progress"?"var(--accent-blue)":"var(--accent-green)"}"></div>
                     <div class="activity-content">
@@ -653,25 +691,25 @@
             <div class="occ-track-outer">
               <div class="occ-track-inner" style="width: ${y}%"></div>
             </div>
-            <span style="font-size:var(--text-sm); color:var(--text-secondary);">${n.totalOccupied} / ${n.totalCapacity} beds  ${y}%</span>
+            <span style="font-size:var(--text-sm); color:var(--text-secondary);">${l.totalOccupied} / ${l.totalCapacity} beds  ${y}%</span>
           </div>
           <div class="card-grid" style="margin-top: var(--space-4); margin-bottom: 0;">
             <div class="card" style="text-align:center;">
               <div class="card-label">Total Beds</div>
-              <div class="card-value" style="font-size:var(--text-2xl);">${n.totalCapacity}</div>
+              <div class="card-value" style="font-size:var(--text-2xl);">${l.totalCapacity}</div>
             </div>
             <div class="card" style="text-align:center;">
               <div class="card-label">Occupied</div>
-              <div class="card-value" style="font-size:var(--text-2xl);">${n.totalOccupied}</div>
+              <div class="card-value" style="font-size:var(--text-2xl);">${l.totalOccupied}</div>
             </div>
             <div class="card" style="text-align:center;">
               <div class="card-label">Vacant</div>
-              <div class="card-value" style="font-size:var(--text-2xl); color: var(--accent-green);">${n.totalCapacity-n.totalOccupied}</div>
+              <div class="card-value" style="font-size:var(--text-2xl); color: var(--accent-green);">${l.totalCapacity-l.totalOccupied}</div>
             </div>
           </div>
         </div>
       </div>
-    `,i.querySelector("#hostel-filter").addEventListener("change",m=>{t=m.target.value,r()}),i.querySelectorAll('a.link-accent[href^="#"]').forEach(m=>{m.addEventListener("click",p=>{p.preventDefault(),window.location.hash=m.getAttribute("href").slice(1)})}),requestAnimationFrame(()=>{var m;return(m=document.getElementById("admin-home"))==null?void 0:m.classList.replace("page-enter","page-active")})}}function ve(a){return String(a).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}const j={Plumbing:"🔧",Electricity:"⚡",WiFi:"📶",Cleanliness:"🧹",Carpentry:"🔨",Other:"📋"},D=["open","in-progress","resolved"],ue=["Plumbing","Electricity","WiFi","Cleanliness","Carpentry","Other"];async function ge(a){a.innerHTML='<div class="page-loading">Loading…</div>';try{const o=await f.get("/complaints");ye(a,o)}catch(o){a.innerHTML=`<div class="page-error">Failed to load: ${o.message}</div>`}}function ye(a,o){let l=o,c="all",i="",n=null;a.innerHTML=`
+    `,r.querySelector("#hostel-filter").addEventListener("change",m=>{a=m.target.value,n()}),r.querySelectorAll('a.link-accent[href^="#"]').forEach(m=>{m.addEventListener("click",v=>{v.preventDefault(),window.location.hash=m.getAttribute("href").slice(1)})}),requestAnimationFrame(()=>{var m;return(m=document.getElementById("admin-home"))==null?void 0:m.classList.replace("page-enter","page-active")})}}function fe(t){return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}const O={Plumbing:"🔧",Electricity:"⚡",WiFi:"📶",Cleanliness:"🧹",Carpentry:"🔨",Other:"📋"},D=["open","in-progress","resolved"],be=["Plumbing","Electricity","WiFi","Cleanliness","Carpentry","Other"];async function he(t){t.innerHTML='<div class="page-loading">Loading…</div>';try{const o=await f.get("/complaints");xe(t,o)}catch(o){t.innerHTML=`<div class="page-error">Failed to load: ${o.message}</div>`}}function xe(t,o){let d=o,c="all",r="",l=null;t.innerHTML=`
     <div class="page-enter" id="admin-complaints-page">
       <div class="page-header">
         <h2>Complaints Management</h2>
@@ -682,9 +720,9 @@
       <div class="card-grid" style="margin-bottom: var(--space-6);">
         <div class="card" style="text-align:center; cursor:pointer;" data-quick="all">
           <div class="card-label">Total</div>
-          <div class="card-value" style="font-size:var(--text-2xl);">${l.length}</div>
+          <div class="card-value" style="font-size:var(--text-2xl);">${d.length}</div>
         </div>
-        ${D.map(s=>{const e=l.filter(r=>r.status===s).length;return`<div class="card card-accent-${s==="open"?"amber":s==="in-progress"?"blue":"green"}" style="text-align:center; cursor:pointer;" data-quick="${s}">
+        ${D.map(s=>{const e=d.filter(n=>n.status===s).length;return`<div class="card card-accent-${s==="open"?"amber":s==="in-progress"?"blue":"green"}" style="text-align:center; cursor:pointer;" data-quick="${s}">
             <div class="card-label">${s}</div>
             <div class="card-value" style="font-size:var(--text-2xl);">${e}</div>
           </div>`}).join("")}
@@ -696,7 +734,7 @@
           <div style="display:flex; gap: var(--space-2); flex-wrap: wrap; align-items: center;">
             <select class="form-select" id="cat-filter" style="width: auto; padding: 4px 28px 4px 10px; font-size: var(--text-xs);">
               <option value="">All Categories</option>
-              ${ue.map(s=>`<option value="${s}">${j[s]} ${s}</option>`).join("")}
+              ${be.map(s=>`<option value="${s}">${O[s]} ${s}</option>`).join("")}
             </select>
             <button class="filter-chip active" data-status="all">All</button>
             ${D.map(s=>`<button class="filter-chip" data-status="${s}">${s}</button>`).join("")}
@@ -705,7 +743,7 @@
         <div id="complaints-body"></div>
       </div>
     </div>
-  `;function v(){let s=l;return i&&(s=s.filter(e=>e.category===i)),c!=="all"&&(s=s.filter(e=>e.status===c)),s}function d(){const s=v(),e=document.getElementById("complaints-body");if(s.length===0){e.innerHTML='<p style="padding:var(--space-8); text-align:center; color:var(--text-tertiary);">No complaints match the current filter.</p>';return}e.innerHTML=`
+  `;function p(){let s=d;return r&&(s=s.filter(e=>e.category===r)),c!=="all"&&(s=s.filter(e=>e.status===c)),s}function i(){const s=p(),e=document.getElementById("complaints-body");if(s.length===0){e.innerHTML='<p style="padding:var(--space-8); text-align:center; color:var(--text-tertiary);">No complaints match the current filter.</p>';return}e.innerHTML=`
       <table>
         <thead>
           <tr>
@@ -714,39 +752,39 @@
           </tr>
         </thead>
         <tbody id="cmp-tbody">
-          ${s.map(t=>`
-            <tr class="cmp-row${n===t.complaint_id?" expanded-row":""}" data-id="${t.complaint_id}">
-              <td class="cell-mono">${t.complaint_id}</td>
-              <td><div>${t.student_name||t.student_id}</div><div style="font-size:var(--text-xs); color:var(--text-tertiary);">${t.roll_no||""}</div></td>
-              <td class="cell-mono">${t.room_id||"—"}</td>
-              <td>${j[t.category]||""} ${t.category}</td>
-              <td style="max-width:180px; overflow:hidden; text-overflow:ellipsis;" title="${t.description}">${t.description.slice(0,45)}${t.description.length>45?"…":""}</td>
+          ${s.map(a=>`
+            <tr class="cmp-row${l===a.complaint_id?" expanded-row":""}" data-id="${a.complaint_id}">
+              <td class="cell-mono">${a.complaint_id}</td>
+              <td><div>${a.student_name||a.student_id}</div><div style="font-size:var(--text-xs); color:var(--text-tertiary);">${a.roll_no||""}</div></td>
+              <td class="cell-mono">${a.room_id||"—"}</td>
+              <td>${O[a.category]||""} ${a.category}</td>
+              <td style="max-width:180px; overflow:hidden; text-overflow:ellipsis;" title="${a.description}">${a.description.slice(0,45)}${a.description.length>45?"…":""}</td>
               <td class="cell-mono">
-                <div>${t.date}</div>
-                ${t.resolved_date?`<div style="font-size:10px; color:var(--accent-green); margin-top:2px;">Res: ${t.resolved_date}</div>`:""}
+                <div>${a.date}</div>
+                ${a.resolved_date?`<div style="font-size:10px; color:var(--accent-green); margin-top:2px;">Res: ${a.resolved_date}</div>`:""}
               </td>
-              <td><span class="badge badge-${t.status}">${t.status}</span></td>
+              <td><span class="badge badge-${a.status}">${a.status}</span></td>
               <td>
-                ${t.status!=="resolved"?`
+                ${a.status!=="resolved"?`
                   <div style="display:flex; gap:4px;">
-                    ${t.status==="open"?`<button class="btn btn-sm btn-secondary" data-action="in-progress" data-id="${t.complaint_id}">Start</button>`:""}
-                    <button class="btn btn-sm btn-primary" data-action="resolved" data-id="${t.complaint_id}">Resolve</button>
+                    ${a.status==="open"?`<button class="btn btn-sm btn-secondary" data-action="in-progress" data-id="${a.complaint_id}">Start</button>`:""}
+                    <button class="btn btn-sm btn-primary" data-action="resolved" data-id="${a.complaint_id}">Resolve</button>
                   </div>
                 `:'<span style="color:var(--text-tertiary); font-size:var(--text-xs);">Done</span>'}
               </td>
             </tr>
-            ${t.photo_base64?`
-              <tr class="photo-row" data-for="${t.complaint_id}" style="${n===t.complaint_id?"":"display:none"}">
+            ${a.photo_base64?`
+              <tr class="photo-row" data-for="${a.complaint_id}" style="${l===a.complaint_id?"":"display:none"}">
                 <td colspan="8" style="padding: var(--space-3) var(--space-6); background: var(--bg-elevated);">
-                  <img src="${t.photo_base64}" alt="Complaint photo" style="max-width:280px; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);" />
-                  ${t.admin_note?`<p style="font-size:var(--text-xs); color:var(--text-secondary); margin-top: var(--space-2);">Note: ${t.admin_note}</p>`:""}
+                  <img src="${a.photo_base64}" alt="Complaint photo" style="max-width:280px; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);" />
+                  ${a.admin_note?`<p style="font-size:var(--text-xs); color:var(--text-secondary); margin-top: var(--space-2);">Note: ${a.admin_note}</p>`:""}
                 </td>
               </tr>
             `:""}
           `).join("")}
         </tbody>
       </table>
-    `,e.querySelectorAll("[data-action]").forEach(t=>{t.addEventListener("click",async()=>{const r=+t.dataset.id,u=t.dataset.action;t.disabled=!0;try{const g=await f.patch(`/complaints/${r}/status`,{status:u});l=l.map(y=>y.complaint_id===r?{...y,...g}:y),h(`Complaint #${r} → ${u}`,"success"),d()}catch(g){h(g.message,"error"),t.disabled=!1}})}),e.querySelectorAll(".cmp-row").forEach(t=>{t.addEventListener("click",()=>{const r=+t.dataset.id;n=n===r?null:r,d()})})}a.querySelectorAll("[data-status]").forEach(s=>{s.addEventListener("click",()=>{a.querySelectorAll("[data-status]").forEach(e=>e.classList.remove("active")),s.classList.add("active"),c=s.dataset.status,d()})}),a.querySelectorAll("[data-quick]").forEach(s=>{s.addEventListener("click",()=>{var e;c=s.dataset.quick,a.querySelectorAll("[data-status]").forEach(t=>t.classList.remove("active")),(e=a.querySelector(`[data-status="${c}"]`))==null||e.classList.add("active"),d()})}),document.getElementById("cat-filter").addEventListener("change",s=>{i=s.target.value,d()}),d(),requestAnimationFrame(()=>{var s;return(s=document.getElementById("admin-complaints-page"))==null?void 0:s.classList.replace("page-enter","page-active")})}async function fe(a){a.innerHTML='<div class="page-loading">Loading…</div>';try{const[o,l]=await Promise.all([f.get("/rooms"),f.get("/rooms/booking-requests")]);be(a,o,l)}catch(o){a.innerHTML=`<div class="page-error">Failed to load: ${o.message}</div>`}}function be(a,o,l){let c=l,i="",n="rooms";const v=[...new Set(o.map(e=>e.hostel))].sort();a.innerHTML=`
+    `,e.querySelectorAll("[data-action]").forEach(a=>{a.addEventListener("click",async()=>{const n=+a.dataset.id,u=a.dataset.action;a.disabled=!0;try{const g=await f.patch(`/complaints/${n}/status`,{status:u});d=d.map(y=>y.complaint_id===n?{...y,...g}:y),h(`Complaint #${n} → ${u}`,"success"),i()}catch(g){h(g.message,"error"),a.disabled=!1}})}),e.querySelectorAll(".cmp-row").forEach(a=>{a.addEventListener("click",()=>{const n=+a.dataset.id;l=l===n?null:n,i()})})}t.querySelectorAll("[data-status]").forEach(s=>{s.addEventListener("click",()=>{t.querySelectorAll("[data-status]").forEach(e=>e.classList.remove("active")),s.classList.add("active"),c=s.dataset.status,i()})}),t.querySelectorAll("[data-quick]").forEach(s=>{s.addEventListener("click",()=>{var e;c=s.dataset.quick,t.querySelectorAll("[data-status]").forEach(a=>a.classList.remove("active")),(e=t.querySelector(`[data-status="${c}"]`))==null||e.classList.add("active"),i()})}),document.getElementById("cat-filter").addEventListener("change",s=>{r=s.target.value,i()}),i(),requestAnimationFrame(()=>{var s;return(s=document.getElementById("admin-complaints-page"))==null?void 0:s.classList.replace("page-enter","page-active")})}async function $e(t){t.innerHTML='<div class="page-loading">Loading…</div>';try{const[o,d]=await Promise.all([f.get("/rooms"),f.get("/rooms/booking-requests")]);Ee(t,o,d)}catch(o){t.innerHTML=`<div class="page-error">Failed to load: ${o.message}</div>`}}function Ee(t,o,d){let c=d,r="",l="rooms";const p=[...new Set(o.map(e=>e.hostel))].sort();t.innerHTML=`
     <div class="page-enter" id="admin-rooms-page">
       <div class="page-header">
         <h2>Room Information</h2>
@@ -767,7 +805,7 @@
           <span style="font-size: var(--text-sm); color: var(--text-secondary);">Hostel:</span>
           <div class="cat-tabs" style="margin:0;">
             <button class="cat-tab active" data-hostel="">All</button>
-            ${v.map(e=>`<button class="cat-tab" data-hostel="${e}">${e}</button>`).join("")}
+            ${p.map(e=>`<button class="cat-tab" data-hostel="${e}">${e}</button>`).join("")}
           </div>
         </div>
         <div id="rooms-body"></div>
@@ -778,7 +816,7 @@
         <div id="requests-body"></div>
       </div>
     </div>
-  `;function d(){const e=i?o.filter(r=>r.hostel===i):o,t=document.getElementById("rooms-body");t.innerHTML=`
+  `;function i(){const e=r?o.filter(n=>n.hostel===r):o,a=document.getElementById("rooms-body");a.innerHTML=`
       <div class="table-container">
         <table>
           <thead>
@@ -788,18 +826,18 @@
             </tr>
           </thead>
           <tbody>
-            ${e.map(r=>{const u=r.capacity>0?r.current_occupancy/r.capacity:0,g=u===0?"vacant":u<1?"partial":"full",y=g==="vacant"?"var(--accent-green)":g==="partial"?"var(--accent-amber)":"var(--accent-red)",m=(r.students||[]).map(p=>`<span style="font-size:var(--text-xs); color:var(--text-secondary); display:block;">${p.name} (Yr ${p.year})</span>`).join("");return`
+            ${e.map(n=>{const u=n.capacity>0?n.current_occupancy/n.capacity:0,g=u===0?"vacant":u<1?"partial":"full",y=g==="vacant"?"var(--accent-green)":g==="partial"?"var(--accent-amber)":"var(--accent-red)",m=(n.students||[]).map(v=>`<span style="font-size:var(--text-xs); color:var(--text-secondary); display:block;">${v.name} (Yr ${v.year})</span>`).join("");return`
                 <tr>
-                  <td class="cell-mono">${r.room_id}</td>
-                  <td>${r.hostel}</td>
-                  <td>${r.floor}</td>
-                  <td>${r.type}</td>
+                  <td class="cell-mono">${n.room_id}</td>
+                  <td>${n.hostel}</td>
+                  <td>${n.floor}</td>
+                  <td>${n.type}</td>
                   <td>
                     <div class="occupancy-bar">
                       <div class="occupancy-track">
                         <div class="occupancy-fill" style="width:${u*100}%; background:${y};"></div>
                       </div>
-                      <span style="font-size:var(--text-xs); font-family: var(--font-mono); color:var(--text-secondary);">${r.current_occupancy}/${r.capacity}</span>
+                      <span style="font-size:var(--text-xs); font-family: var(--font-mono); color:var(--text-secondary);">${n.current_occupancy}/${n.capacity}</span>
                     </div>
                   </td>
                   <td>${m||'<span style="color:var(--text-tertiary); font-size:var(--text-xs);">Vacant</span>'}</td>
@@ -815,29 +853,29 @@
             <tr><th>Student</th><th>Year</th><th>Room</th><th>Type</th><th>Preferences</th><th>Status</th><th>Date</th><th>Action</th></tr>
           </thead>
           <tbody>
-            ${c.map(t=>{var r;return`
+            ${c.map(a=>{var n;return`
               <tr>
-                <td><div>${t.student_name}</div><div style="font-size:var(--text-xs); color:var(--text-tertiary);">${t.roll_no}</div></td>
-                <td>${t.year}</td>
-                <td class="cell-mono">${t.room_id}</td>
-                <td>${t.type}</td>
-                <td style="max-width:140px; font-size:var(--text-xs); color:var(--text-secondary);">${t.preferences||"—"}</td>
-                <td><span class="badge badge-${t.status}">${t.status}</span></td>
-                <td class="cell-mono">${(r=t.created_at)==null?void 0:r.slice(0,10)}</td>
+                <td><div>${a.student_name}</div><div style="font-size:var(--text-xs); color:var(--text-tertiary);">${a.roll_no}</div></td>
+                <td>${a.year}</td>
+                <td class="cell-mono">${a.room_id}</td>
+                <td>${a.type}</td>
+                <td style="max-width:140px; font-size:var(--text-xs); color:var(--text-secondary);">${a.preferences||"—"}</td>
+                <td><span class="badge badge-${a.status}">${a.status}</span></td>
+                <td class="cell-mono">${(n=a.created_at)==null?void 0:n.slice(0,10)}</td>
                 <td>
-                  ${t.status==="pending"?`
+                  ${a.status==="pending"?`
                     <div style="display:flex; gap:4px;">
-                      <button class="btn btn-sm btn-primary" data-req="${t.request_id}" data-action="approved">Approve</button>
-                      <button class="btn btn-sm btn-secondary" data-req="${t.request_id}" data-action="rejected">Reject</button>
+                      <button class="btn btn-sm btn-primary" data-req="${a.request_id}" data-action="approved">Approve</button>
+                      <button class="btn btn-sm btn-secondary" data-req="${a.request_id}" data-action="rejected">Reject</button>
                     </div>
-                  `:`<span style="color:var(--text-tertiary); font-size:var(--text-xs);">${t.admin_note||"—"}</span>`}
+                  `:`<span style="color:var(--text-tertiary); font-size:var(--text-xs);">${a.admin_note||"—"}</span>`}
                 </td>
               </tr>
             `}).join("")}
           </tbody>
         </table>
       </div>
-    `,e.querySelectorAll("[data-req]").forEach(t=>{t.addEventListener("click",async()=>{const r=t.dataset.req,u=t.dataset.action;t.disabled=!0;try{const g=await f.patch(`/rooms/booking-requests/${r}`,{status:u});c=c.map(y=>y.request_id===+r?{...y,...g}:y),h(`Request ${u}.`,"success"),s()}catch(g){h(g.message,"error"),t.disabled=!1}})})}a.querySelectorAll("[data-tab]").forEach(e=>{e.addEventListener("click",()=>{a.querySelectorAll("[data-tab]").forEach(t=>t.classList.remove("active")),e.classList.add("active"),n=e.dataset.tab,document.getElementById("panel-rooms").style.display=n==="rooms"?"":"none",document.getElementById("panel-requests").style.display=n==="requests"?"":"none"})}),a.querySelectorAll("[data-hostel]").forEach(e=>{e.addEventListener("click",()=>{a.querySelectorAll("[data-hostel]").forEach(t=>t.classList.remove("active")),e.classList.add("active"),i=e.dataset.hostel,d()})}),d(),s(),requestAnimationFrame(()=>{var e;return(e=document.getElementById("admin-rooms-page"))==null?void 0:e.classList.replace("page-enter","page-active")})}const O=["Plumber","Electrician","WiFi","Authority","Other"],T={Plumber:"🔧",Electrician:"⚡",WiFi:"📶",Authority:"🏛️",Other:"📋"};async function he(a){a.innerHTML='<div class="page-loading">Loading…</div>';try{const o=await f.get("/resources");xe(a,o)}catch(o){a.innerHTML=`<div class="page-error">Failed to load: ${o.message}</div>`}}function xe(a,o){let l=o,c="",i=null;a.innerHTML=`
+    `,e.querySelectorAll("[data-req]").forEach(a=>{a.addEventListener("click",async()=>{const n=a.dataset.req,u=a.dataset.action;a.disabled=!0;try{const g=await f.patch(`/rooms/booking-requests/${n}`,{status:u});c=c.map(y=>y.request_id===+n?{...y,...g}:y),h(`Request ${u}.`,"success"),s()}catch(g){h(g.message,"error"),a.disabled=!1}})})}t.querySelectorAll("[data-tab]").forEach(e=>{e.addEventListener("click",()=>{t.querySelectorAll("[data-tab]").forEach(a=>a.classList.remove("active")),e.classList.add("active"),l=e.dataset.tab,document.getElementById("panel-rooms").style.display=l==="rooms"?"":"none",document.getElementById("panel-requests").style.display=l==="requests"?"":"none"})}),t.querySelectorAll("[data-hostel]").forEach(e=>{e.addEventListener("click",()=>{t.querySelectorAll("[data-hostel]").forEach(a=>a.classList.remove("active")),e.classList.add("active"),r=e.dataset.hostel,i()})}),i(),s(),requestAnimationFrame(()=>{var e;return(e=document.getElementById("admin-rooms-page"))==null?void 0:e.classList.replace("page-enter","page-active")})}const U=["Plumber","Electrician","WiFi","Authority","Other"],q={Plumber:"🔧",Electrician:"⚡",WiFi:"📶",Authority:"🏛️",Other:"📋"};async function we(t){t.innerHTML='<div class="page-loading">Loading…</div>';try{const o=await f.get("/resources");ke(t,o)}catch(o){t.innerHTML=`<div class="page-error">Failed to load: ${o.message}</div>`}}function ke(t,o){let d=o,c="",r=null;t.innerHTML=`
     <div class="page-enter" id="resources-page">
       <div class="page-header">
         <h2>Resources &amp; Contacts</h2>
@@ -853,7 +891,7 @@
               <label class="form-label" for="res-cat">Category</label>
               <select class="form-select" id="res-cat" required>
                 <option value="">Select…</option>
-                ${O.map(d=>`<option value="${d}">${T[d]} ${d}</option>`).join("")}
+                ${U.map(i=>`<option value="${i}">${q[i]} ${i}</option>`).join("")}
               </select>
               <div class="form-error" id="err-res-cat">Required</div>
             </div>
@@ -888,18 +926,18 @@
           <div class="table-toolbar-title">Contact Directory</div>
           <div style="display:flex; gap:var(--space-2); flex-wrap:wrap;">
             <button class="filter-chip active" data-cat="">All</button>
-            ${O.map(d=>`<button class="filter-chip" data-cat="${d}">${T[d]} ${d}</button>`).join("")}
+            ${U.map(i=>`<button class="filter-chip" data-cat="${i}">${q[i]} ${i}</button>`).join("")}
           </div>
         </div>
         <div id="resources-body"></div>
       </div>
     </div>
-  `;function n(){const d=c?l.filter(t=>t.category===c):l,s=document.getElementById("resources-body");if(d.length===0){s.innerHTML='<p style="padding:var(--space-8); text-align:center; color:var(--text-tertiary);">No contacts in this category.</p>';return}const e={};d.forEach(t=>{e[t.category]||(e[t.category]=[]),e[t.category].push(t)}),s.innerHTML=Object.entries(e).map(([t,r])=>`
+  `;function l(){const i=c?d.filter(a=>a.category===c):d,s=document.getElementById("resources-body");if(i.length===0){s.innerHTML='<p style="padding:var(--space-8); text-align:center; color:var(--text-tertiary);">No contacts in this category.</p>';return}const e={};i.forEach(a=>{e[a.category]||(e[a.category]=[]),e[a.category].push(a)}),s.innerHTML=Object.entries(e).map(([a,n])=>`
       <div style="padding: var(--space-4) var(--space-6);">
         <div style="font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--text-tertiary); margin-bottom: var(--space-3);">
-          ${T[t]||""} ${t}
+          ${q[a]||""} ${a}
         </div>
-        ${r.map(u=>`
+        ${n.map(u=>`
           <div class="contact-row" style="margin-bottom: var(--space-2);">
             <div class="contact-avatar">${u.name[0].toUpperCase()}</div>
             <div class="contact-info" style="flex:1;">
@@ -918,9 +956,9 @@
         `).join("")}
         <hr style="border:none; border-top: 1px solid var(--border-subtle); margin: var(--space-3) 0;" />
       </div>
-    `).join(""),s.querySelectorAll("[data-edit]").forEach(t=>{t.addEventListener("click",()=>{const r=l.find(u=>u.resource_id===+t.dataset.edit);r&&(i=r.resource_id,document.getElementById("res-cat").value=r.category,document.getElementById("res-name").value=r.name,document.getElementById("res-phone").value=r.phone||"",document.getElementById("res-email").value=r.email||"",document.getElementById("res-notes").value=r.notes||"",document.getElementById("resource-form-title").textContent="Edit Contact",document.getElementById("btn-res-submit").textContent="Save Changes",document.getElementById("btn-res-cancel").style.display="",document.getElementById("resource-form").scrollIntoView({behavior:"smooth"}))})}),s.querySelectorAll("[data-delete]").forEach(t=>{t.addEventListener("click",async()=>{if(confirm("Delete this contact?")){t.disabled=!0;try{await f.delete(`/resources/${t.dataset.delete}`),l=l.filter(r=>r.resource_id!==+t.dataset.delete),h("Contact deleted.","success"),n()}catch(r){h(r.message,"error"),t.disabled=!1}}})})}a.querySelectorAll("[data-cat]").forEach(d=>{d.addEventListener("click",()=>{a.querySelectorAll("[data-cat]").forEach(s=>s.classList.remove("active")),d.classList.add("active"),c=d.dataset.cat,n()})}),document.getElementById("btn-res-cancel").addEventListener("click",()=>{i=null,document.getElementById("resource-form").reset(),document.getElementById("resource-form-title").textContent="Add New Contact",document.getElementById("btn-res-submit").textContent="Add Contact",document.getElementById("btn-res-cancel").style.display="none"});const v=document.getElementById("resource-form");v.addEventListener("submit",async d=>{d.preventDefault(),a.querySelectorAll(".form-error").forEach(g=>g.classList.remove("visible"));let s=!0;const e=document.getElementById("res-cat").value,t=document.getElementById("res-name").value.trim();if(e||(document.getElementById("err-res-cat").classList.add("visible"),s=!1),t||(document.getElementById("err-res-name").classList.add("visible"),s=!1),!s)return;const r={category:e,name:t,phone:document.getElementById("res-phone").value.trim()||null,email:document.getElementById("res-email").value.trim()||null,notes:document.getElementById("res-notes").value.trim()||null},u=document.getElementById("btn-res-submit");u.disabled=!0;try{if(i){const g=await f.put(`/resources/${i}`,r);l=l.map(y=>y.resource_id===i?g:y),h("Contact updated.","success"),document.getElementById("btn-res-cancel").click()}else l=[await f.post("/resources",r),...l],h("Contact added.","success"),v.reset();n()}catch(g){h(g.message,"error")}finally{u.disabled=!1}}),n(),requestAnimationFrame(()=>{var d;return(d=document.getElementById("resources-page"))==null?void 0:d.classList.replace("page-enter","page-active")})}const $e={home:ie,complaints:le,booking:Y,forum:K},Ee={home:pe,complaints:ge,rooms:fe,forum:K,resources:he};let L="home",M=null;function R(){return z()==="admin"?Ee:$e}function A(a){const o=R();o[a]||(a="home"),L=a,window.location.hash=a;const l=document.getElementById("sidebar"),c=document.getElementById("main-content");ee(l,L,A),o[a](c,()=>A(L)),M&&M.close()}function U(){document.body.innerHTML=`
+    `).join(""),s.querySelectorAll("[data-edit]").forEach(a=>{a.addEventListener("click",()=>{const n=d.find(u=>u.resource_id===+a.dataset.edit);n&&(r=n.resource_id,document.getElementById("res-cat").value=n.category,document.getElementById("res-name").value=n.name,document.getElementById("res-phone").value=n.phone||"",document.getElementById("res-email").value=n.email||"",document.getElementById("res-notes").value=n.notes||"",document.getElementById("resource-form-title").textContent="Edit Contact",document.getElementById("btn-res-submit").textContent="Save Changes",document.getElementById("btn-res-cancel").style.display="",document.getElementById("resource-form").scrollIntoView({behavior:"smooth"}))})}),s.querySelectorAll("[data-delete]").forEach(a=>{a.addEventListener("click",async()=>{if(confirm("Delete this contact?")){a.disabled=!0;try{await f.delete(`/resources/${a.dataset.delete}`),d=d.filter(n=>n.resource_id!==+a.dataset.delete),h("Contact deleted.","success"),l()}catch(n){h(n.message,"error"),a.disabled=!1}}})})}t.querySelectorAll("[data-cat]").forEach(i=>{i.addEventListener("click",()=>{t.querySelectorAll("[data-cat]").forEach(s=>s.classList.remove("active")),i.classList.add("active"),c=i.dataset.cat,l()})}),document.getElementById("btn-res-cancel").addEventListener("click",()=>{r=null,document.getElementById("resource-form").reset(),document.getElementById("resource-form-title").textContent="Add New Contact",document.getElementById("btn-res-submit").textContent="Add Contact",document.getElementById("btn-res-cancel").style.display="none"});const p=document.getElementById("resource-form");p.addEventListener("submit",async i=>{i.preventDefault(),t.querySelectorAll(".form-error").forEach(g=>g.classList.remove("visible"));let s=!0;const e=document.getElementById("res-cat").value,a=document.getElementById("res-name").value.trim();if(e||(document.getElementById("err-res-cat").classList.add("visible"),s=!1),a||(document.getElementById("err-res-name").classList.add("visible"),s=!1),!s)return;const n={category:e,name:a,phone:document.getElementById("res-phone").value.trim()||null,email:document.getElementById("res-email").value.trim()||null,notes:document.getElementById("res-notes").value.trim()||null},u=document.getElementById("btn-res-submit");u.disabled=!0;try{if(r){const g=await f.put(`/resources/${r}`,n);d=d.map(y=>y.resource_id===r?g:y),h("Contact updated.","success"),document.getElementById("btn-res-cancel").click()}else d=[await f.post("/resources",n),...d],h("Contact added.","success"),p.reset();l()}catch(g){h(g.message,"error")}finally{u.disabled=!1}}),l(),requestAnimationFrame(()=>{var i;return(i=document.getElementById("resources-page"))==null?void 0:i.classList.replace("page-enter","page-active")})}const Le={home:ie,complaints:de,booking:K,forum:J,resources:ue},Ie={home:ye,complaints:he,rooms:$e,forum:J,resources:we};let L="home",M=null;function R(){return F()==="admin"?Ie:Le}function B(t){const o=R();o[t]||(t="home"),L=t,window.location.hash=t;const d=document.getElementById("sidebar"),c=document.getElementById("main-content");te(d,L,B),o[t](c,()=>B(L)),M&&M.close()}function W(){document.body.innerHTML=`
     <div id="app">
       <aside id="sidebar" class="sidebar"></aside>
       <main id="main-content" class="main"></main>
     </div>
-  `}function we(){if(!Q()){se(()=>{U(),W()});return}U(),W()}function W(){M=te();const a=window.location.hash.replace("#","");L=R()[a]?a:"home",A(L),window.addEventListener("hashchange",()=>{const l=window.location.hash.replace("#","");R()[l]&&l!==L&&A(l)})}(function(){const a=localStorage.getItem("ahcms_theme")||"light";document.documentElement.setAttribute("data-theme",a)})();we();
+  `}function Ce(){if(!X()){re(()=>{W(),V()});return}W(),V()}function V(){M=ae();const t=window.location.hash.replace("#","");L=R()[t]?t:"home",B(L),window.addEventListener("hashchange",()=>{const d=window.location.hash.replace("#","");R()[d]&&d!==L&&B(d)})}(function(){const t=localStorage.getItem("ahcms_theme")||"light";document.documentElement.setAttribute("data-theme",t)})();Ce();
