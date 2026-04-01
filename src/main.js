@@ -1,63 +1,98 @@
 /* ─────────────────────────────────
    Main Application — SPA Router
+   Role-aware, auth-gated routing
    ───────────────────────────────── */
 
 import { renderNav, createMobileToggle } from './components/nav.js';
-import { renderDashboard } from './pages/dashboard.js';
-import { renderAllocation } from './pages/allocation.js';
-import { renderRooms } from './pages/rooms.js';
-import { renderComplaints } from './pages/complaints.js';
-import { renderChatbot } from './pages/chatbot.js';
+import { isLoggedIn, getRole, logout }   from './auth.js';
+import { renderLogin }                   from './pages/login.js';
 
-const sidebar = document.getElementById('sidebar');
-const main = document.getElementById('main-content');
+// Student pages
+import { renderStudentHome }      from './pages/student/home.js';
+import { renderStudentComplaints} from './pages/student/complaints.js';
+import { renderRoomBooking }      from './pages/student/booking.js';
+import { renderForum }            from './pages/forum.js';
 
-const PAGES = {
-  dashboard:  renderDashboard,
-  allocation: renderAllocation,
-  rooms:      renderRooms,
-  complaints: renderComplaints,
-  chatbot:    renderChatbot,
+// Admin pages
+import { renderAdminHome }        from './pages/admin/home.js';
+import { renderAdminComplaints }  from './pages/admin/complaints.js';
+import { renderAdminRooms }       from './pages/admin/rooms.js';
+import { renderAdminForum }       from './pages/admin/forum.js';
+import { renderResources }        from './pages/admin/resources.js';
+
+// ── Page Maps ─────────────────────────────────────────────────
+const STUDENT_PAGES = {
+  home:       renderStudentHome,
+  complaints: renderStudentComplaints,
+  booking:    renderRoomBooking,
+  forum:      renderForum,
 };
 
-let currentPage = 'dashboard';
-let mobileToggle = null;
+const ADMIN_PAGES = {
+  home:       renderAdminHome,
+  complaints: renderAdminComplaints,
+  rooms:      renderAdminRooms,
+  forum:      renderAdminForum,
+  resources:  renderResources,
+};
+
+let currentPage   = 'home';
+let mobileToggle  = null;
+
+function getPages() {
+  return getRole() === 'admin' ? ADMIN_PAGES : STUDENT_PAGES;
+}
 
 function navigate(page) {
-  if (!PAGES[page]) return;
+  const pages = getPages();
+  if (!pages[page]) page = 'home';
   currentPage = page;
 
-  // Update URL hash
   window.location.hash = page;
 
-  // Re-render nav with active state
+  const sidebar = document.getElementById('sidebar');
+  const main    = document.getElementById('main-content');
+
   renderNav(sidebar, currentPage, navigate);
+  pages[page](main, () => navigate(currentPage));
 
-  // Render page content
-  PAGES[page](main, () => navigate(currentPage));
-
-  // Close mobile sidebar
   if (mobileToggle) mobileToggle.close();
 }
 
-// Initialize
+function buildShell() {
+  document.body.innerHTML = `
+    <div id="app">
+      <aside id="sidebar" class="sidebar"></aside>
+      <main id="main-content" class="main"></main>
+    </div>
+  `;
+}
+
 function init() {
+  if (!isLoggedIn()) {
+    renderLogin(() => {
+      // After login success, rebuild the shell
+      buildShell();
+      bootRouter();
+    });
+    return;
+  }
+  buildShell();
+  bootRouter();
+}
+
+function bootRouter() {
   mobileToggle = createMobileToggle();
 
-  // Check URL hash for initial page
   const hash = window.location.hash.replace('#', '');
-  if (PAGES[hash]) {
-    currentPage = hash;
-  }
+  const pages = getPages();
+  currentPage = pages[hash] ? hash : 'home';
 
   navigate(currentPage);
 
-  // Handle browser back/forward
   window.addEventListener('hashchange', () => {
-    const hash = window.location.hash.replace('#', '');
-    if (PAGES[hash] && hash !== currentPage) {
-      navigate(hash);
-    }
+    const h = window.location.hash.replace('#', '');
+    if (getPages()[h] && h !== currentPage) navigate(h);
   });
 }
 

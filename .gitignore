@@ -1,4 +1,7 @@
-node_modules
-dist
-.DS_Store
-*.local
+node_modules/
+*.db
+*.db-shm
+*.db-wal
+server/.env
+.env
+dist/
