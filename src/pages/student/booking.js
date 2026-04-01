@@ -50,7 +50,7 @@ function renderPage(container, allRooms, allocation, bookingReqs, changeReqs) {
         letter-spacing: -2px; line-height: 1;
       }
       .alloc-meta { font-size: var(--text-sm); color: var(--text-secondary); margin-top: 4px; }
-      .change-req-form { margin-top: var(--space-5); padding-top: var(--space-5); border-top: 1px solid var(--border-subtle); }
+      .change-req-form { margin-top: var(--space-8); padding-top: var(--space-8); border-top: 1px solid var(--border-subtle); }
     </style>
 
     <div class="page-enter" id="booking-page">
