@@ -10,8 +10,89 @@
   box-sizing: border-box;
 }
 
-/* ── Tokens ── */
+/* ── Tokens — Light mode is the default ── */
 :root {
+  /* Surfaces */
+  --bg-root:        #f3f4f6;
+  --bg-primary:     #ffffff;
+  --bg-secondary:   #f9fafb;
+  --bg-elevated:    #ffffff;
+  --bg-hover:       #f3f4f6;
+  --bg-input:       #ffffff;
+
+  /* Borders */
+  --border-subtle:  #e5e7eb;
+  --border-default: #d1d5db;
+  --border-focus:   #9ca3af;
+
+  /* Text */
+  --text-primary:   #111827;
+  --text-secondary: #4b5563;
+  --text-tertiary:  #6b7280;
+  --text-inverse:   #f9fafb;
+
+  /* Accents */
+  --accent-blue:    #2563eb;
+  --accent-green:   #059669;
+  --accent-amber:   #d97706;
+  --accent-red:     #dc2626;
+  --accent-purple:  #7c3aed;
+
+  /* Accent low-opacity backgrounds */
+  --accent-blue-bg:   rgba(37, 99, 235, 0.1);
+  --accent-green-bg:  rgba(5, 150, 105, 0.1);
+  --accent-amber-bg:  rgba(217, 119, 6, 0.1);
+  --accent-red-bg:    rgba(220, 38, 38, 0.1);
+  --accent-purple-bg: rgba(124, 58, 237, 0.1);
+
+  /* Typography */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --text-xs:   0.6875rem;   /* 11px */
+  --text-sm:   0.8125rem;   /* 13px */
+  --text-base: 0.875rem;    /* 14px */
+  --text-lg:   1rem;        /* 16px */
+  --text-xl:   1.25rem;     /* 20px */
+  --text-2xl:  1.5rem;      /* 24px */
+  --text-3xl:  2rem;        /* 32px */
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+
+  /* Layout */
+  --sidebar-width: 260px;
+  --sidebar-collapsed: 64px;
+}
+
+/* ── Dark Theme Variables ── */
+:root[data-theme="dark"] {
   /* Surfaces */
   --bg-root:        #050505;
   --bg-primary:     #0a0a0a;
@@ -45,86 +126,9 @@
   --accent-red-bg:    rgba(248, 113, 113, 0.08);
   --accent-purple-bg: rgba(167, 139, 250, 0.08);
 
-  /* Typography */
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
-
-  --text-xs:   0.6875rem;   /* 11px */
-  --text-sm:   0.8125rem;   /* 13px */
-  --text-base: 0.875rem;    /* 14px */
-  --text-lg:   1rem;        /* 16px */
-  --text-xl:   1.25rem;     /* 20px */
-  --text-2xl:  1.5rem;      /* 24px */
-  --text-3xl:  2rem;        /* 32px */
-
-  /* Spacing */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-5: 1.25rem;
-  --space-6: 1.5rem;
-  --space-8: 2rem;
-  --space-10: 2.5rem;
-  --space-12: 3rem;
-  --space-16: 4rem;
-
-  /* Radii */
-  --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
-
-  /* Shadows */
   --shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
   --shadow-md: 0 4px 12px rgba(0,0,0,0.3);
   --shadow-lg: 0 8px 32px rgba(0,0,0,0.4);
-
-  /* Transitions */
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --duration-fast: 150ms;
-  --duration-normal: 250ms;
-  --duration-slow: 400ms;
-
-  /* Layout */
-  --sidebar-width: 260px;
-  --sidebar-collapsed: 64px;
-}
-
-/* ── Light Theme Variables ── */
-:root[data-theme="light"] {
-  /* Surfaces */
-  --bg-root:        #f3f4f6;
-  --bg-primary:     #ffffff;
-  --bg-secondary:   #f9fafb;
-  --bg-elevated:    #ffffff;
-  --bg-hover:       #f3f4f6;
-  --bg-input:       #ffffff;
-
-  /* Borders */
-  --border-subtle:  #e5e7eb;
-  --border-default: #d1d5db;
-  --border-focus:   #9ca3af;
-
-  /* Text */
-  --text-primary:   #111827;
-  --text-secondary: #4b5563;
-  --text-tertiary:  #6b7280;
-  --text-inverse:   #f9fafb;
-
-  /* Accents */
-  --accent-blue:    #2563eb;
-  --accent-green:   #059669;
-  --accent-amber:   #d97706;
-  --accent-red:     #dc2626;
-  --accent-purple:  #7c3aed;
-
-  /* Accent low-opacity backgrounds */
-  --accent-blue-bg:   rgba(37, 99, 235, 0.1);
-  --accent-green-bg:  rgba(5, 150, 105, 0.1);
-  --accent-amber-bg:  rgba(217, 119, 6, 0.1);
-  --accent-red-bg:    rgba(220, 38, 38, 0.1);
-  --accent-purple-bg: rgba(124, 58, 237, 0.1);
 }
 
 /* ── Base ── */
@@ -502,7 +506,7 @@ body {
 }
 
 .btn-primary:hover {
-  background: #ffffff;
+  opacity: 0.88;
   transform: translateY(-1px);
   box-shadow: var(--shadow-sm);
 }
@@ -1286,7 +1290,7 @@ tbody td {
   transition: all var(--duration-fast) var(--ease-out);
 }
 
-.login-btn:hover:not(:disabled) { background: #fff; transform: translateY(-1px); }
+.login-btn:hover:not(:disabled) { opacity: 0.85; transform: translateY(-1px); }
 .login-btn:disabled { opacity: .6; cursor: not-allowed; }
 
 .login-btn-outline {
@@ -1402,32 +1406,22 @@ tbody td {
 }
 .contact-phone:hover { text-decoration: underline; }
 
-/* ── Category Tabs ──────────────────────────────────────────── */
-.cat-tabs {
+/* ── Category Filter Row ────────────────────────────────────── */
+.cat-filter-row {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-  margin-bottom: var(--space-6);
+  align-items: center;
+  gap: var(--space-3);
+  margin: var(--space-6) 0;
 }
 
-.cat-tab {
-  padding: var(--space-2) var(--space-4);
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  font-size: var(--text-sm);
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition: all var(--duration-fast) var(--ease-out);
+.cat-filter-row .form-label {
   white-space: nowrap;
+  margin-bottom: 0;
+  flex-shrink: 0;
 }
 
-.cat-tab:hover { color: var(--text-primary); border-color: var(--border-default); }
-
-.cat-tab.active {
-  background: var(--accent-blue-bg);
-  border-color: var(--accent-blue);
-  color: var(--accent-blue);
+.cat-filter-row .cat-filter-select {
+  max-width: 240px;
 }
 
 /* ── Forum Posts ────────────────────────────────────────────── */
