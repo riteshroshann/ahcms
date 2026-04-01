@@ -96,8 +96,24 @@ CREATE TABLE IF NOT EXISTS FORUM_POST (
     post_id     INTEGER PRIMARY KEY AUTOINCREMENT,
     title       TEXT NOT NULL,
     content     TEXT NOT NULL,
+    avatar_name TEXT NOT NULL DEFAULT 'Anonymous',
+    avatar_icon TEXT NOT NULL DEFAULT '👤',
+    upvotes     INTEGER NOT NULL DEFAULT 0,
+    downvotes   INTEGER NOT NULL DEFAULT 0,
     created_at  TEXT NOT NULL DEFAULT (datetime('now'))
     -- deliberately no student_id: truly anonymous
+);
+
+-- ── Anonymous Forum Replies ──────────────────────────────────────
+CREATE TABLE IF NOT EXISTS FORUM_REPLY (
+    reply_id    INTEGER PRIMARY KEY AUTOINCREMENT,
+    post_id     INTEGER NOT NULL REFERENCES FORUM_POST(post_id) ON DELETE CASCADE,
+    content     TEXT NOT NULL,
+    avatar_name TEXT NOT NULL DEFAULT 'Anonymous',
+    avatar_icon TEXT NOT NULL DEFAULT '👤',
+    upvotes     INTEGER NOT NULL DEFAULT 0,
+    downvotes   INTEGER NOT NULL DEFAULT 0,
+    created_at  TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
 -- ── Resources (Admin Contact Directory) ─────────────────────────

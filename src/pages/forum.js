@@ -72,18 +72,143 @@ function renderPage(container, initialPosts) {
     }
     empty.style.display = 'none';
     feed.innerHTML = posts.map(p => `
-      <div class="forum-post">
-        <div class="forum-post-header">
-          <div class="forum-avatar">A</div>
+      <div class="forum-post card" style="background:var(--bg-primary); padding:var(--space-4); margin-bottom:var(--space-4); border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
+        <div class="forum-post-header" style="display:flex; align-items:center; gap:var(--space-3); margin-bottom:var(--space-2);">
+          <div class="forum-avatar" style="font-size:24px; background:transparent; border:none;">${p.avatar_icon || '👤'}</div>
           <div>
-            <div class="forum-post-title">${escHtml(p.title)}</div>
-            <div class="forum-post-meta">Anonymous · ${formatTime(p.created_at)}</div>
+            <div class="forum-post-title" style="font-weight:600; color:var(--text-primary);">${escHtml(p.title)}</div>
+            <div class="forum-post-meta" style="font-size:var(--text-xs); color:var(--text-tertiary);">${escHtml(p.avatar_name || 'Anonymous')} · ${formatTime(p.created_at)}</div>
           </div>
         </div>
-        <div class="forum-post-body">${escHtml(p.content)}</div>
+        <div class="forum-post-body" style="font-size:var(--text-sm); color:var(--text-secondary); line-height:1.6; margin-left:var(--space-10); margin-bottom:var(--space-3);">${escHtml(p.content)}</div>
+        
+        <div class="forum-post-actions" style="margin-left:var(--space-10); display:flex; gap:var(--space-4); align-items:center; margin-bottom:var(--space-2);">
+          <div style="display:flex; background:var(--bg-elevated); border-radius:var(--radius-sm); border:1px solid var(--border-subtle); overflow:hidden;">
+            <button class="vote-btn" data-type="post" data-id="${p.post_id}" data-dir="up" style="background:transparent; border:none; padding:4px 8px; cursor:pointer; color:var(--text-secondary);">⇧ ${p.upvotes || 0}</button>
+            <div style="width:1px; background:var(--border-subtle);"></div>
+            <button class="vote-btn" data-type="post" data-id="${p.post_id}" data-dir="down" style="background:transparent; border:none; padding:4px 8px; cursor:pointer; color:var(--text-secondary);">⇩ ${p.downvotes || 0}</button>
+          </div>
+          ${!isAdmin ? `<button class="reply-toggle-btn" data-post-id="${p.post_id}" style="background:transparent; border:none; color:var(--text-tertiary); font-size:var(--text-xs); cursor:pointer; display:flex; gap:4px; align-items:center;">💬 Reply</button>` : ''}
+        </div>
+
+        <!-- Replies -->
+        ${p.replies && p.replies.length > 0 ? `
+          <div class="forum-replies" style="margin-left:var(--space-10); border-left:2px solid var(--border-subtle); padding-left:var(--space-4); margin-top:var(--space-4); display:flex; flex-direction:column; gap:var(--space-4);">
+            ${p.replies.map(r => `
+              <div class="forum-reply">
+                <div class="forum-post-header" style="display:flex; align-items:center; gap:var(--space-2); margin-bottom:4px;">
+                  <div class="forum-avatar" style="font-size:16px; background:transparent; border:none; width:auto; height:auto;">${r.avatar_icon || '👤'}</div>
+                  <div class="forum-post-meta" style="font-size:var(--text-xs); color:var(--text-tertiary);">${escHtml(r.avatar_name || 'Anonymous')} · ${formatTime(r.created_at)}</div>
+                </div>
+                <div class="forum-post-body" style="font-size:var(--text-sm); line-height:1.5; color:var(--text-secondary); margin-left:var(--space-6);">${escHtml(r.content)}</div>
+                <div class="forum-post-actions" style="margin-left:var(--space-6); display:flex; gap:var(--space-3); margin-top:4px;">
+                  <div style="display:flex; background:var(--bg-elevated); border-radius:var(--radius-sm); border:1px solid var(--border-subtle); overflow:hidden;">
+                    <button class="vote-btn" data-type="reply" data-id="${r.reply_id}" data-dir="up" style="background:transparent; border:none; padding:2px 6px; cursor:pointer; font-size:11px; color:var(--text-secondary);">⇧ ${r.upvotes || 0}</button>
+                    <div style="width:1px; background:var(--border-subtle);"></div>
+                    <button class="vote-btn" data-type="reply" data-id="${r.reply_id}" data-dir="down" style="background:transparent; border:none; padding:2px 6px; cursor:pointer; font-size:11px; color:var(--text-secondary);">⇩ ${r.downvotes || 0}</button>
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        ` : ''}
+
+        <!-- Reply Form Content -->
+        ${!isAdmin ? `
+          <div id="reply-form-${p.post_id}" style="display:none; margin-left:var(--space-10); margin-top:var(--space-4);">
+            <textarea id="reply-input-${p.post_id}" class="form-textarea" rows="2" placeholder="Write an anonymous reply..." style="padding:var(--space-2); min-height:60px;"></textarea>
+            <div style="margin-top:var(--space-2); display:flex; gap:var(--space-2);">
+              <button class="btn btn-primary reply-submit-btn" data-post-id="${p.post_id}" style="padding:4px 12px; font-size:12px;">Submit Reply</button>
+              <button class="btn btn-secondary reply-toggle-btn" data-post-id="${p.post_id}" style="padding:4px 12px; font-size:12px;">Cancel</button>
+            </div>
+          </div>
+        ` : ''}
       </div>
     `).join('');
   }
+
+  // Event Delegation for feed interactions
+  const feedContainer = document.getElementById('forum-feed');
+  feedContainer.addEventListener('click', async e => {
+    // 1. Voting
+    const voteBtn = e.target.closest('.vote-btn');
+    if (voteBtn && !voteBtn.disabled) {
+      const type = voteBtn.dataset.type;
+      const id = voteBtn.dataset.id;
+      const dir = voteBtn.dataset.dir;
+      
+      voteBtn.disabled = true;
+      try {
+        const updated = await api.patch('/forum/vote', { type, id: parseInt(id, 10), dir });
+        // Optimistic UI update logic: update the local state manually without redrawing the whole feed.
+        if (type === 'post') {
+          const post = posts.find(p => p.post_id === parseInt(id, 10));
+          if (post) {
+            post.upvotes = updated.upvotes;
+            post.downvotes = updated.downvotes;
+          }
+        } else {
+          for (const post of posts) {
+            if (post.replies) {
+              const reply = post.replies.find(r => r.reply_id === parseInt(id, 10));
+              if (reply) {
+                reply.upvotes = updated.upvotes;
+                reply.downvotes = updated.downvotes;
+                break;
+              }
+            }
+          }
+        }
+        renderFeed(); // simple enough for now
+      } catch (err) {
+        toast(err.message, 'error');
+        voteBtn.disabled = false;
+      }
+      return;
+    }
+
+    // 2. Toggle Reply Form
+    const toggleBtn = e.target.closest('.reply-toggle-btn');
+    if (toggleBtn) {
+      const postId = toggleBtn.dataset.postId;
+      const form = document.getElementById(`reply-form-${postId}`);
+      if (form) {
+        form.style.display = form.style.display === 'none' ? 'block' : 'none';
+      }
+      return;
+    }
+
+    // 3. Submit Reply
+    const submitBtn = e.target.closest('.reply-submit-btn');
+    if (submitBtn) {
+      const postId = submitBtn.dataset.postId;
+      const input = document.getElementById(`reply-input-${postId}`);
+      const content = input?.value.trim();
+      
+      if (!content) {
+        toast('Reply content cannot be empty', 'error');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = '...';
+      try {
+        const newReply = await api.post(`/forum/${postId}/reply`, { content });
+        const post = posts.find(p => p.post_id === parseInt(postId, 10));
+        if (post) {
+          if (!post.replies) post.replies = [];
+          post.replies.push(newReply);
+        }
+        toast('Reply posted', 'success');
+        renderFeed();
+      } catch (err) {
+        toast(err.message, 'error');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Reply';
+      }
+      return;
+    }
+  });
 
   if (!isAdmin) {
     const form = document.getElementById('forum-form');

@@ -23,13 +23,10 @@ export async function renderRoomBooking(container) {
 
 function renderPage(container, allRooms, allocation, requests) {
   const user = getUser();
-  const studentYear = user?.year || 1;
 
-  // Year → floor mapping per spec
-  const targetFloor = studentYear <= 2 ? 7 : studentYear === 3 ? 8 : 9;
   const hostelRooms = allRooms.filter(r => r.hostel === (user?.hostel || ''));
   const floorsAvailable = [...new Set(hostelRooms.map(r => r.floor))].sort((a,b) => a-b);
-  const displayFloor = floorsAvailable.includes(targetFloor) ? targetFloor : floorsAvailable[0] || 1;
+  const displayFloor = floorsAvailable[0] || 1;
 
   let selectedFloor = displayFloor;
   let selectedRoom  = null;
@@ -44,11 +41,18 @@ function renderPage(container, allRooms, allocation, requests) {
       </div>
 
       ${allocation ? `
-        <div class="alert-banner alert-green">
-          <strong>You already have an active room allocation:</strong> ${allocation.room_id} — ${allocation.hostel}, Floor ${allocation.floor}
+        <div style="background:var(--bg-elevated); padding:var(--space-6); border-radius:var(--radius-lg); border:1px solid rgba(52,211,153,.3); margin-bottom:var(--space-6);">
+          <div style="color:var(--text-secondary); font-size:var(--text-xs); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:var(--space-2);">Current Room Assignment</div>
+          <div style="display:flex; align-items:center; gap:var(--space-3);">
+            <div style="font-size:32px; font-weight:700; color:var(--accent-green); line-height:1;">${allocation.room_id}</div>
+            <div style="border-left:1px solid var(--border-subtle); padding-left:var(--space-3);">
+              <div style="font-weight:500;">${allocation.hostel}</div>
+              <div style="font-size:var(--text-sm); color:var(--text-secondary);">Floor ${allocation.floor} • Management Allocated</div>
+            </div>
+          </div>
         </div>
       ` : pendingRequest ? `
-        <div class="alert-banner alert-amber">
+        <div class="alert-banner alert-amber" style="margin-bottom:var(--space-6);">
           <strong>Pending request:</strong> Room ${pendingRequest.room_id} submitted on ${pendingRequest.created_at?.slice(0,10)}. Waiting for admin approval.
         </div>
       ` : ''}
@@ -65,7 +69,7 @@ function renderPage(container, allRooms, allocation, requests) {
 
       <!-- Floor Plan -->
       <div class="form-section" style="max-width: none; margin-bottom: var(--space-6);" id="floor-plan-section">
-        <div class="form-section-title" id="floor-plan-title">Floor ${selectedFloor} — ${user?.hostel || ''} Hostel</div>
+        <div class="form-section-title" id="floor-plan-title">Floor ${selectedFloor} — ${user?.hostel || ''}</div>
         <div class="floor-plan" id="floor-plan"></div>
         <div class="floor-legend">
           <span class="legend-item"><span class="legend-dot vacant"></span> Vacant</span>
@@ -121,7 +125,7 @@ function renderPage(container, allRooms, allocation, requests) {
 
   function renderFloorPlan(floor) {
     const floorRooms = hostelRooms.filter(r => r.floor === floor);
-    document.getElementById('floor-plan-title').textContent = `Floor ${floor} — ${user?.hostel || ''} Hostel`;
+    document.getElementById('floor-plan-title').textContent = `Floor ${floor} — ${user?.hostel || ''}`;
     const plan = document.getElementById('floor-plan');
     if (floorRooms.length === 0) {
       plan.innerHTML = `<p style="color:var(--text-tertiary); padding: var(--space-4);">No rooms on this floor.</p>`;

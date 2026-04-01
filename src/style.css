@@ -1481,8 +1481,8 @@ tbody td {
 /* ── Floor Plan / Room Booking ──────────────────────────────── */
 .floor-plan {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-  gap: var(--space-3);
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: var(--space-4);
   padding: var(--space-2) 0;
 }
 

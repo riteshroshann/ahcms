@@ -47,21 +47,21 @@ async function seed() {
 
   const stuPw = bcrypt.hashSync('Student@123', 10);
   const students = [
-    ['STU001','CW2022001','Arjun Mehta',     'arjun@ahcms.edu.in',   stuPw,'M',2022,2026,'B.Tech CSE', 'Delhi',          'Aryabhatta',2],
-    ['STU002','CW2021002','Priya Sharma',    'priya@ahcms.edu.in',   stuPw,'F',2021,2025,'B.Tech ECE', 'Mumbai',         'Gargi',      3],
-    ['STU003','CW2023003','Rahul Verma',     'rahul@ahcms.edu.in',   stuPw,'M',2023,2027,'B.Tech ME',  'Bangalore',      'Aryabhatta', 1],
-    ['STU004','CW2022004','Sneha Iyer',      'sneha@ahcms.edu.in',   stuPw,'F',2022,2026,'B.Tech CSE', 'Chennai',        'Gargi',      2],
-    ['STU005','CW2020005','Vikram Singh',    'vikram@ahcms.edu.in',  stuPw,'M',2020,2024,'B.Tech EEE', 'Jaipur',         'Ramanujan',  4],
-    ['STU006','CW2023006','Ananya Das',      'ananya@ahcms.edu.in',  stuPw,'F',2023,2027,'B.Tech CSE', 'Kolkata',        'Gargi',      1],
-    ['STU007','CW2021007','Karthik Nair',    'karthik@ahcms.edu.in', stuPw,'M',2021,2025,'B.Tech IT',  'Kochi',          'Ramanujan',  3],
-    ['STU008','CW2022008','Diya Patel',      'diya@ahcms.edu.in',    stuPw,'F',2022,2026,'B.Tech CSE', 'Ahmedabad',      'Maitreyi',   2],
-    ['STU009','CW2023009','Aditya Rao',      'aditya@ahcms.edu.in',  stuPw,'M',2023,2027,'B.Tech ME',  'Hyderabad',      'Aryabhatta', 1],
-    ['STU010','CW2020010','Meera Joshi',     'meera@ahcms.edu.in',   stuPw,'F',2020,2024,'B.Tech ECE', 'Pune',           'Maitreyi',   4],
-    ['STU011','CW2022011','Rohan Gupta',     'rohan@ahcms.edu.in',   stuPw,'M',2022,2026,'B.Tech CSE', 'Lucknow',        'Ramanujan',  2],
-    ['STU012','CW2021012','Ishita Banerjee', 'ishita@ahcms.edu.in',  stuPw,'F',2021,2025,'B.Tech CSE', 'Kolkata',        'Gargi',      3],
-    ['STU013','CW2023013','Siddharth Jain',  'siddharth@ahcms.edu.in',stuPw,'M',2023,2027,'B.Tech IT', 'Indore',         'Aryabhatta', 1],
-    ['STU014','CW2022014','Kavya Reddy',     'kavya@ahcms.edu.in',   stuPw,'F',2022,2026,'B.Tech ECE', 'Hyderabad',      'Maitreyi',   2],
-    ['STU015','CW2021015','Nikhil Choudhary','nikhil@ahcms.edu.in',  stuPw,'M',2021,2025,'B.Tech ME',  'Chandigarh',     'Ramanujan',  3],
+    ['STU001','DL.AI.U4AID24120','Arjun Mehta',     'arjun@ahcms.edu.in',   stuPw,'M',2021,2026,'MBBS', 'Delhi',          'Senior MBBS boys hostel', 4],
+    ['STU002','DL.AI.U4AID24121','Priya Sharma',    'priya@ahcms.edu.in',   stuPw,'F',2021,2026,'MBBS', 'Mumbai',         'Senior MBBS girls hostel',4],
+    ['STU003','DL.AI.U4AID24122','Rahul Verma',     'rahul@ahcms.edu.in',   stuPw,'M',2021,2026,'MBBS', 'Bangalore',      'Senior MBBS boys hostel', 4],
+    ['STU004','DL.AI.U4AID24123','Sneha Iyer',      'sneha@ahcms.edu.in',   stuPw,'F',2021,2026,'MBBS', 'Chennai',        'Senior MBBS girls hostel',4],
+    ['STU005','DL.AI.U4AID24124','Vikram Singh',    'vikram@ahcms.edu.in',  stuPw,'M',2022,2027,'MBBS', 'Jaipur',         'Senior MBBS boys hostel', 3],
+    ['STU006','DL.AI.U4AID24125','Ananya Das',      'ananya@ahcms.edu.in',  stuPw,'F',2022,2027,'MBBS', 'Kolkata',        'Senior MBBS girls hostel',3],
+    ['STU007','DL.AI.U4AID24126','Karthik Nair',    'karthik@ahcms.edu.in', stuPw,'M',2023,2027,'Nursing','Kochi',        'Shraddha building Block B',2],
+    ['STU008','DL.AI.U4AID24127','Diya Patel',      'diya@ahcms.edu.in',    stuPw,'F',2023,2027,'Nursing','Ahmedabad',    'Shraddha building Block A',2],
+    ['STU009','DL.AI.U4AID24128','Aditya Rao',      'aditya@ahcms.edu.in',  stuPw,'M',2024,2028,'AHS',    'Hyderabad',    'Shraddha building Block B',1],
+    ['STU010','DL.AI.U4AID24129','Meera Joshi',     'meera@ahcms.edu.in',   stuPw,'F',2024,2028,'AHS',    'Pune',         'Shraddha building Block A',1],
+    ['STU011','DL.AI.U4AID24130','Rohan Gupta',     'rohan@ahcms.edu.in',   stuPw,'M',2022,2027,'MBBS', 'Lucknow',        'Senior MBBS boys hostel', 3],
+    ['STU012','DL.AI.U4AID24131','Ishita Banerjee', 'ishita@ahcms.edu.in',  stuPw,'F',2021,2026,'MBBS', 'Kolkata',        'Senior MBBS girls hostel',4],
+    ['STU013','DL.AI.U4AID24132','Siddharth Jain',  'siddharth@ahcms.edu.in',stuPw,'M',2023,2027,'Nursing','Indore',      'Shraddha building Block B',2],
+    ['STU014','DL.AI.U4AID24133','Kavya Reddy',     'kavya@ahcms.edu.in',   stuPw,'F',2024,2028,'AHS',    'Hyderabad',    'Shraddha building Block A',1],
+    ['STU015','DL.AI.U4AID24134','Nikhil Choudhary','nikhil@ahcms.edu.in',  stuPw,'M',2024,2028,'AHS',    'Chandigarh',   'Shraddha building Block B',1],
   ];
   const insertStudents = db.transaction((rows) => rows.forEach(r => stuInsert.run(...r)));
   insertStudents(students);
@@ -71,19 +71,22 @@ async function seed() {
     'INSERT INTO ROOM (room_id, hostel, floor, type, capacity, current_occupancy) VALUES (?, ?, ?, ?, ?, ?)'
   );
   const rooms = [
-    ['A101','Aryabhatta',1,'Single',1,1], ['A102','Aryabhatta',1,'Double',2,1],
-    ['A103','Aryabhatta',1,'Triple',3,3], ['A201','Aryabhatta',2,'Single',1,0],
-    ['A202','Aryabhatta',2,'Double',2,2], ['A203','Aryabhatta',2,'Double',2,0],
-    ['A301','Aryabhatta',3,'Double',2,1], ['A302','Aryabhatta',3,'Triple',3,2],
-    ['G101','Gargi',     1,'Single',1,1], ['G102','Gargi',     1,'Double',2,2],
-    ['G103','Gargi',     1,'Triple',3,1], ['G201','Gargi',     2,'Single',1,0],
-    ['G202','Gargi',     2,'Double',2,1], ['G203','Gargi',     2,'Double',2,2],
-    ['G301','Gargi',     3,'Triple',3,0], ['R101','Ramanujan', 1,'Single',1,1],
-    ['R102','Ramanujan', 1,'Double',2,0], ['R103','Ramanujan', 1,'Triple',3,2],
-    ['R201','Ramanujan', 2,'Single',1,0], ['R202','Ramanujan', 2,'Double',2,1],
-    ['M101','Maitreyi',  1,'Single',1,1], ['M102','Maitreyi',  1,'Double',2,2],
-    ['M103','Maitreyi',  1,'Triple',3,0], ['M201','Maitreyi',  2,'Single',1,0],
-    ['M202','Maitreyi',  2,'Double',2,1], ['M203','Maitreyi',  2,'Triple',3,3],
+    // Senior MBBS boys (Floors 8, 9)
+    ['SmB-801','Senior MBBS boys hostel',8,'Double',2,2], ['SmB-802','Senior MBBS boys hostel',8,'Double',2,1],
+    ['SmB-803','Senior MBBS boys hostel',8,'Single',1,0], ['SmB-901','Senior MBBS boys hostel',9,'Triple',3,1],
+    ['SmB-902','Senior MBBS boys hostel',9,'Double',2,0],
+    
+    // Senior MBBS girls (Floors 7, 8)
+    ['SmG-701','Senior MBBS girls hostel',7,'Double',2,2], ['SmG-702','Senior MBBS girls hostel',7,'Double',2,1],
+    ['SmG-801','Senior MBBS girls hostel',8,'Triple',3,0], ['SmG-802','Senior MBBS girls hostel',8,'Single',1,1],
+
+    // Shraddha Block A (Girls, Floors 1, 2)
+    ['ShA-101','Shraddha building Block A',1,'Triple',3,2], ['ShA-102','Shraddha building Block A',1,'Double',2,0],
+    ['ShA-201','Shraddha building Block A',2,'Single',1,1], ['ShA-202','Shraddha building Block A',2,'Double',2,0],
+
+    // Shraddha Block B (Boys, Floors 1, 2)
+    ['ShB-101','Shraddha building Block B',1,'Double',2,2], ['ShB-102','Shraddha building Block B',1,'Triple',3,1],
+    ['ShB-201','Shraddha building Block B',2,'Double',2,1],
   ];
   const insertRooms = db.transaction((rows) => rows.forEach(r => roomInsert.run(...r)));
   insertRooms(rooms);
@@ -93,16 +96,24 @@ async function seed() {
     'INSERT INTO ALLOCATION (allocation_id, student_id, room_id, from_date, to_date, status) VALUES (?, ?, ?, ?, ?, ?)'
   );
   const allocations = [
-    ['AL001','STU001','A101','2025-08-01','2026-05-31','active'],
-    ['AL002','STU002','G101','2025-08-01','2026-05-31','active'],
-    ['AL003','STU003','A102','2025-08-01','2026-05-31','active'],
-    ['AL004','STU004','G102','2025-08-01','2026-05-31','active'],
-    ['AL005','STU005','R101','2025-08-01','2026-05-31','active'],
-    ['AL006','STU007','R202','2025-08-01','2026-05-31','active'],
-    ['AL007','STU008','M101','2025-08-01','2026-05-31','active'],
-    ['AL008','STU012','G102','2025-08-01','2026-05-31','active'],
-    ['AL009','STU014','M102','2025-08-01','2026-05-31','active'],
-    ['AL010','STU010','M202','2024-08-01','2025-05-31','expired'],
+    ['AL001','STU001','SmB-801','2025-08-01','2026-05-31','active'],
+    ['AL002','STU003','SmB-801','2025-08-01','2026-05-31','active'],
+    ['AL003','STU005','SmB-802','2025-08-01','2026-05-31','active'],
+    ['AL004','STU011','SmB-901','2025-08-01','2026-05-31','active'],
+    
+    ['AL005','STU002','SmG-701','2025-08-01','2026-05-31','active'],
+    ['AL006','STU004','SmG-701','2025-08-01','2026-05-31','active'],
+    ['AL007','STU006','SmG-702','2025-08-01','2026-05-31','active'],
+    ['AL008','STU012','SmG-802','2025-08-01','2026-05-31','active'],
+
+    ['AL009','STU008','ShA-101','2025-08-01','2026-05-31','active'],
+    ['AL010','STU010','ShA-101','2025-08-01','2026-05-31','active'],
+    ['AL011','STU014','ShA-201','2025-08-01','2026-05-31','active'],
+
+    ['AL012','STU007','ShB-101','2025-08-01','2026-05-31','active'],
+    ['AL013','STU009','ShB-101','2025-08-01','2026-05-31','active'],
+    ['AL014','STU013','ShB-102','2025-08-01','2026-05-31','active'],
+    ['AL015','STU015','ShB-201','2025-08-01','2026-05-31','active'],
   ];
   const insertAllocs = db.transaction((rows) => rows.forEach(r => allocInsert.run(...r)));
   insertAllocs(allocations);
@@ -113,18 +124,12 @@ async function seed() {
     VALUES (?, ?, ?, ?, ?, ?)
   `);
   const complaints = [
-    ['STU001','A101','Electricity','Frequent power outages in the evening.',         '2026-02-15','resolved'],
-    ['STU002','G101','Plumbing',   'No hot water supply in the mornings.',           '2026-03-01','in-progress'],
-    ['STU003','A102','Cleanliness','Washroom not cleaned for two days.',             '2026-03-05','open'],
-    ['STU001','A101','Plumbing',   'Water leakage from ceiling during rain.',        '2026-03-10','open'],
-    ['STU005','R101','Electricity','Socket near bed not working.',                   '2026-03-12','in-progress'],
-    ['STU004','G102','Cleanliness','Pest infestation in the corridor.',              '2026-03-14','open'],
-    ['STU001','A101','Carpentry',  'Wardrobe door hinge broken.',                   '2026-03-15','open'],
-    ['STU008','M101','Plumbing',   'Low water pressure on second floor.',            '2026-03-16','resolved'],
-    ['STU007','R202','Cleanliness','Common room not maintained.',                   '2026-03-17','open'],
-    ['STU012','G102','WiFi',       'WiFi dropping frequently in G-block.',           '2026-03-18','in-progress'],
-    ['STU004','G102','Plumbing',   'Bathroom tap dripping continuously.',            '2026-03-19','open'],
-    ['STU009','A103','WiFi',       'No WiFi connectivity in room A103.',             '2026-03-20','open'],
+    ['STU001','SmB-801','Electricity','Frequent power outages in the evening.',         '2026-02-15','resolved'],
+    ['STU002','SmG-701','Plumbing',   'No hot water supply in the mornings.',           '2026-03-01','in-progress'],
+    ['STU008','ShA-101','Cleanliness','Washroom not cleaned for two days.',             '2026-03-05','open'],
+    ['STU013','ShB-102','WiFi',       'WiFi dropping frequently in B-block.',           '2026-03-18','in-progress'],
+    ['STU004','SmG-701','Plumbing',   'Bathroom tap dripping continuously.',            '2026-03-19','open'],
+    ['STU009','ShB-101','WiFi',       'No WiFi connectivity in room.',                  '2026-03-20','open'],
   ];
   const insertCmps = db.transaction((rows) => rows.forEach(r => cmpInsert.run(...r)));
   insertCmps(complaints);
@@ -133,46 +138,38 @@ async function seed() {
     'INSERT INTO WARDEN (name, role, phone, email, hostel, shift, on_duty) VALUES (?, ?, ?, ?, ?, ?, ?)'
   );
   const wardens = [
-    // Aryabhatta
-    ['Dr. Ramesh Kulkarni','Warden','9876543210','r.kulkarni@ahcms.edu.in','Aryabhatta','All-day',1],
-    ['Prof. Anil Desai',   'Warden','9876543240','a.desai@ahcms.edu.in',   'Aryabhatta','All-day',0],
-    ['Mr. Vinod Kumar',    'Warden','9876543241','v.kumar@ahcms.edu.in',   'Aryabhatta','All-day',0],
-    // Gargi
-    ['Mrs. Sunita Sharma', 'Warden','9876543211','s.sharma@ahcms.edu.in', 'Gargi',      'All-day',1],
-    ['Dr. Meena Iyer',     'Warden','9876543242','m.iyer@ahcms.edu.in',   'Gargi',      'All-day',0],
-    ['Ms. Kavita Das',     'Warden','9876543243','k.das@ahcms.edu.in',    'Gargi',      'All-day',0],
-    // Ramanujan
-    ['Mr. Aditi Verma',    'Warden','9876543212','a.verma@ahcms.edu.in',  'Ramanujan',  'All-day',1],
-    ['Dr. Suresh Patil',   'Warden','9876543244','s.patil@ahcms.edu.in',  'Ramanujan',  'All-day',0],
-    ['Mr. Ravi Menon',     'Warden','9876543245','r.menon@ahcms.edu.in',  'Ramanujan',  'All-day',0],
-    // Maitreyi
-    ['Mr. Prakash Nair',   'Warden','9876543213','p.nair@ahcms.edu.in',   'Maitreyi',   'All-day',1],
-    ['Dr. Anita Rao',      'Warden','9876543246','a.rao@ahcms.edu.in',    'Maitreyi',   'All-day',0],
-    ['Mrs. Neha Singh',    'Warden','9876543247','n.singh@ahcms.edu.in',  'Maitreyi',   'All-day',0],
-    // Guards (unchanged)
-    ['Suresh Kumar',       'Guard', '9876543220','',                'Aryabhatta', 'Morning',1],
-    ['Mahesh Yadav',       'Guard', '9876543221','',                'Aryabhatta', 'Night',  1],
-    ['Ravi Shankar',       'Guard', '9876543222','',                'Gargi',      'Morning',1],
-    ['Deepak Singh',       'Guard', '9876543223','',                'Gargi',      'Night',  1],
-    ['Ganesh Pillai',      'Guard', '9876543224','',                'Ramanujan',  'Morning',1],
-    ['Rajesh Tiwari',      'Guard', '9876543225','',                'Maitreyi',   'Night',  1],
+    ['Dr. Ramesh Kulkarni','Warden','9876543210','r.kulkarni@ahcms.edu.in','Senior MBBS boys hostel','All-day',1],
+    ['Mrs. Sunita Sharma', 'Warden','9876543211','s.sharma@ahcms.edu.in', 'Senior MBBS girls hostel','All-day',1],
+    ['Mr. Aditi Verma',    'Warden','9876543212','a.verma@ahcms.edu.in',  'Shraddha building Block A','All-day',1],
+    ['Mr. Prakash Nair',   'Warden','9876543213','p.nair@ahcms.edu.in',   'Shraddha building Block B','All-day',1],
   ];
   const insertWardens = db.transaction((rows) => rows.forEach(r => wardInsert.run(...r)));
   insertWardens(wardens);
 
   // Forum posts
   const forumInsert = db.prepare(
-    'INSERT INTO FORUM_POST (title, content, created_at) VALUES (?, ?, ?)'
+    'INSERT INTO FORUM_POST (title, content, avatar_name, avatar_icon, upvotes, downvotes, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)'
   );
   const posts = [
-    ['Mess food timing change?',   'Has anyone heard about the mess timings changing next month? Breakfast was supposed to start at 7am but they opened at 7:45 today.',  '2026-03-28T08:12:00'],
-    ['Study room lights issue',    'The study room on floor 2 has flickering tube lights for the past week. Admin please look into this.',                                '2026-03-29T22:05:00'],
-    ['Lost umbrella',              'Lost a blue umbrella near the laundry area yesterday evening. If found please leave at reception.',                                   '2026-03-30T10:30:00'],
-    ['Cricket match tomorrow!',    'Hostel vs Dept cricket match tomorrow at 4pm. Everyone come support!',                                                                '2026-03-31T15:00:00'],
-    ['Water outage announcement',  'Water supply will be disrupted tomorrow 10am-2pm for maintenance. Please store water in advance.',                                    '2026-03-31T19:45:00'],
+    ['Mess food timing change?',   'Has anyone heard about the mess timings changing next month? Breakfast was supposed to start at 7am but they opened at 7:45 today.', 'Anonymous Mango', '🥭', 12, 1, '2026-03-28T08:12:00'],
+    ['Study room lights issue',    'The study room on floor 2 has flickering tube lights for the past week. Admin please look into this.',                               'Anonymous Banana', '🍌', 5, 0, '2026-03-29T22:05:00'],
+    ['Lost umbrella',              'Lost a blue umbrella near the laundry area yesterday evening. If found please leave at reception.',                                  'Anonymous Cherry', '🍒', 2, 0, '2026-03-30T10:30:00'],
+    ['Cricket match tomorrow!',    'Hostel vs Dept cricket match tomorrow at 4pm. Everyone come support!',                                                               'Anonymous Apple', '🍎', 25, 3, '2026-03-31T15:00:00'],
   ];
   const insertPosts = db.transaction((rows) => rows.forEach(r => forumInsert.run(...r)));
   insertPosts(posts);
+
+  // Forum replies
+  const replyInsert = db.prepare(
+    'INSERT INTO FORUM_REPLY (post_id, content, avatar_name, avatar_icon, upvotes, downvotes, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)'
+  );
+  const replies = [
+    [1, 'Yes, I heard they are updating it to 7:45 permanently.', 'Anonymous Grape', '🍇', 4, 0, '2026-03-28T09:00:00'],
+    [1, 'That is too late for morning classes...', 'Anonymous Kiwi', '🥝', 7, 1, '2026-03-28T10:30:00'],
+    [4, 'I am in! See you there.', 'Anonymous Mango', '🥭', 2, 0, '2026-03-31T16:00:00'],
+  ];
+  const insertReplies = db.transaction((rows) => rows.forEach(r => replyInsert.run(...r)));
+  insertReplies(replies);
 
   // Resources
   const resInsert = db.prepare(
