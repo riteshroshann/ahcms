@@ -3,18 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Hostel Room Allocation and Complaint Management System — manage room assignments, view occupancy, and track maintenance complaints." />
-  <title>Hostel Portal — Room Allocation & Complaints</title>
+  <meta name="description" content="CW Hostel Management Portal — room allocations, complaints, community forum and more." />
+  <title>CW Hostel Portal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <script type="module" crossorigin src="/cwhostelmag/assets/index-Dd3RiUXS.js"></script>
-  <link rel="stylesheet" crossorigin href="/cwhostelmag/assets/index-1SImIKLF.css">
+  <script type="module" crossorigin src="/assets/index-DRedeYM3.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-BLj3LDxm.css">
 </head>
 <body>
-  <div id="app">
-    <aside id="sidebar" class="sidebar"></aside>
-    <main id="main-content" class="main"></main>
-  </div>
+  <!-- Prevent theme flash -->
+  <script>
+    (function() {
+      const theme = localStorage.getItem('cw_theme') || 
+                   (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+  <!-- App shell is built dynamically by main.js based on auth state -->
 </body>
 </html>
