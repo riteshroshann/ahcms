@@ -47,14 +47,16 @@ async function seed() {
 
   const stuPw = bcrypt.hashSync('Student@123', 10);
   const students = [
-    ['STU001','DL.AI.U4AID24120','Arjun Mehta',     'arjun@ahcms.edu.in',   stuPw,'M',2021,2026,'MBBS', 'Delhi',          'Senior MBBS boys hostel', 4],
-    ['STU002','DL.AI.U4AID24121','Priya Sharma',    'priya@ahcms.edu.in',   stuPw,'F',2021,2026,'MBBS', 'Mumbai',         'Senior MBBS girls hostel',4],
-    ['STU003','DL.AI.U4AID24122','Rahul Verma',     'rahul@ahcms.edu.in',   stuPw,'M',2021,2026,'MBBS', 'Bangalore',      'Senior MBBS boys hostel', 4],
-    ['STU004','DL.AI.U4AID24123','Sneha Iyer',      'sneha@ahcms.edu.in',   stuPw,'F',2021,2026,'MBBS', 'Chennai',        'Senior MBBS girls hostel',4],
-    ['STU005','DL.AI.U4AID24124','Vikram Singh',    'vikram@ahcms.edu.in',  stuPw,'M',2022,2027,'MBBS', 'Jaipur',         'Senior MBBS boys hostel', 3],
-    ['STU006','DL.AI.U4AID24125','Ananya Das',      'ananya@ahcms.edu.in',  stuPw,'F',2022,2027,'MBBS', 'Kolkata',        'Senior MBBS girls hostel',3],
-    ['STU007','DL.AI.U4AID24130','Rohan Gupta',     'rohan@ahcms.edu.in',   stuPw,'M',2022,2027,'MBBS', 'Lucknow',        'Senior MBBS boys hostel', 3],
-    ['STU008','DL.AI.U4AID24131','Ishita Banerjee', 'ishita@ahcms.edu.in',  stuPw,'F',2021,2026,'MBBS', 'Kolkata',        'Senior MBBS girls hostel',4],
+    // MBBS — boys floor 8, girls floor 7
+    ['STU001','DL.MBBS.U4AID24120','Arjun Mehta',     'arjun@ahcms.edu.in',   stuPw,'M',2021,2026,'MBBS',  'Delhi',     'Senior MBBS boys hostel', 4],
+    ['STU002','DL.MBBS.U4AID24121','Priya Sharma',    'priya@ahcms.edu.in',   stuPw,'F',2021,2026,'MBBS',  'Mumbai',    'Senior MBBS girls hostel',4],
+    ['STU003','DL.MBBS.U4AID24122','Rahul Verma',     'rahul@ahcms.edu.in',   stuPw,'M',2021,2026,'MBBS',  'Bangalore', 'Senior MBBS boys hostel', 4],
+    ['STU004','DL.MBBS.U4AID24123','Sneha Iyer',      'sneha@ahcms.edu.in',   stuPw,'F',2021,2026,'MBBS',  'Chennai',   'Senior MBBS girls hostel',4],
+    // B.Tech — boys floor 9, girls floor 8
+    ['STU005','DL.BT.U4AID24124', 'Vikram Singh',    'vikram@ahcms.edu.in',  stuPw,'M',2022,2026,'B.Tech','Jaipur',    'Senior MBBS boys hostel', 3],
+    ['STU006','DL.BT.U4AID24125', 'Ananya Das',      'ananya@ahcms.edu.in',  stuPw,'F',2022,2026,'B.Tech','Kolkata',   'Senior MBBS girls hostel',3],
+    ['STU007','DL.BT.U4AID24130', 'Rohan Gupta',     'rohan@ahcms.edu.in',   stuPw,'M',2023,2027,'B.Tech','Lucknow',   'Senior MBBS boys hostel', 2],
+    ['STU008','DL.BT.U4AID24131', 'Ishita Banerjee', 'ishita@ahcms.edu.in',  stuPw,'F',2022,2026,'B.Tech','Kolkata',   'Senior MBBS girls hostel',3],
   ];
   const insertStudents = db.transaction((rows) => rows.forEach(r => stuInsert.run(...r)));
   insertStudents(students);
@@ -92,14 +94,17 @@ async function seed() {
     'INSERT INTO ALLOCATION (allocation_id, student_id, room_id, from_date, to_date, status) VALUES (?, ?, ?, ?, ?, ?)'
   );
   const allocations = [
+    // MBBS boys → floor 8
     ['AL001','STU001','SmB-801','2025-08-01','2026-05-31','active'],
     ['AL002','STU003','SmB-801','2025-08-01','2026-05-31','active'],
-    ['AL003','STU005','SmB-802','2025-08-01','2026-05-31','active'],
-    ['AL004','STU007','SmB-901','2025-08-01','2026-05-31','active'],
-
+    // B.Tech boys → floor 9
+    ['AL003','STU005','SmB-901','2025-08-01','2026-05-31','active'],
+    ['AL004','STU007','SmB-902','2025-08-01','2026-05-31','active'],
+    // MBBS girls → floor 7
     ['AL005','STU002','SmG-701','2025-08-01','2026-05-31','active'],
     ['AL006','STU004','SmG-701','2025-08-01','2026-05-31','active'],
-    ['AL007','STU006','SmG-702','2025-08-01','2026-05-31','active'],
+    // B.Tech girls → floor 8
+    ['AL007','STU006','SmG-801','2025-08-01','2026-05-31','active'],
     ['AL008','STU008','SmG-802','2025-08-01','2026-05-31','active'],
   ];
   const insertAllocs = db.transaction((rows) => rows.forEach(r => allocInsert.run(...r)));

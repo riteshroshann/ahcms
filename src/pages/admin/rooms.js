@@ -235,16 +235,16 @@ function renderPage(container, data, reloadFn) {
               </div>
               <div class="form-group">
                 <label class="form-label">Course *</label>
-                <select class="form-select" name="course" required>
+                <select class="form-select" name="course" id="add-course" required>
                   <option value="">Select</option>
-                  <option>MBBS</option><option>Nursing</option><option>AHS</option><option>BDS</option><option>MD</option>
+                  <option value="MBBS">MBBS</option>
+                  <option value="B.Tech">B.Tech</option>
                 </select>
               </div>
               <div class="form-group">
                 <label class="form-label">Year *</label>
-                <select class="form-select" name="year" required>
-                  <option value="">Select</option>
-                  ${[1,2,3,4,5].map(y => `<option value="${y}">Year ${y}</option>`).join('')}
+                <select class="form-select" name="year" id="add-year" required>
+                  <option value="">Select course first</option>
                 </select>
               </div>
               <div class="form-group">
@@ -314,6 +314,15 @@ function renderPage(container, data, reloadFn) {
       updateAllocRoomDropdown();
     });
     document.getElementById('add-gender').addEventListener('change', updateAllocRoomDropdown);
+
+    // Course → Year dropdown (MBBS = 5yr, B.Tech = 4yr)
+    document.getElementById('add-course').addEventListener('change', e => {
+      const years = e.target.value === 'MBBS' ? 5 : e.target.value === 'B.Tech' ? 4 : 0;
+      const yrSel = document.getElementById('add-year');
+      yrSel.innerHTML = years
+        ? `<option value="">Select</option>` + Array.from({length: years}, (_,i) => `<option value="${i+1}">Year ${i+1}</option>`).join('')
+        : `<option value="">Select course first</option>`;
+    });
 
     function updateAllocRoomDropdown() {
       const gender = document.getElementById('add-gender').value;
