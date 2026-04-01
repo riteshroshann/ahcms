@@ -26,6 +26,26 @@ function renderPage(container, student, allocation, complaints, wardens, wardenO
         <p>${student?.course || ''} · ${student?.hostel || ''} Hostel · Year ${student?.year || ''}</p>
       </div>
 
+      <!-- Student Info Card -->
+      <div class="form-section" style="max-width: none; margin-bottom: var(--space-10);">
+        <div class="form-section-title">Your Profile</div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--space-4);">
+          ${[
+            ['Roll No',      student?.roll_no],
+            ['Course',       student?.course],
+            ['Admission',    student?.adm_year],
+            ['Passing Year', student?.pass_year],
+            ['Gender',       student?.gender === 'M' ? 'Male' : student?.gender === 'F' ? 'Female' : student?.gender],
+            ['Address',      student?.address || '—'],
+          ].map(([k,v]) => `
+            <div>
+              <div style="font-size: var(--text-xs); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: .06em;">${k}</div>
+              <div style="font-size: var(--text-sm); color: var(--text-primary); margin-top: 4px;">${v || '—'}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
       <!-- Room Card -->
       <div class="card-grid">
         <div class="card card-accent-blue" style="grid-column: span 2;">
@@ -135,25 +155,7 @@ function renderPage(container, student, allocation, complaints, wardens, wardenO
         </div>
       </div>
 
-      <!-- Student Info Card -->
-      <div class="form-section" style="max-width: none; margin-top: var(--space-6);">
-        <div class="form-section-title">Your Profile</div>
-        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--space-4);">
-          ${[
-            ['Roll No',      student?.roll_no],
-            ['Course',       student?.course],
-            ['Admission',    student?.adm_year],
-            ['Passing Year', student?.pass_year],
-            ['Gender',       student?.gender === 'M' ? 'Male' : student?.gender === 'F' ? 'Female' : student?.gender],
-            ['Address',      student?.address || '—'],
-          ].map(([k,v]) => `
-            <div>
-              <div style="font-size: var(--text-xs); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: .06em;">${k}</div>
-              <div style="font-size: var(--text-sm); color: var(--text-primary); margin-top: 4px;">${v || '—'}</div>
-            </div>
-          `).join('')}
-        </div>
-      </div>
+
     </div>
   `;
 
