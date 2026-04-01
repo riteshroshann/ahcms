@@ -37,11 +37,11 @@ export function renderLogin(onSuccess) {
         <form id="form-student" class="login-form" novalidate>
           <div class="login-form-group">
             <label for="s-roll">Roll Number</label>
-            <input type="text" id="s-roll" class="login-input" placeholder="e.g. CW2022001" autocomplete="username" />
+            <input type="text" id="s-roll" class="login-input" placeholder="e.g. DL.AI.U4AID24120" autocomplete="username" />
           </div>
           <div class="login-form-group">
             <label for="s-pass">Password</label>
-            <input type="password" id="s-pass" class="login-input" placeholder="••••••••" autocomplete="current-password" />
+            <input type="password" id="s-pass" class="login-input" placeholder="Enter your password" autocomplete="current-password" />
           </div>
           <p class="login-hint">Demo credentials — Roll: <code>DL.AI.U4AID24120</code> Pass: <code>Student@123</code></p>
           <button type="submit" class="login-btn" id="btn-student-login">Sign In</button>
@@ -56,7 +56,7 @@ export function renderLogin(onSuccess) {
           </div>
           <div class="login-form-group">
             <label for="a-pass">Password</label>
-            <input type="password" id="a-pass" class="login-input" placeholder="••••••••" autocomplete="current-password" />
+            <input type="password" id="a-pass" class="login-input" placeholder="Enter your password" autocomplete="current-password" />
           </div>
           <p class="login-hint">Demo credentials — Email: <code>admin@ahcms.edu.in</code> Pass: <code>Admin@123</code></p>
           <button type="submit" class="login-btn" id="btn-admin-login">Sign In</button>
@@ -77,7 +77,7 @@ export function renderLogin(onSuccess) {
           </div>
           <div class="login-form-group">
             <label for="r-pass">Password</label>
-            <input type="password" id="r-pass" class="login-input" placeholder="Min. 8 characters" />
+            <input type="password" id="r-pass" class="login-input" placeholder="Min. 8 characters (e.g. Admin@123)" />
           </div>
           <button type="submit" class="login-btn" id="btn-register">Create Account</button>
           <div class="login-error" id="err-register"></div>
