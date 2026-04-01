@@ -389,7 +389,7 @@
                   <label class="form-label">Target Room *</label>
                   <select class="form-select" id="change-target-room" name="to_room_id" required>
                     <option value="">— select a different room —</option>
-                    ${a.filter(v=>v.room_id!==r.room_id&&v.current_occupancy<v.capacity).sort((v,g)=>v.hostel.localeCompare(g.hostel)||v.floor-g.floor||v.room_id.localeCompare(g.room_id)).map(v=>`<option value="${v.room_id}">[${v.type[0]}] ${v.room_id} · ${v.hostel} · Fl ${v.floor} · ${v.current_occupancy}/${v.capacity}</option>`).join("")}
+                    ${a.filter(v=>v.room_id!==r.room_id&&v.current_occupancy<v.capacity&&v.hostel===r.hostel).sort((v,g)=>v.floor-g.floor||v.room_id.localeCompare(g.room_id)).map(v=>`<option value="${v.room_id}">${v.room_id} · Fl ${v.floor} · ${v.type} · ${v.current_occupancy}/${v.capacity}</option>`).join("")}
                   </select>
                 </div>
                 <div class="form-group">
@@ -459,15 +459,15 @@
               <thead><tr><th>Room</th><th>Hostel</th><th>Floor</th><th>Type</th><th>Status</th><th>Note</th><th>Date</th></tr></thead>
               <tbody>
                 ${c.map(v=>{var g;return`
-                  <tr>
-                    <td class="cell-mono">${v.room_id}</td>
-                    <td style="font-size:var(--text-xs);">${v.hostel}</td>
-                    <td>${v.floor}</td>
-                    <td>${v.type}</td>
-                    <td><span class="badge badge-${v.status}">${v.status}</span></td>
-                    <td style="color:var(--text-tertiary); font-size:var(--text-xs);">${v.admin_note||"—"}</td>
-                    <td class="cell-mono">${(g=v.created_at)==null?void 0:g.slice(0,10)}</td>
-                  </tr>
+                    <tr>
+                      <td class="cell-mono">${v.room_id}</td>
+                      <td style="font-size:var(--text-xs);">${v.hostel}</td>
+                      <td>${v.floor}</td>
+                      <td>${v.type}</td>
+                      <td><span class="badge badge-${v.status==="pending"?"open":v.status==="approved"?"in-progress":"resolved"}">${v.status}</span></td>
+                      <td style="color:var(--text-tertiary); font-size:var(--text-xs);">${v.admin_note||"—"}</td>
+                      <td class="cell-mono">${(g=v.created_at)==null?void 0:g.slice(0,10)}</td>
+                    </tr>
                 `}).join("")}
               </tbody>
             </table>`}
