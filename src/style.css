@@ -1620,6 +1620,22 @@ tbody td {
 }
 .link-accent:hover { text-decoration: underline; }
 
+/* ── Resources page helpers ─────────────────────────────────── */
+.info-row {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.link-call {
+  color: var(--accent-green);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-decoration: none;
+  font-weight: 600;
+}
+.link-call:hover { text-decoration: underline; }
+
 /* ── Expanded row highlight ─────────────────────────────────── */
 .expanded-row { background: var(--bg-elevated); }
 .photo-row td { border-bottom: none; }
