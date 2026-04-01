@@ -1117,7 +1117,7 @@ tbody td {
 
 .login-art {
   flex: 1;
-  background: linear-gradient(135deg, #0a0a0a 0%, #0f1729 50%, #050d20 100%);
+  background: linear-gradient(135deg, #e8ecf3 0%, #dde3ef 50%, #e2e8f5 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1130,7 +1130,7 @@ tbody td {
   position: absolute;
   width: 600px; height: 600px;
   border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(74,158,255,.07) 0%, transparent 70%);
+  background: radial-gradient(ellipse, rgba(37,99,235,.06) 0%, transparent 70%);
   top: 50%; left: 50%;
   transform: translate(-50%,-50%);
 }
@@ -1145,14 +1145,14 @@ tbody td {
   font-size: 2.5rem;
   font-weight: 700;
   letter-spacing: -0.04em;
-  color: var(--text-primary);
+  color: #1e2a3a;
   line-height: 1.2;
   margin-bottom: var(--space-6);
 }
 
 .login-art-content p {
   font-size: var(--text-base);
-  color: var(--text-secondary);
+  color: #4a5568;
   max-width: 320px;
   margin: 0 auto;
 }
@@ -1176,6 +1176,20 @@ tbody td {
 @keyframes pulse {
   0%, 100% { opacity: 0.3; transform: scale(1); }
   50%       { opacity: 1;   transform: scale(1.2); }
+}
+
+/* Dark mode overrides login art panel */
+:root[data-theme="dark"] .login-art {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0f1729 50%, #050d20 100%);
+}
+:root[data-theme="dark"] .login-art::before {
+  background: radial-gradient(ellipse, rgba(74,158,255,.07) 0%, transparent 70%);
+}
+:root[data-theme="dark"] .login-art-content h2 {
+  color: #e8e8e8;
+}
+:root[data-theme="dark"] .login-art-content p {
+  color: #8a8a8a;
 }
 
 .login-brand {
