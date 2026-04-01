@@ -22,6 +22,7 @@ const STUDENT_NAV = [
   { id: 'complaints', label: 'Complaint',        icon: ICONS.complaints },
   { id: 'booking',    label: 'Room Booking',     icon: ICONS.booking },
   { id: 'forum',      label: 'Community Forum',  icon: ICONS.forum },
+  { id: 'resources',  label: 'Resources',        icon: ICONS.resources },
 ];
 
 const ADMIN_NAV = [

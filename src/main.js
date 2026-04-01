@@ -12,6 +12,7 @@ import { renderStudentHome }      from './pages/student/home.js';
 import { renderStudentComplaints} from './pages/student/complaints.js';
 import { renderRoomBooking }      from './pages/student/booking.js';
 import { renderForum }            from './pages/forum.js';
+import { renderStudentResources } from './pages/student/resources.js';
 
 // Admin pages
 import { renderAdminHome }        from './pages/admin/home.js';
@@ -26,6 +27,7 @@ const STUDENT_PAGES = {
   complaints: renderStudentComplaints,
   booking:    renderRoomBooking,
   forum:      renderForum,
+  resources:  renderStudentResources,
 };
 
 const ADMIN_PAGES = {
