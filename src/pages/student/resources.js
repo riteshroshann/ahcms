@@ -157,13 +157,13 @@ function renderPage(container, contacts) {
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-6);">
             <div>
               <div class="res-info-place" style="margin-bottom:var(--space-4);">Collection</div>
-              ${[['Monday','Boys Hostel (Senior MBBS)'],['Tuesday','Girls Hostel (Senior MBBS)'],['Wednesday','Sardha Block A & B']].map(([d,t])=>
+              ${[['Monday','Boys Hostel (Senior MBBS)'],['Wednesday','Girls Hostel (Senior MBBS)']].map(([d,t])=>
                 `<div class="res-laundry-row"><span>${d}</span><span>${t}</span></div>`
               ).join('')}
             </div>
             <div>
               <div class="res-info-place" style="margin-bottom:var(--space-4);">Delivery</div>
-              ${[['Thursday','Boys Hostel (Senior MBBS)'],['Friday','Girls Hostel (Senior MBBS)'],['Saturday','Sardha Block A & B']].map(([d,t])=>
+              ${[['Thursday','Boys Hostel (Senior MBBS)'],['Saturday','Girls Hostel (Senior MBBS)']].map(([d,t])=>
                 `<div class="res-laundry-row"><span>${d}</span><span>${t}</span></div>`
               ).join('')}
             </div>

@@ -20,9 +20,8 @@ const today = () => new Date().toISOString().split('T')[0];
 const HOSTELS = [
   'Senior MBBS boys hostel',
   'Senior MBBS girls hostel',
-  'Sardha building : Block A (girls)',
-  'Sardha building : Block B (boys)',
 ];
+
 
 // ── Entry point ───────────────────────────────────────────────────
 export async function renderAdminRooms(container) {

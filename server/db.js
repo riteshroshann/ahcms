@@ -53,15 +53,8 @@ async function seed() {
     ['STU004','DL.AI.U4AID24123','Sneha Iyer',      'sneha@ahcms.edu.in',   stuPw,'F',2021,2026,'MBBS', 'Chennai',        'Senior MBBS girls hostel',4],
     ['STU005','DL.AI.U4AID24124','Vikram Singh',    'vikram@ahcms.edu.in',  stuPw,'M',2022,2027,'MBBS', 'Jaipur',         'Senior MBBS boys hostel', 3],
     ['STU006','DL.AI.U4AID24125','Ananya Das',      'ananya@ahcms.edu.in',  stuPw,'F',2022,2027,'MBBS', 'Kolkata',        'Senior MBBS girls hostel',3],
-    ['STU007','DL.AI.U4AID24126','Karthik Nair',    'karthik@ahcms.edu.in', stuPw,'M',2023,2027,'Nursing','Kochi',        'Sardha building : Block B (boys)',2],
-    ['STU008','DL.AI.U4AID24127','Diya Patel',      'diya@ahcms.edu.in',    stuPw,'F',2023,2027,'Nursing','Ahmedabad',    'Sardha building : Block A (girls)',2],
-    ['STU009','DL.AI.U4AID24128','Aditya Rao',      'aditya@ahcms.edu.in',  stuPw,'M',2024,2028,'AHS',    'Hyderabad',    'Sardha building : Block B (boys)',1],
-    ['STU010','DL.AI.U4AID24129','Meera Joshi',     'meera@ahcms.edu.in',   stuPw,'F',2024,2028,'AHS',    'Pune',         'Sardha building : Block A (girls)',1],
-    ['STU011','DL.AI.U4AID24130','Rohan Gupta',     'rohan@ahcms.edu.in',   stuPw,'M',2022,2027,'MBBS', 'Lucknow',        'Senior MBBS boys hostel', 3],
-    ['STU012','DL.AI.U4AID24131','Ishita Banerjee', 'ishita@ahcms.edu.in',  stuPw,'F',2021,2026,'MBBS', 'Kolkata',        'Senior MBBS girls hostel',4],
-    ['STU013','DL.AI.U4AID24132','Siddharth Jain',  'siddharth@ahcms.edu.in',stuPw,'M',2023,2027,'Nursing','Indore',      'Sardha building : Block B (boys)',2],
-    ['STU014','DL.AI.U4AID24133','Kavya Reddy',     'kavya@ahcms.edu.in',   stuPw,'F',2024,2028,'AHS',    'Hyderabad',    'Sardha building : Block A (girls)',1],
-    ['STU015','DL.AI.U4AID24134','Nikhil Choudhary','nikhil@ahcms.edu.in',  stuPw,'M',2024,2028,'AHS',    'Chandigarh',   'Sardha building : Block B (boys)',1],
+    ['STU007','DL.AI.U4AID24130','Rohan Gupta',     'rohan@ahcms.edu.in',   stuPw,'M',2022,2027,'MBBS', 'Lucknow',        'Senior MBBS boys hostel', 3],
+    ['STU008','DL.AI.U4AID24131','Ishita Banerjee', 'ishita@ahcms.edu.in',  stuPw,'F',2021,2026,'MBBS', 'Kolkata',        'Senior MBBS girls hostel',4],
   ];
   const insertStudents = db.transaction((rows) => rows.forEach(r => stuInsert.run(...r)));
   insertStudents(students);
@@ -85,17 +78,11 @@ async function seed() {
 
   const allRooms = [
     // Senior MBBS Boys — floors 8, 9
-    ...floorRooms('Senior MBBS boys hostel',         'SmB', 8),
-    ...floorRooms('Senior MBBS boys hostel',         'SmB', 9),
+    ...floorRooms('Senior MBBS boys hostel', 'SmB', 8),
+    ...floorRooms('Senior MBBS boys hostel', 'SmB', 9),
     // Senior MBBS Girls — floors 7, 8
-    ...floorRooms('Senior MBBS girls hostel',        'SmG', 7),
-    ...floorRooms('Senior MBBS girls hostel',        'SmG', 8),
-    // Sardha Block A (Girls) — floors 1, 2
-    ...floorRooms('Sardha building : Block A (girls)','ShA', 1),
-    ...floorRooms('Sardha building : Block A (girls)','ShA', 2),
-    // Sardha Block B (Boys) — floors 1, 2
-    ...floorRooms('Sardha building : Block B (boys)', 'ShB', 1),
-    ...floorRooms('Sardha building : Block B (boys)', 'ShB', 2),
+    ...floorRooms('Senior MBBS girls hostel', 'SmG', 7),
+    ...floorRooms('Senior MBBS girls hostel', 'SmG', 8),
   ];
   const insertRooms = db.transaction((rows) => rows.forEach(r => roomInsert.run(...r)));
   insertRooms(allRooms);
@@ -108,21 +95,12 @@ async function seed() {
     ['AL001','STU001','SmB-801','2025-08-01','2026-05-31','active'],
     ['AL002','STU003','SmB-801','2025-08-01','2026-05-31','active'],
     ['AL003','STU005','SmB-802','2025-08-01','2026-05-31','active'],
-    ['AL004','STU011','SmB-901','2025-08-01','2026-05-31','active'],
+    ['AL004','STU007','SmB-901','2025-08-01','2026-05-31','active'],
 
     ['AL005','STU002','SmG-701','2025-08-01','2026-05-31','active'],
     ['AL006','STU004','SmG-701','2025-08-01','2026-05-31','active'],
     ['AL007','STU006','SmG-702','2025-08-01','2026-05-31','active'],
-    ['AL008','STU012','SmG-802','2025-08-01','2026-05-31','active'],
-
-    ['AL009','STU008','ShA-101','2025-08-01','2026-05-31','active'],
-    ['AL010','STU010','ShA-101','2025-08-01','2026-05-31','active'],
-    ['AL011','STU014','ShA-201','2025-08-01','2026-05-31','active'],
-
-    ['AL012','STU007','ShB-101','2025-08-01','2026-05-31','active'],
-    ['AL013','STU009','ShB-101','2025-08-01','2026-05-31','active'],
-    ['AL014','STU013','ShB-102','2025-08-01','2026-05-31','active'],
-    ['AL015','STU015','ShB-201','2025-08-01','2026-05-31','active'],
+    ['AL008','STU008','SmG-802','2025-08-01','2026-05-31','active'],
   ];
   const insertAllocs = db.transaction((rows) => rows.forEach(r => allocInsert.run(...r)));
   insertAllocs(allocations);
@@ -142,12 +120,10 @@ async function seed() {
     VALUES (?, ?, ?, ?, ?, ?, ?)
   `);
   const complaints = [
-    ['STU001','SmB-801','Electricity','Frequent power outages in the evening.',         '2026-02-15','resolved', '2026-02-16'],
-    ['STU002','SmG-701','Plumbing',   'No hot water supply in the mornings.',           '2026-03-01','in-progress', null],
-    ['STU008','ShA-101','Cleanliness','Washroom not cleaned for two days.',             '2026-03-05','open', null],
-    ['STU013','ShB-102','WiFi',       'WiFi dropping frequently in B-block.',           '2026-03-18','in-progress', null],
-    ['STU004','SmG-701','Plumbing',   'Bathroom tap dripping continuously.',            '2026-03-19','open', null],
-    ['STU009','ShB-101','WiFi',       'No WiFi connectivity in room.',                  '2026-03-20','open', null],
+    ['STU001','SmB-801','Electricity','Frequent power outages in the evening.', '2026-02-15','resolved', '2026-02-16'],
+    ['STU002','SmG-701','Plumbing',   'No hot water supply in the mornings.',   '2026-03-01','in-progress', null],
+    ['STU004','SmG-701','Plumbing',   'Bathroom tap dripping continuously.',     '2026-03-19','open', null],
+    ['STU006','SmG-702','WiFi',       'WiFi drops frequently in girls hostel.',  '2026-03-20','open', null],
   ];
   const insertCmps = db.transaction((rows) => rows.forEach(r => cmpInsert.run(...r)));
   insertCmps(complaints);
@@ -156,33 +132,20 @@ async function seed() {
     'INSERT INTO WARDEN (name, role, phone, email, hostel, shift, on_duty) VALUES (?, ?, ?, ?, ?, ?, ?)'
   );
   const wardens = [
-    // ── Active wardens (on_duty = 1) ──────────────────────────────────────
-    ['Dr. Ramesh Kulkarni', 'Warden','9876543210','r.kulkarni@ahcms.edu.in', 'Senior MBBS boys hostel',         'All-day', 1],
-    ['Mrs. Sunita Sharma',  'Warden','9876543211','s.sharma@ahcms.edu.in',   'Senior MBBS girls hostel',        'All-day', 1],
-    ['Mrs. Aditi Verma',    'Warden','9876543212','a.verma@ahcms.edu.in',    'Sardha building : Block A (girls)','All-day', 1],
-    ['Mr. Prakash Nair',    'Warden','9876543213','p.nair@ahcms.edu.in',     'Sardha building : Block B (boys)', 'All-day', 1],
-
-    // ── Off-duty (Previous slot) — one per hostel ──────────────────────────
-    ['Mr. Anil Desai',      'Warden','9876543220','', 'Senior MBBS boys hostel',         'Previous', 0],
-    ['Dr. Kavitha Menon',   'Warden','9876543224','', 'Senior MBBS girls hostel',        'Previous', 0],
-    ['Mr. Rajan Pillai',    'Warden','9876543225','', 'Sardha building : Block A (girls)','Previous', 0],
-    ['Mrs. Geeta Joshi',    'Warden','9876543226','', 'Sardha building : Block B (boys)', 'Previous', 0],
-
-    // ── Off-duty (Next slot) — one per hostel ──────────────────────────────
-    ['Mr. Vinod Kumar',     'Warden','9876543221','', 'Senior MBBS boys hostel',         'Next', 0],
-    ['Dr. Preethi Iyer',    'Warden','9876543227','', 'Senior MBBS girls hostel',        'Next', 0],
-    ['Ms. Nandita Roy',     'Warden','9876543228','', 'Sardha building : Block A (girls)','Next', 0],
-    ['Mr. Sudhir Bhatt',    'Warden','9876543229','', 'Sardha building : Block B (boys)', 'Next', 0],
-
-    // ── On-duty guards — two per hostel (Morning + Night) ─────────────────
-    ['Suresh Kumar',        'Guard', '9876543222','', 'Senior MBBS boys hostel',         'Morning', 1],
-    ['Deepak Singh',        'Guard', '9876543223','', 'Senior MBBS boys hostel',         'Night',   1],
-    ['Rajesh Pandey',       'Guard', '9876543230','', 'Senior MBBS girls hostel',        'Morning', 1],
-    ['Mohan Lal',           'Guard', '9876543231','', 'Senior MBBS girls hostel',        'Night',   1],
-    ['Ravi Shankar',        'Guard', '9876543232','', 'Sardha building : Block A (girls)','Morning', 1],
-    ['Anup Mishra',         'Guard', '9876543233','', 'Sardha building : Block A (girls)','Night',   1],
-    ['Bharat Yadav',        'Guard', '9876543234','', 'Sardha building : Block B (boys)', 'Morning', 1],
-    ['Ganesh Tiwari',       'Guard', '9876543235','', 'Sardha building : Block B (boys)', 'Night',   1],
+    // Active wardens
+    ['Dr. Ramesh Kulkarni', 'Warden','9876543210','r.kulkarni@ahcms.edu.in', 'Senior MBBS boys hostel',  'All-day', 1],
+    ['Mrs. Sunita Sharma',  'Warden','9876543211','s.sharma@ahcms.edu.in',   'Senior MBBS girls hostel', 'All-day', 1],
+    // Off-duty (Previous slot)
+    ['Mr. Anil Desai',      'Warden','9876543220','', 'Senior MBBS boys hostel',  'Previous', 0],
+    ['Dr. Kavitha Menon',   'Warden','9876543224','', 'Senior MBBS girls hostel', 'Previous', 0],
+    // Off-duty (Next slot)
+    ['Mr. Vinod Kumar',     'Warden','9876543221','', 'Senior MBBS boys hostel',  'Next', 0],
+    ['Dr. Preethi Iyer',    'Warden','9876543227','', 'Senior MBBS girls hostel', 'Next', 0],
+    // Guards — Morning + Night per hostel
+    ['Suresh Kumar',  'Guard','9876543222','', 'Senior MBBS boys hostel',  'Morning', 1],
+    ['Deepak Singh',  'Guard','9876543223','', 'Senior MBBS boys hostel',  'Night',   1],
+    ['Rajesh Pandey', 'Guard','9876543230','', 'Senior MBBS girls hostel', 'Morning', 1],
+    ['Mohan Lal',     'Guard','9876543231','', 'Senior MBBS girls hostel', 'Night',   1],
   ];
   const insertWardens = db.transaction((rows) => rows.forEach(r => wardInsert.run(...r)));
   insertWardens(wardens);
