@@ -257,29 +257,21 @@
         <p>Lodge a complaint by category or track your existing ones.</p>
       </div>
 
-      <!-- Category Tabs -->
-      <div class="cat-tabs">
-        <button class="cat-tab active" data-cat="">All</button>
-        ${j.map(e=>`
-          <button class="cat-tab" data-cat="${e}">${T[e]} ${e}</button>
-        `).join("")}
-      </div>
-
       <!-- Lodge Form -->
       <div class="form-section" style="margin-bottom: var(--space-8); max-width: none;">
         <div class="form-section-title">Lodge a Complaint</div>
         <form id="complaint-form" novalidate>
           <div class="form-grid">
             <div class="form-group">
-              <label class="form-label" for="cmp-category">Category</label>
+              <label class="form-label" for="cmp-category">Category <span style="color:var(--danger)">*</span></label>
               <select class="form-select" id="cmp-category" required>
                 <option value="">Select category…</option>
                 ${j.map(e=>`<option value="${e}">${T[e]} ${e}</option>`).join("")}
               </select>
               <div class="form-error" id="err-cmp-cat">Category is required</div>
             </div>
-            <div class="form-group" id="cmp-other-group" style="display: none; grid-column: 1 / -1;">
-              <label class="form-label" for="cmp-other-type">Please Specify Category</label>
+            <div class="form-group full-width" id="cmp-other-group" style="display: none;">
+              <label class="form-label" for="cmp-other-type">Please Specify Category <span style="color:var(--danger)">*</span></label>
               <input type="text" class="form-input" id="cmp-other-type" placeholder="e.g. Pest Control, Room Allocation..." />
               <div class="form-error" id="err-cmp-other">Please specify what the complaint is about.</div>
             </div>
@@ -288,7 +280,7 @@
               <input type="file" class="form-input" id="cmp-photo" accept="image/*" />
             </div>
             <div class="form-group full-width">
-              <label class="form-label" for="cmp-desc">Description</label>
+              <label class="form-label" for="cmp-desc">Description <span style="color:var(--danger)">*</span></label>
               <textarea class="form-textarea" id="cmp-desc" rows="3" placeholder="Describe the issue in detail…" required></textarea>
               <div class="form-error" id="err-cmp-desc">Description is required</div>
             </div>
@@ -298,6 +290,14 @@
             <button type="reset" class="btn btn-secondary">Clear</button>
           </div>
         </form>
+      </div>
+
+      <!-- Category Tabs -->
+      <div class="cat-tabs">
+        <button class="cat-tab active" data-cat="">All</button>
+        ${j.map(e=>`
+          <button class="cat-tab" data-cat="${e}">${T[e]} ${e}</button>
+        `).join("")}
       </div>
 
       <!-- My Complaints Table -->
@@ -332,7 +332,7 @@
           `).join("")}
         </tbody>
       </table>
-    `}a.querySelectorAll(".cat-tab").forEach(e=>{e.addEventListener("click",()=>{a.querySelectorAll(".cat-tab").forEach(o=>o.classList.remove("active")),e.classList.add("active"),i=e.dataset.cat,l()})}),a.querySelectorAll("[data-status]").forEach(e=>{e.addEventListener("click",()=>{a.querySelectorAll("[data-status]").forEach(o=>o.classList.remove("active")),e.classList.add("active"),d=e.dataset.status,l()})});const m=document.getElementById("cmp-category"),c=document.getElementById("cmp-other-group");m.addEventListener("change",e=>{e.target.value==="Other"?c.style.display="block":(c.style.display="none",document.getElementById("cmp-other-type").value="",document.getElementById("err-cmp-other").classList.remove("visible"))});const s=document.getElementById("complaint-form");s.addEventListener("submit",async e=>{e.preventDefault();let o=!0;a.querySelectorAll(".form-error").forEach($=>$.classList.remove("visible"));const n=document.getElementById("cmp-category").value,v=document.getElementById("cmp-other-type").value.trim(),g=document.getElementById("cmp-desc").value.trim(),f=document.getElementById("cmp-photo").files[0];if(n||(document.getElementById("err-cmp-cat").classList.add("visible"),o=!1),n==="Other"&&!v&&(document.getElementById("err-cmp-other").classList.add("visible"),o=!1),g||(document.getElementById("err-cmp-desc").classList.add("visible"),o=!1),!o){b("Fill in all required fields.","error");return}const k=document.getElementById("cmp-submit");k.disabled=!0,k.textContent="Submitting…";try{let $=null;f&&($=await new Promise((h,E)=>{const u=new FileReader;u.onload=()=>h(u.result),u.onerror=E,u.readAsDataURL(f)}));const B=n==="Other"&&v?`[Other: ${v}] ${g}`:g,p=await y.post("/complaints",{category:n,description:B,photo_base64:$});r=[p,...r],b(`Complaint #${p.complaint_id} submitted.`,"success"),s.reset(),l()}catch($){b($.message,"error")}finally{k.disabled=!1,k.textContent="Submit Complaint"}}),s.addEventListener("reset",()=>{a.querySelectorAll(".form-error").forEach(e=>e.classList.remove("visible")),document.getElementById("cmp-other-group").style.display="none"}),l(),requestAnimationFrame(()=>{var e;return(e=document.getElementById("complaints-page"))==null?void 0:e.classList.replace("page-enter","page-active")})}async function K(a){a.innerHTML='<div class="page-loading">Loading rooms…</div>';try{const[t,{allocation:r},d]=await Promise.all([y.get("/rooms"),y.get("/rooms/my-allocation"),y.get("/rooms/booking-requests")]);me(a,t,r,d)}catch(t){a.innerHTML=`<div class="page-error">Failed to load: ${t.message}</div>`}}function me(a,t,r,d){var k,$,B;const i=R(),l=(i==null?void 0:i.year)||1,m=l<=2?7:l===3?8:9,c=t.filter(p=>p.hostel===((i==null?void 0:i.hostel)||"")),s=[...new Set(c.map(p=>p.floor))].sort((p,h)=>p-h);let o=s.includes(m)?m:s[0]||1,n=null;const v=d.find(p=>p.status==="pending");a.innerHTML=`
+    `}a.querySelectorAll(".cat-tab").forEach(e=>{e.addEventListener("click",()=>{a.querySelectorAll(".cat-tab").forEach(o=>o.classList.remove("active")),e.classList.add("active"),i=e.dataset.cat,l()})}),a.querySelectorAll("[data-status]").forEach(e=>{e.addEventListener("click",()=>{a.querySelectorAll("[data-status]").forEach(o=>o.classList.remove("active")),e.classList.add("active"),d=e.dataset.status,l()})});const m=document.getElementById("cmp-category"),c=document.getElementById("cmp-other-group");m.addEventListener("change",e=>{e.target.value==="Other"?c.style.display="":(c.style.display="none",document.getElementById("cmp-other-type").value="",document.getElementById("err-cmp-other").classList.remove("visible"))});const s=document.getElementById("complaint-form");s.addEventListener("submit",async e=>{e.preventDefault();let o=!0;a.querySelectorAll(".form-error").forEach($=>$.classList.remove("visible"));const n=document.getElementById("cmp-category").value,v=document.getElementById("cmp-other-type").value.trim(),g=document.getElementById("cmp-desc").value.trim(),f=document.getElementById("cmp-photo").files[0];if(n||(document.getElementById("err-cmp-cat").classList.add("visible"),o=!1),n==="Other"&&!v&&(document.getElementById("err-cmp-other").classList.add("visible"),o=!1),g||(document.getElementById("err-cmp-desc").classList.add("visible"),o=!1),!o){b("Fill in all required fields.","error");return}const k=document.getElementById("cmp-submit");k.disabled=!0,k.textContent="Submitting…";try{let $=null;f&&($=await new Promise((h,E)=>{const u=new FileReader;u.onload=()=>h(u.result),u.onerror=E,u.readAsDataURL(f)}));const B=n==="Other"&&v?`[Other: ${v}] ${g}`:g,p=await y.post("/complaints",{category:n,description:B,photo_base64:$});r=[p,...r],b(`Complaint #${p.complaint_id} submitted.`,"success"),s.reset(),l()}catch($){b($.message,"error")}finally{k.disabled=!1,k.textContent="Submit Complaint"}}),s.addEventListener("reset",()=>{a.querySelectorAll(".form-error").forEach(e=>e.classList.remove("visible")),document.getElementById("cmp-other-group").style.display="none"}),l(),requestAnimationFrame(()=>{var e;return(e=document.getElementById("complaints-page"))==null?void 0:e.classList.replace("page-enter","page-active")})}async function K(a){a.innerHTML='<div class="page-loading">Loading rooms…</div>';try{const[t,{allocation:r},d]=await Promise.all([y.get("/rooms"),y.get("/rooms/my-allocation"),y.get("/rooms/booking-requests")]);me(a,t,r,d)}catch(t){a.innerHTML=`<div class="page-error">Failed to load: ${t.message}</div>`}}function me(a,t,r,d){var k,$,B;const i=R(),l=(i==null?void 0:i.year)||1,m=l<=2?7:l===3?8:9,c=t.filter(p=>p.hostel===((i==null?void 0:i.hostel)||"")),s=[...new Set(c.map(p=>p.floor))].sort((p,h)=>p-h);let o=s.includes(m)?m:s[0]||1,n=null;const v=d.find(p=>p.status==="pending");a.innerHTML=`
     <div class="page-enter" id="booking-page">
       <div class="page-header">
         <h2>Room Booking</h2>
