@@ -133,6 +133,19 @@
         <p>${(t==null?void 0:t.course)||""} · ${(t==null?void 0:t.hostel)||""} Hostel · Year ${(t==null?void 0:t.year)||""}</p>
       </div>
 
+      <!-- Student Info Card -->
+      <div class="form-section" style="max-width: none; margin-bottom: var(--space-10);">
+        <div class="form-section-title">Your Profile</div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--space-4);">
+          ${[["Roll No",t==null?void 0:t.roll_no],["Course",t==null?void 0:t.course],["Admission",t==null?void 0:t.adm_year],["Passing Year",t==null?void 0:t.pass_year],["Gender",(t==null?void 0:t.gender)==="M"?"Male":(t==null?void 0:t.gender)==="F"?"Female":t==null?void 0:t.gender],["Address",(t==null?void 0:t.address)||"—"]].map(([e,s])=>`
+            <div>
+              <div style="font-size: var(--text-xs); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: .06em;">${e}</div>
+              <div style="font-size: var(--text-sm); color: var(--text-primary); margin-top: 4px;">${s||"—"}</div>
+            </div>
+          `).join("")}
+        </div>
+      </div>
+
       <!-- Room Card -->
       <div class="card-grid">
         <div class="card card-accent-blue" style="grid-column: span 2;">
@@ -228,18 +241,7 @@
         </div>
       </div>
 
-      <!-- Student Info Card -->
-      <div class="form-section" style="max-width: none; margin-top: var(--space-6);">
-        <div class="form-section-title">Your Profile</div>
-        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--space-4);">
-          ${[["Roll No",t==null?void 0:t.roll_no],["Course",t==null?void 0:t.course],["Admission",t==null?void 0:t.adm_year],["Passing Year",t==null?void 0:t.pass_year],["Gender",(t==null?void 0:t.gender)==="M"?"Male":(t==null?void 0:t.gender)==="F"?"Female":t==null?void 0:t.gender],["Address",(t==null?void 0:t.address)||"—"]].map(([e,s])=>`
-            <div>
-              <div style="font-size: var(--text-xs); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: .06em;">${e}</div>
-              <div style="font-size: var(--text-sm); color: var(--text-primary); margin-top: 4px;">${s||"—"}</div>
-            </div>
-          `).join("")}
-        </div>
-      </div>
+
     </div>
   `,a.querySelectorAll('a.link-accent[href^="#"]').forEach(e=>{e.addEventListener("click",s=>{s.preventDefault(),window.location.hash=e.getAttribute("href").slice(1)})}),requestAnimationFrame(()=>{var e;return(e=document.getElementById("student-home"))==null?void 0:e.classList.replace("page-enter","page-active")})}const j=["Plumbing","Electricity","WiFi","Cleanliness","Carpentry","Other"],T={Plumbing:"🔧",Electricity:"⚡",WiFi:"📶",Cleanliness:"🧹",Carpentry:"🔨",Other:"📋"},le=["open","in-progress","resolved"];async function de(a){a.innerHTML='<div class="page-loading">Loading…</div>';let t=[];try{t=await y.get("/complaints")}catch(r){a.innerHTML=`<div class="page-error">Failed to load: ${r.message}</div>`;return}ce(a,t)}function ce(a,t){let r=t,d="all",n="";a.innerHTML=`
     <div class="page-enter" id="complaints-page">
