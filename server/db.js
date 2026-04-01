@@ -36,7 +36,7 @@ async function seed() {
     'INSERT INTO ADMIN (name, email, password_hash) VALUES (?, ?, ?)'
   );
   const pw = bcrypt.hashSync('Admin@123', 10);
-  adminInsert.run('Chief Warden Admin', 'admin@cwhotel.edu', pw);
+  adminInsert.run('Chief Warden Admin', 'admin@ahcms.edu.in', pw);
 
   // Students with hashed passwords
   const stuInsert = db.prepare(`
@@ -47,21 +47,21 @@ async function seed() {
 
   const stuPw = bcrypt.hashSync('Student@123', 10);
   const students = [
-    ['STU001','CW2022001','Arjun Mehta',     'arjun@cwhotel.edu',   stuPw,'M',2022,2026,'B.Tech CSE', 'Delhi',          'Aryabhatta',2],
-    ['STU002','CW2021002','Priya Sharma',    'priya@cwhotel.edu',   stuPw,'F',2021,2025,'B.Tech ECE', 'Mumbai',         'Gargi',      3],
-    ['STU003','CW2023003','Rahul Verma',     'rahul@cwhotel.edu',   stuPw,'M',2023,2027,'B.Tech ME',  'Bangalore',      'Aryabhatta', 1],
-    ['STU004','CW2022004','Sneha Iyer',      'sneha@cwhotel.edu',   stuPw,'F',2022,2026,'B.Tech CSE', 'Chennai',        'Gargi',      2],
-    ['STU005','CW2020005','Vikram Singh',    'vikram@cwhotel.edu',  stuPw,'M',2020,2024,'B.Tech EEE', 'Jaipur',         'Ramanujan',  4],
-    ['STU006','CW2023006','Ananya Das',      'ananya@cwhotel.edu',  stuPw,'F',2023,2027,'B.Tech CSE', 'Kolkata',        'Gargi',      1],
-    ['STU007','CW2021007','Karthik Nair',    'karthik@cwhotel.edu', stuPw,'M',2021,2025,'B.Tech IT',  'Kochi',          'Ramanujan',  3],
-    ['STU008','CW2022008','Diya Patel',      'diya@cwhotel.edu',    stuPw,'F',2022,2026,'B.Tech CSE', 'Ahmedabad',      'Maitreyi',   2],
-    ['STU009','CW2023009','Aditya Rao',      'aditya@cwhotel.edu',  stuPw,'M',2023,2027,'B.Tech ME',  'Hyderabad',      'Aryabhatta', 1],
-    ['STU010','CW2020010','Meera Joshi',     'meera@cwhotel.edu',   stuPw,'F',2020,2024,'B.Tech ECE', 'Pune',           'Maitreyi',   4],
-    ['STU011','CW2022011','Rohan Gupta',     'rohan@cwhotel.edu',   stuPw,'M',2022,2026,'B.Tech CSE', 'Lucknow',        'Ramanujan',  2],
-    ['STU012','CW2021012','Ishita Banerjee', 'ishita@cwhotel.edu',  stuPw,'F',2021,2025,'B.Tech CSE', 'Kolkata',        'Gargi',      3],
-    ['STU013','CW2023013','Siddharth Jain',  'siddharth@cwhotel.edu',stuPw,'M',2023,2027,'B.Tech IT', 'Indore',         'Aryabhatta', 1],
-    ['STU014','CW2022014','Kavya Reddy',     'kavya@cwhotel.edu',   stuPw,'F',2022,2026,'B.Tech ECE', 'Hyderabad',      'Maitreyi',   2],
-    ['STU015','CW2021015','Nikhil Choudhary','nikhil@cwhotel.edu',  stuPw,'M',2021,2025,'B.Tech ME',  'Chandigarh',     'Ramanujan',  3],
+    ['STU001','CW2022001','Arjun Mehta',     'arjun@ahcms.edu.in',   stuPw,'M',2022,2026,'B.Tech CSE', 'Delhi',          'Aryabhatta',2],
+    ['STU002','CW2021002','Priya Sharma',    'priya@ahcms.edu.in',   stuPw,'F',2021,2025,'B.Tech ECE', 'Mumbai',         'Gargi',      3],
+    ['STU003','CW2023003','Rahul Verma',     'rahul@ahcms.edu.in',   stuPw,'M',2023,2027,'B.Tech ME',  'Bangalore',      'Aryabhatta', 1],
+    ['STU004','CW2022004','Sneha Iyer',      'sneha@ahcms.edu.in',   stuPw,'F',2022,2026,'B.Tech CSE', 'Chennai',        'Gargi',      2],
+    ['STU005','CW2020005','Vikram Singh',    'vikram@ahcms.edu.in',  stuPw,'M',2020,2024,'B.Tech EEE', 'Jaipur',         'Ramanujan',  4],
+    ['STU006','CW2023006','Ananya Das',      'ananya@ahcms.edu.in',  stuPw,'F',2023,2027,'B.Tech CSE', 'Kolkata',        'Gargi',      1],
+    ['STU007','CW2021007','Karthik Nair',    'karthik@ahcms.edu.in', stuPw,'M',2021,2025,'B.Tech IT',  'Kochi',          'Ramanujan',  3],
+    ['STU008','CW2022008','Diya Patel',      'diya@ahcms.edu.in',    stuPw,'F',2022,2026,'B.Tech CSE', 'Ahmedabad',      'Maitreyi',   2],
+    ['STU009','CW2023009','Aditya Rao',      'aditya@ahcms.edu.in',  stuPw,'M',2023,2027,'B.Tech ME',  'Hyderabad',      'Aryabhatta', 1],
+    ['STU010','CW2020010','Meera Joshi',     'meera@ahcms.edu.in',   stuPw,'F',2020,2024,'B.Tech ECE', 'Pune',           'Maitreyi',   4],
+    ['STU011','CW2022011','Rohan Gupta',     'rohan@ahcms.edu.in',   stuPw,'M',2022,2026,'B.Tech CSE', 'Lucknow',        'Ramanujan',  2],
+    ['STU012','CW2021012','Ishita Banerjee', 'ishita@ahcms.edu.in',  stuPw,'F',2021,2025,'B.Tech CSE', 'Kolkata',        'Gargi',      3],
+    ['STU013','CW2023013','Siddharth Jain',  'siddharth@ahcms.edu.in',stuPw,'M',2023,2027,'B.Tech IT', 'Indore',         'Aryabhatta', 1],
+    ['STU014','CW2022014','Kavya Reddy',     'kavya@ahcms.edu.in',   stuPw,'F',2022,2026,'B.Tech ECE', 'Hyderabad',      'Maitreyi',   2],
+    ['STU015','CW2021015','Nikhil Choudhary','nikhil@ahcms.edu.in',  stuPw,'M',2021,2025,'B.Tech ME',  'Chandigarh',     'Ramanujan',  3],
   ];
   const insertStudents = db.transaction((rows) => rows.forEach(r => stuInsert.run(...r)));
   insertStudents(students);

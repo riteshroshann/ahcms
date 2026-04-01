@@ -12,4 +12,4 @@ healthcheckTimeout = 30
 restartPolicyType = "ON_FAILURE"
 
 [[services]]
-name = "cw-hostel-api"
+name = "ahcms-api"

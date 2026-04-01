@@ -49,7 +49,7 @@ app.use((err, req, res, _next) => {
 async function boot() {
   await initDb();
   app.listen(PORT, () => {
-    console.log(`\n🏨  CW Hostel Server running at http://localhost:${PORT}`);
+    console.log(`\n🏨  AHCMS Server running at http://localhost:${PORT}`);
     console.log(`    API Health: http://localhost:${PORT}/api/health\n`);
   });
 }

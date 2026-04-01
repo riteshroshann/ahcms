@@ -1,7 +1,7 @@
 {
-  "name": "cw-hostel-server",
+  "name": "ahcms-server",
   "version": "1.0.0",
-  "description": "CW Hostel Management System — Express + SQLite backend",
+  "description": "AHCMS — Amrita Hostel & Complaint Management, Delhi NCR Campus — Express + SQLite backend",
   "main": "index.js",
   "type": "module",
   "scripts": {

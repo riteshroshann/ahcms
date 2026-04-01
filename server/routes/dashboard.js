@@ -34,7 +34,13 @@ router.get('/student', requireAuth, requireRole('student'), (req, res) => {
     ORDER BY role
   `).all(student?.hostel || '');
 
-  res.json({ student, allocation, complaints, wardens });
+  // Chief Warden Office contact number
+  const officeRow = db.prepare(`
+    SELECT phone FROM RESOURCE WHERE category = 'Authority' AND name LIKE '%Warden Office%' LIMIT 1
+  `).get();
+  const wardenOfficePhone = officeRow?.phone || null;
+
+  res.json({ student, allocation, complaints, wardens, wardenOfficePhone });
 });
 
 // ── GET /api/dashboard/admin ──────────────────────────────────
@@ -59,6 +65,11 @@ router.get('/admin', requireAuth, requireRole('admin'), (req, res) => {
 
   const wardens = db.prepare('SELECT * FROM WARDEN WHERE on_duty = 1 ORDER BY role, hostel').all();
 
+  const officeRow = db.prepare(`
+    SELECT phone FROM RESOURCE WHERE category = 'Authority' AND name LIKE '%Warden Office%' LIMIT 1
+  `).get();
+  const wardenOfficePhone = officeRow?.phone || null;
+
   res.json({
     stats: {
       totalRooms, vacantRooms, totalCapacity, totalOccupied,
@@ -66,7 +77,8 @@ router.get('/admin', requireAuth, requireRole('admin'), (req, res) => {
       totalStudents, pendingBookings
     },
     recentComplaints,
-    wardens
+    wardens,
+    wardenOfficePhone
   });
 });
 

@@ -1,6 +1,6 @@
 {
   "rewrites": [
-    { "source": "/api/:path*", "destination": "https://cwhostelmag.onrender.com/api/:path*" },
+    { "source": "/api/:path*", "destination": "https://ahcms.onrender.com/api/:path*" },
     { "source": "/:match*",    "destination": "/index.html" }
   ],
   "headers": [

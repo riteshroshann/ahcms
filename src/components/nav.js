@@ -40,7 +40,7 @@ export function renderNav(container, activeId, onNavigate) {
 
   container.innerHTML = `
     <div class="sidebar-brand">
-      <h1>CW Hostel</h1>
+      <h1>AHCMS</h1>
       <span>${label}</span>
     </div>
 
@@ -95,7 +95,7 @@ export function renderNav(container, activeId, onNavigate) {
     const current = document.documentElement.getAttribute('data-theme') || 'dark';
     const next = current === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('cw_theme', next);
+    localStorage.setItem('ahcms_theme', next);
   });
 }
 

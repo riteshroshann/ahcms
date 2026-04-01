@@ -3,8 +3,16 @@
    Backed by localStorage
    ───────────────────────────────── */
 
-const TOKEN_KEY = 'cw_hostel_token';
-const USER_KEY  = 'cw_hostel_user';
+const TOKEN_KEY = 'ahcms_token';
+const USER_KEY  = 'ahcms_user';
+
+// One-time migration: carry forward sessions stored under the old key names
+(function migrateKeys() {
+  const oldToken = localStorage.getItem('cw_hostel_token');
+  const oldUser  = localStorage.getItem('cw_hostel_user');
+  if (oldToken) { localStorage.setItem(TOKEN_KEY, oldToken); localStorage.removeItem('cw_hostel_token'); }
+  if (oldUser)  { localStorage.setItem(USER_KEY,  oldUser);  localStorage.removeItem('cw_hostel_user');  }
+})();
 
 export function saveSession(token, user) {
   localStorage.setItem(TOKEN_KEY, token);

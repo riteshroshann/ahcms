@@ -24,8 +24,8 @@ export function renderLogin(onSuccess) {
               <polyline points="9 22 9 12 15 12 15 22"/>
             </svg>
           </div>
-          <h1>CW Hostel</h1>
-          <p>Management Portal</p>
+          <h1>AHCMS</h1>
+          <p>Amrita Hostel &amp; Complaint Management, Delhi NCR</p>
         </div>
 
         <div class="login-tabs">
@@ -52,13 +52,13 @@ export function renderLogin(onSuccess) {
         <form id="form-admin" class="login-form hidden" novalidate>
           <div class="login-form-group">
             <label for="a-email">Email</label>
-            <input type="email" id="a-email" class="login-input" placeholder="admin@cwhotel.edu" autocomplete="username" />
+            <input type="email" id="a-email" class="login-input" placeholder="admin@ahcms.edu.in" autocomplete="username" />
           </div>
           <div class="login-form-group">
             <label for="a-pass">Password</label>
             <input type="password" id="a-pass" class="login-input" placeholder="••••••••" autocomplete="current-password" />
           </div>
-          <p class="login-hint">Demo credentials — Email: <code>admin@cwhotel.edu</code> Pass: <code>Admin@123</code></p>
+          <p class="login-hint">Demo credentials — Email: <code>admin@ahcms.edu.in</code> Pass: <code>Admin@123</code></p>
           <button type="submit" class="login-btn" id="btn-admin-login">Sign In</button>
           <div class="login-error" id="err-admin"></div>
           <div class="login-divider">or</div>
@@ -73,7 +73,7 @@ export function renderLogin(onSuccess) {
           </div>
           <div class="login-form-group">
             <label for="r-email">Email</label>
-            <input type="email" id="r-email" class="login-input" placeholder="you@cwhotel.edu" />
+            <input type="email" id="r-email" class="login-input" placeholder="you@ahcms.edu.in" />
           </div>
           <div class="login-form-group">
             <label for="r-pass">Password</label>
@@ -105,7 +105,7 @@ export function renderLogin(onSuccess) {
     const current = document.documentElement.getAttribute('data-theme') || 'dark';
     const next = current === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('cw_theme', next);
+    localStorage.setItem('ahcms_theme', next);
   });
 
   // Tab switching
