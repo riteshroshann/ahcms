@@ -651,7 +651,7 @@
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-6); margin-bottom:var(--space-12);">
 
         <!-- Pharmacy -->
-        ${F("Pharmacy",`
+        ${j("Pharmacy",`
           <div class="res-info-block">
             <div class="res-info-place">Campus Pharmacy</div>
             <div class="res-info-line">Ground Floor, OPD Block, Amrita Hospital</div>
@@ -666,7 +666,7 @@
         `)}
 
         <!-- Hospital Booking -->
-        ${F("Hospital Appointment",`
+        ${j("Hospital Appointment",`
           <div class="res-info-block">
             <div class="res-info-place">Amrita Hospital Faridabad</div>
             <div class="res-info-line" style="margin-bottom:var(--space-5);">Book OPD appointments online via the Amrita patient portal.</div>
@@ -684,15 +684,15 @@
         `)}
 
         <!-- Laundry -->
-        ${F("Laundry",`
+        ${j("Laundry",`
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-6);">
             <div>
               <div class="res-info-place" style="margin-bottom:var(--space-4);">Collection</div>
-              ${[["Monday","Boys Hostel (Senior MBBS)"],["Tuesday","Girls Hostel (Senior MBBS)"],["Wednesday","Sardha Block A & B"]].map(([p,d])=>`<div class="res-laundry-row"><span>${p}</span><span>${d}</span></div>`).join("")}
+              ${[["Monday","Boys Hostel (Senior MBBS)"],["Wednesday","Girls Hostel (Senior MBBS)"]].map(([p,d])=>`<div class="res-laundry-row"><span>${p}</span><span>${d}</span></div>`).join("")}
             </div>
             <div>
               <div class="res-info-place" style="margin-bottom:var(--space-4);">Delivery</div>
-              ${[["Thursday","Boys Hostel (Senior MBBS)"],["Friday","Girls Hostel (Senior MBBS)"],["Saturday","Sardha Block A & B"]].map(([p,d])=>`<div class="res-laundry-row"><span>${p}</span><span>${d}</span></div>`).join("")}
+              ${[["Thursday","Boys Hostel (Senior MBBS)"],["Saturday","Girls Hostel (Senior MBBS)"]].map(([p,d])=>`<div class="res-laundry-row"><span>${p}</span><span>${d}</span></div>`).join("")}
             </div>
           </div>
           <div class="res-info-block" style="margin-top:var(--space-6); padding-top:var(--space-6); border-top:1px solid var(--border-subtle);">
@@ -702,7 +702,7 @@
         `)}
 
         <!-- Canteens -->
-        ${F("Canteens",`
+        ${j("Canteens",`
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-6);">
             <div>
               <div class="res-info-place">Oasis — Day</div>
@@ -952,7 +952,7 @@
           `).join("")}
         </tbody>
       </table>
-    `)}document.getElementById("meal-tabs").querySelectorAll(".res-meal-tab").forEach(p=>{p.addEventListener("click",()=>{document.getElementById("meal-tabs").querySelectorAll(".res-meal-tab").forEach(d=>d.classList.remove("active")),p.classList.add("active"),v=p.dataset.meal,l()})}),document.getElementById("day-tabs").querySelectorAll(".res-day-tab").forEach(p=>{p.addEventListener("click",()=>{document.getElementById("day-tabs").querySelectorAll(".res-day-tab").forEach(d=>d.classList.remove("active")),p.classList.add("active"),n=+p.dataset.day,l()})}),l(),requestAnimationFrame(()=>{var p;return(p=document.getElementById("res-page"))==null?void 0:p.classList.replace("page-enter","page-active")})}function F(a,r){return`
+    `)}document.getElementById("meal-tabs").querySelectorAll(".res-meal-tab").forEach(p=>{p.addEventListener("click",()=>{document.getElementById("meal-tabs").querySelectorAll(".res-meal-tab").forEach(d=>d.classList.remove("active")),p.classList.add("active"),v=p.dataset.meal,l()})}),document.getElementById("day-tabs").querySelectorAll(".res-day-tab").forEach(p=>{p.addEventListener("click",()=>{document.getElementById("day-tabs").querySelectorAll(".res-day-tab").forEach(d=>d.classList.remove("active")),p.classList.add("active"),n=+p.dataset.day,l()})}),l(),requestAnimationFrame(()=>{var p;return(p=document.getElementById("res-page"))==null?void 0:p.classList.replace("page-enter","page-active")})}function j(a,r){return`
     <div class="res-big-card">
       <div class="res-card-title">${a}</div>
       ${r}
@@ -983,7 +983,7 @@
             <label class="hostel-filter-label">Hostel</label>
             <select class="hostel-filter-select" id="hostel-filter">
               <option value="">All Hostels</option>
-              ${e.map(u=>`<option value="${u}" ${u===m?"selected":""}>${Fe(u)}</option>`).join("")}
+              ${e.map(u=>`<option value="${u}" ${u===m?"selected":""}>${je(u)}</option>`).join("")}
             </select>
           </div>
         </div>
@@ -1107,7 +1107,7 @@
           </div>
         </div>
       </div>
-    `,document.getElementById("hostel-filter").addEventListener("change",u=>{ge(u.target.value),i()}),n.querySelectorAll('a.link-accent[href^="#"]').forEach(u=>{u.addEventListener("click",E=>{E.preventDefault(),window.location.hash=u.getAttribute("href").slice(1)})}),requestAnimationFrame(()=>{var u;return(u=document.getElementById("admin-home"))==null?void 0:u.classList.replace("page-enter","page-active")})}}function Fe(a){return String(a).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}const ie={Plumbing:"🔧",Electricity:"⚡",WiFi:"📶",Cleanliness:"🧹",Carpentry:"🔨",Other:"📋"},ne=["open","in-progress","resolved"],je=["Plumbing","Electricity","WiFi","Cleanliness","Carpentry","Other"];async function Ne(a){async function r(){a.innerHTML='<div class="page-loading">Loading…</div>';try{const i=Z(),v=i?`?hostel=${encodeURIComponent(i)}`:"",n=await h.get(`/complaints${v}`);Oe(a,n,r)}catch(i){a.innerHTML=`<div class="page-error">Failed to load: ${i.message}</div>`}}ee(()=>r()),await r()}function Oe(a,r,i){let v=r,n="all",l="",p=null;a.innerHTML=`
+    `,document.getElementById("hostel-filter").addEventListener("change",u=>{ge(u.target.value),i()}),n.querySelectorAll('a.link-accent[href^="#"]').forEach(u=>{u.addEventListener("click",E=>{E.preventDefault(),window.location.hash=u.getAttribute("href").slice(1)})}),requestAnimationFrame(()=>{var u;return(u=document.getElementById("admin-home"))==null?void 0:u.classList.replace("page-enter","page-active")})}}function je(a){return String(a).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}const ie={Plumbing:"🔧",Electricity:"⚡",WiFi:"📶",Cleanliness:"🧹",Carpentry:"🔨",Other:"📋"},ne=["open","in-progress","resolved"],Fe=["Plumbing","Electricity","WiFi","Cleanliness","Carpentry","Other"];async function Ne(a){async function r(){a.innerHTML='<div class="page-loading">Loading…</div>';try{const i=Z(),v=i?`?hostel=${encodeURIComponent(i)}`:"",n=await h.get(`/complaints${v}`);Oe(a,n,r)}catch(i){a.innerHTML=`<div class="page-error">Failed to load: ${i.message}</div>`}}ee(()=>r()),await r()}function Oe(a,r,i){let v=r,n="all",l="",p=null;a.innerHTML=`
     <div class="page-enter" id="admin-complaints-page">
       <div class="page-header">
         <h2>Complaints Management</h2>
@@ -1132,7 +1132,7 @@
           <div style="display:flex; gap: var(--space-2); flex-wrap: wrap; align-items: center;">
             <select class="form-select" id="cat-filter" style="width: auto; padding: 4px 28px 4px 10px; font-size: var(--text-xs);">
               <option value="">All Categories</option>
-              ${je.map(e=>`<option value="${e}">${ie[e]} ${e}</option>`).join("")}
+              ${Fe.map(e=>`<option value="${e}">${ie[e]} ${e}</option>`).join("")}
             </select>
             <button class="filter-chip active" data-status="all">All</button>
             ${ne.map(e=>`<button class="filter-chip" data-status="${e}">${e}</button>`).join("")}
@@ -1182,7 +1182,7 @@
           `).join("")}
         </tbody>
       </table>
-    `,m.querySelectorAll("[data-action]").forEach(s=>{s.addEventListener("click",async()=>{const y=+s.dataset.id,$=s.dataset.action;s.disabled=!0;try{const u=await h.patch(`/complaints/${y}/status`,{status:$});v=v.map(E=>E.complaint_id===y?{...E,...u}:E),w(`Complaint #${y} → ${$}`,"success"),c()}catch(u){w(u.message,"error"),s.disabled=!1}})}),m.querySelectorAll(".cmp-row").forEach(s=>{s.addEventListener("click",()=>{const y=+s.dataset.id;p=p===y?null:y,c()})})}a.querySelectorAll("[data-status]").forEach(e=>{e.addEventListener("click",()=>{a.querySelectorAll("[data-status]").forEach(m=>m.classList.remove("active")),e.classList.add("active"),n=e.dataset.status,c()})}),a.querySelectorAll("[data-quick]").forEach(e=>{e.addEventListener("click",()=>{var m;n=e.dataset.quick,a.querySelectorAll("[data-status]").forEach(s=>s.classList.remove("active")),(m=a.querySelector(`[data-status="${n}"]`))==null||m.classList.add("active"),c()})}),document.getElementById("cat-filter").addEventListener("change",e=>{l=e.target.value,c()}),c(),requestAnimationFrame(()=>{var e;return(e=document.getElementById("admin-complaints-page"))==null?void 0:e.classList.replace("page-enter","page-active")})}const _=a=>String(a??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"),Ge=()=>new Date().toISOString().split("T")[0],le=["Senior MBBS boys hostel","Senior MBBS girls hostel","Sardha building : Block A (girls)","Sardha building : Block B (boys)"];async function Ue(a){async function r(){a.innerHTML='<div class="page-loading">Loading…</div>';try{const[i,v,n,l,p]=await Promise.all([h.get("/rooms"),h.get("/rooms/booking-requests"),h.get("/rooms/change-requests"),h.get("/rooms/allocations"),h.get("/students")]);Ve(a,{rooms:i,requests:v,changeReqs:n,allocs:l,students:p},r)}catch(i){a.innerHTML=`<div class="page-error">Failed to load: ${i.message}</div>`}}ee(()=>r()),await r()}function Ve(a,r,i){let{rooms:v,requests:n,changeReqs:l,allocs:p,students:d}=r,c="rooms",e=Z();const m=n.filter(o=>o.status==="pending").length,s=l.filter(o=>o.status==="pending").length;a.innerHTML=`
+    `,m.querySelectorAll("[data-action]").forEach(s=>{s.addEventListener("click",async()=>{const y=+s.dataset.id,$=s.dataset.action;s.disabled=!0;try{const u=await h.patch(`/complaints/${y}/status`,{status:$});v=v.map(E=>E.complaint_id===y?{...E,...u}:E),w(`Complaint #${y} → ${$}`,"success"),c()}catch(u){w(u.message,"error"),s.disabled=!1}})}),m.querySelectorAll(".cmp-row").forEach(s=>{s.addEventListener("click",()=>{const y=+s.dataset.id;p=p===y?null:y,c()})})}a.querySelectorAll("[data-status]").forEach(e=>{e.addEventListener("click",()=>{a.querySelectorAll("[data-status]").forEach(m=>m.classList.remove("active")),e.classList.add("active"),n=e.dataset.status,c()})}),a.querySelectorAll("[data-quick]").forEach(e=>{e.addEventListener("click",()=>{var m;n=e.dataset.quick,a.querySelectorAll("[data-status]").forEach(s=>s.classList.remove("active")),(m=a.querySelector(`[data-status="${n}"]`))==null||m.classList.add("active"),c()})}),document.getElementById("cat-filter").addEventListener("change",e=>{l=e.target.value,c()}),c(),requestAnimationFrame(()=>{var e;return(e=document.getElementById("admin-complaints-page"))==null?void 0:e.classList.replace("page-enter","page-active")})}const _=a=>String(a??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"),Ge=()=>new Date().toISOString().split("T")[0],le=["Senior MBBS boys hostel","Senior MBBS girls hostel"];async function Ue(a){async function r(){a.innerHTML='<div class="page-loading">Loading…</div>';try{const[i,v,n,l,p]=await Promise.all([h.get("/rooms"),h.get("/rooms/booking-requests"),h.get("/rooms/change-requests"),h.get("/rooms/allocations"),h.get("/students")]);Ve(a,{rooms:i,requests:v,changeReqs:n,allocs:l,students:p},r)}catch(i){a.innerHTML=`<div class="page-error">Failed to load: ${i.message}</div>`}}ee(()=>r()),await r()}function Ve(a,r,i){let{rooms:v,requests:n,changeReqs:l,allocs:p,students:d}=r,c="rooms",e=Z();const m=n.filter(o=>o.status==="pending").length,s=l.filter(o=>o.status==="pending").length;a.innerHTML=`
     <style>
       /* ── Room corridor layout ── */
       .floor-corridor {
@@ -1599,9 +1599,9 @@
         `).join("")}
         <hr style="border:none; border-top: 1px solid var(--border-subtle); margin: var(--space-3) 0;" />
       </div>
-    `).join(""),c.querySelectorAll("[data-edit]").forEach(m=>{m.addEventListener("click",()=>{const s=i.find(y=>y.resource_id===+m.dataset.edit);s&&(n=s.resource_id,document.getElementById("res-cat").value=s.category,document.getElementById("res-name").value=s.name,document.getElementById("res-phone").value=s.phone||"",document.getElementById("res-email").value=s.email||"",document.getElementById("res-notes").value=s.notes||"",document.getElementById("resource-form-title").textContent="Edit Contact",document.getElementById("btn-res-submit").textContent="Save Changes",document.getElementById("btn-res-cancel").style.display="",document.getElementById("resource-form").scrollIntoView({behavior:"smooth"}))})}),c.querySelectorAll("[data-delete]").forEach(m=>{m.addEventListener("click",async()=>{if(confirm("Delete this contact?")){m.disabled=!0;try{await h.delete(`/resources/${m.dataset.delete}`),i=i.filter(s=>s.resource_id!==+m.dataset.delete),w("Contact deleted.","success"),l()}catch(s){w(s.message,"error"),m.disabled=!1}}})})}document.getElementById("cat-filter-select").addEventListener("change",d=>{v=d.target.value,l()}),document.getElementById("btn-res-cancel").addEventListener("click",()=>{n=null,document.getElementById("resource-form").reset(),document.getElementById("resource-form-title").textContent="Add New Contact",document.getElementById("btn-res-submit").textContent="Add Contact",document.getElementById("btn-res-cancel").style.display="none"});const p=document.getElementById("resource-form");p.addEventListener("submit",async d=>{d.preventDefault(),a.querySelectorAll(".form-error").forEach($=>$.classList.remove("visible"));let c=!0;const e=document.getElementById("res-cat").value,m=document.getElementById("res-name").value.trim();if(e||(document.getElementById("err-res-cat").classList.add("visible"),c=!1),m||(document.getElementById("err-res-name").classList.add("visible"),c=!1),!c)return;const s={category:e,name:m,phone:document.getElementById("res-phone").value.trim()||null,email:document.getElementById("res-email").value.trim()||null,notes:document.getElementById("res-notes").value.trim()||null},y=document.getElementById("btn-res-submit");y.disabled=!0;try{if(n){const $=await h.put(`/resources/${n}`,s);i=i.map(u=>u.resource_id===n?$:u),w("Contact updated.","success"),document.getElementById("btn-res-cancel").click()}else i=[await h.post("/resources",s),...i],w("Contact added.","success"),p.reset();l()}catch($){w($.message,"error")}finally{y.disabled=!1}}),l(),requestAnimationFrame(()=>{var d;return(d=document.getElementById("resources-page"))==null?void 0:d.classList.replace("page-enter","page-active")})}const Je={home:Ce,complaints:_e,booking:Y,forum:ue,resources:ze},Ke={home:De,complaints:Ne,rooms:Ue,forum:ue,resources:Ye};let q="home",J=null;function K(){return X()==="admin"?Ke:Je}function j(a){const r=K();r[a]||(a="home"),q=a,window.location.hash=a;const i=document.getElementById("sidebar"),v=document.getElementById("main-content");xe(i,q,j),r[a](v,()=>j(q)),J&&J.close()}function ce(){document.body.innerHTML=`
+    `).join(""),c.querySelectorAll("[data-edit]").forEach(m=>{m.addEventListener("click",()=>{const s=i.find(y=>y.resource_id===+m.dataset.edit);s&&(n=s.resource_id,document.getElementById("res-cat").value=s.category,document.getElementById("res-name").value=s.name,document.getElementById("res-phone").value=s.phone||"",document.getElementById("res-email").value=s.email||"",document.getElementById("res-notes").value=s.notes||"",document.getElementById("resource-form-title").textContent="Edit Contact",document.getElementById("btn-res-submit").textContent="Save Changes",document.getElementById("btn-res-cancel").style.display="",document.getElementById("resource-form").scrollIntoView({behavior:"smooth"}))})}),c.querySelectorAll("[data-delete]").forEach(m=>{m.addEventListener("click",async()=>{if(confirm("Delete this contact?")){m.disabled=!0;try{await h.delete(`/resources/${m.dataset.delete}`),i=i.filter(s=>s.resource_id!==+m.dataset.delete),w("Contact deleted.","success"),l()}catch(s){w(s.message,"error"),m.disabled=!1}}})})}document.getElementById("cat-filter-select").addEventListener("change",d=>{v=d.target.value,l()}),document.getElementById("btn-res-cancel").addEventListener("click",()=>{n=null,document.getElementById("resource-form").reset(),document.getElementById("resource-form-title").textContent="Add New Contact",document.getElementById("btn-res-submit").textContent="Add Contact",document.getElementById("btn-res-cancel").style.display="none"});const p=document.getElementById("resource-form");p.addEventListener("submit",async d=>{d.preventDefault(),a.querySelectorAll(".form-error").forEach($=>$.classList.remove("visible"));let c=!0;const e=document.getElementById("res-cat").value,m=document.getElementById("res-name").value.trim();if(e||(document.getElementById("err-res-cat").classList.add("visible"),c=!1),m||(document.getElementById("err-res-name").classList.add("visible"),c=!1),!c)return;const s={category:e,name:m,phone:document.getElementById("res-phone").value.trim()||null,email:document.getElementById("res-email").value.trim()||null,notes:document.getElementById("res-notes").value.trim()||null},y=document.getElementById("btn-res-submit");y.disabled=!0;try{if(n){const $=await h.put(`/resources/${n}`,s);i=i.map(u=>u.resource_id===n?$:u),w("Contact updated.","success"),document.getElementById("btn-res-cancel").click()}else i=[await h.post("/resources",s),...i],w("Contact added.","success"),p.reset();l()}catch($){w($.message,"error")}finally{y.disabled=!1}}),l(),requestAnimationFrame(()=>{var d;return(d=document.getElementById("resources-page"))==null?void 0:d.classList.replace("page-enter","page-active")})}const Je={home:Ce,complaints:_e,booking:Y,forum:ue,resources:ze},Ke={home:De,complaints:Ne,rooms:Ue,forum:ue,resources:Ye};let q="home",J=null;function K(){return X()==="admin"?Ke:Je}function F(a){const r=K();r[a]||(a="home"),q=a,window.location.hash=a;const i=document.getElementById("sidebar"),v=document.getElementById("main-content");xe(i,q,F),r[a](v,()=>F(q)),J&&J.close()}function ce(){document.body.innerHTML=`
     <div id="app">
       <aside id="sidebar" class="sidebar"></aside>
       <main id="main-content" class="main"></main>
     </div>
-  `}function Qe(){if(!fe()){ke(()=>{ce(),pe()});return}ce(),pe()}function pe(){J=$e();const a=window.location.hash.replace("#","");q=K()[a]?a:"home",j(q),window.addEventListener("hashchange",()=>{const i=window.location.hash.replace("#","");K()[i]&&i!==q&&j(i)})}(function(){const a=localStorage.getItem("ahcms_theme")||"light";document.documentElement.setAttribute("data-theme",a)})();Qe();
+  `}function Qe(){if(!fe()){ke(()=>{ce(),pe()});return}ce(),pe()}function pe(){J=$e();const a=window.location.hash.replace("#","");q=K()[a]?a:"home",F(q),window.addEventListener("hashchange",()=>{const i=window.location.hash.replace("#","");K()[i]&&i!==q&&F(i)})}(function(){const a=localStorage.getItem("ahcms_theme")||"light";document.documentElement.setAttribute("data-theme",a)})();Qe();
