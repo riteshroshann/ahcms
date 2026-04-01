@@ -55,6 +55,11 @@ function renderPage(container, initial) {
               </select>
               <div class="form-error" id="err-cmp-cat">Category is required</div>
             </div>
+            <div class="form-group" id="cmp-other-group" style="display: none; grid-column: 1 / -1;">
+              <label class="form-label" for="cmp-other-type">Please Specify Category</label>
+              <input type="text" class="form-input" id="cmp-other-type" placeholder="e.g. Pest Control, Room Allocation..." />
+              <div class="form-error" id="err-cmp-other">Please specify what the complaint is about.</div>
+            </div>
             <div class="form-group">
               <label class="form-label" for="cmp-photo">Attach Photo <span style="color:var(--text-tertiary)">(optional)</span></label>
               <input type="file" class="form-input" id="cmp-photo" accept="image/*" />
@@ -139,6 +144,19 @@ function renderPage(container, initial) {
     });
   });
 
+  // Category toggle logic for "Other"
+  const catSelect = document.getElementById('cmp-category');
+  const otherGroup = document.getElementById('cmp-other-group');
+  catSelect.addEventListener('change', (e) => {
+    if (e.target.value === 'Other') {
+      otherGroup.style.display = 'block';
+    } else {
+      otherGroup.style.display = 'none';
+      document.getElementById('cmp-other-type').value = '';
+      document.getElementById('err-cmp-other').classList.remove('visible');
+    }
+  });
+
   // Form submission
   const form = document.getElementById('complaint-form');
   form.addEventListener('submit', async e => {
@@ -147,10 +165,12 @@ function renderPage(container, initial) {
     container.querySelectorAll('.form-error').forEach(el => el.classList.remove('visible'));
 
     const category = document.getElementById('cmp-category').value;
+    const otherType = document.getElementById('cmp-other-type').value.trim();
     const desc     = document.getElementById('cmp-desc').value.trim();
     const photoFile = document.getElementById('cmp-photo').files[0];
 
     if (!category) { document.getElementById('err-cmp-cat').classList.add('visible'); valid = false; }
+    if (category === 'Other' && !otherType) { document.getElementById('err-cmp-other').classList.add('visible'); valid = false; }
     if (!desc)     { document.getElementById('err-cmp-desc').classList.add('visible'); valid = false; }
     if (!valid)    { toast('Fill in all required fields.', 'error'); return; }
 
@@ -168,7 +188,9 @@ function renderPage(container, initial) {
         });
       }
 
-      const newCmp = await api.post('/complaints', { category, description: desc, photo_base64 });
+      const finalDesc = (category === 'Other' && otherType) ? `[Other: ${otherType}] ${desc}` : desc;
+
+      const newCmp = await api.post('/complaints', { category, description: finalDesc, photo_base64 });
       complaints = [newCmp, ...complaints];
       toast(`Complaint #${newCmp.complaint_id} submitted.`, 'success');
       form.reset();
@@ -180,9 +202,10 @@ function renderPage(container, initial) {
     }
   });
 
-  form.addEventListener('reset', () =>
-    container.querySelectorAll('.form-error').forEach(el => el.classList.remove('visible'))
-  );
+  form.addEventListener('reset', () => {
+    container.querySelectorAll('.form-error').forEach(el => el.classList.remove('visible'));
+    document.getElementById('cmp-other-group').style.display = 'none';
+  });
 
   renderList();
   requestAnimationFrame(() =>
