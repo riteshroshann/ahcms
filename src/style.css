@@ -91,6 +91,42 @@
   --sidebar-collapsed: 64px;
 }
 
+/* ── Light Theme Variables ── */
+:root[data-theme="light"] {
+  /* Surfaces */
+  --bg-root:        #f3f4f6;
+  --bg-primary:     #ffffff;
+  --bg-secondary:   #f9fafb;
+  --bg-elevated:    #ffffff;
+  --bg-hover:       #f3f4f6;
+  --bg-input:       #ffffff;
+
+  /* Borders */
+  --border-subtle:  #e5e7eb;
+  --border-default: #d1d5db;
+  --border-focus:   #9ca3af;
+
+  /* Text */
+  --text-primary:   #111827;
+  --text-secondary: #4b5563;
+  --text-tertiary:  #6b7280;
+  --text-inverse:   #f9fafb;
+
+  /* Accents */
+  --accent-blue:    #2563eb;
+  --accent-green:   #059669;
+  --accent-amber:   #d97706;
+  --accent-red:     #dc2626;
+  --accent-purple:  #7c3aed;
+
+  /* Accent low-opacity backgrounds */
+  --accent-blue-bg:   rgba(37, 99, 235, 0.1);
+  --accent-green-bg:  rgba(5, 150, 105, 0.1);
+  --accent-amber-bg:  rgba(217, 119, 6, 0.1);
+  --accent-red-bg:    rgba(220, 38, 38, 0.1);
+  --accent-purple-bg: rgba(124, 58, 237, 0.1);
+}
+
 /* ── Base ── */
 html {
   font-size: 16px;
