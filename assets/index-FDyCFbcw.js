@@ -71,7 +71,7 @@
             <label for="s-pass">Password</label>
             <input type="password" id="s-pass" class="login-input" placeholder="••••••••" autocomplete="current-password" />
           </div>
-          <p class="login-hint">Demo credentials — Roll: <code>CW2022001</code> Pass: <code>Student@123</code></p>
+          <p class="login-hint">Demo credentials — Roll: <code>DL.AI.U4AID24120</code> Pass: <code>Student@123</code></p>
           <button type="submit" class="login-btn" id="btn-student-login">Sign In</button>
           <div class="login-error" id="err-student"></div>
         </form>
@@ -672,7 +672,7 @@
           </div>
         </div>
       </div>
-    `,i.querySelector("#hostel-filter").addEventListener("change",m=>{t=m.target.value,n()}),i.querySelectorAll('a.link-accent[href^="#"]').forEach(m=>{m.addEventListener("click",p=>{p.preventDefault(),window.location.hash=m.getAttribute("href").slice(1)})}),requestAnimationFrame(()=>{var m;return(m=document.getElementById("admin-home"))==null?void 0:m.classList.replace("page-enter","page-active")})}}function ve(a){return String(a).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}const j={Plumbing:"🔧",Electricity:"⚡",WiFi:"📶",Cleanliness:"🧹",Carpentry:"🔨",Other:"📋"},O=["open","in-progress","resolved"],ue=["Plumbing","Electricity","WiFi","Cleanliness","Carpentry","Other"];async function ge(a){a.innerHTML='<div class="page-loading">Loading…</div>';try{const o=await f.get("/complaints");ye(a,o)}catch(o){a.innerHTML=`<div class="page-error">Failed to load: ${o.message}</div>`}}function ye(a,o){let l=o,c="all",i="",r=null;a.innerHTML=`
+    `,i.querySelector("#hostel-filter").addEventListener("change",m=>{t=m.target.value,n()}),i.querySelectorAll('a.link-accent[href^="#"]').forEach(m=>{m.addEventListener("click",p=>{p.preventDefault(),window.location.hash=m.getAttribute("href").slice(1)})}),requestAnimationFrame(()=>{var m;return(m=document.getElementById("admin-home"))==null?void 0:m.classList.replace("page-enter","page-active")})}}function ve(a){return String(a).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}const j={Plumbing:"🔧",Electricity:"⚡",WiFi:"📶",Cleanliness:"🧹",Carpentry:"🔨",Other:"📋"},D=["open","in-progress","resolved"],ue=["Plumbing","Electricity","WiFi","Cleanliness","Carpentry","Other"];async function ge(a){a.innerHTML='<div class="page-loading">Loading…</div>';try{const o=await f.get("/complaints");ye(a,o)}catch(o){a.innerHTML=`<div class="page-error">Failed to load: ${o.message}</div>`}}function ye(a,o){let l=o,c="all",i="",r=null;a.innerHTML=`
     <div class="page-enter" id="admin-complaints-page">
       <div class="page-header">
         <h2>Complaints Management</h2>
@@ -685,7 +685,7 @@
           <div class="card-label">Total</div>
           <div class="card-value" style="font-size:var(--text-2xl);">${l.length}</div>
         </div>
-        ${O.map(s=>{const e=l.filter(n=>n.status===s).length;return`<div class="card card-accent-${s==="open"?"amber":s==="in-progress"?"blue":"green"}" style="text-align:center; cursor:pointer;" data-quick="${s}">
+        ${D.map(s=>{const e=l.filter(n=>n.status===s).length;return`<div class="card card-accent-${s==="open"?"amber":s==="in-progress"?"blue":"green"}" style="text-align:center; cursor:pointer;" data-quick="${s}">
             <div class="card-label">${s}</div>
             <div class="card-value" style="font-size:var(--text-2xl);">${e}</div>
           </div>`}).join("")}
@@ -700,7 +700,7 @@
               ${ue.map(s=>`<option value="${s}">${j[s]} ${s}</option>`).join("")}
             </select>
             <button class="filter-chip active" data-status="all">All</button>
-            ${O.map(s=>`<button class="filter-chip" data-status="${s}">${s}</button>`).join("")}
+            ${D.map(s=>`<button class="filter-chip" data-status="${s}">${s}</button>`).join("")}
           </div>
         </div>
         <div id="complaints-body"></div>
@@ -838,7 +838,7 @@
           </tbody>
         </table>
       </div>
-    `,e.querySelectorAll("[data-req]").forEach(t=>{t.addEventListener("click",async()=>{const n=t.dataset.req,u=t.dataset.action;t.disabled=!0;try{const g=await f.patch(`/rooms/booking-requests/${n}`,{status:u});c=c.map(y=>y.request_id===+n?{...y,...g}:y),h(`Request ${u}.`,"success"),s()}catch(g){h(g.message,"error"),t.disabled=!1}})})}a.querySelectorAll("[data-tab]").forEach(e=>{e.addEventListener("click",()=>{a.querySelectorAll("[data-tab]").forEach(t=>t.classList.remove("active")),e.classList.add("active"),r=e.dataset.tab,document.getElementById("panel-rooms").style.display=r==="rooms"?"":"none",document.getElementById("panel-requests").style.display=r==="requests"?"":"none"})}),a.querySelectorAll("[data-hostel]").forEach(e=>{e.addEventListener("click",()=>{a.querySelectorAll("[data-hostel]").forEach(t=>t.classList.remove("active")),e.classList.add("active"),i=e.dataset.hostel,d()})}),d(),s(),requestAnimationFrame(()=>{var e;return(e=document.getElementById("admin-rooms-page"))==null?void 0:e.classList.replace("page-enter","page-active")})}const D=["Plumber","Electrician","WiFi","Authority","Other"],T={Plumber:"🔧",Electrician:"⚡",WiFi:"📶",Authority:"🏛️",Other:"📋"};async function he(a){a.innerHTML='<div class="page-loading">Loading…</div>';try{const o=await f.get("/resources");xe(a,o)}catch(o){a.innerHTML=`<div class="page-error">Failed to load: ${o.message}</div>`}}function xe(a,o){let l=o,c="",i=null;a.innerHTML=`
+    `,e.querySelectorAll("[data-req]").forEach(t=>{t.addEventListener("click",async()=>{const n=t.dataset.req,u=t.dataset.action;t.disabled=!0;try{const g=await f.patch(`/rooms/booking-requests/${n}`,{status:u});c=c.map(y=>y.request_id===+n?{...y,...g}:y),h(`Request ${u}.`,"success"),s()}catch(g){h(g.message,"error"),t.disabled=!1}})})}a.querySelectorAll("[data-tab]").forEach(e=>{e.addEventListener("click",()=>{a.querySelectorAll("[data-tab]").forEach(t=>t.classList.remove("active")),e.classList.add("active"),r=e.dataset.tab,document.getElementById("panel-rooms").style.display=r==="rooms"?"":"none",document.getElementById("panel-requests").style.display=r==="requests"?"":"none"})}),a.querySelectorAll("[data-hostel]").forEach(e=>{e.addEventListener("click",()=>{a.querySelectorAll("[data-hostel]").forEach(t=>t.classList.remove("active")),e.classList.add("active"),i=e.dataset.hostel,d()})}),d(),s(),requestAnimationFrame(()=>{var e;return(e=document.getElementById("admin-rooms-page"))==null?void 0:e.classList.replace("page-enter","page-active")})}const O=["Plumber","Electrician","WiFi","Authority","Other"],T={Plumber:"🔧",Electrician:"⚡",WiFi:"📶",Authority:"🏛️",Other:"📋"};async function he(a){a.innerHTML='<div class="page-loading">Loading…</div>';try{const o=await f.get("/resources");xe(a,o)}catch(o){a.innerHTML=`<div class="page-error">Failed to load: ${o.message}</div>`}}function xe(a,o){let l=o,c="",i=null;a.innerHTML=`
     <div class="page-enter" id="resources-page">
       <div class="page-header">
         <h2>Resources &amp; Contacts</h2>
@@ -854,7 +854,7 @@
               <label class="form-label" for="res-cat">Category</label>
               <select class="form-select" id="res-cat" required>
                 <option value="">Select…</option>
-                ${D.map(d=>`<option value="${d}">${T[d]} ${d}</option>`).join("")}
+                ${O.map(d=>`<option value="${d}">${T[d]} ${d}</option>`).join("")}
               </select>
               <div class="form-error" id="err-res-cat">Required</div>
             </div>
@@ -889,7 +889,7 @@
           <div class="table-toolbar-title">Contact Directory</div>
           <div style="display:flex; gap:var(--space-2); flex-wrap:wrap;">
             <button class="filter-chip active" data-cat="">All</button>
-            ${D.map(d=>`<button class="filter-chip" data-cat="${d}">${T[d]} ${d}</button>`).join("")}
+            ${O.map(d=>`<button class="filter-chip" data-cat="${d}">${T[d]} ${d}</button>`).join("")}
           </div>
         </div>
         <div id="resources-body"></div>
