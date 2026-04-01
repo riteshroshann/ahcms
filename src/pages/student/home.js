@@ -23,7 +23,7 @@ function renderPage(container, student, allocation, complaints, wardens, wardenO
     <div class="page-enter" id="student-home">
       <div class="page-header">
         <h2>Welcome, ${student?.name?.split(' ')[0] || 'Student'} 👋</h2>
-        <p>${student?.course || ''} · ${student?.hostel || ''} Hostel · Year ${student?.year || ''}</p>
+        <p>${student?.course || ''} · ${student?.hostel || ''} · Year ${student?.year || ''}</p>
       </div>
 
       <!-- Student Info Card -->
@@ -111,7 +111,7 @@ function renderPage(container, student, allocation, complaints, wardens, wardenO
                     <div class="contact-name">${w.name}</div>
                     <a href="tel:${w.phone}" class="contact-phone" style="margin-left: auto;">${w.phone || '—'}</a>
                   </div>
-                  <div class="contact-meta">${w.hostel} Hostel</div>
+                  <div class="contact-meta">${w.hostel}</div>
                   <div style="display: flex; flex-wrap: wrap; gap: 12px; font-size: 11px; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border-color); color: var(--text-secondary);">
                     <span><span style="font-weight:600; color:var(--text-tertiary);">Last:</span> ${w.previous ? w.previous.name : 'Unknown'}</span>
                     <span style="color:var(--accent-green);"><span style="font-weight:600;">Current:</span> Active</span>

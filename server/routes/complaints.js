@@ -78,9 +78,11 @@ router.patch('/:id/status', requireAuth, requireRole('admin'), (req, res) => {
     return res.status(404).json({ error: 'Complaint not found.' });
   }
 
+  const resolvedDateQuery = status === 'resolved' ? `date('now')` : 'NULL';
+
   db.prepare(`
     UPDATE COMPLAINT
-    SET status = ?, admin_note = ?, updated_at = datetime('now')
+    SET status = ?, admin_note = ?, resolved_date = ${resolvedDateQuery}, updated_at = datetime('now')
     WHERE complaint_id = ?
   `).run(status, admin_note || null, id);
 

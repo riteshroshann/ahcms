@@ -54,25 +54,39 @@ router.get('/student', requireAuth, requireRole('student'), (req, res) => {
 
 // ── GET /api/dashboard/admin ──────────────────────────────────
 router.get('/admin', requireAuth, requireRole('admin'), (req, res) => {
-  const totalRooms         = db.prepare('SELECT COUNT(*) AS n FROM ROOM').get().n;
-  const vacantRooms        = db.prepare('SELECT COUNT(*) AS n FROM ROOM WHERE current_occupancy < capacity').get().n;
-  const totalCapacity      = db.prepare('SELECT SUM(capacity) AS n FROM ROOM').get().n || 0;
-  const totalOccupied      = db.prepare('SELECT SUM(current_occupancy) AS n FROM ROOM').get().n || 0;
-  const openComplaints     = db.prepare("SELECT COUNT(*) AS n FROM COMPLAINT WHERE status = 'open'").get().n;
-  const inProgressComplaints = db.prepare("SELECT COUNT(*) AS n FROM COMPLAINT WHERE status = 'in-progress'").get().n;
-  const resolvedComplaints = db.prepare("SELECT COUNT(*) AS n FROM COMPLAINT WHERE status = 'resolved'").get().n;
-  const totalStudents      = db.prepare('SELECT COUNT(*) AS n FROM STUDENT').get().n;
-  const pendingBookings    = db.prepare("SELECT COUNT(*) AS n FROM ROOM_BOOKING_REQUEST WHERE status = 'pending'").get().n;
+  const h = req.query.hostel || '';
+  const hostelQ = h ? `WHERE hostel = ?` : ``;
+  const hostelCmpQ = h ? `JOIN ROOM r ON c.room_id = r.room_id WHERE r.hostel = ?` : ``;
+  const hCmpParams = h ? [h] : [];
+  const hParams = h ? [h] : [];
+
+  const totalRooms         = db.prepare(`SELECT COUNT(*) AS n FROM ROOM ${hostelQ}`).get(...hParams).n;
+  const vacantRooms        = db.prepare(`SELECT COUNT(*) AS n FROM ROOM ${h ? `WHERE hostel = ? AND` : 'WHERE'} current_occupancy < capacity`).get(...hParams).n;
+  const totalCapacity      = db.prepare(`SELECT SUM(capacity) AS n FROM ROOM ${hostelQ}`).get(...hParams).n || 0;
+  const totalOccupied      = db.prepare(`SELECT SUM(current_occupancy) AS n FROM ROOM ${hostelQ}`).get(...hParams).n || 0;
+  
+  const openComplaints     = db.prepare(`SELECT COUNT(*) AS n FROM COMPLAINT c ${hostelCmpQ} ${h ? 'AND' : 'WHERE'} c.status = 'open'`).get(...hCmpParams).n;
+  const inProgressComplaints = db.prepare(`SELECT COUNT(*) AS n FROM COMPLAINT c ${hostelCmpQ} ${h ? 'AND' : 'WHERE'} c.status = 'in-progress'`).get(...hCmpParams).n;
+  const resolvedComplaints = db.prepare(`SELECT COUNT(*) AS n FROM COMPLAINT c ${hostelCmpQ} ${h ? 'AND' : 'WHERE'} c.status = 'resolved'`).get(...hCmpParams).n;
+  
+  const totalStudents      = db.prepare(`SELECT COUNT(*) AS n FROM STUDENT ${hostelQ}`).get(...hParams).n;
+  
+  const pendingBookings    = db.prepare(
+    `SELECT COUNT(*) AS n FROM ROOM_BOOKING_REQUEST req 
+     JOIN ROOM r ON req.room_id = r.room_id 
+     WHERE req.status = 'pending' ${h ? 'AND r.hostel = ?' : ''}`
+  ).get(...(h ? [h] : [])).n;
 
   const recentComplaints = db.prepare(`
     SELECT c.*, s.name AS student_name, s.roll_no
     FROM COMPLAINT c
     LEFT JOIN STUDENT s ON c.student_id = s.student_id
+    ${h ? 'JOIN ROOM r ON c.room_id = r.room_id WHERE r.hostel = ?' : ''}
     ORDER BY c.date DESC, c.complaint_id DESC
     LIMIT 6
-  `).all();
+  `).all(...hCmpParams);
 
-  const allStaff = db.prepare('SELECT * FROM WARDEN ORDER BY role, hostel').all();
+  const allStaff = db.prepare(`SELECT * FROM WARDEN ${hostelQ} ORDER BY role, hostel`).all(...hParams);
   const guards = allStaff.filter(w => w.role === 'Guard' && w.on_duty === 1);
   const allWardens = allStaff.filter(w => w.role === 'Warden');
 

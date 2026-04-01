@@ -76,6 +76,7 @@ CREATE TABLE IF NOT EXISTS COMPLAINT (
     date          TEXT NOT NULL DEFAULT (date('now')),
     status        TEXT CHECK (status IN ('open','in-progress','resolved')) DEFAULT 'open',
     admin_note    TEXT,
+    resolved_date TEXT,
     updated_at    TEXT NOT NULL DEFAULT (datetime('now'))
 );
 

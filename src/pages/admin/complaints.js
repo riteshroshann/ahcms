@@ -98,7 +98,10 @@ function renderPage(container, initial) {
               <td class="cell-mono">${c.room_id || '—'}</td>
               <td>${CAT_ICONS[c.category] || ''} ${c.category}</td>
               <td style="max-width:180px; overflow:hidden; text-overflow:ellipsis;" title="${c.description}">${c.description.slice(0,45)}${c.description.length > 45 ? '…' : ''}</td>
-              <td class="cell-mono">${c.date}</td>
+              <td class="cell-mono">
+                <div>${c.date}</div>
+                ${c.resolved_date ? `<div style="font-size:10px; color:var(--accent-green); margin-top:2px;">Res: ${c.resolved_date}</div>` : ''}
+              </td>
               <td><span class="badge badge-${c.status}">${c.status}</span></td>
               <td>
                 ${c.status !== 'resolved' ? `

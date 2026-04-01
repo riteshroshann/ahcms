@@ -53,15 +53,15 @@ async function seed() {
     ['STU004','DL.AI.U4AID24123','Sneha Iyer',      'sneha@ahcms.edu.in',   stuPw,'F',2021,2026,'MBBS', 'Chennai',        'Senior MBBS girls hostel',4],
     ['STU005','DL.AI.U4AID24124','Vikram Singh',    'vikram@ahcms.edu.in',  stuPw,'M',2022,2027,'MBBS', 'Jaipur',         'Senior MBBS boys hostel', 3],
     ['STU006','DL.AI.U4AID24125','Ananya Das',      'ananya@ahcms.edu.in',  stuPw,'F',2022,2027,'MBBS', 'Kolkata',        'Senior MBBS girls hostel',3],
-    ['STU007','DL.AI.U4AID24126','Karthik Nair',    'karthik@ahcms.edu.in', stuPw,'M',2023,2027,'Nursing','Kochi',        'Shraddha building Block B',2],
-    ['STU008','DL.AI.U4AID24127','Diya Patel',      'diya@ahcms.edu.in',    stuPw,'F',2023,2027,'Nursing','Ahmedabad',    'Shraddha building Block A',2],
-    ['STU009','DL.AI.U4AID24128','Aditya Rao',      'aditya@ahcms.edu.in',  stuPw,'M',2024,2028,'AHS',    'Hyderabad',    'Shraddha building Block B',1],
-    ['STU010','DL.AI.U4AID24129','Meera Joshi',     'meera@ahcms.edu.in',   stuPw,'F',2024,2028,'AHS',    'Pune',         'Shraddha building Block A',1],
+    ['STU007','DL.AI.U4AID24126','Karthik Nair',    'karthik@ahcms.edu.in', stuPw,'M',2023,2027,'Nursing','Kochi',        'Sardha building : Block B (boys)',2],
+    ['STU008','DL.AI.U4AID24127','Diya Patel',      'diya@ahcms.edu.in',    stuPw,'F',2023,2027,'Nursing','Ahmedabad',    'Sardha building : Block A (girls)',2],
+    ['STU009','DL.AI.U4AID24128','Aditya Rao',      'aditya@ahcms.edu.in',  stuPw,'M',2024,2028,'AHS',    'Hyderabad',    'Sardha building : Block B (boys)',1],
+    ['STU010','DL.AI.U4AID24129','Meera Joshi',     'meera@ahcms.edu.in',   stuPw,'F',2024,2028,'AHS',    'Pune',         'Sardha building : Block A (girls)',1],
     ['STU011','DL.AI.U4AID24130','Rohan Gupta',     'rohan@ahcms.edu.in',   stuPw,'M',2022,2027,'MBBS', 'Lucknow',        'Senior MBBS boys hostel', 3],
     ['STU012','DL.AI.U4AID24131','Ishita Banerjee', 'ishita@ahcms.edu.in',  stuPw,'F',2021,2026,'MBBS', 'Kolkata',        'Senior MBBS girls hostel',4],
-    ['STU013','DL.AI.U4AID24132','Siddharth Jain',  'siddharth@ahcms.edu.in',stuPw,'M',2023,2027,'Nursing','Indore',      'Shraddha building Block B',2],
-    ['STU014','DL.AI.U4AID24133','Kavya Reddy',     'kavya@ahcms.edu.in',   stuPw,'F',2024,2028,'AHS',    'Hyderabad',    'Shraddha building Block A',1],
-    ['STU015','DL.AI.U4AID24134','Nikhil Choudhary','nikhil@ahcms.edu.in',  stuPw,'M',2024,2028,'AHS',    'Chandigarh',   'Shraddha building Block B',1],
+    ['STU013','DL.AI.U4AID24132','Siddharth Jain',  'siddharth@ahcms.edu.in',stuPw,'M',2023,2027,'Nursing','Indore',      'Sardha building : Block B (boys)',2],
+    ['STU014','DL.AI.U4AID24133','Kavya Reddy',     'kavya@ahcms.edu.in',   stuPw,'F',2024,2028,'AHS',    'Hyderabad',    'Sardha building : Block A (girls)',1],
+    ['STU015','DL.AI.U4AID24134','Nikhil Choudhary','nikhil@ahcms.edu.in',  stuPw,'M',2024,2028,'AHS',    'Chandigarh',   'Sardha building : Block B (boys)',1],
   ];
   const insertStudents = db.transaction((rows) => rows.forEach(r => stuInsert.run(...r)));
   insertStudents(students);
@@ -73,20 +73,20 @@ async function seed() {
   const rooms = [
     // Senior MBBS boys (Floors 8, 9)
     ['SmB-801','Senior MBBS boys hostel',8,'Double',2,2], ['SmB-802','Senior MBBS boys hostel',8,'Double',2,1],
-    ['SmB-803','Senior MBBS boys hostel',8,'Single',1,0], ['SmB-901','Senior MBBS boys hostel',9,'Triple',3,1],
+    ['SmB-803','Senior MBBS boys hostel',8,'Single',1,0], ['SmB-901','Senior MBBS boys hostel',9,'Double',2,1],
     ['SmB-902','Senior MBBS boys hostel',9,'Double',2,0],
     
     // Senior MBBS girls (Floors 7, 8)
     ['SmG-701','Senior MBBS girls hostel',7,'Double',2,2], ['SmG-702','Senior MBBS girls hostel',7,'Double',2,1],
-    ['SmG-801','Senior MBBS girls hostel',8,'Triple',3,0], ['SmG-802','Senior MBBS girls hostel',8,'Single',1,1],
+    ['SmG-801','Senior MBBS girls hostel',8,'Double',2,0], ['SmG-802','Senior MBBS girls hostel',8,'Single',1,1],
 
-    // Shraddha Block A (Girls, Floors 1, 2)
-    ['ShA-101','Shraddha building Block A',1,'Triple',3,2], ['ShA-102','Shraddha building Block A',1,'Double',2,0],
-    ['ShA-201','Shraddha building Block A',2,'Single',1,1], ['ShA-202','Shraddha building Block A',2,'Double',2,0],
+    // Sardha Block A (Girls, Floors 1, 2)
+    ['ShA-101','Sardha building : Block A (girls)',1,'Double',2,2], ['ShA-102','Sardha building : Block A (girls)',1,'Double',2,0],
+    ['ShA-201','Sardha building : Block A (girls)',2,'Single',1,1], ['ShA-202','Sardha building : Block A (girls)',2,'Double',2,0],
 
-    // Shraddha Block B (Boys, Floors 1, 2)
-    ['ShB-101','Shraddha building Block B',1,'Double',2,2], ['ShB-102','Shraddha building Block B',1,'Triple',3,1],
-    ['ShB-201','Shraddha building Block B',2,'Double',2,1],
+    // Sardha Block B (Boys, Floors 1, 2)
+    ['ShB-101','Sardha building : Block B (boys)',1,'Double',2,2], ['ShB-102','Sardha building : Block B (boys)',1,'Double',2,1],
+    ['ShB-201','Sardha building : Block B (boys)',2,'Double',2,1],
   ];
   const insertRooms = db.transaction((rows) => rows.forEach(r => roomInsert.run(...r)));
   insertRooms(rooms);
@@ -120,16 +120,16 @@ async function seed() {
 
   // Complaints
   const cmpInsert = db.prepare(`
-    INSERT INTO COMPLAINT (student_id, room_id, category, description, date, status)
-    VALUES (?, ?, ?, ?, ?, ?)
+    INSERT INTO COMPLAINT (student_id, room_id, category, description, date, status, resolved_date)
+    VALUES (?, ?, ?, ?, ?, ?, ?)
   `);
   const complaints = [
-    ['STU001','SmB-801','Electricity','Frequent power outages in the evening.',         '2026-02-15','resolved'],
-    ['STU002','SmG-701','Plumbing',   'No hot water supply in the mornings.',           '2026-03-01','in-progress'],
-    ['STU008','ShA-101','Cleanliness','Washroom not cleaned for two days.',             '2026-03-05','open'],
-    ['STU013','ShB-102','WiFi',       'WiFi dropping frequently in B-block.',           '2026-03-18','in-progress'],
-    ['STU004','SmG-701','Plumbing',   'Bathroom tap dripping continuously.',            '2026-03-19','open'],
-    ['STU009','ShB-101','WiFi',       'No WiFi connectivity in room.',                  '2026-03-20','open'],
+    ['STU001','SmB-801','Electricity','Frequent power outages in the evening.',         '2026-02-15','resolved', '2026-02-16'],
+    ['STU002','SmG-701','Plumbing',   'No hot water supply in the mornings.',           '2026-03-01','in-progress', null],
+    ['STU008','ShA-101','Cleanliness','Washroom not cleaned for two days.',             '2026-03-05','open', null],
+    ['STU013','ShB-102','WiFi',       'WiFi dropping frequently in B-block.',           '2026-03-18','in-progress', null],
+    ['STU004','SmG-701','Plumbing',   'Bathroom tap dripping continuously.',            '2026-03-19','open', null],
+    ['STU009','ShB-101','WiFi',       'No WiFi connectivity in room.',                  '2026-03-20','open', null],
   ];
   const insertCmps = db.transaction((rows) => rows.forEach(r => cmpInsert.run(...r)));
   insertCmps(complaints);
@@ -140,8 +140,12 @@ async function seed() {
   const wardens = [
     ['Dr. Ramesh Kulkarni','Warden','9876543210','r.kulkarni@ahcms.edu.in','Senior MBBS boys hostel','All-day',1],
     ['Mrs. Sunita Sharma', 'Warden','9876543211','s.sharma@ahcms.edu.in', 'Senior MBBS girls hostel','All-day',1],
-    ['Mr. Aditi Verma',    'Warden','9876543212','a.verma@ahcms.edu.in',  'Shraddha building Block A','All-day',1],
-    ['Mr. Prakash Nair',   'Warden','9876543213','p.nair@ahcms.edu.in',   'Shraddha building Block B','All-day',1],
+    ['Mr. Aditi Verma',    'Warden','9876543212','a.verma@ahcms.edu.in',  'Sardha building : Block A (girls)','All-day',1],
+    ['Mr. Prakash Nair',   'Warden','9876543213','p.nair@ahcms.edu.in',   'Sardha building : Block B (boys)','All-day',1],
+    ['Mr. Anil Desai',     'Warden', '9876543220','',                     'Senior MBBS boys hostel','Previous',0],
+    ['Mr. Vinod Kumar',    'Warden', '9876543221','',                     'Senior MBBS boys hostel','Next',0],
+    ['Suresh Kumar',       'Guard',  '9876543222','',                     'Senior MBBS boys hostel','Morning',1],
+    ['Deepak Singh',       'Guard',  '9876543223','',                     'Senior MBBS boys hostel','Night',0]
   ];
   const insertWardens = db.transaction((rows) => rows.forEach(r => wardInsert.run(...r)));
   insertWardens(wardens);
