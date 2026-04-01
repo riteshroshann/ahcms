@@ -94,18 +94,18 @@ async function seed() {
     'INSERT INTO ALLOCATION (allocation_id, student_id, room_id, from_date, to_date, status) VALUES (?, ?, ?, ?, ?, ?)'
   );
   const allocations = [
-    // MBBS boys → floor 8
+    // MBBS boys → floor 8: room 801 full (both beds), room 803 partial
     ['AL001','STU001','SmB-801','2025-08-01','2026-05-31','active'],
     ['AL002','STU003','SmB-801','2025-08-01','2026-05-31','active'],
-    // B.Tech boys → floor 9
+    // B.Tech boys → floor 9: spread across 901 and 904
     ['AL003','STU005','SmB-901','2025-08-01','2026-05-31','active'],
-    ['AL004','STU007','SmB-902','2025-08-01','2026-05-31','active'],
-    // MBBS girls → floor 7
-    ['AL005','STU002','SmG-701','2025-08-01','2026-05-31','active'],
-    ['AL006','STU004','SmG-701','2025-08-01','2026-05-31','active'],
-    // B.Tech girls → floor 8
-    ['AL007','STU006','SmG-801','2025-08-01','2026-05-31','active'],
-    ['AL008','STU008','SmG-802','2025-08-01','2026-05-31','active'],
+    ['AL004','STU007','SmB-904','2025-08-01','2026-05-31','active'],
+    // MBBS girls → floor 7: spread apart — rooms 704 and 706
+    ['AL005','STU002','SmG-704','2025-08-01','2026-05-31','active'],
+    ['AL006','STU004','SmG-706','2025-08-01','2026-05-31','active'],
+    // B.Tech girls → floor 8: far end — rooms 805 and 809 (single)
+    ['AL007','STU006','SmG-805','2025-08-01','2026-05-31','active'],
+    ['AL008','STU008','SmG-809','2025-08-01','2026-05-31','active'],
   ];
   const insertAllocs = db.transaction((rows) => rows.forEach(r => allocInsert.run(...r)));
   insertAllocs(allocations);
