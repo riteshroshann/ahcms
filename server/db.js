@@ -138,14 +138,33 @@ async function seed() {
     'INSERT INTO WARDEN (name, role, phone, email, hostel, shift, on_duty) VALUES (?, ?, ?, ?, ?, ?, ?)'
   );
   const wardens = [
-    ['Dr. Ramesh Kulkarni','Warden','9876543210','r.kulkarni@ahcms.edu.in','Senior MBBS boys hostel','All-day',1],
-    ['Mrs. Sunita Sharma', 'Warden','9876543211','s.sharma@ahcms.edu.in', 'Senior MBBS girls hostel','All-day',1],
-    ['Mr. Aditi Verma',    'Warden','9876543212','a.verma@ahcms.edu.in',  'Sardha building : Block A (girls)','All-day',1],
-    ['Mr. Prakash Nair',   'Warden','9876543213','p.nair@ahcms.edu.in',   'Sardha building : Block B (boys)','All-day',1],
-    ['Mr. Anil Desai',     'Warden', '9876543220','',                     'Senior MBBS boys hostel','Previous',0],
-    ['Mr. Vinod Kumar',    'Warden', '9876543221','',                     'Senior MBBS boys hostel','Next',0],
-    ['Suresh Kumar',       'Guard',  '9876543222','',                     'Senior MBBS boys hostel','Morning',1],
-    ['Deepak Singh',       'Guard',  '9876543223','',                     'Senior MBBS boys hostel','Night',0]
+    // ── Active wardens (on_duty = 1) ──────────────────────────────────────
+    ['Dr. Ramesh Kulkarni', 'Warden','9876543210','r.kulkarni@ahcms.edu.in', 'Senior MBBS boys hostel',         'All-day', 1],
+    ['Mrs. Sunita Sharma',  'Warden','9876543211','s.sharma@ahcms.edu.in',   'Senior MBBS girls hostel',        'All-day', 1],
+    ['Mrs. Aditi Verma',    'Warden','9876543212','a.verma@ahcms.edu.in',    'Sardha building : Block A (girls)','All-day', 1],
+    ['Mr. Prakash Nair',    'Warden','9876543213','p.nair@ahcms.edu.in',     'Sardha building : Block B (boys)', 'All-day', 1],
+
+    // ── Off-duty (Previous slot) — one per hostel ──────────────────────────
+    ['Mr. Anil Desai',      'Warden','9876543220','', 'Senior MBBS boys hostel',         'Previous', 0],
+    ['Dr. Kavitha Menon',   'Warden','9876543224','', 'Senior MBBS girls hostel',        'Previous', 0],
+    ['Mr. Rajan Pillai',    'Warden','9876543225','', 'Sardha building : Block A (girls)','Previous', 0],
+    ['Mrs. Geeta Joshi',    'Warden','9876543226','', 'Sardha building : Block B (boys)', 'Previous', 0],
+
+    // ── Off-duty (Next slot) — one per hostel ──────────────────────────────
+    ['Mr. Vinod Kumar',     'Warden','9876543221','', 'Senior MBBS boys hostel',         'Next', 0],
+    ['Dr. Preethi Iyer',    'Warden','9876543227','', 'Senior MBBS girls hostel',        'Next', 0],
+    ['Ms. Nandita Roy',     'Warden','9876543228','', 'Sardha building : Block A (girls)','Next', 0],
+    ['Mr. Sudhir Bhatt',    'Warden','9876543229','', 'Sardha building : Block B (boys)', 'Next', 0],
+
+    // ── On-duty guards — two per hostel (Morning + Night) ─────────────────
+    ['Suresh Kumar',        'Guard', '9876543222','', 'Senior MBBS boys hostel',         'Morning', 1],
+    ['Deepak Singh',        'Guard', '9876543223','', 'Senior MBBS boys hostel',         'Night',   1],
+    ['Rajesh Pandey',       'Guard', '9876543230','', 'Senior MBBS girls hostel',        'Morning', 1],
+    ['Mohan Lal',           'Guard', '9876543231','', 'Senior MBBS girls hostel',        'Night',   1],
+    ['Ravi Shankar',        'Guard', '9876543232','', 'Sardha building : Block A (girls)','Morning', 1],
+    ['Anup Mishra',         'Guard', '9876543233','', 'Sardha building : Block A (girls)','Night',   1],
+    ['Bharat Yadav',        'Guard', '9876543234','', 'Sardha building : Block B (boys)', 'Morning', 1],
+    ['Ganesh Tiwari',       'Guard', '9876543235','', 'Sardha building : Block B (boys)', 'Night',   1],
   ];
   const insertWardens = db.transaction((rows) => rows.forEach(r => wardInsert.run(...r)));
   insertWardens(wardens);
