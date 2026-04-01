@@ -37,13 +37,13 @@ export function renderLogin(onSuccess) {
         <form id="form-student" class="login-form" novalidate>
           <div class="login-form-group">
             <label for="s-roll">Roll Number</label>
-            <input type="text" id="s-roll" class="login-input" placeholder="e.g. DL.AI.U4AID24120" autocomplete="username" />
+            <input type="text" id="s-roll" class="login-input" placeholder="e.g. DL.MBBS.U4AID24120" autocomplete="username" />
           </div>
           <div class="login-form-group">
             <label for="s-pass">Password</label>
             <input type="password" id="s-pass" class="login-input" placeholder="Enter your password" autocomplete="current-password" />
           </div>
-          <p class="login-hint">Demo credentials — Roll: <code>DL.AI.U4AID24120</code> Pass: <code>Student@123</code></p>
+          <p class="login-hint">Demo credentials &mdash; Roll: <code>DL.MBBS.U4AID24120</code> Pass: <code>Student@123</code></p>
           <button type="submit" class="login-btn" id="btn-student-login">Sign In</button>
           <div class="login-error" id="err-student"></div>
         </form>
