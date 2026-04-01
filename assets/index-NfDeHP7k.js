@@ -270,7 +270,7 @@
               </select>
               <div class="form-error" id="err-cmp-cat">Category is required</div>
             </div>
-            <div class="form-group full-width" id="cmp-other-group" style="display: none;">
+            <div class="form-group" id="cmp-other-group" style="display: none;">
               <label class="form-label" for="cmp-other-type">Please Specify Category <span style="color:var(--danger)">*</span></label>
               <input type="text" class="form-input" id="cmp-other-type" placeholder="e.g. Pest Control, Room Allocation..." />
               <div class="form-error" id="err-cmp-other">Please specify what the complaint is about.</div>
