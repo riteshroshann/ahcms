@@ -32,6 +32,21 @@ router.get('/', requireAuth, (req, res) => {
   res.json(rooms);
 });
 
+// ── GET /api/rooms/allocations ────────────────────────────────
+// Admin: all allocations with student + room details
+router.get('/allocations', requireAuth, requireRole('admin'), (req, res) => {
+  const rows = db.prepare(`
+    SELECT a.*,
+      s.name AS student_name, s.roll_no, s.year, s.course,
+      r.hostel, r.floor, r.type, r.capacity
+    FROM ALLOCATION a
+    JOIN STUDENT s ON a.student_id = s.student_id
+    JOIN ROOM r ON a.room_id = r.room_id
+    ORDER BY a.from_date DESC, a.allocation_id DESC
+  `).all();
+  res.json(rows);
+});
+
 // ── GET /api/rooms/vacant ─────────────────────────────────────
 // Vacant rooms — for room booking floor plan
 router.get('/vacant', requireAuth, (req, res) => {

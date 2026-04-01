@@ -9,12 +9,21 @@ const router = Router();
 // Admin: all complaints with student info
 router.get('/', requireAuth, (req, res) => {
   if (req.user.role === 'admin') {
-    const rows = db.prepare(`
-      SELECT c.*, s.name AS student_name, s.roll_no
-      FROM COMPLAINT c
-      LEFT JOIN STUDENT s ON c.student_id = s.student_id
-      ORDER BY c.date DESC, c.complaint_id DESC
-    `).all();
+    const h = req.query.hostel || '';
+    const rows = h
+      ? db.prepare(`
+          SELECT c.*, s.name AS student_name, s.roll_no
+          FROM COMPLAINT c
+          LEFT JOIN STUDENT s ON c.student_id = s.student_id
+          JOIN ROOM r ON c.room_id = r.room_id AND r.hostel = ?
+          ORDER BY c.date DESC, c.complaint_id DESC
+        `).all(h)
+      : db.prepare(`
+          SELECT c.*, s.name AS student_name, s.roll_no
+          FROM COMPLAINT c
+          LEFT JOIN STUDENT s ON c.student_id = s.student_id
+          ORDER BY c.date DESC, c.complaint_id DESC
+        `).all();
     return res.json(rows);
   }
 

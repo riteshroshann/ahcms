@@ -226,14 +226,15 @@ function renderPage(container, contacts) {
       /* Meal tabs */
       .res-meal-tab {
         display: flex; flex-direction: column;
-        padding: var(--space-3) var(--space-5);
+        padding: var(--space-4) var(--space-6);
         border: 1px solid var(--border-subtle);
         border-radius: var(--radius-md);
         background: var(--bg-elevated);
         cursor: pointer;
         transition: all .15s;
         text-align: left;
-        gap: 2px;
+        gap: 4px;
+        min-width: 140px;
       }
       .res-meal-tab:hover { border-color: var(--border-default); }
       .res-meal-tab.active {
@@ -242,7 +243,7 @@ function renderPage(container, contacts) {
         color: var(--text-inverse);
       }
       .res-meal-name { font-size: var(--text-sm); font-weight: 600; }
-      .res-meal-time { font-size: 10px; opacity: .6; }
+      .res-meal-time { font-size: 11px; opacity: .6; }
       .res-meal-tab.active .res-meal-time { opacity: .7; }
 
       /* Day tabs */

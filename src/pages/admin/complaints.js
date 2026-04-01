@@ -5,22 +5,29 @@
 
 import { api } from '../../api.js';
 import { toast } from '../../components/toast.js';
+import { getHostel, onHostelChange } from '../../components/hostelStore.js';
 
 const CAT_ICONS  = { Plumbing:'🔧', Electricity:'⚡', WiFi:'📶', Cleanliness:'🧹', Carpentry:'🔨', Other:'📋' };
 const STATUSES   = ['open','in-progress','resolved'];
 const CATEGORIES = ['Plumbing','Electricity','WiFi','Cleanliness','Carpentry','Other'];
 
 export async function renderAdminComplaints(container) {
-  container.innerHTML = `<div class="page-loading">Loading…</div>`;
-  try {
-    const complaints = await api.get('/complaints');
-    renderPage(container, complaints);
-  } catch(e) {
-    container.innerHTML = `<div class="page-error">Failed to load: ${e.message}</div>`;
+  async function load() {
+    container.innerHTML = `<div class="page-loading">Loading…</div>`;
+    try {
+      const h  = getHostel();
+      const qs = h ? `?hostel=${encodeURIComponent(h)}` : '';
+      const complaints = await api.get(`/complaints${qs}`);
+      renderPage(container, complaints, load);
+    } catch(e) {
+      container.innerHTML = `<div class="page-error">Failed to load: ${e.message}</div>`;
+    }
   }
+  onHostelChange(() => load());
+  await load();
 }
 
-function renderPage(container, initial) {
+function renderPage(container, initial, reloadFn) {
   let complaints = initial;
   let filterStatus = 'all';
   let filterCat = '';
