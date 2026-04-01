@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS WARDEN (
     phone       TEXT,
     email       TEXT,
     hostel      TEXT,
-    shift       TEXT CHECK (shift IN ('Morning','Evening','Night','All-day')),
+    shift       TEXT CHECK (shift IN ('Morning','Evening','Night','All-day','Previous','Next')),
     on_duty     INTEGER NOT NULL DEFAULT 1   -- 1 = currently on duty
 );
 
