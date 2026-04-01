@@ -16,19 +16,32 @@ const HOSTELS = [
   'Senior MBBS girls hostel',
 ];
 
-// gender → which hostel prefix
-const genderHostel = g => g === 'M' ? 'boys' : g === 'F' ? 'girls' : '';
+// gender + course → exact hostel + floor
+const FLOOR_MAP = {
+  'M-MBBS':   { hostel: 'Senior MBBS boys hostel',  floor: 8 },
+  'M-B.Tech': { hostel: 'Senior MBBS boys hostel',  floor: 9 },
+  'F-MBBS':   { hostel: 'Senior MBBS girls hostel', floor: 7 },
+  'F-B.Tech': { hostel: 'Senior MBBS girls hostel', floor: 8 },
+};
 
-// Rooms eligible for a given gender (non-full)
-function eligibleRooms(rooms, gender) {
-  const kw = genderHostel(gender);
+function eligibleRooms(rooms, gender, course) {
+  const key    = gender && course ? `${gender}-${course}` : null;
+  const target = key ? FLOOR_MAP[key] : null;
   return rooms
-    .filter(r => r.current_occupancy < r.capacity && (kw ? r.hostel.toLowerCase().includes(kw) : true))
-    .sort((a,b) => a.floor - b.floor || a.room_id.localeCompare(b.room_id));
+    .filter(r => {
+      if (r.current_occupancy >= r.capacity) return false;
+      if (!target) {
+        // fall back to gender-only hostel filter
+        const kw = gender === 'M' ? 'boys' : gender === 'F' ? 'girls' : '';
+        return kw ? r.hostel.toLowerCase().includes(kw) : true;
+      }
+      return r.hostel === target.hostel && r.floor === target.floor;
+    })
+    .sort((a,b) => a.room_id.localeCompare(b.room_id));
 }
 
 function roomOption(r) {
-  return `<option value="${r.room_id}">${r.room_id} · Floor ${r.floor} · ${r.type} · ${r.current_occupancy}/${r.capacity}</option>`;
+  return `<option value="${r.room_id}">${r.room_id} · Fl ${r.floor} · ${r.type} · ${r.current_occupancy}/${r.capacity}</option>`;
 }
 
 // ── Entry point ────────────────────────────────────────────
@@ -296,7 +309,7 @@ function renderPage(container, data, reloadFn) {
                     ? `<span class="cell-mono" style="font-size:var(--text-xs);color:var(--accent-green);">${s.alloc_room}</span>`
                     : `<select class="form-select" style="padding:4px 8px;font-size:var(--text-xs);min-width:130px;" data-stu="${s.student_id}" data-gender="${s.gender}" id="qs-room-${s.student_id}">
                         <option value="">— room —</option>
-                        ${eligibleRooms(rooms, s.gender).map(roomOption).join('')}
+                        ${eligibleRooms(rooms, s.gender, s.course).map(roomOption).join('')}
                       </select>
                       <button class="btn btn-sm btn-primary" data-assign="${s.student_id}" style="white-space:nowrap;">Assign</button>`
                   }
@@ -315,22 +328,27 @@ function renderPage(container, data, reloadFn) {
     });
     document.getElementById('add-gender').addEventListener('change', updateAllocRoomDropdown);
 
-    // Course → Year dropdown (MBBS = 5yr, B.Tech = 4yr)
+    // Course → Year dropdown + update room dropdown
     document.getElementById('add-course').addEventListener('change', e => {
       const years = e.target.value === 'MBBS' ? 5 : e.target.value === 'B.Tech' ? 4 : 0;
       const yrSel = document.getElementById('add-year');
       yrSel.innerHTML = years
         ? `<option value="">Select</option>` + Array.from({length: years}, (_,i) => `<option value="${i+1}">Year ${i+1}</option>`).join('')
         : `<option value="">Select course first</option>`;
+      updateAllocRoomDropdown();
     });
 
     function updateAllocRoomDropdown() {
       const gender = document.getElementById('add-gender').value;
-      const opts   = eligibleRooms(rooms, gender);
+      const course = document.getElementById('add-course').value;
+      const opts   = eligibleRooms(rooms, gender, course);
       const sel    = document.getElementById('alloc-room-select');
+      const label  = FLOOR_MAP[`${gender}-${course}`]
+        ? `Floor ${FLOOR_MAP[`${gender}-${course}`].floor} rooms`
+        : 'rooms';
       sel.innerHTML = opts.length
-        ? `<option value="">— pick a room —</option>${opts.map(roomOption).join('')}`
-        : `<option value="">No vacant rooms for this gender</option>`;
+        ? `<option value="">— pick a room (${label}) —</option>${opts.map(roomOption).join('')}`
+        : `<option value="">No vacant ${label}</option>`;
     }
 
     // Quick assign buttons
