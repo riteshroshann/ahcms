@@ -14,8 +14,7 @@
   <!-- Prevent theme flash -->
   <script>
     (function() {
-      const theme = localStorage.getItem('ahcms_theme') || localStorage.getItem('cw_theme') ||
-                   (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      const theme = localStorage.getItem('ahcms_theme') || localStorage.getItem('cw_theme') || 'light';
       document.documentElement.setAttribute('data-theme', theme);
     })();
   </script>

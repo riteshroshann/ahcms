@@ -102,7 +102,7 @@ export function renderLogin(onSuccess) {
 
   // Theme toggle on login page
   document.getElementById('login-theme')?.addEventListener('click', () => {
-    const current = document.documentElement.getAttribute('data-theme') || 'dark';
+    const current = document.documentElement.getAttribute('data-theme') || 'light';
     const next = current === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
     localStorage.setItem('ahcms_theme', next);
