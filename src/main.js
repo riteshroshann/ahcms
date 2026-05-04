@@ -3,6 +3,7 @@
    Role-aware, auth-gated routing
    ───────────────────────────────── */
 
+import './style.css';
 import { renderNav, createMobileToggle } from './components/nav.js';
 import { isLoggedIn, getRole, logout }   from './auth.js';
 import { renderLogin }                   from './pages/login.js';
