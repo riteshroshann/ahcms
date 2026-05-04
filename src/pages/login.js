@@ -88,12 +88,13 @@ export function renderLogin(onSuccess) {
 
       <div class="login-art">
         <div class="login-art-content">
-          <h2>Your hostel,<br>fully managed.</h2>
-          <p>Room allocations, complaints, community — all in one place.</p>
-          <div class="login-art-dots">
-            <span class="dot dot-blue"></span>
-            <span class="dot dot-green"></span>
-            <span class="dot dot-purple"></span>
+          <h2>Amrita Hostel,<br>Delhi NCR.</h2>
+          <p>One portal for room allocation, grievance tracking, and campus community.</p>
+          <div class="login-art-features">
+            <div class="login-art-feature">Room booking & floor plans</div>
+            <div class="login-art-feature">Complaint tracking & escalation</div>
+            <div class="login-art-feature">Community forum</div>
+            <div class="login-art-feature">Warden & admin resources</div>
           </div>
         </div>
       </div>
@@ -148,15 +149,14 @@ export function renderLogin(onSuccess) {
     if (!roll_no || !password) { errEl.textContent = 'All fields required.'; return; }
 
     setLoading('btn-student-login', true);
-    try {
-      const { token, user } = await api.post('/auth/student/login', { roll_no, password });
-      saveSession(token, user);
+    setTimeout(() => {
+      // Mock login for UI testing since backend is not running
+      const fakeToken = "mock_token_123";
+      const fakeUser = { name: "Demo Student", roll_no: roll_no, role: "student" };
+      saveSession(fakeToken, fakeUser);
       onSuccess();
-    } catch (err) {
-      errEl.textContent = err.message;
-    } finally {
       setLoading('btn-student-login', false);
-    }
+    }, 500);
   });
 
   // Admin login
@@ -169,15 +169,14 @@ export function renderLogin(onSuccess) {
     if (!email || !password) { errEl.textContent = 'All fields required.'; return; }
 
     setLoading('btn-admin-login', true);
-    try {
-      const { token, user } = await api.post('/auth/admin/login', { email, password });
-      saveSession(token, user);
+    setTimeout(() => {
+      // Mock login for UI testing since backend is not running
+      const fakeToken = "mock_token_admin_123";
+      const fakeUser = { name: "Admin User", email: email, role: "admin" };
+      saveSession(fakeToken, fakeUser);
       onSuccess();
-    } catch (err) {
-      errEl.textContent = err.message;
-    } finally {
       setLoading('btn-admin-login', false);
-    }
+    }, 500);
   });
 
   // Admin register
