@@ -14,8 +14,9 @@
   <!-- Prevent theme flash -->
   <script>
     (function() {
-      const theme = localStorage.getItem('ahcms_theme') || localStorage.getItem('cw_theme') || 'light';
-      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('ahcms_theme', 'light');
+      localStorage.setItem('cw_theme', 'light');
+      document.documentElement.setAttribute('data-theme', 'light');
     })();
   </script>
   <!-- App shell is built dynamically by main.js based on auth state -->
