@@ -55,7 +55,7 @@ function navigate(page) {
   const sidebar = document.getElementById('sidebar');
   const main    = document.getElementById('main-content');
 
-  renderNav(sidebar, currentPage, navigate);
+  renderNav(sidebar, document.getElementById('top-header'), currentPage, navigate);
   pages[page](main, () => navigate(currentPage));
 
   if (mobileToggle) mobileToggle.close();
@@ -63,9 +63,12 @@ function navigate(page) {
 
 function buildShell() {
   document.body.innerHTML = `
-    <div id="app">
-      <aside id="sidebar" class="sidebar"></aside>
-      <main id="main-content" class="main"></main>
+    <div id="app" class="app-layout">
+      <header id="top-header" class="top-header"></header>
+      <div class="app-body">
+        <aside id="sidebar" class="sidebar"></aside>
+        <main id="main-content" class="main"></main>
+      </div>
     </div>
   `;
 }

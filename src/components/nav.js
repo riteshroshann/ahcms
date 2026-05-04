@@ -33,27 +33,64 @@ const ADMIN_NAV = [
   { id: 'resources',  label: 'Resources',        icon: ICONS.resources },
 ];
 
-export function renderNav(container, activeId, onNavigate) {
+export function renderNav(sidebarContainer, headerContainer, activeId, onNavigate) {
   const role  = getRole();
   const user  = getUser();
   const items = role === 'admin' ? ADMIN_NAV : STUDENT_NAV;
   const label = role === 'admin' ? 'Admin Panel' : 'Student Portal';
 
-  container.innerHTML = `
-    <div class="sidebar-brand">
-      <h1>AHCMS</h1>
-      <span>${label}</span>
-    </div>
+  // Format date like: "Mon May 04 2026 6:41:26 PM"
+  const now = new Date();
+  const dateStr = now.toDateString() + " " + now.toLocaleTimeString();
 
-    <div class="sidebar-user">
-      <div class="sidebar-user-avatar">${(user?.name || 'U')[0].toUpperCase()}</div>
-      <div class="sidebar-user-info">
-        <div class="sidebar-user-name">${user?.name || 'User'}</div>
-        <div class="sidebar-user-role">${role === 'admin' ? 'Administrator' : user?.roll_no || 'Student'}</div>
+  if (headerContainer) {
+    headerContainer.innerHTML = `
+      <div class="header-left">
+        <div class="header-logo">
+          <div class="logo-circle">
+            <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+          </div>
+        </div>
+        <div class="header-title">
+          <div class="title-main">Amrita University</div>
+          <div class="title-sub">Management System</div>
+        </div>
       </div>
+      <div class="header-right">
+        <div class="header-user-info">
+          <div>Welcome ${user?.name || 'User'}</div>
+          <div class="header-date">${dateStr}</div>
+        </div>
+        <div class="header-icons">
+          <button class="header-icon" title="Messages"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></button>
+          <button class="header-icon" title="Home" id="header-home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></button>
+          <button class="header-icon" title="Theme" id="header-theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></button>
+          <button class="header-icon" title="Calendar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></button>
+          <button class="header-icon" title="Notifications"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg></button>
+          <button class="header-icon" title="Logout" id="header-logout"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg></button>
+        </div>
+      </div>
+    `;
+
+    document.getElementById('header-home')?.addEventListener('click', () => onNavigate('home'));
+    document.getElementById('header-logout')?.addEventListener('click', () => { logout(); window.location.reload(); });
+    document.getElementById('header-theme')?.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') || 'light';
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('ahcms_theme', next);
+    });
+  }
+
+  sidebarContainer.innerHTML = `
+    <div class="sidebar-tabs">
+      <button class="sidebar-tab active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" style="margin-right:4px;"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg> Main</button>
+      <button class="sidebar-tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" style="margin-right:4px;"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg> LMS</button>
+      <button class="sidebar-tab-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
     </div>
 
     <div class="sidebar-section">
+      <div class="sidebar-section-label">Main Menu</div>
       ${items.map(item => `
         <a class="nav-item${item.id === activeId ? ' active' : ''}"
            data-page="${item.id}"
@@ -61,41 +98,18 @@ export function renderNav(container, activeId, onNavigate) {
            role="button"
            tabindex="0">
           ${item.icon}
-          ${item.label}
+          <span style="flex:1;">${item.label}</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="nav-caret"><polyline points="9 18 15 12 9 6"></polyline></svg>
         </a>
       `).join('')}
     </div>
-
-    <div class="sidebar-footer">
-      <button class="nav-item logout-btn" id="nav-theme" style="margin-bottom: var(--space-2); color: var(--text-secondary);">
-        ${ICONS.theme}
-        Toggle Theme
-      </button>
-      <button class="nav-item logout-btn" id="nav-logout">
-        ${ICONS.logout}
-        Sign Out
-      </button>
-      <p>AHCMS · Amrita Delhi NCR</p>
-    </div>
   `;
 
-  container.querySelectorAll('.nav-item[data-page]').forEach(el => {
+  sidebarContainer.querySelectorAll('.nav-item[data-page]').forEach(el => {
     el.addEventListener('click', () => onNavigate(el.dataset.page));
     el.addEventListener('keydown', e => {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); }
     });
-  });
-
-  document.getElementById('nav-logout')?.addEventListener('click', () => {
-    logout();
-    window.location.reload();
-  });
-
-  document.getElementById('nav-theme')?.addEventListener('click', () => {
-    const current = document.documentElement.getAttribute('data-theme') || 'light';
-    const next = current === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('ahcms_theme', next);
   });
 }
 
