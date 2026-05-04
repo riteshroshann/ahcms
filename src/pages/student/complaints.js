@@ -25,14 +25,8 @@ export async function renderStudentComplaints(container) {
   try {
     complaints = await api.get('/complaints');
   } catch(e) {
-    console.warn("Backend unavailable, using mock data for UI testing:", e);
-    // Mock data to bypass technical blockers for UI testing
-    complaints = [
-      { complaint_id: 104, category: 'Plumbing', description: 'Leaking tap in bathroom on 2nd floor.', date: '2026-05-04', status: 'open' },
-      { complaint_id: 103, category: 'WiFi', description: 'No internet connection in room 204 since morning.', date: '2026-05-03', status: 'in-progress' },
-      { complaint_id: 102, category: 'Cleanliness', description: 'Corridor dustbins are overflowing.', date: '2026-05-01', status: 'resolved', admin_note: 'Cleaned by staff.' },
-      { complaint_id: 101, category: 'Electricity', description: 'Fan regulator is broken.', date: '2026-04-28', status: 'resolved', admin_note: 'Replaced regulator.' }
-    ];
+    container.innerHTML = `<div class="page-error">Failed to load: ${e.message}</div>`;
+    return;
   }
   renderPage(container, complaints);
 }

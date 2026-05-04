@@ -210,11 +210,10 @@ function renderPage(container, contacts) {
   `;
 
   // ── Styles injected once ──────────────────────────────────────
-  let s = document.getElementById('res-styles');
-  if (s) s.remove();
-  s = document.createElement('style');
-  s.id = 'res-styles';
-  s.textContent = `
+  if (!document.getElementById('res-styles')) {
+    const s = document.createElement('style');
+    s.id = 'res-styles';
+    s.textContent = `
       .res-section-label {
         font-size: var(--text-xs);
         font-weight: 700;
@@ -229,86 +228,51 @@ function renderPage(container, contacts) {
         display: flex; flex-direction: column;
         padding: var(--space-4) var(--space-6);
         border: 1px solid var(--border-subtle);
-        border-radius: var(--radius-lg);
-        background: var(--bg-secondary);
+        border-radius: var(--radius-md);
+        background: var(--bg-elevated);
         cursor: pointer;
-        transition: all .25s var(--ease-out);
+        transition: all .15s;
         text-align: left;
-        gap: 6px;
-        min-width: 150px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        gap: 4px;
+        min-width: 140px;
       }
-      .res-meal-tab:hover {
-        border-color: var(--border-default);
-        background: var(--bg-hover);
-        transform: translateY(-2px);
-      }
+      .res-meal-tab:hover { border-color: var(--border-default); }
       .res-meal-tab.active {
-        border-color: var(--accent-amber);
-        background: var(--accent-amber-bg);
-        box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+        border-color: var(--text-primary);
+        background: var(--text-primary);
+        color: var(--text-inverse);
       }
-      .res-meal-name {
-        font-family: var(--font-serif);
-        font-size: var(--text-lg);
-        font-weight: 500;
-        color: var(--text-primary);
-        letter-spacing: 0.01em;
-      }
-      .res-meal-tab.active .res-meal-name {
-        color: var(--accent-amber);
-      }
-      .res-meal-time {
-        font-family: var(--font-mono);
-        font-size: 11px;
-        color: var(--text-tertiary);
-        letter-spacing: 0.05em;
-      }
-      .res-meal-tab.active .res-meal-time {
-        color: var(--accent-amber);
-        opacity: 0.8;
-      }
+      .res-meal-name { font-size: var(--text-sm); font-weight: 600; }
+      .res-meal-time { font-size: 11px; opacity: .6; }
+      .res-meal-tab.active .res-meal-time { opacity: .7; }
 
       /* Day tabs */
       .res-day-tab {
-        padding: 8px 18px;
+        padding: 6px 14px;
         font-size: var(--text-xs);
-        font-weight: 600;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
+        font-weight: 500;
         border: 1px solid var(--border-subtle);
         border-radius: var(--radius-full, 999px);
-        background: var(--bg-secondary);
+        background: transparent;
         color: var(--text-tertiary);
         cursor: pointer;
-        transition: all .25s var(--ease-out);
-        box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        transition: all .15s;
       }
-      .res-day-tab:hover {
-        color: var(--text-primary);
-        border-color: var(--border-default);
-        background: var(--bg-hover);
-      }
+      .res-day-tab:hover { color: var(--text-primary); border-color: var(--border-default); }
       .res-day-tab.active {
-        background: var(--accent-amber-bg);
-        color: var(--accent-amber);
-        border-color: var(--accent-amber);
+        background: var(--text-primary);
+        color: var(--text-inverse);
+        border-color: transparent;
       }
 
       /* Big info cards */
       .res-big-card {
-        background: var(--bg-secondary);
+        background: var(--bg-elevated);
         border: 1px solid var(--border-subtle);
-        border-radius: var(--radius-xl);
+        border-radius: var(--radius-lg);
         padding: var(--space-8);
         display: flex;
         flex-direction: column;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-        transition: transform .25s var(--ease-out), box-shadow .25s var(--ease-out);
-      }
-      .res-big-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 24px rgba(0,0,0,0.06);
       }
       .res-card-title {
         font-size: var(--text-xs);
@@ -322,12 +286,10 @@ function renderPage(container, contacts) {
       }
       .res-info-block { display: flex; flex-direction: column; }
       .res-info-place {
-        font-family: var(--font-serif);
-        font-size: var(--text-xl);
-        font-weight: 500;
+        font-size: var(--text-sm);
+        font-weight: 600;
         color: var(--text-primary);
         margin-bottom: var(--space-2);
-        letter-spacing: 0.01em;
       }
       .res-info-line {
         font-size: var(--text-sm);
@@ -343,27 +305,21 @@ function renderPage(container, contacts) {
         text-decoration: none;
         margin-top: var(--space-3);
       }
-      .res-phone:hover { color: var(--accent-amber); }
+      .res-phone:hover { opacity: .7; }
       .res-book-btn {
         display: inline-flex;
         align-items: center;
-        padding: 10px 24px;
-        background: var(--accent-amber);
-        color: var(--bg-root);
-        border-radius: var(--radius-full);
+        padding: 10px 20px;
+        background: var(--text-primary);
+        color: var(--text-inverse);
+        border-radius: var(--radius-md);
         font-size: var(--text-sm);
         font-weight: 600;
         text-decoration: none;
-        transition: all .25s var(--ease-out);
+        transition: opacity .15s;
         align-self: flex-start;
-        box-shadow: 0 2px 8px rgba(232, 160, 104, 0.2);
       }
-      .res-book-btn:hover {
-        background: var(--accent-amber);
-        opacity: 0.9;
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(232, 160, 104, 0.3);
-      }
+      .res-book-btn:hover { opacity: .75; }
 
       /* Laundry rows */
       .res-laundry-row {
@@ -385,42 +341,43 @@ function renderPage(container, contacts) {
       }
 
       /* Menu table */
-      #menu-panel {
-        background: var(--bg-secondary);
-        border-radius: var(--radius-xl);
-        border: 1px solid var(--border-subtle);
-        padding: var(--space-4);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-      }
       #menu-panel table {
         width: 100%;
         border-collapse: collapse;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        border: 1px solid var(--border-subtle);
       }
       #menu-panel th {
-        padding: 16px 14px;
+        padding: 12px 14px;
         font-size: var(--text-xs);
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: .06em;
         text-align: center;
+        background: var(--bg-elevated);
         color: var(--text-tertiary);
-        border-bottom: 2px solid var(--border-subtle);
+        border-bottom: 1px solid var(--border-subtle);
       }
       #menu-panel th.today {
-        color: var(--accent-amber);
+        background: var(--text-primary);
+        color: var(--text-inverse);
       }
       #menu-panel td {
-        padding: 14px 14px;
-        font-size: var(--text-sm);
+        padding: 10px 14px;
+        font-size: var(--text-xs);
         text-align: center;
         color: var(--text-secondary);
         border-bottom: 1px solid var(--border-subtle);
+        text-transform: uppercase;
+        letter-spacing: .02em;
       }
       #menu-panel td.today {
         color: var(--text-primary);
-        font-weight: 500;
-        background: var(--accent-amber-bg);
+        font-weight: 600;
+        background: rgba(0,0,0,.02);
       }
+      [data-theme="dark"] #menu-panel td.today { background: rgba(255,255,255,.03); }
       #menu-panel tr:last-child td { border-bottom: none; }
 
       /* Contact directory */
@@ -470,7 +427,7 @@ function renderPage(container, contacts) {
       }
     `;
     document.head.appendChild(s);
-
+  }
 
   // ── Menu render ───────────────────────────────────────────────
   function renderMenu() {

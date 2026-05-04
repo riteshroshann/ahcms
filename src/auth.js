@@ -38,7 +38,6 @@ export function getRole() {
 export function isLoggedIn() {
   const token = getToken();
   if (!token) return false;
-  if (token.startsWith('mock_token')) return true;
   try {
     // Decode payload (no verify — server verifies on each request)
     const payload = JSON.parse(atob(token.split('.')[1]));

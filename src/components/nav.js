@@ -54,6 +54,7 @@ export function renderNav(container, activeId, onNavigate) {
     </div>
 
     <div class="sidebar-section">
+      <div class="sidebar-section-label">Navigation</div>
       ${items.map(item => `
         <a class="nav-item${item.id === activeId ? ' active' : ''}"
            data-page="${item.id}"
@@ -75,7 +76,7 @@ export function renderNav(container, activeId, onNavigate) {
         ${ICONS.logout}
         Sign Out
       </button>
-      <p>AHCMS · Amrita Delhi NCR</p>
+      <p>v2.0 · 2026</p>
     </div>
   `;
 
