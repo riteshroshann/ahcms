@@ -102,9 +102,9 @@ function bootRouter() {
   });
 }
 
-// Apply theme before first render (default: dark)
+// Apply theme before first render (default: light)
 (function () {
-  const theme = localStorage.getItem('ahcms_theme') || 'dark';
+  const theme = localStorage.getItem('ahcms_theme') || 'light';
   document.documentElement.setAttribute('data-theme', theme);
 })();
 
