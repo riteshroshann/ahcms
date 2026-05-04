@@ -13,37 +13,39 @@
 /* ── Tokens — Light mode is the default ── */
 :root {
   /* Surfaces */
-  --bg-root:        #faf9f6; /* Warm off-white */
-  --bg-primary:     #ffffff;
-  --bg-secondary:   #fdfcf9;
+  --bg-root:        #F8FAFC; /* Very light slate gray */
+  --bg-primary:     #ffffff; /* Pure white cards */
+  --bg-secondary:   #EEF2F7; /* Sidebar light gray */
   --bg-elevated:    #ffffff;
-  --bg-hover:       #f5f4ef;
+  --bg-hover:       #F1F5F9;
   --bg-input:       #ffffff;
 
   /* Borders */
-  --border-subtle:  #eeeadd;
-  --border-default: #dfdad0;
-  --border-focus:   #c1baad;
+  --border-subtle:  #F1F5F9;
+  --border-default: #D1D5DB; /* Light border */
+  --border-focus:   #14B8A6; /* Teal focus */
 
   /* Text */
-  --text-primary:   #2b2926;
-  --text-secondary: #5e5a52;
-  --text-tertiary:  #8b867c;
-  --text-inverse:   #fdfcf9;
+  --text-primary:   #111827; /* Dark gray for headings */
+  --text-secondary: #374151; /* Medium gray for body */
+  --text-tertiary:  #6B7280;
+  --text-inverse:   #ffffff;
 
   /* Accents */
-  --accent-blue:    #3b6ba5;
-  --accent-green:   #4a8060;
-  --accent-amber:   #c46e27;
-  --accent-red:     #c94a4a;
-  --accent-purple:  #8258a3;
+  --accent-primary: #14B8A6; /* Teal */
+  --accent-blue:    #3b82f6;
+  --accent-green:   #10b981;
+  --accent-amber:   #14B8A6; /* Replaced amber with Teal */
+  --accent-red:     #ef4444;
+  --accent-purple:  #8b5cf6;
 
   /* Accent low-opacity backgrounds */
-  --accent-blue-bg:   rgba(59, 107, 165, 0.08);
-  --accent-green-bg:  rgba(74, 128, 96, 0.08);
-  --accent-amber-bg:  rgba(196, 110, 39, 0.08);
-  --accent-red-bg:    rgba(201, 74, 74, 0.08);
-  --accent-purple-bg: rgba(130, 88, 163, 0.08);
+  --accent-primary-bg: rgba(20, 184, 166, 0.1);
+  --accent-blue-bg:   rgba(59, 130, 246, 0.1);
+  --accent-green-bg:  rgba(16, 185, 129, 0.1);
+  --accent-amber-bg:  rgba(20, 184, 166, 0.1);
+  --accent-red-bg:    rgba(239, 68, 68, 0.1);
+  --accent-purple-bg: rgba(139, 92, 246, 0.1);
 
   /* Typography */
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -77,9 +79,9 @@
   --radius-xl: 24px;
 
   /* Shadows */
-  --shadow-sm: 0 2px 4px rgba(43, 41, 38, 0.04);
-  --shadow-md: 0 6px 16px rgba(43, 41, 38, 0.06);
-  --shadow-lg: 0 12px 32px rgba(43, 41, 38, 0.08);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.05); /* Soft Stripe-like shadow */
+  --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.06);
 
   /* Transitions */
   --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -142,7 +144,7 @@ html {
 body {
   font-family: var(--font-sans);
   background: var(--bg-root);
-  color: var(--text-primary);
+  color: var(--text-secondary);
   line-height: 1.6;
   font-size: var(--text-base);
   font-weight: 400;
@@ -152,15 +154,10 @@ body {
   position: relative;
 }
 
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  opacity: 0.035;
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
 }
+
 
 /* ── App Layout ── */
 .app-layout {
@@ -403,8 +400,8 @@ body::before {
 }
 
 .nav-item.active {
-  background: var(--accent-amber-bg);
-  color: var(--accent-amber);
+  background: #DCE8FF; /* Subtle active highlight */
+  color: var(--accent-primary);
   font-weight: 600;
 }
 
@@ -514,11 +511,11 @@ body::before {
 }
 
 .card {
-  background: var(--bg-secondary);
+  background: var(--bg-primary);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-lg);
   padding: var(--space-6);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-md);
   transition: border-color var(--duration-fast) var(--ease-out),
               transform var(--duration-fast) var(--ease-out),
               box-shadow var(--duration-fast) var(--ease-out);
@@ -563,12 +560,12 @@ body::before {
 
 /* ── Forms ── */
 .form-section {
-  background: var(--bg-secondary);
+  background: var(--bg-primary);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-lg);
   padding: var(--space-8);
   max-width: 640px;
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-md);
 }
 
 .form-section-title {
@@ -685,8 +682,8 @@ body::before {
 }
 
 .btn-primary {
-  background: var(--text-primary);
-  color: var(--text-inverse);
+  background: var(--accent-primary);
+  color: #ffffff;
 }
 
 .btn-primary:hover {
@@ -726,10 +723,11 @@ body::before {
 
 /* ── Tables ── */
 .table-container {
-  background: var(--bg-secondary);
+  background: var(--bg-primary);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   overflow: hidden;
+  box-shadow: var(--shadow-md);
 }
 
 .table-toolbar {
